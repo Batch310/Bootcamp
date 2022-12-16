@@ -9,7 +9,7 @@ public class Latihan10 {
 		int pass = 123456;
 		System.out.print("Masukkan PIN : ");
 		int pin = input.nextInt();
-		
+
 		if (pin == pass) {
 			System.out.print("Uang yang disetor : ");
 			int setor = input.nextInt();
@@ -21,9 +21,8 @@ public class Latihan10 {
 				System.out.print("Masukkan nominal transfer : ");
 				int transfer = input.nextInt();
 				int saldo = setor - transfer;
-				System.out.println("Transaksi berhasil, saldo anda saat ini Rp. " + saldo +",-");
-			}
-			else if (pil == 2) {
+				System.out.println("Transaksi berhasil, saldo anda saat ini Rp. " + saldo + ",-");
+			} else if (pil == 2) {
 				System.out.print("Masukkan kode bank        : ");
 				input.next();
 				System.out.print("Masukkan rekening tujuan  : ");
@@ -31,14 +30,12 @@ public class Latihan10 {
 				System.out.print("Masukkan nominal transfer : ");
 				int transfer = input.nextInt();
 				int saldo = setor - transfer - admin;
-				System.out.println("Transaksi berhasil, saldo anda saat ini Rp. " + saldo +",-");
-			}
-			else {
+				System.out.println("Transaksi berhasil, saldo anda saat ini Rp. " + saldo + ",-");
+			} else {
 				System.out.println("Pilihan Tidak Ada");
 			}
-			
-		}
-		else {
+
+		} else {
 			System.out.println("PIN Salah");
 		}
 	}

@@ -14,8 +14,7 @@ public class Latihan3 {
 		int tinggi = input.nextInt();
 		int volume = panjang * lebar * tinggi;
 		System.out.println("Voulume Balok Adalah " + panjang + " x " + lebar + " x " + tinggi + " = " + volume);
-				
-				
+
 	}
 
 }

@@ -7,11 +7,11 @@ public class Latihan9 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Random r = new Random();
+		Random randomGen = new Random();
 		Scanner input = new Scanner(System.in);
 		System.out.print("Tebakan Anda : ");
 		int tebak = input.nextInt();
-		int bandar = r.nextInt(9);
+		int bandar = randomGen.nextInt(10);
 		System.out.println("\nAngka dari bandar : " + bandar);
 		if (tebak == bandar) {
 			System.out.println("Tebakan Anda benar bosku !");
