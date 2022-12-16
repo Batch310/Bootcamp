@@ -8,9 +8,9 @@ public class Latihan6 {
 		System.out.print("Masukkan Angka : ");
 		int angka = input.nextInt();
 
-		if (angka < 10) {
+		if (angka > 0 & angka <10) {
 			System.out.println(angka + " adalah satuan");
-		} else if (angka < 100) {
+		} else if (angka >= 10 & angka < 100) {
 			System.out.println(angka + " adalah puluhan");
 		} else {
 			System.out.println(angka + " bukan satuan atau puluhan");
