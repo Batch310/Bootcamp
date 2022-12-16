@@ -6,7 +6,7 @@ public class MateriEmpat {
 		
 		int a = 9;
 		int b = 4;
-		int x = 1;
+		int x = 2;
 		
 		//Satu komposisi if else
 		if (a>=10) {
@@ -31,7 +31,11 @@ public class MateriEmpat {
 		case 1:
 			System.out.println("X = 1");
 			break;
-
+			
+		case 2:
+			System.out.println("X = 2");
+			break;
+			
 		default:
 			System.out.println("not define");
 			break;
