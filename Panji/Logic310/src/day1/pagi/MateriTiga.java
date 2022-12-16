@@ -11,7 +11,7 @@ public class MateriTiga {
 		Scanner inputan = new Scanner(System.in);
 		
 		System.out.print("Masukkan Nama : ");
-		String nama = inputan.nextLine(); //Input string
+		String nama = inputan.nextLine(); //Input string nama
 		
 		System.out.print("Masukkan Umur : ");
 		int umur = inputan.nextInt();
