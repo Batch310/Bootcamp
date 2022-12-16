@@ -1,0 +1,8 @@
+Git
+Clone -> Duplikasi dr Server ke Lokal
+Add -> Menambah File ke Server
+Commit -> Tambah ke Local Git
+Push -> Proses Upload ke Repostoru
+---------
+Fetch -> Cek File di Server
+Pull -> Mengambil dari Server
