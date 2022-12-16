@@ -12,16 +12,13 @@ public class Latihan6 {
 		System.out.println("Masukkan Angka : ");
 		int angka = input.nextInt();
 
-		if (angka < 10) {
+		if (angka >=0 && angka < 10) {
 			System.out.println(angka + " adalah satuan");
 		} else if (angka > 9 && angka < 100) {
 			System.out.println(angka + " adalah puluhan");
-		} else if (angka > 99 && angka < 1000) {
-			System.out.println(angka + " adalah ratusan");
-		} else if (angka >= 1000)
-			System.out.println("Angka terlalu besar");
-		else
-			System.out.println("Angka bukan satuan, puluhan, ratusan");
+		} else {
+			System.out.println("Angka bukan satuan, puluhan");
+		}
 	}
 
 }
