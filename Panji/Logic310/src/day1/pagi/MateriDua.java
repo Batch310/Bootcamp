@@ -29,7 +29,7 @@ public class MateriDua {
 		
 		long angkaPanjang = 20;
 		double angkaDesimal = 2.5;
-		float angkaDesimal = 1.2f;
+		
 
 		String nama = "Panji";
 		
