@@ -10,11 +10,11 @@ public class Day1Latihan6 {
 		System.out.print("Masukan Angka : ");
 		int angka = inputan.nextInt();
 		
-		if (angka<=3) {
-			System.out.println(angka + " adalah satuan");
-		}else if(angka<=14) {
+		if (angka<=99 && angka>=10) {
 			System.out.println(angka + " adalah puluhan");
-		}else {
+		}else if(angka<=9 && angka>=0) {
+			System.out.println(angka + " adalah Satuan");
+		}else{
 			System.out.println(angka+ " bukan satuan atau puluhan");
 		}
 	}
