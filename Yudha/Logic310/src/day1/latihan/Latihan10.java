@@ -42,7 +42,7 @@ public class Latihan10 {
 				if(rekening.length()==10) {
 					System.out.print("Masukkan nominal transfer : ");
 					int transfer = input.nextInt();
-					if (transfer < (setor-admin)) {
+					if (transfer <= (setor-admin)) {
 						int saldo = setor - transfer - admin;
 						System.out.println("Transaksi berhasil, saldo anda saat ini Rp. " + saldo + ",-");
 					}

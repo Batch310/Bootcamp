@@ -29,6 +29,7 @@ public class Day1Latihan10 {
 					int saldo = setor - nominal1;
 					System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo + ",-");
 				}
+				System.exit(0);
 			} else if (pilihan == 2) {
 				System.out.print("Masukan kode bank : ");
 				int kodebank = inputan.nextInt();
@@ -44,9 +45,10 @@ public class Day1Latihan10 {
 					System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo2 + ",-");
 				}
 			}
-
+			System.exit(0);
 		} else {
 			System.out.println("PIN Salah");
+			System.exit(0);
 		}
 
 	}
