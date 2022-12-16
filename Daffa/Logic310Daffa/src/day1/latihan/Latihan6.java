@@ -18,8 +18,10 @@ public class Latihan6 {
 			System.out.println(angka + " adalah puluhan");
 		} else if (angka > 99 && angka < 1000) {
 			System.out.println(angka + " adalah ratusan");
-		} else
+		} else if (angka >= 1000)
 			System.out.println("Angka terlalu besar");
+		else
+			System.out.println("Angka bukan satuan, puluhan, ratusan");
 	}
 
 }
