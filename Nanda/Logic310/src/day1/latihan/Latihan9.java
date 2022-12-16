@@ -14,7 +14,7 @@ public class Latihan9 {
 		
 Random randomGen = new Random();
 		
-		int a = randomGen.nextInt(2);
+		int a = randomGen.nextInt(10);
 		System.out.println("Angka dari Bandar " +a );
 		
 		if (angka!=a) {
