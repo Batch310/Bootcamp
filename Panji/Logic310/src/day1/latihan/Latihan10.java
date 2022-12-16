@@ -42,15 +42,24 @@ public class Latihan10 {
 				}
 				break;
 			case 2:
-				System.out.println("Transfer Beda Bank");
-				System.out.print("Masukkan Rekenin Tujuan :");
-				int rekening2 = input.nextInt();
-				System.out.print("Masukkan Nominal Transfer :");
-				int nominal2 = input.nextInt();
+				System.out.print("Masukkan PIN : ");
+				pin = input.nextInt();
+				if (pin == 123456) {
+					System.out.println("Transfer Beda Bank");
+					System.out.println("Masukkan Kode Bank :");
+					System.out.print("Masukkan Rekening Tujuan :");
+					int rekening2 = input.nextInt();
+					System.out.print("Masukkan Nominal Transfer :");
+					int nominal2 = input.nextInt();
 
-				int sisa2 = setor - nominal2 - biayaAdmin;
-				System.out.println("Transaksi berhasil, saldo anda saat ini Rp" + sisa2);
-				break;
+					if (nominal2 < setor) {
+						int sisa2 = setor - nominal2 - biayaAdmin;
+						System.out.println("Transaksi berhasil, saldo anda saat ini Rp" + sisa2);
+					}else if (nominal2 > setor) {
+						System.out.println("Saldo Tidak Mencukupi");
+					}
+					break;
+				}
 			}
 
 		} else {
