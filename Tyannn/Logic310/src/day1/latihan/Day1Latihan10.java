@@ -23,9 +23,12 @@ public class Day1Latihan10 {
 				int rekening1 = inputan.nextInt();
 				System.out.print("Masukan nominal transfer : ");
 				int nominal1 = inputan.nextInt();
-
-				int saldo = setor - nominal1;
-				System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo+ ",-");
+				if (setor < nominal1) {
+					System.out.println("Saldo tidak mecukupi");
+				} else {
+					int saldo = setor - nominal1;
+					System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo + ",-");
+				}
 			} else if (pilihan == 2) {
 				System.out.print("Masukan kode bank : ");
 				int kodebank = inputan.nextInt();
@@ -34,8 +37,12 @@ public class Day1Latihan10 {
 				System.out.print("Masukan nominal transfer : ");
 				int nominal2 = inputan.nextInt();
 
-				int saldo2 = setor - nominal2 - 7500;
-				System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo2 + ",-");
+				if (setor < nominal2) {
+					System.out.println("Saldo tidak mencukupi");
+				} else {
+					int saldo2 = setor - nominal2 - 7500;
+					System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo2 + ",-");
+				}
 			}
 
 		} else {
