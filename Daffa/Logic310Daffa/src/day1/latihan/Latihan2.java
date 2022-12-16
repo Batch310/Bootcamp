@@ -8,14 +8,19 @@ public class Latihan2 {
 		// TODO Auto-generated method stub
 		Scanner input = new Scanner(System.in);
 		System.out.print("Masukkan nama        : ");
-		String nama = input.next();
+		String nama = input.nextLine();
+		
 		System.out.print("Masukkan umur        : ");
 		int umur = input.nextInt();
-		System.out.print("Masukkan golongan    : ");
-		String golongan = input.next();
-		System.out.print("Masukkan Universitas : ");
-		String univ = input.next();
 		
+		System.out.print("Masukkan golongan    : ");
+		String golongan = input.nextLine();
+		
+		System.out.print("Masukkan Universitas : ");
+		String univ = input.nextLine();
+		
+		
+		System.out.println();
 		System.out.println();
 		
 		System.out.println("Nama        : " + nama);
