@@ -8,13 +8,16 @@ public class Latian6 {
 
 		Scanner inputan = new Scanner(System.in);
 		System.out.print("Masukkan Angka : ");
-		int angka = inputan.nextInt();
+		int nilai = inputan.nextInt();
 
-//		if (angka < 9) {
-//			System.out.println(angka + "adalah satuan");
-//		}else if() {
-//			System.out.println();
-//		}
+		if (nilai >= 0 && nilai <= 9) {
+			System.out.println(nilai + " adalah satuan");
+		} else if (nilai >= 10 && nilai <= 100) {
+			System.out.println(nilai + " adalah puluhan");
+		} else {
+			System.out.println(nilai + " bukan satuan atau puluhan");
+
+		}
 
 	}
 
