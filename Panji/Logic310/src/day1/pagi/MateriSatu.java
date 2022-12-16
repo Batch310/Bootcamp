@@ -14,7 +14,7 @@ public class MateriSatu { //Mendeklarasikan nama class
 		System.out.println();
 		
 		//Cetak dan enter
-		System.out.println("I'm here");
+		System.out.println("Saya disini");
 	}
 
 }
