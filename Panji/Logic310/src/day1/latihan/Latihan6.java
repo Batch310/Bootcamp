@@ -10,12 +10,14 @@ public class Latihan6 {
 		System.out.print("Masukkan angka : ");
 		int angka = input.nextInt();
 
-		if (angka < 10) {
-			System.out.println(angka + " adalah satuan");
+		if (angka >= 100) {
+			System.out.println(angka + " bukan satuan atau puluhan");
+		} else if (angka <= 0) {
+			System.out.println(angka + " bukan satuan atau puluhan");
 		} else if (angka >= 10 && angka <= 99) {
 			System.out.println(angka + " adalah puluhan");
-		} else if (angka >= 100) {
-			System.out.println(angka + " adalah ratusan");
+		} else if (angka < 10) {
+			System.out.println(angka + " adalah satuan");
 		}
 
 	}

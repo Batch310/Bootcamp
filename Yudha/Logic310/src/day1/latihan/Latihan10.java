@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Latihan10 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		int admin = 75000;
+		int admin = 7500;
 		int pass = 123456;
 		System.out.print("Masukkan PIN : ");
 		int pin = input.nextInt();
@@ -42,8 +42,8 @@ public class Latihan10 {
 				if(rekening.length()==10) {
 					System.out.print("Masukkan nominal transfer : ");
 					int transfer = input.nextInt();
-					if (transfer < setor) {
-						int saldo = setor - transfer;
+					if (transfer <= (setor-admin)) {
+						int saldo = setor - transfer - admin;
 						System.out.println("Transaksi berhasil, saldo anda saat ini Rp. " + saldo + ",-");
 					}
 					else {

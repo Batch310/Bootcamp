@@ -13,9 +13,11 @@ public class Latihan4 {
      System.out.print("Harga Jual :");
      int jual = inputan.nextInt();
      
-//     double laba = ;
      
-//     System.out.print("Keuntungan Pedagang adalah" + laba + "persen");
+     int untung = (jual-beli)*100/beli ;
+     
+     System.out.println("");
+     System.out.print("Keuntungan Pedagang adalah  " + untung + " persen");
      
      
      
