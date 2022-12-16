@@ -10,12 +10,14 @@ public class LatihanSembilan {
 		Scanner masukan = new Scanner(System.in);
 		Random angkaRandom = new Random();
 		
-		int angkaB = angkaRandom.nextInt(9);
+		int angkaB = angkaRandom.nextInt(10);
 		
 		System.out.print("Tebakan Angka Anda: ");
 		int angka = masukan.nextInt();
 		
-		if (angka == angkaB) {
+		if (angka < 0 || angka > 9) {
+			System.out.println("Angka tidak valid, masukkan angka antara 0 - 9");
+		} else if (angka == angkaB) {
 			System.out.println("Angka dari bandar " + angkaB);
 			System.out.println("Tebakan Anda benar bosku!");
 		} else {
