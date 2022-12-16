@@ -24,12 +24,16 @@ public class Day1Latihan8 {
 		System.out.print("Uang :");
 		int uang = inputan.nextInt();
 		
-		if (uang <= 3000) {
-			System.out.println("Tidak bisa beli apa-apa!");
-		}else if(uang <= 110000) {
-			System.out.println("Beli Kemeja!");
-		}else if(uang <= 1000000) {
+		if (uang >= 750000) {
 			System.out.println("Beli Jas!");
+		}else if(uang >= 250000) {
+			System.out.println("Beli Celana!");
+		}else if(uang >= 100000) {
+			System.out.println("Beli Kemeja!");
+		}else if(uang >= 50000) {
+			System.out.println("Beli Kaos!");
+		}else if(uang >= 4000) {
+			System.out.println("Tidak beli apa-apa!");
 		}
 	}
 
