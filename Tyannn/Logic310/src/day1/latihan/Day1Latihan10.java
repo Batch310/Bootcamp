@@ -20,30 +20,49 @@ public class Day1Latihan10 {
 
 			if (pilihan == 1) {
 				System.out.print("Masukkan rekening tujuan : ");
-				int rekening1 = inputan.nextInt();
-				System.out.print("Masukan nominal transfer : ");
-				int nominal1 = inputan.nextInt();
-				if (setor < nominal1) {
-					System.out.println("Saldo tidak mecukupi");
+				int rek1 = 10;
+				String rekening1 = inputan.next();
+
+				if (rekening1.length() == rek1) {
+					System.out.print("Masukan nominal transfer : ");
+					int nominal1 = inputan.nextInt();
+					if (setor < nominal1) {
+						System.out.println("Saldo tidak mecukupi");
+					} else {
+						int saldo = setor - nominal1;
+						System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo + ",-");
+					}
+					System.exit(0);
+				} else if (rekening1.length() > rek1) {
+					System.out.println("Maaf. Nomor Rekening kelebihan");
 				} else {
-					int saldo = setor - nominal1;
-					System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo + ",-");
+					System.out.println("Maaf. Nomor Rekening Kurang");
 				}
-				System.exit(0);
+
 			} else if (pilihan == 2) {
 				System.out.print("Masukan kode bank : ");
 				int kodebank = inputan.nextInt();
 				System.out.print("Masukan rekening tujuan : ");
-				int rekening2 = inputan.nextInt();
-				System.out.print("Masukan nominal transfer : ");
-				int nominal2 = inputan.nextInt();
+				int rek2 = 10;
+				String rekening2 = inputan.next();
 
-				if (setor < nominal2) {
-					System.out.println("Saldo tidak mencukupi");
-				} else {
-					int saldo2 = setor - nominal2 - 7500;
-					System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo2 + ",-");
+				if (rekening2.length() == rek2) {
+					System.out.print("Masukan nominal transfer : ");
+					int nominal2 = inputan.nextInt();
+
+					if (setor < nominal2) {
+						System.out.println("Saldo tidak mencukupi");
+					} else {
+						int saldo2 = setor - nominal2 - 7500;
+						System.out.print("Transaksi berhasil, saldo anda saat ini Rp. " + saldo2 + ",-");
+					}
+					System.exit(0);
+				}else if(rekening2.length() > rek2){
+					System.out.println("Maaf. No Rekening Kelebihan");
+				}else {
+					System.out.println("Maaf. No Rekening Kurang");
 				}
+
 			}
 			System.exit(0);
 		} else {
