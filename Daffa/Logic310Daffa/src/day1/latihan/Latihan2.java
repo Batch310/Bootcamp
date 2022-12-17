@@ -15,7 +15,7 @@ public class Latihan2 {
 
 		System.out.print("Masukkan golongan    : ");
 		String golongan = input.nextLine();
-
+		
 		System.out.print("Masukkan Universitas : ");
 		String univ = input.nextLine();
 

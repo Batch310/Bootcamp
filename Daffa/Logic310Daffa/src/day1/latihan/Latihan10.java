@@ -47,7 +47,7 @@ public class Latihan10 {
 				String kodeBank = input.nextLine();
 				if (kodeBank == "001") {
 					System.out.println("Masukkan rekening tujuan : ");
-					String rekTujuan = input.nextLine();
+					String rekTujuan = input.next();
 					if (rekTujuan.length()==10) {
 						System.out.println("Masukkan nominal transfer : ");
 						int nominalTransfer = input.nextInt();
@@ -60,11 +60,18 @@ public class Latihan10 {
 					} else {
 						System.out.println("Nomor rekening salah");
 					}
+				} else {
+					System.out.println("Kode bank tidak dikenal");
 				}
 						
 				
+			} else {
+				System.out.println("Pilihan tidak dikenal");
 			}
 			
+		} else {
+			System.out.println("PIN yang anda masukkan salah");
+			System.exit(0);
 		}
 		
 	}
