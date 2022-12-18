@@ -59,7 +59,7 @@ public class Latihan10 {
 				pin = input.nextInt();
 
 				if (pin == pinBenar) {
-					System.out.print("Masukkan Kode Bank 	: ");
+					System.out.print("Masukkan Kode Bank 		: ");
 					kode = input.nextInt();
 					System.out.print("Masukkan Rekening Tujuan 	: ");
 					String rekening2 = input.next();
