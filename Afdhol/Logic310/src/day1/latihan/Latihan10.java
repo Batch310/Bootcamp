@@ -15,7 +15,7 @@ public class Latihan10 {
 		if (pin == 123456) {
 		
 		}else {
-			System.out.println("PIN salah, Ulangi Kembali");
+			System.out.println("PIN salah");
 			System.exit(0);
 		}
 
@@ -34,15 +34,14 @@ public class Latihan10 {
 				System.out.println("Uang disetor: " );
 				uang_setor = input.nextInt();
 
-				//System.out.println("Transaksi berhasil, saldo anda selama ini : " + (uang_saldo-uang_setor));
 				if (uang_saldo-uang_setor<0) {
-					System.out.println("saldo ga cukup");
+					System.out.println("saldo tidak mencukupi");
 				}else if (uang_saldo>0) {
 					System.out.println("Transaksi berhasil, saldo anda selama ini : " + (uang_saldo-uang_setor));
 				}
 			
 			}else {
-				System.out.println("rekening minimal 10 digit");
+				System.out.println("panjang rekening  10 digit");
 			}
 
 			
@@ -50,6 +49,7 @@ public class Latihan10 {
 		} if (pilihan == 2) {
 			System.out.print("Masukkan kode bank: ");
 			kode_bank = input.nextInt();
+			
 			System.out.println("Masukkan Rekening Tujuan : ");
 			rekening = input.next();
 			
@@ -58,13 +58,13 @@ public class Latihan10 {
 				uang_setor = input.nextInt();
 
 				if ((uang_saldo-uang_setor-7500)<0) {
-					System.out.println("saldo ga cukup");
+					System.out.println("saldo tidak mencukupi");
 				}else if (uang_saldo>0) {
 					System.out.println("Transaksi berhasil, saldo anda selama ini : " + (uang_saldo-uang_setor-7500));
 				}
 			
 			}else {
-				System.out.println("rekening minimal 10 digit");
+				System.out.println("panjang rekening  10 digit");
 			}
 
 
