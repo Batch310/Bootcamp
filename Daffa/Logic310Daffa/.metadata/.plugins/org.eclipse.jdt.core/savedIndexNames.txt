@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+D:\Bootcamp\Daffa310\Bootcamp\Daffa\Logic310Daffa\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
