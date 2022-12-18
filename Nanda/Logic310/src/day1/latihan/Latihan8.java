@@ -17,7 +17,10 @@ public class Latihan8 {
 			System.out.println("Beli Celana Panjang !");
 		} else if (uang>=100000) {
 			System.out.println("Beli Kemeja !");
-		} else {
+		} else if (uang>=50000){
+			System.out.println("Beli Kaos !");
+		}
+		  else {
 			System.out.println("Tidak bisa beli apa-apa !");
 		}
 
