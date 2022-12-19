@@ -1,0 +1,9 @@
+16 Desember 2022
+Git
+clone : duplikasi dari server
+add : tambah file
+commit : tambah ke local git
+push : proses upload ke repo
+
+fetch : cek file di server
+pull : mengambil dari server
