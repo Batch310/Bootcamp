@@ -13,8 +13,15 @@ public class Latihan5 {
 		n = input.nextInt();
 		
 		for(int i=1; i<=n; i++) {
-			System.out.print(awal+ " ");
-			awal=awal+4;
+			//i:
+			//0,1,2,3,4,5,6
+			//0,1,*3,4,*,6
+			if(i%3==0) {
+				System.out.print("* ");
+			}else {
+				System.out.print(awal+ " ");
+				awal+=4;
+			}
 		}
 	}
 
