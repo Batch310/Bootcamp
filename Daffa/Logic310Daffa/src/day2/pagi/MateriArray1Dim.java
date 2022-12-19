@@ -4,7 +4,8 @@ public class MateriArray1Dim {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// DEKLARASI ARRAY
+
+		// DEKLARASI ARRAY 1 DIMENSI
 
 		// Deklarasi tanpa instansiasi
 		int[] arrayA;
