@@ -17,7 +17,7 @@ public class LatihanSoal07 {
 		for (int i = 0; i < deretAngka.length; i++) { //Pengulangan for dari indeks array ke-0 sampai indeks array ke-(deret-1)
 			deretAngka[i] = angka; //Memasukkan variabel bantu angka ke array
 			System.out.print(deretAngka[i] + " "); //Cetak array bilangan
-			angka = angka*2; //Kalikan variabel bantu angka dengan 2
+			angka = angka * 2; //Kalikan variabel bantu angka dengan 2
 		}
 
 	}
