@@ -11,20 +11,20 @@ public class LatihanDelapan {
 		int hkemeja = 100000;
 		int hkaos = 50000;
 		
-		Scanner masukan = new Scanner(System.in);
+		Scanner masukan = new Scanner(System.in); //Inisiasi tipe data Scanner variabel masukan sebagai input dari console
 		
 		System.out.print("Uang: ");
-		int uang = masukan.nextInt();
+		int uang = masukan.nextInt(); //Input uang
 		
-		if (uang >= 750000) {
+		if (uang >= 750000) { //Kondisi uang lebih dari 750000
 			System.out.println("Beli Jas!");
-		} else if (uang >= hcelang) {
+		} else if (uang >= hcelang) { //Kondisi uang lebih dari 250000
 			System.out.println("Beli Celana Panjang!");
-		} else if (uang >= hkemeja) {
+		} else if (uang >= hkemeja) { //Kondisi uang lebih dari 100000
 			System.out.println("Beli Kemeja!");
-		} else if (uang >= hkaos) {
+		} else if (uang >= hkaos) { //Kondisi uang lebih dari 50000
 			System.out.println("Beli Kaos!");
-		} else {
+		} else { //Kondisi uang kurang dari 50000
 			System.out.println("Tidak bisa beli apa - apa!");
 		}
 

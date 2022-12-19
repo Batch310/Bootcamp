@@ -1,0 +1,15 @@
+TIPE DATA PRIMITIF
+-numeric
+byte, short, int (default), long
+
+-desimal
+float, double (default)
+
+-karakter
+char
+
+-true/false
+boolean
+
+TIPE DATA NON PRIMITIF
+-string

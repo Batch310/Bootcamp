@@ -1,0 +1,14 @@
+Variabel 
+
+Array 1 dim
+int [] array1Dim = {1,2,3,4,5}
+array1Dim[3] adalah 4
+
+Array 2 dim
+int[i][j] array2Dim
+i = baris
+j = kolom
+
+WIFI : XSIS ACADEMY
+
+Password : X515@.123
