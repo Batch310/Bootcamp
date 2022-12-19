@@ -21,20 +21,11 @@ public class Soal4 {
 		for (int i = 1; i <= n; i++) {
 			if (i % 2 == 0) {
 				System.out.print(n2 + " ");
-				n2 = n2 + n2;
-			}else {
+				n2 = n2 + 5;
+			} else {
 				System.out.print(a + " ");
 				a = a + 1;
 			}
-//			if (i == 2) {
-//				System.out.print(n2 + " ");
-//				n2 = n2 * 2;
-//			} else {
-//				System.out.print(n2 + " ");
-//				n2 = n2 / 2;
-//			}
 		}
-
 	}
-
 }
