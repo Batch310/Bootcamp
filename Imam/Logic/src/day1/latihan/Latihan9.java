@@ -1,16 +1,28 @@
 package day1.latihan;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Latihan9 {
 
 	public static void main(String[] args) {
-	 
-     Random randomGen = new Random();
-     int a = randomGen.nextInt(10); //generate 0-9 (bound/batas akhir)
-     System.out.println(a);
-		
-		
+
+		Scanner inputan = new Scanner(System.in);
+		System.out.print("Tebakan Angka Anda :");
+		int tebakan = inputan.nextInt();
+
+		System.out.println("");
+
+		Random randomGen = new Random();
+		int a = randomGen.nextInt(10);
+		System.out.println("Angka dari bandar " + a);
+
+		if (tebakan == a) {
+			System.out.println("Tebakan anda benar bosku!");
+		} else {
+			System.out.println("Tebakan anda salah bosku!");
+		}
+
 	}
 
 }
