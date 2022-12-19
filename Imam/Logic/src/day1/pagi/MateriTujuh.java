@@ -10,7 +10,7 @@ public class MateriTujuh {
 		System.out.println(nama.length()); //cek panjang string
 		
 		String digit = "1234567890";
-		System.out.println(digit);
+		System.out.println(digit.length());
 		
 		
 

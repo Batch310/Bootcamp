@@ -1,0 +1,25 @@
+Array 1 Dimensi
+
+int a 2
+int b 3
+-------------------
+a = 4
+b = 5
+-------------------
+int [] arrayA [] [] [] [] ....[]
+arrayA [0] = 3
+arrayA [2] = 5
+
+Array 2 Dimensi
+int [][] arrayA = 
+
+      Baris[i]
+Kolom[j] [i/j] [j] [j] [j] ..... [j]
+         [i]   [ ] [ ] [ ]
+         [i]   [ ] [ ] [ ]
+	 [i]   [ ] [ ] [ ]
+
+[ ] [ ] [ ] [ ] 
+[ ] [ ] [2] [ ] = arrayA[1][2] = 2
+[ ] [5] [ ] [ ] = arrayA[2][1] = 5
+[ ] [ ] [ ] [ ]		
