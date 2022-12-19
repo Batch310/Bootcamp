@@ -1,0 +1,23 @@
+Loop - While
+kondisi - true
+	- false
+While(kondisi){
+	statement/printah program
+	ketika kondisi terpenuhi
+}
+
+Loop - do while
+do{
+	statement/printah program
+	ketika kondisi terpenuhi
+}while(kondisi)
+
+Loop- For
+
+for(statement 1; statement 2; statement 3){
+	perintah programnnya;
+}
+
+for (int i = 0; i<5; i = i+1){
+	Cetak nama;
+}
