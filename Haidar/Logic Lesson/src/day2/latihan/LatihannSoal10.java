@@ -30,7 +30,7 @@ public class LatihannSoal10 {
 					System.out.print(deretAngka[i] + " "); //Cetak array bilangan
 				}
 			}
-			angka = angka*3; //Kalikan variabel bantu angka dengan 3
+			angka = angka * 3; //Kalikan variabel bantu angka dengan 3
 		}
 
 	}
