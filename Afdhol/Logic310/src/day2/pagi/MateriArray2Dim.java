@@ -24,7 +24,7 @@ public class MateriArray2Dim {
 		
 		System.out.println(arrayC[2][1]); //ambil angka 8
 		
-		//MENGISI ATAU MENNGUBAH ARRAY
+		//MENGISI ATAU MENGUBAH ARRAY
 		
 		System.out.println(arrayC[0][0]);
 		
