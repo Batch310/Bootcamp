@@ -9,9 +9,9 @@ public class Latihan10 {
 		int n = 7;
 		int nilaiAwal = 3;
 
-		for (int i = 1; i <= n; i++) {
-			if (i % 4 == 0) {
-				System.out.print("* ");
+		for (int i = 0; i < n; i++) {
+			if (i == n/2) {
+				System.out.print("XXX ");
 			} else {
 				System.out.print(nilaiAwal + " ");
 			}
