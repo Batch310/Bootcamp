@@ -26,11 +26,22 @@ public class Latihan2Soal03 {
 		for (int j = 0; j < deretAngka.length; j++) {
 			deretAngka[j][1] = angka;
 			System.out.print(deretAngka[j][1] + " ");
-			if (j < deret/2) {
-				angka += angka;
+			if (deret%2 == 0) {
+				if (j < (deret/2)-1) {
+					angka += angka;
+				} else if(j == (deret/2)-1) {
+					angka = angka;
+				} else {
+					angka /= 2;
+				}
 			} else {
-				angka /= 2;
+				if (j < deret/2) {
+					angka += angka;
+				} else {
+					angka /= 2;
+				}
 			}
+			
 			
 		}
 	}
