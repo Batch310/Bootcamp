@@ -12,7 +12,7 @@ public class Latian6 {
 
 		if (nilai >= 0 && nilai <= 9) {
 			System.out.println(nilai + " adalah satuan");
-		} else if (nilai >= 10 && nilai <= 100) {
+		} else if (nilai <= 99) {
 			System.out.println(nilai + " adalah puluhan");
 		} else {
 			System.out.println(nilai + " bukan satuan atau puluhan");
