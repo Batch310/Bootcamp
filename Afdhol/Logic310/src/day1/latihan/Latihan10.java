@@ -7,7 +7,7 @@ public class Latihan10 {
 	public static void main(String[] args) {
 
 		Scanner input = new Scanner(System.in);
-		int pin=123456, uang_saldo, pilihan, kode_bank, uang_setor = 0, sisa_saldo=0;
+		int pin=123456, uang_saldo, pilihan, kode_bank, uang_setor = 0;
 		String rekening;
 
 		System.out.print("Masukkan PIN : ");
