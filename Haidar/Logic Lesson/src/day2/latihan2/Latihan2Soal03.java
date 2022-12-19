@@ -10,10 +10,10 @@ public class Latihan2Soal03 {
 		System.out.print("Masukkan banyaknya deret: ");
 		int deret = masukan.nextInt();
 		
-		System.out.print("Masukkan rasio = ");
-		int rasio = masukan.nextInt();
+		System.out.print("Masukkan angka = ");
+		int angka = masukan.nextInt();
 		
-		int angka = 3;
+//		int angka = 3;
 		int[][] deretAngka = new int[deret][2];
 		
 		for (int i = 0; i < deretAngka.length; i++) {
@@ -26,7 +26,12 @@ public class Latihan2Soal03 {
 		for (int j = 0; j < deretAngka.length; j++) {
 			deretAngka[j][1] = angka;
 			System.out.print(deretAngka[j][1] + " ");
-			angka += angka;
+			if (j < deret/2) {
+				angka += angka;
+			} else {
+				angka /= 2;
+			}
+			
 		}
 	}
 }
