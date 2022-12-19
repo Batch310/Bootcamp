@@ -17,7 +17,7 @@ public class MateriFor {
 		
 		System.out.println();
 		
-		for(int k=1;k<=5;k--) {
+		for(int k=1;k<=5;k++) {
 			System.out.println("Adi");
 		}
 	}
