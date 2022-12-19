@@ -14,7 +14,7 @@ public class latihan8 {
 		int i = 0;
 		
 		while (i < jawab) {
-			System.out.println(angka);
+			System.out.print(angka + " ");
 			angka = angka * 3;
 			i++;
 		}
