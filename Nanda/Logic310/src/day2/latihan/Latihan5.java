@@ -15,10 +15,6 @@ public class Latihan5 {
 		for(int i=1; i<=n; i++) {
 			System.out.print(awal+ " ");
 			awal=awal+4;
-			
-			int[] sensor = input.nextInt();
-			sensor[2] = "*";
-			sensor[5] = "*";
 		}
 	}
 
