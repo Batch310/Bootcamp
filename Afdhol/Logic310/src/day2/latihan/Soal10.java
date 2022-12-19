@@ -11,26 +11,26 @@ public class Soal10 {
 //		System.out.println("Masukkan input: ");
 //		int angka = input.nextInt();
 	
-		int angka=7;
+		int angka=9;
 		
-		int awal = 3;
+		int awal = 1;
 		
 		for(int i=0; i<angka; i++) {
 			//System.out.print(awal+" ");
 			
 		
 			
-			//awal *=3;
+			awal *=3;
 			
-			if (angka%2==0) {
+			if (i==angka/2) {
 				System.out.print("xxx ");
 				
 				
 			}else {
 				System.out.print(awal+" ");
-				awal = awal*3;
+				
 			}
-			
+			//awal = awal*3;
 		}
 	}
 
