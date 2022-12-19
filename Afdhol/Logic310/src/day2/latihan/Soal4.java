@@ -1,0 +1,31 @@
+package day2.latihan;
+
+import java.util.Scanner;
+
+public class Soal4 {
+
+	public static void main(String[] args) {
+
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("input: ");
+		int angka = input.nextInt();
+		
+		int awal = 1;
+		
+		
+		for(int i=0; i<angka; i++) {
+		System.out.print(awal+" ");
+			
+			awal = awal+4;
+			
+		
+			
+		}
+		
+		
+		
+	}
+
+}
