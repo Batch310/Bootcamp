@@ -13,7 +13,7 @@ public class latihan7 {
 		System.out.println("Ulang berapa kali? ");
 		int jawab = ulang.nextInt();
 		while (i < jawab) {
-			System.out.println(angka);
+			System.out.print(angka + " ");
 			angka = angka * 2;
 			i++;
 		}
