@@ -14,7 +14,7 @@ public class latihan3 {
 		int jawab = ulang.nextInt();
 
 		while (i < jawab) {
-			System.out.println(angka);
+			System.out.print(angka + " ");
 			angka = angka + 3;
 			i++;
 		}

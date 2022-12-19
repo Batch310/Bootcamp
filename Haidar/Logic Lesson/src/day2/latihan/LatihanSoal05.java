@@ -23,7 +23,7 @@ public class LatihanSoal05 {
 				kelipatan++; //Tambahkan variabel bantu kelipatan dengan 1
 			} else {
 				System.out.print(deretAngka[i] + " "); //Cetak array bilangan
-				angka = angka+4; //Tambahkan variabel bantu angka dengan 4
+				angka = angka + 4; //Tambahkan variabel bantu angka dengan 4
 			}
 		}
 
