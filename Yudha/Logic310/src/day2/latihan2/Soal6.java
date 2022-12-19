@@ -10,7 +10,7 @@ public class Soal6 {
 		System.out.print("Masukkan n  : ");
 		int n = input.nextInt();
 		int x = 1, y=1,z=1;
-		for(int i = 1; i<=n; i++) {
+		for(int i = 0; i<n; i++) {
 			System.out.print(i + "\t");
 		}
 		System.out.println();
