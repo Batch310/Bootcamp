@@ -7,14 +7,14 @@ public class SimpleArraySum {
 		
 		Scanner masukan = new Scanner(System.in);
 		
-		System.out.print("");
+		System.out.print("Masukkan panjang array: ");
 		int arrayLength = masukan.nextInt();
 		
 		int[] arraySum = new int[arrayLength];
 		int sumOfArray = 0;
 		
 		for (int i = 0; i < arraySum.length; i++) {
-			System.out.print("");
+			System.out.print("Masukkan angka: ");
 			arraySum[i] = masukan.nextInt();
 			sumOfArray += arraySum[i];
 		}

@@ -7,7 +7,7 @@ public class DiagonalDifference {
 		
 		Scanner masukan = new Scanner(System.in);
 		
-		System.out.print("");
+		System.out.print("Masukkan ordo: ");
 		int ordo = masukan.nextInt(); 
 		
 		int[][] matriks = new int[ordo][ordo];
@@ -17,7 +17,7 @@ public class DiagonalDifference {
 		
 		for (int i = 0; i < matriks.length; i++) {
 			for (int j = 0; j < matriks.length; j++) {
-				System.out.print("");
+				System.out.print("Masukkan angka: ");
 				matriks[i][j] = masukan.nextInt();
 				if (j == i) {
 					leftToRight += matriks[i][j];
