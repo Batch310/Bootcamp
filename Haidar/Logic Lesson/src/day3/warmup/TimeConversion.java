@@ -21,7 +21,7 @@ public class TimeConversion {
 		
 		if (jamInt >= 01 && jamInt <= 12) {
 //			System.out.println(jamInt);
-			if (waktu.equals("PM") && jamInt == 12) {
+			if (waktu.equals("AM") && jamInt == 12) {
 				jamInt = 0;
 			} else if (waktu.equals("PM")) {
 				jamInt += 12;
