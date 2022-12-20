@@ -11,25 +11,24 @@ public class Soal9 {
 		System.out.print("n2 : ");
 		int n2 = input.nextInt();
 
-		
 		int a = 0;
-		int b = 18;
+
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < n; j++) {
-				if(i == 0) {
+				if (i == 0) {
 					System.out.print(j + " ");
-				}else if(i == 1) {
+				} else if (i == 1) {
 					System.out.print(a + " ");
 					a = a + n2;
-				}else {
-					System.out.print(b + " ");
-					b = b - n2;
+				} else {
+					a = a - n2;
+					System.out.print(a + " ");
 				}
-				
+
 			}
 			System.out.println();
 		}
-		
+
 	}
 
 }

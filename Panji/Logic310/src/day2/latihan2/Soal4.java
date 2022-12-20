@@ -21,7 +21,7 @@ public class Soal4 {
 		for (int i = 1; i <= n; i++) {
 			if (i % 2 == 0) {
 				System.out.print(n2 + " ");
-				n2 = n2 + 5;
+				n2 = n2 + n2;
 			} else {
 				System.out.print(a + " ");
 				a = a + 1;
