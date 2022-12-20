@@ -8,10 +8,13 @@ public class Latihan1 {
 		// TODO Auto-generated method stub
 
 		Scanner input = new Scanner(System.in);
+		
 		System.out.print("Masukkan n  : ");
 		int n = input.nextInt();
+		
 		System.out.print("Masukkan n2 : ");
 		int n2 = input.nextInt();
+		
 		System.out.print("i : ");
 		for (int i = 0; i < n; i++) {
 			System.out.print(i + " ");
