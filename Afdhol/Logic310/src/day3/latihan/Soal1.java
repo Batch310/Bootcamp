@@ -1,11 +1,17 @@
 package day3.latihan;
 
+import java.util.Scanner;
+
 public class Soal1 {
 
 	public static void main(String[] args) {
 
-		int n = 7;
-		int n2 = 3;
+		Scanner input = new Scanner(System.in);
+		System.out.println("n: ");
+		int n = input.nextInt();
+
+		System.out.println("n2: ");
+		int n2 = input.nextInt();
 
 		for (int i = 0; i < n; i++) {
 			System.out.print(i + " ");
@@ -19,8 +25,8 @@ public class Soal1 {
 			System.out.print(nilaiAwal + " ");
 			nilaiAwal = nilaiAwal * n2;
 		}
-		
-		//Cara 2: Perulangan bertingkat
+
+		// Cara 2: Perulangan bertingkat
 //		int b = 1;
 //		for (int i = 0; i < 2; i++) {
 //			for (int j = 0; j < n; j++) {
@@ -33,8 +39,8 @@ public class Soal1 {
 //			}
 //			System.out.println();
 //		}
-		
-		//Cara 3 : Array
+
+		// Cara 3 : Array
 //		int[][] array2D = new int[2][n];
 //		int c = 1;
 //		for (int i = 0; i < array2D.length; i++) {

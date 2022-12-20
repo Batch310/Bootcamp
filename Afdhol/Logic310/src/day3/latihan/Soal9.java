@@ -1,12 +1,19 @@
 package day3.latihan;
 
+import java.util.Scanner;
+
 public class Soal9 {
 
 	public static void main(String[] args) {
 
+		Scanner input = new Scanner(System.in);
+		System.out.println("n: ");
+		int n= input.nextInt();
 		
-		int n=7;
-		int n2=3;
+		System.out.println("n2: ");
+		int n2= input.nextInt();
+		
+		
 		int baris2=0;
 		int baris3=18;
 		
