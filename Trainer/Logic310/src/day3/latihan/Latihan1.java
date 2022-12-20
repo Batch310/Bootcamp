@@ -3,6 +3,8 @@ package day3.latihan;
 import java.util.Iterator;
 
 public class Latihan1 {
+ 
+	
 	public static void main(String[] args) {
 		//n =7, n2 = 3
 		//0 1 2 3 4 5 6
@@ -18,7 +20,7 @@ public class Latihan1 {
 		}
 		
 		System.out.println();
-		
+
 		for (int i = 0; i < n; i++) {
 			System.out.print(a+" ");
 			a = a * n2;

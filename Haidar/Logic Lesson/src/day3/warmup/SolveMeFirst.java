@@ -7,10 +7,10 @@ public class SolveMeFirst {
 		
 		Scanner masukan = new Scanner(System.in);
 		
-		System.out.print("a: ");
+		System.out.print("Masukkan nilai a: ");
 		int a = masukan.nextInt();
 		
-		System.out.print("b: ");
+		System.out.print("Masukkan nilai b: ");
 		int b = masukan.nextInt();
 		
 		int output = a + b;

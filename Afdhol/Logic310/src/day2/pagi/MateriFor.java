@@ -7,12 +7,12 @@ public class MateriFor {
 		//FOR 
 		
 		//contoh for mirip while
-		int j = 1;
-		for(;j<=5;) {
-			System.out.println("Nanda");
-			j++;
-		}
-		
+//		int j = 1;
+//		for(;j<=5;) {
+//			System.out.println("Nanda");
+//			j++;
+//		}
+//		
 		//for bentuk asli
 		
 		System.out.println();
