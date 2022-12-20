@@ -20,18 +20,16 @@ public class Latihan6 {
 		
 		for (int i = 0; i < n; i++) {
 			System.out.print(a+ " ");
-			a*=n;
+			a *= n;
 		}
 		
 		System.out.println();
 		
 		int b = 1;
-		int c = 1;
 		
-		for (int i = 1; i <= n; i++) {
-			System.out.print(c+ " ");
+		for (int i = 0; i <= n; i++) {
+			System.out.print((b+i)+ " ");
 			b *= n;
-			c = b+i;
 		}
 	}
 

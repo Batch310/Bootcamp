@@ -1,10 +1,16 @@
 package day3.latihan;
 
+import java.util.Scanner;
+
 public class Soal2 {
 
 	public static void main(String[] args) {
-		int n=7;
-		int n2=3;
+		Scanner input = new Scanner(System.in);
+		System.out.println("n: ");
+		int n= input.nextInt();
+		
+		System.out.println("n2: ");
+		int n2= input.nextInt();
 				
 		int nilaiAwal=1;
 		

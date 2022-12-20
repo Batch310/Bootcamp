@@ -16,6 +16,8 @@ public class Soal01 {
 			System.out.print(nilaiAwal +" ");
 			nilaiAwal=nilaiAwal+2;
 		}
+		
+	
 	}
 
 }

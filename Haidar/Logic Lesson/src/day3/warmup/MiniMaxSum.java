@@ -8,14 +8,12 @@ public class MiniMaxSum {
 		Scanner masukan = new Scanner(System.in);
 		
 		int[] deretAngka = new int[5];
-//		int sum = 0;
 		int maxSum = 0;
 		int minSum = 0;
 		
 		for (int i = 0; i < deretAngka.length; i++) {
 			System.out.print("Masukkan angka: ");
 			deretAngka[i] = masukan.nextInt();	
-//			System.out.print(deretAngka[i] + " ");
 		}
 		
 		for (int i = 0; i < deretAngka.length; i++) {

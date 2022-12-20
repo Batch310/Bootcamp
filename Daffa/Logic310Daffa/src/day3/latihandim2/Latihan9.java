@@ -28,8 +28,9 @@ public class Latihan9 {
 		System.out.println();
 		
 		for (int i = 0; i < n; i++) {
-			System.out.print(a + " ");
 			a -= 3;
+			System.out.print(a + " ");
+			
 		}
 	}
 }

@@ -17,16 +17,16 @@ public class Latihan10 {
 		for (int i = 0; i < n; i++) {
 			System.out.print(i + " ");
 		}
-		
+
 		System.out.println();
-		
+
 		int a = 0;
 		for (int i = 0; i < n; i++) {
 			System.out.print(a + " ");
-			a += 3;
+			a += n2;
 		}
 		System.out.println();
-		
+
 		int b = 0;
 		for (int i = 0; i < n; i++) {
 			System.out.print(b + " ");
