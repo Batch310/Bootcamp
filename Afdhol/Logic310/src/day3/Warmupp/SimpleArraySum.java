@@ -13,13 +13,24 @@ public class SimpleArraySum {
 		int jumlah=0;
 		int a = 1;
 		for (int i = 0; i < n; i++) {
-			//System.out.print(a + " ");
-			a += 1;
+			System.out.print(a + " ");
 			int array[] = {a}; 
-			jumlah += array[];
-			System.out.println(jumlah);
+			
+			System.out.print(array[0]);
+			a += 1;
+			
+//			for (int j : array) {
+//				jumlah += j;
+//				
+//				System.out.println("jumlah: "+jumlah);
+			}
 		}
 
+//		int my_array[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+//		int sum = 0;
+//
+//		for (int i : my_array)
+//			sum += i;
+//		System.out.println("The sum is " + sum);
 	}
 
-}
