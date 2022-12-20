@@ -12,12 +12,11 @@ public class Soal1 {
 		int n2 = input.nextInt();
 		
 		
-		System.out.print("i : ");
 		for (int i = 0; i < n; i++) {
 			System.out.print(i + " ");
 		}
 		System.out.println();
-		System.out.print("O : ");
+		
 		int a = 1;
 		for (int i = 0; i < n; i++) {
 			System.out.print(a + " ");
