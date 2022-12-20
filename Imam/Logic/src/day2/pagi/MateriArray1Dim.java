@@ -19,6 +19,10 @@ public class MateriArray1Dim {
 		//deklarasi + nilai awal
 		int[] arrayC = new int[] {1,2,3,4,5};
 		
+		for (int i = 0; i < arrayC.length; i++) {
+			System.out.print(i + "");
+		}
+		
 		
 		//Mengambil data dari array
 		//Mengambil data dari arrayC index ke 2
