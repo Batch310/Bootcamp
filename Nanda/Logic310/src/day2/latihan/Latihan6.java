@@ -13,8 +13,13 @@ public class Latihan6 {
 		n = input.nextInt();
 		
 		for(int i=1; i<=n; i++) {
+			if(i%3==0) {
+				System.out.print("* ");
+				awal+=4;
+			}else {
 			System.out.print(awal+ " ");
-			awal=awal+4;
+			awal+=4;
+			}
 		}
 	}
 
