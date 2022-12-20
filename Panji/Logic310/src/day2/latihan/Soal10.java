@@ -17,9 +17,6 @@ public class Soal10 {
 				System.out.print(a + " ");
 			}
 			a = a * 3;
-
 		}
-
 	}
-
 }

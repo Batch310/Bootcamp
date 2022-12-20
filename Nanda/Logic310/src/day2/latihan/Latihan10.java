@@ -12,10 +12,14 @@ public class Latihan10 {
 		System.out.print("n = ");
 		n = input.nextInt();
 		
-		for(int i=1; i<=n; i++) {
+		for(int i=0; i<n; i++) {
+			if(i==n/2) {
+				System.out.print("XXX ");
+			}else {
 			System.out.print(awal+ " ");
+		}
 			awal=awal*3;
 		}
 	}
-
+		
 }
