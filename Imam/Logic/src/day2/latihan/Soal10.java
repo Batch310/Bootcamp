@@ -2,20 +2,26 @@ package day2.latihan;
 
 import java.util.Scanner;
 
-public class Latihan10 {
+public class Soal10 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int n = 7;
+
+		Scanner inputan = new Scanner(System.in);
+		System.out.print("n = ");
+		int a = inputan.nextInt();
+
 		int nilaiAwal = 3;
 
-		for (int i = 0; i < n; i++) {
-			if (i == n/2) {
+		for (int i = 0; i < a; i++) {
+			if (i == a / 2) {
 				System.out.print("XXX ");
 			} else {
 				System.out.print(nilaiAwal + " ");
 			}
 			nilaiAwal *= 3;
+
 		}
+
 	}
+
 }
