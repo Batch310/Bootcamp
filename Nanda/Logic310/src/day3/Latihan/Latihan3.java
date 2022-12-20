@@ -15,19 +15,19 @@ public class Latihan3 {
 		System.out.print("n2 = ");
 		n2 = input.nextInt();
 		
-		int a=3;
-		
 		for(int i=0; i<n; i++) {
 			System.out.print(i+" ");
 		}
 		System.out.println();
+		
+		
 		for(int i=0; i<n; i++) {
-			if(i==n/2) {
-				System.out.print(a+" ");
-				a/=2;
+			if(i<n/2) {
+				System.out.print(n2+" ");
+				n2*=2;
 			}else {
-			System.out.print(a+" ");
-			a*=2;
+			System.out.print(n2+ " ");
+			n2/=2;
 		}
 	}
 	}
