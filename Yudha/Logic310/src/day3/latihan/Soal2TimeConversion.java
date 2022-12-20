@@ -15,18 +15,21 @@ public class Soal2TimeConversion {
 			int second = Integer.parseInt(time.substring(6,8));
 			if(hour>=1 & hour <=12 & minute >=0 & minute <=59 & second>=0 & second <=59) {
 				if(time.substring(8).equals("AM")) {
-					System.out.println(time.substring(0,8));
+					if(time.substring(0,2).equals("12")) {
+						time = "00"+time.substring(2);
+						System.out.println(time.substring(0,8));
+					}
+					else {
+						System.out.println(time.substring(0,8));
+					}
 				}
 				else if(time.substring(8).equals("PM")){
 					hour = hour+12;
 					time = time.substring(2,8);
 					if(hour==24) {
-						hour = 0;
-						time = "0"+hour+time;
+						hour = 12;
 					}
-					else {
-						time = hour+time;
-					}
+					time = hour+time;
 					System.out.println(time);
 				}
 				else {
