@@ -4,21 +4,19 @@ public class Soal9 {
 
 	public static void main(String[] args) {
 
-		
-		int n=7;
-		
+		int n = 9;
+
 		int nilaiAwal = 4;
-		
-		for (int i = 0; i < n; i++) {
-			System.out.print(nilaiAwal+" ");
-			
-			nilaiAwal*=4;
-			
-			if (i%4==0) {
+
+		for (int i = 1; i < n; i++) {
+
+			if (i%3==0) {
 				System.out.print("* ");
 			}else {
-				nilaiAwal*=4;
+				System.out.print(nilaiAwal+" ");
+				nilaiAwal *=4;
 			}
+		
 		}
 	}
 
