@@ -30,14 +30,38 @@ public class MateriString {
 
 		// Mengubah String menjadi huruf besar semua
 		System.out.println(a.toUpperCase());
-		
+
 		// Mengubah String menjadi huruf kecil semua
 		System.out.println(a.toLowerCase());
-		
+
 		// Fungsi replace untuk mengganti karakter dalam String
-		a = a.replace("Xsis", "Jambrong");
-		System.out.println(a);
+		b = b.replace("Xsis", "Jambrong");
+		System.out.println(b);
 		System.out.println(a.replace(" ", "|||"));
+
+		// Fungsi contains, mengandung
+		System.out.println(a.contains("Xsis")); // Hasilnya true atau false
+
+		// Substring, memotong berdasarkan index
+		System.out.println(a.substring(0, 4)); //Memotong depan - belakang
+		System.out.println(a.substring(5));
+		
+		System.out.println();
+		
+		//Split untuk memecah String
+		String[] newArray = a.split("-");
+		for (String string : newArray) {
+			System.out.println(string);
+		}
+		
+		for (int i = 0; i < newArray.length; i++) {
+			System.out.println(newArray[i]);
+		}
+		
+		newArray = a.split("");
+		for (String string : newArray) {
+			System.out.print(string + " ");
+		}
 	}
 
 }
