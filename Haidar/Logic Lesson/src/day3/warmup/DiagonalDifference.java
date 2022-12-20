@@ -1,0 +1,40 @@
+package day3.warmup;
+
+import java.util.Scanner;
+
+public class DiagonalDifference {
+	public static void main(String[] args) {
+		
+		Scanner masukan = new Scanner(System.in);
+		
+		System.out.print("");
+		int ordo = masukan.nextInt(); 
+		
+		int[][] matriks = new int[ordo][ordo];
+		
+		int leftToRight = 0;
+		int rightToLeft = 0;
+		
+		for (int i = 0; i < matriks.length; i++) {
+			for (int j = 0; j < matriks.length; j++) {
+				System.out.print("");
+				matriks[i][j] = masukan.nextInt();
+				if (j == i) {
+					leftToRight += matriks[i][j];
+				} 
+				if (j + i == (ordo-1)) {
+					rightToLeft += matriks[i][j];
+				}
+			}
+		}
+		
+		int diff = (leftToRight-rightToLeft);
+		if (diff >= 0) {
+			System.out.println(diff);
+		} else {
+			diff *= -1;
+			System.out.println(diff);
+		}
+		
+	}
+}
