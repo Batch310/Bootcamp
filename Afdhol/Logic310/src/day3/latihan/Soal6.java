@@ -1,13 +1,15 @@
 package day3.latihan;
 
+import java.util.Scanner;
+
 public class Soal6 {
 
 	public static void main(String[] args) {
 
-		int n = 7;
-
-		int baris2 = 1;
-		int baris3 = 1;
+		Scanner input = new Scanner(System.in);
+		System.out.println("n: ");
+		int n= input.nextInt();
+		
 
 		int a = 1, b = 1 ;
 
@@ -26,7 +28,6 @@ public class Soal6 {
 		for (int i = 0; i < n; i++) {
 			System.out.print((b+i) + " ");
 			b = b * n;
-			//b = a + i+1;
 		}
 
 
