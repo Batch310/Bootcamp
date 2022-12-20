@@ -49,7 +49,7 @@ public class MateriString {
 		System.out.println();
 		
 		//Split untuk memecah String
-		String[] newArray = a.split("-");
+		String[] newArray = a.split(" ");
 		for (String string : newArray) {
 			System.out.println(string);
 		}
