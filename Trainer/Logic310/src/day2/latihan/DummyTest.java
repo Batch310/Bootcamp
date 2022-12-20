@@ -4,23 +4,30 @@ import java.util.Scanner;
 
 public class DummyTest {
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		System.out.print("Masukkan n  : ");
-		int n = input.nextInt();
-		int x = 1, y = 1, z = 1;
-		for (int i = 1; i <= n; i++) {
-			System.out.print(i + "\t");
+Scanner masukan = new Scanner(System.in);
+		
+		System.out.print("Masukkan banyaknya deret: ");
+		int deret = masukan.nextInt();
+		
+		int[][] deretAngka = new int[deret][3];
+		
+		for (int i = 0; i < deretAngka.length; i++) {
+			deretAngka[i][0] = i;
+			System.out.print(deretAngka[i][0] + " ");
 		}
+		
 		System.out.println();
-		for (int i = 1; i <= n; i++) {
-			System.out.print(x + "\t");
-			x = x * n;
+		
+		for (int j = 0; j < deretAngka.length; j++) {
+			deretAngka[j][1] = j;
+			System.out.print((deretAngka[j][1]*2) + " ");
 		}
+		
 		System.out.println();
-		for (int i = 1; i <= n; i++) {
-			System.out.print(z + "\t");
-			y = y * n;
-			z = y + i;
+		
+		for (int k = 0; k < deretAngka.length; k++) {
+			deretAngka[k][2] = k;
+			System.out.print((deretAngka[k][2]*3) + " ");
 		}
 
 	}
