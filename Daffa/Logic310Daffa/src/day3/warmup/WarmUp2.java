@@ -22,7 +22,7 @@ public class WarmUp2 {
 
 		if (AmPm.equals(cekAM) && jam == 12) {
 			jam += 0;
-		} else if (AmPm.equals(cekPM)) {
+		} else if (AmPm.equals(cekPM) && jam < 12) {
 			jam += 12;
 		}
 		System.out.printf("%02d:%02d:%02d", jam, menit, detiq);
