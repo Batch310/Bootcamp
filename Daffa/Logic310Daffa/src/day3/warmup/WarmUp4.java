@@ -33,9 +33,9 @@ public class WarmUp4 {
 		if (diadiff >= 0) {
 			System.out.println("Hasilnya adalah " + diadiff);
 		} else {
-			diadiff += -1;
+			diadiff *= -1;
 			System.out.println("Hasilnya adalah " + diadiff);
 		}
 	}
 
-}
+}     
