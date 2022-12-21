@@ -1,5 +1,6 @@
 package day3.warmup;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -48,6 +49,17 @@ public class MiniMaxSum {
 		System.out.println("min = "+ min);
 		System.out.println("max = "+ max);
 
+		System.out.println();
+		System.out.println();
+		
+		Arrays.sort(arrA);
+		
+		min = arrA[0] + arrA[1] + arrA[2] + arrA[3];
+		max = arrA[1] + arrA[2] + arrA[3] + arrA[4];
+		
+		System.out.println(min);
+		System.out.println(max);
+				
 	}
 
 }
