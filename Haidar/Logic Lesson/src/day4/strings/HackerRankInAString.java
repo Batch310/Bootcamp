@@ -10,16 +10,35 @@ public class HackerRankInAString {
 		System.out.print("Masukkan jumlah kata: ");
 		int jumlah = masukan.nextInt();
 		
-		String[] input = new String[jumlah];
+		String[] arrInput = new String[jumlah];
 		
-		String[] hackerRank = new String[] {"h", "a", "c", "k", "e", "r", "r", "a", "n", "k"}; 
-		
-		String[] hasil = new String[hackerRank.length];
-		
-		for (int i = 0; i < jumlah; i++) {
-			System.out.print("Masukkan kata ke-" + i + ": ");
-			String kata = masukan.nextLine();
+		for (int i = 0; i < arrInput.length; i++) {
+			System.out.print("Masukkan kata ke-" + (i+1) + ": ");
+			arrInput[i] = masukan.next();
+//			System.out.println(arrInput[i]);
 		}
+		
+		for (int i = 0; i < arrInput.length; i++) {
+			String key = "hackerrank";
+			String[] arrKey = key.split("");
+			int hurufSama = 0;
+			
+			String[] arrKata = arrInput[i].toLowerCase().split("");
+			
+			for (int j = 0; j < arrKata.length; j++) {
+				if (arrKey[hurufSama].equals(arrKata[j])) {
+					hurufSama++;
+				}
+			}
+			if (hurufSama == arrKey.length) {
+				System.out.println("YES");
+			} else {
+				System.out.println("NO");
+			}
+//			System.out.println(arrKey.length);
+//			System.out.println(hurufSama);
+		}
+		
 		
 	}
 }
