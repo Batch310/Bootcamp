@@ -15,6 +15,7 @@ public class DiagonalDifference {
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
+				System.out.print("Masukkan angka : ");
 				matrix[i][j] = scanner.nextInt();
 			}
 		}
@@ -35,6 +36,7 @@ public class DiagonalDifference {
 		int hasil = Math.abs(diagonal2-diagonal1);
 		System.out.println("diagonal1 = " + diagonal1);
 		System.out.println("diagonal2 = " + diagonal2);
+		System.out.println(hasil);
 	}
 
 }
