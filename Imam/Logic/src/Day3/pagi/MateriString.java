@@ -1,4 +1,4 @@
-package Day3.pagi;
+package day3.pagi;
 
 public class MateriString {
 
@@ -7,14 +7,14 @@ public class MateriString {
 		String a = "Xsis Academy";
 		String b = "Xsis academy";
 
-		// samakan var/Inputan tidak memperhatikan besar kecil huruf
+		// samakan var/Inputan memperhatikan besar kecil huruf
 		if (a.equals(b)) {
 			System.out.println("Ya, nama persis");
 		} else {
 			System.out.println("Tidak, tidak persis");
 		}
 
-		// samakan var/Inputan tidak memperhatikan besar kecil huruf
+		// samakan var/Inputan Tidak memperhatikan besar kecil huruf
 		if (a.equalsIgnoreCase(b)) {
 			System.out.println(" sama persis");
 		} else {
@@ -36,7 +36,7 @@ public class MateriString {
 
 		// Replace
 		String newAcademy = a.replace("Xsis", "Imam"); // Menyimpan hasil replace ke variabel
-		System.out.println(a.replace("Xsis", "Imam"));
+		System.out.println(a.replace("Xsis", "imam"));
 		System.out.println(a.replace(" ", "|||"));
 
 		// Contains, apakah var mengandung?
@@ -49,7 +49,7 @@ public class MateriString {
 		// memotong depan saja
 		System.out.println(a.substring(5));
 
-		// Split memecah string
+		// Split memecah string (Mengambil isi array)
 		String[] newArray = a.split(" ");
 		for (int i = 0; i < newArray.length; i++) {
 			System.out.println(newArray[i]);
