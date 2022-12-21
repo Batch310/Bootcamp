@@ -12,7 +12,7 @@ public class Staircase {
 		
 		for (int i = 0; i < anakTangga; i++) {
 			for (int j = 0; j < anakTangga; j++) {
-				if (i + j < 5) {
+				if (i + j < (anakTangga-1)) {
 					System.out.print(" ");
 				} else {
 					System.out.print("#");
