@@ -5,18 +5,33 @@ import java.util.Scanner;
 public class SimpleArraySum {
 
 	public static void main(String[] args) {
+
 		Scanner input = new Scanner(System.in);
 		
 		System.out.print("n = ");
 		int n = input.nextInt();
 		
-		int[] arrA = new int[n];
-
+		System.out.println();
+		System.out.println("n = "+n);
+		System.out.println();
 		
-		for(int i=0; i<n; i++) {
-			arrA[i] = n;
-			System.out.println(arrA[i]);
+		int[] angka = new int[n];
+		int jumlah1 = 0;
+		
+		
+
+		for (int i = 0; i < angka.length; i++) {
+			System.out.print("angka ke "+i+" = ");
+			angka[i] = input.nextInt();
+			jumlah1 = jumlah1 + angka[i];
+			
 		}
+		
+		
+		System.out.println("Jumlah = " + jumlah1);
+		
+		
+
 	}
 
 }
