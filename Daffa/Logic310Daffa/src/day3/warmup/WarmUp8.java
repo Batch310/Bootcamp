@@ -10,26 +10,25 @@ public class WarmUp8 {
 
 		System.out.print("Berapa lilin? ");
 		int lilin = input.nextInt();
-		int[] arrLilin = new int[lilin];
+		int[] tinggiLilin = new int[lilin];
 		int tertinggi = 0;
 		int total = 0;
 		
 		for (int i = 0; i < lilin; i++) {
 			System.out.print("Tinggi lilin : ");
-			arrLilin[i] = input.nextInt();
+			tinggiLilin[i] = input.nextInt();
 		}
 		
-		for (int i = 0; i < arrLilin.length; i++) {
-			for (int j = 0; j < arrLilin.length; j++) {
-				if (arrLilin[j] > tertinggi) {
-					tertinggi = arrLilin[j];
+		for (int i = 0; i < tinggiLilin.length; i++) {
+			for (int j = 0; j < tinggiLilin.length; j++) {
+				if (tinggiLilin[j] > tertinggi) {
+					tertinggi = tinggiLilin[j];
 				}
 			}
-			if(arrLilin[i]==tertinggi) {
+			if(tinggiLilin[i]==tertinggi) {
 				total++;
 			}
 		}
 		System.out.println(total);
 	}
-
 }
