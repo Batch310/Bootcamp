@@ -6,33 +6,43 @@ public class WarmUp2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner input = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 		System.out.print("Insert AM/PM : ");
-		String waqtu = input.next();
-		String format = "hh:mm:ssAM";
-		
-		if(waqtu.length() == 10) {
-			int jamNich = Integer.parseInt(waqtu.substring(0, 2));
-			int menitNich = Integer.parseInt(waqtu.substring(3, 5));
-			int detikNich = Integer.parseInt(waqtu.substring(6, 8));
-			if (waqtu.substring(8).equals("AM")) {
-				if (waqtu.substring(0, 2).equals("12")) {
-					waqtu = "00" + waqtu.substring(2);
-					System.out.println(waqtu.substring(0, 8));
-				} else {
-					System.out.println(waqtu.substring(0, 8));
-				}
-			} else if (waqtu.substring(8).equals("PM")) {
-				jamNich += 12;
-				waqtu.substring(2, 8);
-				if (jamNich == 24) {
-					jamNich = 12;
-				}
-				waqtu = jamNich + waqtu;
-				System.out.println(waqtu);
-			} else {
-				System.out.println("Wrong insert!");
-			}
+		String waqtu = scan.next();
+
+		String tArr[] = waqtu.split(":");
+		String AmPm = tArr[2].substring(2, 4);
+		int jam, menit, detiq;
+
+		jam = Integer.parseInt(tArr[0]);
+		menit = Integer.parseInt(tArr[1]);
+		detiq = Integer.parseInt(tArr[2].substring(0, 2));
+
+		if (!(jam >= 1 && jam <= 12)) {
+			System.out.println("Format jam salah");
+			System.exit(0);
 		}
+		if (!(menit >= 0 && menit <= 59)) {
+			System.out.println("Format menit salah");
+			System.exit(0);
+		}
+		if (!(detiq >= 0 && detiq <= 59)) {
+			System.out.println("Format detik salah");
+			System.exit(0);
+		}
+		if (!(AmPm.equals("AM") || (AmPm.equals("PM")))) {
+			System.out.println("Format AM/PM salah");
+			System.exit(0);
+		}
+
+		String cekPM = "PM", cekAM = "AM";
+
+		if (AmPm.equals(cekAM)) {
+			jam += 0;
+		} else if (AmPm.equals(cekPM)) {
+			jam += 12;
+		}
+		System.out.printf("%02d:%02d:%02d", jam, menit, detiq);
 	}
+
 }
