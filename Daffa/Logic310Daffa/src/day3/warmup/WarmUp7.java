@@ -15,9 +15,9 @@ public class WarmUp7 {
 		long max = 0;
 		long min = 0;
 		long sum = 0;
-		
+
 		for (int i = 0; i < n; i++) {
-			System.out.println("Masukkan angka : ");
+			System.out.print("Masukkan angka : ");
 			long angka = input.nextLong();
 			deret[i] = angka;
 			sum += angka;
@@ -27,8 +27,8 @@ public class WarmUp7 {
 		}
 		Arrays.sort(deret);
 		max = sum - deret[0];
-		min = sum - deret[n-1];
-		System.out.println(min + " " + max);
+		min = sum - deret[n - 1];
+		System.out.println("\n" + min + " " + max);
 	}
 
 }
