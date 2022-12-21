@@ -36,6 +36,7 @@ public class DiagonalDifference {
 		int hasil = Math.abs(diagonal2-diagonal1);
 		System.out.println("diagonal1 = " + diagonal1);
 		System.out.println("diagonal2 = " + diagonal2);
+		System.out.println(hasil);
 	}
 
 }
