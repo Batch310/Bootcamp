@@ -9,8 +9,8 @@ public class MiniMaxSum {
 		Scanner masukan = new Scanner(System.in);
 		
 		int[] deretAngka = new int[5];
-		int maxSum = 0;
-		int minSum = 0;
+//		int maxSum = 0;
+//		int minSum = 0;
 		
 		for (int i = 0; i < deretAngka.length; i++) {
 			System.out.print("Masukkan angka: ");
@@ -19,23 +19,26 @@ public class MiniMaxSum {
 		
 		Arrays.sort(deretAngka);
 		
-		for (int i = 0; i < deretAngka.length; i++) {
-			int sum = 0;
-			for (int j = 0; j < deretAngka.length; j++) {
-				if (j != i) {
-					sum += deretAngka[j];
-				} else {
-					sum -= 0;
-				}
-			}
-			
-			if (sum >= maxSum) {
-				maxSum = sum;
-			}
-			if (sum <= maxSum) {
-				minSum = sum;
-			}
-		}
+		int minSum = deretAngka[0] + deretAngka[1] + deretAngka [2] + deretAngka[3];
+		int maxSum = deretAngka[1] + deretAngka[2] + deretAngka [3] + deretAngka[4];
+		
+//		for (int i = 0; i < deretAngka.length; i++) {
+//			int sum = 0;
+//			for (int j = 0; j < deretAngka.length; j++) {
+//				if (j != i) {
+//					sum += deretAngka[j];
+//				} else {
+//					sum -= 0;
+//				}
+//			}
+//			
+//			if (sum >= maxSum) {
+//				maxSum = sum;
+//			}
+//			if (sum <= maxSum) {
+//				minSum = sum;
+//			}
+//		}
 		System.out.print(minSum + " " + maxSum);
 		
 	}
