@@ -7,22 +7,42 @@ public class MiniMaxSum {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 
-		
-		int hasil1 = 0;
 		System.out.print("n : ");
 		int data = input.nextInt();
 
 		int[] my_array = new int[data];
 
-		for (int i = 0; i < my_array.length; i++) {
+		for (int arr = 0; arr < data; arr++) {
 			System.out.print(" =");
-			my_array[i] = input.nextInt();
-			if (my_array[i] == 1) {
-				hasil1 = my_array[1] + my_array[2] + my_array[3] + my_array[4];
-			}
+			my_array[arr] = input.nextInt();
 		}
-			System.out.println(hasil1);
-		
-	}
 
+
+		int max = 0, min = 0;
+		int[] hasil1 = new int[data];
+		for (int i = 0; i < data; i++) {
+			for (int j = 0; j < data; j++) {
+				if (j != i) {
+					max += my_array[j];
+				}
+			}
+			hasil1[i] = max;
+			max = 0;
+		}
+		max = hasil1[0];
+		for (int i = 1; i < hasil1.length; i++) {
+			if (hasil1[i] > max) {
+				max = hasil1[i];
+			}
+
+		}
+		min = hasil1[0];
+		for (int i = 1; i < hasil1.length; i++) {
+			if (hasil1[i] < min) {
+				min = hasil1[i];
+			}
+
+		}
+		System.out.println(max + " " + min);
+	}
 }
