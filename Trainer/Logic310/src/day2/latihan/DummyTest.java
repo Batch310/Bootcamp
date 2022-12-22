@@ -3,23 +3,23 @@ package day2.latihan;
 import java.util.Scanner;
 
 public class DummyTest {
-public static void main(String[] args) {
-		
-		Scanner masukan = new Scanner(System.in);
-		
-		System.out.print("Masukkan tinggi dan lebar tangga: ");
-		int anakTangga = masukan.nextInt();
-		
-		for (int i = 0; i < anakTangga; i++) {
-			for (int j = 0; j < anakTangga; j++) {
-				if (i + j < anakTangga-1) {
-					System.out.print(" ");
-				} else {
-					System.out.print("#");
-				}
+	public static void main(String[] args) {
+
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("n :");
+		int n = input.nextInt();
+
+		for (int i = 0; i < n; i++) {
+			for (int j = n - 1; j >= i; j--) {
+				System.out.print(" ");
+			}
+			for (int a = 0; a <= i; a++) {
+				System.out.print("#");
 			}
 			System.out.println();
 		}
+
 	}
 
 }
