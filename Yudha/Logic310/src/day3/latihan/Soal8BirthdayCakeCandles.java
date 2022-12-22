@@ -16,16 +16,20 @@ public class Soal8BirthdayCakeCandles {
 		for(int i=0; i<n;i++) {
 			int angka = input.nextInt();
 			deret[i] = angka;
-			if(deret[i]>=max) {
+			if(deret[i]>max) {
 				max = deret[i];
+				count = 1;
 			}
-		}
-		for(int i=0; i<n;i++) {
-			System.out.print(deret[i]+" ");
-			if(deret[i]==max) {
+			else if(deret[i]==max) {
 				count++;
 			}
 		}
+//		for(int i=0; i<n;i++) {
+//			System.out.print(deret[i]+" ");
+//			if(deret[i]==max) {
+//				count++;
+//			}
+//		}
 		System.out.println("\n"+count);
 	}
 
