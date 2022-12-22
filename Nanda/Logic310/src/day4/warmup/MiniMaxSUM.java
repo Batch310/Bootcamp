@@ -17,6 +17,7 @@ public class MiniMaxSUM {
 		
 		System.out.println();
 		System.out.println();
+		
 		//cetak
 		for (int i = 0; i < deret.length; i++) {
 			System.out.print(deret[i] + " ");
