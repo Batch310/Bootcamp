@@ -13,15 +13,44 @@ public class MateriArray1Dim {
 		//panjang arraynya 5
 		//indexnya 0,1,2,3,4
 		
-		String[] arrayB = new String[5]; //fix 5
+		int[] arrayB = new int[6]; //fix 5
+		
+		
+		int data = 10;
+		for (int i = 0; i < arrayB.length; i++) {
+		      arrayB[i]= data ;
+		      data++;
+		}
+		for (int i : arrayB) {          //tampilkan array dengan foreach
+		 System.out.print(i+ " ");   
+		}
+		
+		System.out.println();
+		
+		
+		for (int i = 0; i < arrayB.length; i++) {
+		         arrayB[i]=data+1;
+		         data++;
+		}
+		
+		for (int i = 0; i < arrayB.length; i++) {
+		System.out.print(arrayB[i]+ " ");
+		}
+		
+		
+		System.exit(0);
+		
+		
 		
 		
 		//deklarasi + nilai awal
-		int[] arrayC = new int[] {1,2,3,4,5};
+		int[] arrayC = new int[] {7,2,5,4,5};
 		
 		for (int i = 0; i < arrayC.length; i++) {
-			System.out.print(i + "");
+			System.out.print(arrayC[i] + " ");
 		}
+		
+		
 		
 		
 		//Mengambil data dari array
@@ -34,7 +63,7 @@ public class MateriArray1Dim {
 		
 		System.out.println(arrayB[0]);  //sebelum diubah
 		
-		arrayB[0] = "Imam";       
+//		arrayB[0] = "Imam";       
 		System.out.println(arrayB[0]);   //sesudah diubah
 		
 	
