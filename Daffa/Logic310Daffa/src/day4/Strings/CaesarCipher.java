@@ -1,5 +1,6 @@
 package day4.Strings;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class CaesarCipher {
@@ -20,6 +21,27 @@ public class CaesarCipher {
 		String[] arrKecil = kecil.split("");
 		String[] arrBesar = besar.split("");
 		String[] arrKata = kata.split("");
+
+		for (int i = 0; i < arrKata.length; i++) {
+			if (kecil.contains(arrKata[i])) {
+				for (int j = 0; j < arrKecil.length; j++) {
+					if (arrKecil[j].equals(arrKata[i])) {
+						arrKata[i] = arrKecil[(j + geser) % arrKecil.length];
+						break;
+					}
+				}
+			} else if (besar.contains(arrKata[i])) {
+				for (int j = 0; j < arrBesar.length; j++) {
+					if (arrBesar[j].equals(arrKata[i])) {
+						arrKata[i] = arrBesar[(j + geser) % arrBesar.length];
+						break;
+					}
+				}
+			}
+		}
+		for (int i = 0; i < arrKata.length; i++) {
+			System.out.print(arrKata[i]);
+		}
 
 	}
 }
