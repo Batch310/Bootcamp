@@ -48,7 +48,7 @@ public class MateriString {
 		System.out.println(a.contains("xsis"));
 		
 		//Substring, memotong kata atau kalimat dengan berdasar indeks
-		System.out.println(a.substring(0, 4)); //Mengambil kata atau kalimat dari indeks ke-0 sampai sebelum indeks ke-4
+		System.out.println(a.substring(0, 12)); //Mengambil kata atau kalimat dari indeks ke-0 sampai sebelum indeks ke-4
 		System.out.println(a.substring(5)); //Memotong kata atau kalimat dibelakang indeks yang diinginkan
 		
 		//Split, memecah atau memisahkan data String
