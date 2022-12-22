@@ -53,7 +53,8 @@ public class Soal2StrongPassword {
 		}
 		if(password.length()<min) {
 			//if(kriteria<=2)
-			kurang = min - password.length();
+			System.out.println("panjang pasword anda kurang   : " + (min-password.length()) + " digit");
+			System.out.println("kriteria yang tidak terpenuhi : " + (kriteria-terpenuhi));
 			//jumlah 1 kriteria 1 = 4
 			// jumlah 2 kriteria 1 = 4
 			//jumlah  2,5kriteria 2 = 4
@@ -89,15 +90,8 @@ public class Soal2StrongPassword {
 		else {
 			terpenuhi++;
 			kurang = kriteria - terpenuhi;
+			System.out.println(kurang);
 		}
-		System.out.println(kurang);
-		
-
-		
-		
-		
-		
-
 	}
 
 }

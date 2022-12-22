@@ -1,0 +1,10 @@
+4. Input Dinamis
+Toko - T1 - T2 - Toko
+Toko - T2 - T1 - T2 - Toko
+
+10. Harga Kopi 18k
+
+3. 100 -> 1^2 + 0^2 + 0^2 = 1
+103 -> 1^2 + 0^2 + 3^2 = 
+
+3. while (fount < n )
