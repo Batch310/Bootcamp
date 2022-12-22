@@ -16,7 +16,6 @@ public class Soal2 {
 		String konsonan = "bcdfghjklmnpqrstvwxyz";
 
 		
-		
 		// Split Program
 		String[] arr_n = n.split("");
 
