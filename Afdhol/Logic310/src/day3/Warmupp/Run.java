@@ -6,8 +6,8 @@ public class Run {
 	private static Scanner sc;
 
 	public static void main(String[] args) {
-		
-
+	
+    }
 		
 	}
-}
+
