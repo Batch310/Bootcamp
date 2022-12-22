@@ -34,6 +34,7 @@ public class DiagonalDifference {
 
 		int dig1 = 0, dig2 = 0;
 
+		// Menghitung nilai matriks secara diagonal
 		for (int i = 0; i < my_array.length; i++) {
 			for (int j = 0; j < my_array[i].length; j++) {
 				if (i == j) {
