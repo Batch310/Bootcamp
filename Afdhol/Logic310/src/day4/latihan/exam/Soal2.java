@@ -8,15 +8,9 @@ public class Soal2 {
 
 		Scanner scan = new Scanner(System.in);
 //		String str = scan.nextLine();
-		String str = "sample case";
+		String str = "aku adalah siapa";
 //		
-//		String vokal = "aiueo";
-//		
-//		if (input.contentEquals(vokal)) {
-//			System.out.println(input.split(vokal));
-//		}
 
-		// String str = new String("Hi Welcome to my world!");
 		System.out.print("Huruf vokal: ");
 		for (int i = 0; i < str.length(); i++) {
 			if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o'
