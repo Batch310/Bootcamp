@@ -32,6 +32,9 @@ public class StrongPassword {
 		System.out.print("\nMasukkan password baru : ");
 		String pass = input.next();
 		
+		String[] splitPass = pass.split("");
+		int kurang = 0;
+		
 		int totalPanjang = pass.length();
 		if (totalPanjang < panjangPassword) {
 			System.out.println("Panjang password minimal 6 karakter!");
@@ -46,25 +49,34 @@ public class StrongPassword {
 					hurufKecil++;
 				} else if (Character.isUpperCase(cekPass)) {
 					hurufBesar++;
-				} else {
+				} else if (sc.contains(splitPass[i])) {
 					spesialKarakter++;
 				}
 			}
 		}
 		if (digit == 0) {
+			kurang++;
 			System.out.println("Password harus mengandung minimal 1 digit!");
 		}
 		if (hurufKecil == 0) {
+			kurang++;
 			System.out.println("Password harus mengandung minimal 1 huruf kecil!");
 		}
 		if (hurufBesar==0) {
+			kurang++;
 			System.out.println("Password harus mengandung minimal 1 huruf besar!");
 		}
 		if (spesialKarakter == 0) {
+			kurang++;
 			System.out.println("Password harus mengandung minimal 1 spesial karakter : "
 					+ "!@#$%^&*()-+");
 		}
-		System.out.println("Password selesai dibuat.");
+		if (kurang > 0 ) {
+			System.out.println("Kekuatan password kurang " + kurang);
+		} else {
+			System.out.println("Password selesai dibuat.");
+		}
+		
 	}
 
 }
