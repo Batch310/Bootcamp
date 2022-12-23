@@ -10,17 +10,17 @@ public class Exam8 {
 //		System.out.print("n = ");
 //		int n = input.nextInt();
 
-		int n = 5;
+		System.out.print("n = ");
+		int n = input.nextInt();
 
 		int[] arrA = new int[n];
 		int[] arrB = new int[n];
 //		int[] tampung = new int[n];
 		int[] jml = new int[n];
 
-		
-		int sum1 = 0;
-		for (int i = 1; sum1 < n; i++) {
-		
+		int prima = 0;
+		for (int i = 1; prima < n; i++) {
+
 			int sum = 0;
 			for (int j = 1; j <= i; j++) {
 //				System.out.print(j);
@@ -30,14 +30,37 @@ public class Exam8 {
 				}
 			}
 			if (sum == 2) {
-				System.out.print(" "+ i + " ");
-				sum1++;
+				System.out.print(i + " ");
+				arrA[prima] = i;
+				prima++;
 
 			}
 //			System.out.println();
 		}
 
+//		System.out.println();
+//		for(int i=0; i<arrA.length; i++) {
+//			System.out.print(arrA[i]+" ");
+//		}
 
+		System.out.println();
+
+		int fibo = 0;
+		int fibo1 = 1;
+		int fibo2 = 0;
+		for (int i = 0; i < n; i++) {
+			arrB[i] = fibo1 + fibo2;
+			fibo1 = fibo2;
+			fibo2 = arrB[i];
+			System.out.print(arrB[i] + " ");
+		}
+
+		System.out.println();
+		for (int i = 0; i < jml.length; i++) {
+			jml[i] = arrA[i] + arrB[i];
+			System.out.print(jml[i]+" ");
+		}
+		
 	}
 
 }

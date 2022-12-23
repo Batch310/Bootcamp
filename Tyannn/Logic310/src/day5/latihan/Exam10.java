@@ -7,7 +7,7 @@ public class Exam10 {
 
 		int promo =50;
 		for(int i=0; i<promo; i++) {
-			System.out.println(i);
+			
 		}
 	}
 
