@@ -30,6 +30,9 @@ public class Soal5PorsiMakan {
 		String[] arrPelanggan = pelanggan.split(";");
 		for (int i = 0; i < arrPelanggan.length; i++) {
 			String[] yangMakan = arrPelanggan[i].split(" = ");
+			String orang = yangMakan[0];
+			String jmlOrang = yangMakan[1].substring(0,1);
+			int intOrang = Integer.parseInt(jmlOrang);
 			
 		}
 
