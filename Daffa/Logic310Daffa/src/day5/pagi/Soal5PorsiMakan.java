@@ -52,13 +52,15 @@ public class Soal5PorsiMakan {
 			porsiBalita = BA * balita;
 		}
 
-		totalPorsi = porsiLaki + porsiPerempuan + porsiRemaja + porsiAnak + porsiBalita;
+		
 		totalOrang = LD + PD + RE + AN + BA;
 
 		if (totalOrang % 2 == 1 && totalOrang > 5) {
-			totalPorsi++;
+			porsiPerempuan++;
+			totalPorsi = porsiLaki + porsiPerempuan + porsiRemaja + porsiAnak + porsiBalita;
 			System.out.println("Total porsi makan adalah " + (int) totalPorsi + " porsi");
 		} else {
+			totalPorsi = porsiLaki + porsiPerempuan + porsiRemaja + porsiAnak + porsiBalita;
 			System.out.println("Total porsi makan adalah " + (int) totalPorsi + " porsi");
 		}
 	}
