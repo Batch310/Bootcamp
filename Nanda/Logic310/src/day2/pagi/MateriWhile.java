@@ -8,11 +8,10 @@ public class MateriWhile {
 		
 		int i = 0;
 		// contoh while
-//		while(i < 5) {
-//			System.out.println("Nanda");
-//			i++; // i = i+1
-//		}
-//	}
+	while(i < 5) {
+			System.out.println("Nanda");
+			i++; // i = i+1
+		}
 		
 		//contoh do while
 		do {
