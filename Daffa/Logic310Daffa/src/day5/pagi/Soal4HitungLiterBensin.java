@@ -54,7 +54,8 @@ public class Soal4HitungLiterBensin {
 			}
 			sumDistance += distance;
 		}
-		System.out.println((sumDistance/oil) + " liter");
+		System.out.println((sumDistance / oil) + " liter");
+		input.close();
 	}
 
 }

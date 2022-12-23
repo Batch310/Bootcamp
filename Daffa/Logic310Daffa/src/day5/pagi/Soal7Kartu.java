@@ -16,7 +16,7 @@ public class Soal7Kartu {
 		int kotakB = 0;
 		String pilihan1 = "A";
 		String pilihan2 = "B";
-
+		String pilihan3 = "Menyerah";
 		System.out.println("Masukkan jumlah kartu : ");
 		kartuAnda = input.nextInt();
 		kartuKomputer = input.nextInt();
@@ -28,7 +28,7 @@ public class Soal7Kartu {
 
 		if (tawaran <= kartuAnda && tawaran <= kartuKomputer) {
 			while (kartuAnda > 0 && kartuKomputer > 0) {
-				System.out.println("Pilih kotak A atau B? ");
+				System.out.println("Pilih kotak A atau B atau Menyerah? ");
 				String choose = input.next();
 				if (choose.equalsIgnoreCase(pilihan1)) {
 					if (kotakA < kotakB) {
@@ -56,11 +56,13 @@ public class Soal7Kartu {
 						kartuAnda += 0;
 						kartuKomputer += 0;
 					}
+				} else if(choose.equalsIgnoreCase(pilihan3)) {
+					System.out.println("You Surrendered, You Lose");
+					System.exit(0);
 				} else {
 					System.out.println("Pilihan tidak dikenal");
 					System.exit(0);
 				}
-
 			}
 			if (kartuAnda > 0) {
 				System.out.println("You Win");
