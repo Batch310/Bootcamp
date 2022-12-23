@@ -30,18 +30,18 @@ public class MateriString {
 		System.out.println(a.charAt(6));
 
 		// Mengubah Huruf menjadi Kapital semua
-		System.out.println(a.toUpperCase());
+//		System.out.println(a.toUpperCase());
 
 		// Mengubah Hurum kecil semua
-		System.out.println(a.toLowerCase());
+//		System.out.println(a.toLowerCase());
 
 		// Replace dan menyimpan hasil replace
-		String newAcademy = a.replace("Xsis", "Panji");
-		System.out.println(a.replace("Xsis", "Panji"));
+//		String newAcademy = a.replace("Xsis", "Panji");
+//		System.out.println(a.replace("Xsis", "Panji"));
 
 		// Contains, mengandung
-		System.out.println(a.contains("Xsis"));
-		System.out.println(a.contains("xsis"));
+//		System.out.println(a.contains("Xsis"));
+//		System.out.println(a.contains("xsis"));
 
 		// Substring, memtong berdasarkan index
 		System.out.println(a.substring(0, 4)); // Memotong depan belakang berdasa nilai index
