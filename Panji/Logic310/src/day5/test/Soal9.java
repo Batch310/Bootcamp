@@ -8,7 +8,7 @@ public class Soal9 {
 		int N = 0, T = 0;
 		Scanner input = new Scanner(System.in);
 		System.out.println("Masukkan perjalanan Hatori: ");
-		String journey = input.nextLine();
+		String journey = input.nextLine().toUpperCase();
 
 		for (int i = 0; i < journey.length(); i++) {
 			if (journey.charAt(i) == 'N') {
@@ -16,6 +16,7 @@ public class Soal9 {
 			} else if (journey.charAt(i) == 'T') {
 				T++;
 			}
+			
 		}
 
 		System.out.println("Hatori naik sebanyak " + N + " kali.");
