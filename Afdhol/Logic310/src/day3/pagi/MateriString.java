@@ -55,7 +55,7 @@ public class MateriString {
 		
 		String[] newArray= a.split(" ");
 		for (String string : newArray) {
-			System.out.println(string);
+			System.out.println(""+string);
 		}
 		
 		newArray = a.split(" ");

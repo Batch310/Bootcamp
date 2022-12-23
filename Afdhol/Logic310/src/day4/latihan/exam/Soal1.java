@@ -29,7 +29,7 @@ public class Soal1 {
 			}
 		}
 
-			// System.out.print(i+" ");
+			
 
 		}
 
