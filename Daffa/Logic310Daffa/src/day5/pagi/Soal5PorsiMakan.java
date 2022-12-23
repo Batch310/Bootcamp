@@ -22,17 +22,23 @@ public class Soal5PorsiMakan {
 
 		int totalOrang = 0;
 		double totalPorsi = 0;
+		
+		System.out.println("Masukkan pelanggan : ");
+		String pelanggan = input.next();
+		
+		String[] arrPelanggan = pelanggan.split(";");
+		String[] yangMakan = arrPelanggan.split(" = ");
 
-		System.out.print("Berapa laki-laki dewasa? ");
-		int LD = input.nextInt();
-		System.out.print("Berapa perempuan dewasa? ");
-		int PD = input.nextInt();
-		System.out.print("Berapa remaja? ");
-		int RE = input.nextInt();
-		System.out.print("Berapa anak? ");
-		int AN = input.nextInt();
-		System.out.print("Berapa balita? ");
-		int BA = input.nextInt();
+//		System.out.print("Berapa laki-laki dewasa? ");
+//		int LD = input.nextInt();
+//		System.out.print("Berapa perempuan dewasa? ");
+//		int PD = input.nextInt();
+//		System.out.print("Berapa remaja? ");
+//		int RE = input.nextInt();
+//		System.out.print("Berapa anak? ");
+//		int AN = input.nextInt();
+//		System.out.print("Berapa balita? ");
+//		int BA = input.nextInt();
 		
 		input.close();
 		
