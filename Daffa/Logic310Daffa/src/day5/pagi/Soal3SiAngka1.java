@@ -11,40 +11,37 @@ public class Soal3SiAngka1 {
 		int n = input.nextInt();
 		input.close();
 
-		int angkaAwal = 100, ketemu = 0, i = 0, convAngka = 0, prosesPangkat = 0, hasilPangkat = 0;
-
-		if (n >= 1 && n <= 100) {
-			while (ketemu < n) {
-				String siAngka = Integer.toString(angkaAwal);
-				String[] arrSiAngka = siAngka.split("");
-				convAngka = Integer.parseInt(arrSiAngka[i]);
-				prosesPangkat = (int) Math.pow(convAngka, 2);
-				hasilPangkat += prosesPangkat;
-				i++;
+		int ketemu = 0;
+		
+		for (int ratusan = 100; ketemu < n; ratusan++) {
+			int hasilJumlah = 0;
+			String awalanStr = Integer.toString(ratusan);
+			String[] arrRatusanStr = awalanStr.split("");
+			for (int j = 0; j < arrRatusanStr.length; j++) {
+				int convAngka = Integer.parseInt(arrRatusanStr[j]);
+				int hasilPangkat = (int) Math.pow(convAngka, 2);
+				hasilJumlah += hasilPangkat;
 			}
-//			for (int i = 0; i < n; i++) {
-//				String siAngka = Integer.toString(angkaAwal);
-//				String[] arrSiAngka = siAngka.split("");
-//				for (int j = 0; j < arrSiAngka.length; j++) {
-//					int convAngka = Integer.parseInt(arrSiAngka[j]);
-//					int hasilPangkat = (int) Math.pow(convAngka, 2);
-//					simpanan += hasilPangkat;
-//					System.out.println(simpanan);
-//					if (simpanan > 9) {
-//						while (simpanan > 9) {
-//							String convSimpanan = Integer.toString(simpanan);
-//							String[] arrSimpanan = convSimpanan.split("");
-//							int convBaru = Integer.parseInt(arrSimpanan[i]);
-//							int hasilPangkatBaru = (int) Math.pow(convBaru, 2);
-//							simpananBaru += hasilPangkatBaru;
-//							System.out.println(simpananBaru);
-//						}
-//					}
-//					
-//				}
-//			}
-		} else {
-			System.out.println("n lebih dari 100");
+			if(hasilJumlah == 1) {
+				System.out.println(ratusan + " adalah Si Angka 1");
+				ketemu++;
+			}
+			else {
+				while(hasilJumlah >9) {
+					String jumlahStr = Integer.toString(hasilJumlah);
+					String[] arrJumlahStr = jumlahStr.split("");
+					hasilJumlah = 0;
+					for (int k = 0; k < arrJumlahStr.length; k++) {
+						int convAngka = Integer.parseInt(arrJumlahStr[k]);
+						int hasilPangkat = (int) Math.pow(convAngka, 2);
+						hasilJumlah += hasilPangkat;
+					}
+					if(hasilJumlah == 1) {
+						System.out.println(ratusan + " adalah Si Angka 1");
+						ketemu++;
+					}
+				}
+			}
 		}
 
 	}
