@@ -8,3 +8,8 @@ Toko - T2 - T1 - T2 - Toko
 103 -> 1^2 + 0^2 + 3^2 = 
 
 3. while (fount < n )
+
+10. 60000
+18000/2 = 9000 x 6 = 54.000 -> total kopi setelah dsikon
+cashback = 5400
+total = 60.000 - 54.000 = 6000 + 5400 = 11.400
