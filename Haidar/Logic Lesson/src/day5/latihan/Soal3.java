@@ -5,6 +5,17 @@ import java.util.Scanner;
 public class Soal3 {
 	public static void main(String[] args) {
 		
+		//Program yang diinginkan
+		//1. Input banyaknya Si Angka 1 yang ingin dicetak atau ditampilkan (n).
+		//2. Ada angka dimulai dari 100+.
+		//3. Dipisahkan menjadi satu digit, 1 0 0.
+		//4. Masing - masing digit dikuadratkan, kemudian dijumlah => 1^2 + 0^2 + 0^2.
+		//5. Jika penjumlahan kuadrat menghasilkan angka 1, maka angka yang dimulai dari 100+ adalah Si Angka 1. Jika hasil menghasilkan satu digit selain 1 maka bukan.
+		//6. Tambahkan angka 100+ dengan 1, mulai program dari langkah 3 hingga data Si Angka 1 sebanyak data input.
+		//7. Jika hasil menghasilkan 2 digit atau lebih (> 10), maka pisahkan menjadi satu digit lagi dan lakukan penjumlahan kuadrat lagi hingga mendapatkan hasil satu digit.
+		//8. Jika penjumlahan kuadrat menghasilkan angka 1, maka angka yang dimulai dari 100+ adalah Si Angka 1. Jika hasil selain angka 1, maka bukan.
+		//9. Tambahkan angka 100+ dengan 1, mulai program dari langkah 3 hingga data Si Angka 1 sebanyak data input.
+		
 		Scanner masukan = new Scanner(System.in);
 		
 		System.out.print("Masukkan data: ");
