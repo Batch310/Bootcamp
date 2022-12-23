@@ -71,6 +71,7 @@ public class Soal6BTransferBank {
 		} else {
 			System.out.println("PIN salah!");
 		}
+		input.close();
 	}
 
 }
