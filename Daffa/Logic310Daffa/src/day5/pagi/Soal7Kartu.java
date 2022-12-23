@@ -21,8 +21,8 @@ public class Soal7Kartu {
 		System.out.println("Masukkan jumlah tawaran : ");
 		tawaran = input.nextInt();
 
-		kotakA = 9;
-		kotakB = 5;
+		kotakA = acak.nextInt(10);
+		kotakB = acak.nextInt(10);
 
 		if (tawaran <= kartu) {
 			while (kartu > 0) {
@@ -33,14 +33,18 @@ public class Soal7Kartu {
 						kartu -= tawaran;
 					} else if (kotakA > kotakB) {
 						kartu += tawaran;
+						System.out.println(kotakA + " You Win");
+						System.exit(0);
 					} else {
 						kartu += 0;
 					}
 				} else if (choose.equalsIgnoreCase(pilihan2)) {
-					if (kotakA < kotakB) {
+					if (kotakA > kotakB) {
 						kartu -= tawaran;
-					} else if (kotakA > kotakB) {
+					} else if (kotakA < kotakB) {
 						kartu += tawaran;
+						System.out.println(kotakB + " You Win");
+						System.exit(0);
 					} else {
 						kartu += 0;
 					}
@@ -50,13 +54,11 @@ public class Soal7Kartu {
 				}
 
 			}
-			if (kartu == 0) {
-				System.out.println(kotakA + "You Lose!");
-			}
-		}
-		else {
+			System.out.println("You Lose!");
+		} else {
 			System.out.println("Tawaran tidak boleh lebih dari jumlah kartu!");
 		}
+		input.close();
 	}
 
 }
