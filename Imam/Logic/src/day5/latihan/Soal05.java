@@ -6,83 +6,77 @@ public class Soal05 {
 
 	public static void main(String[] args) {
 
-		// L 1 orang dewasa laki = 2 piring nasgor
-		// P 1 orang dewasa perempuan = 1 mie goreng
-		// R 2 orang remaja =  2 mie ayam
-        // A 1 anak = 1/2 nasgor
-		// B 1 balita = 1 mangkok kecil bubur
+//		// L 1 orang dewasa laki = 2 piring nasgor
+//		// P 1 orang dewasa perempuan = 1 mie goreng
+//		// R 2 orang remaja =  2 mie ayam
+//        // A 1 anak = 1/2 nasgor
+//		// B 1 balita = 1 mangkok kecil bubur
 		
-		//jila jumlah orang ganjil P += piring nasgor
+//		jika jumlah orang ganjil P += piring nasgor
 		
 		Scanner scanner = new Scanner(System.in);
-//		System.out.print("Laki-laki dewasa = ");
-//		int laki =scanner.nextInt();
-//		
-//		System.out.print("Perempuan dewasa = ");
-//		int perempuan=scanner.nextInt();
-//		
-//		System.out.print("remaja = ");
-//		int remaja = scanner.nextInt();
-//		
-//		System.out.print("anak = ");
-//		int anak = scanner.nextInt();
-//		
-//		System.out.print("Balita = ");
-//		int balita = scanner.nextInt();
 		
-		
-		int orang = 0;
+	   int porsi = 0;
+	   int jumlahPorsi;
+       int orang = 0;
 				
-		for (int i = 0; i < 5; i++) {
 			System.out.print("Laki-laki dewasa = ");
-			int laki =scanner.nextInt();
-			orang=orang+laki;
+             int l =scanner.nextInt();
+                orang+=l;
+//				porsi=l*2;
 			
 			System.out.print("Perempuan dewasa = ");
-			int perempuan=scanner.nextInt();
-			orang+=laki;
+			int p=scanner.nextInt();
+			  orang+=p;
+//			porsi+=p;
 			
 			System.out.print("Remaja = ");
-			int remaja=scanner.nextInt();
-			orang+=remaja;
+			int r=scanner.nextInt();
+			  orang+=r;
+//			porsi+=r;
 			
 			System.out.print("anak = ");
-			int anak = scanner.nextInt();
-			orang+=anak;
+			double a = scanner.nextDouble();
+			  orang+=a;
+//			if(a==0) {
+//				porsi+=a;
+//			}else {
+//			    porsi+=a/2 ;
+//			}
 			
 			System.out.print("Balita = ");
-			int balita = scanner.nextInt();
-			orang+=balita;	
-		}
-		
-		System.out.print(orang);
-		
+			int b = scanner.nextInt();
+			  orang+=b;
+//			porsi+=b;
+			
+		System.out.print("Jumlah orang ="+orang);
 		System.exit(0);
 		
 		
-//		
-//		int porsi;
-//		 int jumlahPorsi=0;
-//		
-//		 
-//		 
-//		if(laki>=0) {
-//			jumlahPorsi=laki*2;
-//		}
-//		else if(perempuan>=0) {
-//			jumlahPorsi=perempuan;
-//		}else if(remaja>=0) {
-//			jumlahPorsi=remaja;
-//		}else if(anak>=0) {
-//			jumlahPorsi=anak;
-//		}else if(balita>=0) {
-//			jumlahPorsi=balita/2;
-//		}
+		if(orang >= 5 && orang % 2!=0) {
+			 porsi+=1;
+		System.out.print("Jumlah porsi = " + porsi);	     
+		}
+		else {
+			System.out.print("Jumlah porsi = "+ porsi );		
+		} 
 		
+		System.exit(b);
 		
 		
 		 
-		 
+//		if(l>=0) {
+//			jumlahPorsi=l*2;
+//		}
+//		else if(p>=0) {
+//			jumlahPorsi=p;
+//		}else if(r>=0) {
+//			jumlahPorsi=r;
+//		}else if(a>=0) {
+//			jumlahPorsi=a;
+//		}else if(b>=0) {
+//			jumlahPorsi=b/2;
+//		}
 		
 	}
 
