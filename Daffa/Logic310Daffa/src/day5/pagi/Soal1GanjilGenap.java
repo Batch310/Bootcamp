@@ -10,7 +10,7 @@ public class Soal1GanjilGenap {
 
 		System.out.print("Masukkan n : ");
 		int n = input.nextInt();
-
+		input.close();
 		for (int i = 1; i <= n; i++) {
 			// System.out.print(i);
 			if (i % 2 == 0) {
