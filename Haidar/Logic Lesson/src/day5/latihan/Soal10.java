@@ -70,7 +70,7 @@ public class Soal10 {
 //		System.out.println(hargaDiskon);
 //		System.out.println(hargaKopi);
 //		System.out.println(minKopi);
-		System.out.println(jumlahKopi);
-		System.out.println(saldoAkhir);
+		System.out.println("Jumlah cup = " + jumlahKopi);
+		System.out.println("Saldo akhir = " + saldoAkhir);
 	}
 }
