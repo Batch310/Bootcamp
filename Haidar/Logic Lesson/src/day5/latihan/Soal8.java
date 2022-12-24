@@ -21,28 +21,58 @@ public class Soal8 {
 		System.out.print("Masukkan panjang deret: ");
 		int deret = masukan.nextInt();
 		
-		int[] prima = new int[deret];
-		int[] fibonacci = new int[deret];
+		String prima = "";
+		String fibonacci = "";
+//		int[] prima = new int[deret];
+//		int[] fibonacci = new int[deret];
 		
 		int angka = 0;
-		int angkaPrima = 0;
-		int indexPrima = 0;
-		int indexFibonacci = 0;
+		int found = 0;
+		int fibo1 = 0;
+		int fibo2 = 1;
 		
-		while (indexPrima < deret) {
-			if (angkaPrima <= 1) {
-				angkaPrima++;
-			}
+		while (found < deret) {
+			int pembagiHabis = 0;
 			
-			for (int i = 2; i <= Math.sqrt(angkaPrima); i++) {
-				if (angkaPrima%i == 0) {	
-				}
-			}
-			angkaPrima++;
+			if (angka == 0 || angka == 1) {
+				angka++;
+			} else if (angka >=2) {
+				if (angka == 2) {
+					prima += angka + " ";
+					angka++;
+					found++;
+				} else {
+					for (int i = 2; i <= Math.sqrt(angka); i++) {
+						if (angka%i == 0) {
+							pembagiHabis++;
+						}
+					}
+					if (pembagiHabis == 0) {
+						prima += angka + " ";
+						found++;
+					}
+					angka++;
+				}		
+			}			
 		}
-		prima[indexPrima] = angkaPrima;
-		indexPrima++;
-		System.out.print(prima[indexPrima]);
+//		System.out.println(prima);
+		found = 0;
+		while (found < deret) {
+			int nextFibo = 0;	
+			fibonacci += fibo1 + " "; //0, 1, 1,
+			nextFibo = fibo1 + fibo2; // 0+1=1, 1+1=2, 1+2=3,
+			fibo1 = fibo2; //0->1, 1, 2
+			fibo2 = nextFibo; // 1->1, 2, 3 
+			found++;
+		}
+//		System.out.println(fibonacci);
+		String[] arrPrima = prima.split(" ");
+		String[] arrFibo = fibonacci.split(" ");
+		
+		for (int i = 0; i < deret; i++) {
+			int jumlahPribo = Integer.parseInt(arrPrima[i]) + Integer.parseInt(arrFibo[i]);
+			System.out.print(jumlahPribo + ", ");
+		}
 		
 	}
 }
