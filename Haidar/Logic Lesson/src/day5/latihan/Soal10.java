@@ -31,7 +31,7 @@ public class Soal10 {
 //		int harga = 0;
 		int totalHarga = 0;
 		
-		if (jumlahKopi >  minKopi) {
+//		if (jumlahKopi >  minKopi) {
 			hargaDiskon = hargaKopi*diskon/100;
 			hargaKopi -= hargaDiskon; //Harga kopi setelah diskon
 			jumlahKopi = saldo/hargaKopi;			
@@ -63,10 +63,10 @@ public class Soal10 {
 			}
 			saldoAkhir = saldo-totalHarga+totalCashback;
 //			System.out.println(hargaKopi);
-		} else {
-			totalHarga = jumlahKopi*hargaKopi;
-			saldoAkhir = saldo-totalHarga;
-		}
+//		} else {
+//			totalHarga = jumlahKopi*hargaKopi;
+//			saldoAkhir = saldo-totalHarga;
+//		}
 //		System.out.println(hargaDiskon);
 //		System.out.println(hargaKopi);
 //		System.out.println(minKopi);
