@@ -6,66 +6,78 @@ public class Soal6 {
 
 	public static void main(String[] args) {
 
-		Scanner input = new Scanner(System.in);
-		int pin=123456, uang_saldo, pilihan, kode_bank, uang_setor = 0;
+		Scanner scan = new Scanner(System.in);
+
 		String rekening;
 
-		System.out.print("Masukkan PIN : ");
-		pin = input.nextInt();
+		int setor = 0;
+		int transfer = 0;
+		int sisa_saldo = 0;
+		int pin = 123456;
+		int pilihan;
+
+		System.out.print("Masukkan PIN: ");
+		pin = scan.nextInt();
 		if (!(pin == 123456)) {
-			System.out.println("PIN salah");
+			System.out.print("PIN salah");
 			System.exit(0);
 		}
 
-		System.out.print("Uang disetor: ");
-		uang_saldo = input.nextInt();
+		System.out.print("Masukkan setor: ");
+		setor = scan.nextInt();
 
-		System.out.println("Pilihan Transfer : 1. Antar Rekening \t 2.Antar Bank");
-		pilihan = input.nextInt();
+		System.out.println();
 
+		System.out.println("Pilihan transfer: ");
+		System.out.print("1.antar rekening  ");
+		System.out.println("2.antar bank");
+
+		pilihan = scan.nextInt();
 
 		if (pilihan == 1) {
-			System.out.println("Masukkan Rekening Tujuan : ");
-			rekening = input.next();
-			
-			if (rekening.length()==10) {
-				System.out.println("Uang disetor: " );
-				uang_setor = input.nextInt();
 
-				if (uang_saldo-uang_setor<0) {
-					System.out.println("saldo tidak mencukupi");
-				}else if (uang_saldo>0) {
-					System.out.println("Transaksi berhasil, saldo anda selama ini : " + (uang_saldo-uang_setor));
-				}
-			
-			}else {
-				System.out.println("Panjang rekening harus 10 digit");
+			System.out.println("Masukkan rekening tujuan: ");
+			rekening = scan.next();
+
+			if (rekening.length() != 10) {
+				System.out.println("rekening harus 10 digit");
+				System.exit(0);
 			}
 
-			
+			System.out.println("Masukkan nomoinal transfer");
+			transfer = scan.nextInt();
 
-		} if (pilihan == 2) {
-			System.out.print("Masukkan kode bank: ");
-			kode_bank = input.nextInt();
-			
-			System.out.println("Masukkan Rekening Tujuan : ");
-			rekening = input.next();
-			
-			if (rekening.length()==10) {
-				System.out.println("Uang disetor: " );
-				uang_setor = input.nextInt();
+			if (setor - transfer < 0) {
+				System.out.println("saldo tidak mencukupi");
+			} else if (setor - transfer >= 0) {
+				sisa_saldo = setor - transfer;
+				System.out.println("Transaksi berhasil, sisa saldo: " + sisa_saldo);
 
-				if ((uang_saldo-uang_setor-7500)<0) {
-					System.out.println("saldo tidak mencukupi");
-				}else if (uang_saldo>0) {
-					System.out.println("Transaksi berhasil, saldo anda selama ini : " + (uang_saldo-uang_setor-7500));
-				}
-			
-			}else {
-				System.out.println("panjang rekening  10 digit");
 			}
 
+		} else if (pilihan == 2) {
 
+			System.out.print("masukkan kode bank: ");
+			int kd_bank = scan.nextInt();
+
+			System.out.print("Masukkan rekening tujuan: ");
+			rekening = scan.next();
+			if (rekening.length() != 10) {
+				System.out.println("rekening harus 10 digit");
+			}
+
+			System.out.print("masukkan nominal transfer: ");
+			transfer = scan.nextInt();
+
+			if (setor - transfer - 7500 < 0) {
+				System.out.println("saldo tidak cukup");
+			} else if (setor - transfer - 7500 >= 0) {
+				sisa_saldo = setor - transfer - 7500;
+				System.out.println("Transfer berhasil, saldo anda " + sisa_saldo);
+			}
+
+		} else {
+			System.out.println("pilihan salah");
 		}
 
 	}
