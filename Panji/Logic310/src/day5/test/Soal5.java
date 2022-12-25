@@ -11,46 +11,39 @@ public class Soal5 {
 		System.out.print("input : ");
 		String data1 = input.nextLine();// Input
 
-		String simpan = "";
-		// Program split ";"
-		String[] arr1 = data1.split("; ");
+		int dataPerempuan = 0;
+		int totalOrang = 0;
+		int totalPorsi = 0;
+		double porsiMakanan = 0;
+		String[] arr1 = data1.split("; "); // Program split ";"
 		for (int i = 0; i < arr1.length; i++) {
-			System.out.println(arr1[i]);
-			// Program split "="
-			String[] arr2 = arr1[i].split(" = ");
-			String orang = arr2[0];
-			String jmlOrang = arr2[1].substring(0,1);
-			
-			int jmlO = Integer.parseInt(jmlOrang);
-			
+
+			String[] arr2 = arr1[i].split(" = "); // Program split "="
+			String orang = arr2[0]; // Data Orang
+			String jumlahOrang1 = arr2[1].substring(0, 1); // Data Jumlah Orang masih string
+			int jmlOrang = Integer.parseInt(jumlahOrang1);
 			System.out.println(orang);
 			System.out.println(jmlOrang);
-			System.out.println(jmlO);
-			
 
+			if (orang.equalsIgnoreCase("Laki-laki dewasa")) {
+				porsiMakanan = 2 * jmlOrang;
+			} else if (orang.equalsIgnoreCase("Remaja")) {
+				porsiMakanan = 2 * jmlOrang;
+			} else if (orang.equalsIgnoreCase("Perempuan Dewasa")) {
+				porsiMakanan = 1 * jmlOrang;
+				dataPerempuan += jmlOrang;
+			} else if (orang.equalsIgnoreCase("Anak-anak")) {
+				porsiMakanan = jmlOrang * 0.5;
+			} else if (orang.equalsIgnoreCase("Balita")) {
+				porsiMakanan = jmlOrang * 1;
+			}
+			totalOrang += jmlOrang;
+			totalPorsi += porsiMakanan;
 		}
-		// Program split
-		// String[] arr3 = simpan.split("");
-//			char newChar1 = simpan.charAt(0);
-//			System.out.print(simpan.charAt(0));
-
-//		int totalNasiGorengDewasaLakiLaki = orangDewasaLakiLaki * 2;
-//		int totalMieGorengDewasaPerempuan = orangDewasaPerempuan * 1;
-//		int totalAyamRemaja = orangRemaja * 2;
-//		int totalNasiGorengAnak = (int) (orangAnak * 0.5);
-//		int totalBuburSehatBalita = orangBalita * 1;
-
-		// Hitung total porsi makanan yang dimakan
-//		int totalPorsiMakanan = totalNasiGorengDewasaLakiLaki + totalMieGorengDewasaPerempuan + totalAyamRemaja
-//				+ totalNasiGorengAnak + totalBuburSehatBalita;
-
-		// Jika jumlah orang yang sedang makan ganjil dan lebih dari 5 orang
-//		if ((totalPorsiMakanan % 2 == 1) && (totalPorsiMakanan > 5)) {
-//			totalPorsiMakanan = totalPorsiMakanan + 1;
-//		}
-
-		// Tampilkan total porsi makanan yang dimakan
-		// System.out.println("Total porsi makanan yang dimakan: " + totalPorsiMakanan);
+		if (totalOrang > 5 && totalOrang % 2 != 0) {
+			totalPorsi += dataPerempuan;
+		}
+		System.out.println("Jumlah porsi : " + totalPorsi);
 	}
 
 }
