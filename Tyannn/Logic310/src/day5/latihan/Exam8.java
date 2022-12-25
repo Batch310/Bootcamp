@@ -57,6 +57,7 @@ public class Exam8 {
 		}
 
 		System.out.println();
+		System.out.print("Jumlah = ");
 		for (int i = 0; i < jml.length; i++) {
 			jml[i] = arrA[i] + arrB[i];
 			System.out.print(jml[i]+" ");
