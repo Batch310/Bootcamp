@@ -15,10 +15,10 @@ public class Exam8 {
 
 		int[] arrA = new int[n];
 		int[] arrB = new int[n];
-//		int[] tampung = new int[n];
 		int[] jml = new int[n];
 
 		int prima = 0;
+		System.out.print("Bilangan Prima = ");
 		for (int i = 1; prima < n; i++) {
 
 			int sum = 0;
@@ -48,6 +48,7 @@ public class Exam8 {
 		int fibo = 0;
 		int fibo1 = 1;
 		int fibo2 = 0;
+		System.out.print("Bilangan Fibonaci = ");
 		for (int i = 0; i < n; i++) {
 			arrB[i] = fibo1 + fibo2;
 			fibo1 = fibo2;
@@ -56,6 +57,7 @@ public class Exam8 {
 		}
 
 		System.out.println();
+		System.out.print("Jumlah = ");
 		for (int i = 0; i < jml.length; i++) {
 			jml[i] = arrA[i] + arrB[i];
 			System.out.print(jml[i]+" ");

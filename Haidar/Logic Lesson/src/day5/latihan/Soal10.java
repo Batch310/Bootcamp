@@ -32,12 +32,13 @@ public class Soal10 {
 		int totalHarga = 0;
 		
 //		if (jumlahKopi > minKopi) {
-		if (saldo >=  40000) {
+//		if (saldo >=  40000) {
 			hargaDiskon = hargaKopi*diskon/100;
 			hargaKopi -= hargaDiskon; //Harga kopi setelah diskon
-			jumlahKopi = saldo/hargaKopi;			
-			totalDiskon = hargaKopi*jumlahKopi; //Total diskon setelah kopi diskon
-
+			jumlahKopi = saldo/hargaKopi; //27000/9000		
+			totalDiskon = hargaKopi*jumlahKopi; //9k*3=27k
+			
+		if (jumlahKopi >= 3) {
 			if (totalDiskon <= maxDiskon) {
 				totalHarga = ((hargaKopi+hargaDiskon)*jumlahKopi)-totalDiskon; 
 			} else {
@@ -63,15 +64,16 @@ public class Soal10 {
 				totalCashback = maxCashback;
 			}
 			saldoAkhir = saldo-totalHarga+totalCashback;
+			System.out.println("Jumlah cup = " + jumlahKopi);
+			System.out.println("Saldo akhir = " + saldoAkhir);
 //			System.out.println(hargaKopi);
 		} else {
-			totalHarga = jumlahKopi*hargaKopi;
-			saldoAkhir = saldo-totalHarga;
+			System.out.println("Anda tidak mendapat promo");
+//			totalHarga = jumlahKopi*hargaKopi;
+//			saldoAkhir = saldo-totalHarga;
 		}
 //		System.out.println(hargaDiskon);
 //		System.out.println(hargaKopi);
 //		System.out.println(minKopi);
-		System.out.println("Jumlah cup = " + jumlahKopi);
-		System.out.println("Saldo akhir = " + saldoAkhir);
 	}
 }

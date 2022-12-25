@@ -10,15 +10,13 @@ public class Soal3 {
 //		System.out.println("n: ");
 
 		int n = 3;
-		int nilaiAwal=100;
 		
-		if (n>=1&&n<=100) {
-			for (int i = 0; i < n; i++) {
-				String tampung = String.valueOf(nilaiAwal);
-				tampung.split("");
-			}
+		int angka1=0;
+		int hasil=0;
+		
+		for (int nilaiAwal =100;  angka1< n; nilaiAwal++) {
+			
 		}
-
 		
 	}
 
