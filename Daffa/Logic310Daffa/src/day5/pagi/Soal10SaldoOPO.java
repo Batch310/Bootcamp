@@ -32,7 +32,7 @@ public class Soal10SaldoOPO {
 
 		hargaDiskon = hargaKopi * diskon / 100;
 		hargaKopi -= hargaDiskon;
-		jumlahKopiDibeli = saldoOPO/hargaKopi;
+		jumlahKopiDibeli = saldoOPO / hargaKopi;
 		totalDiskon = hargaKopi * jumlahKopiDibeli;
 
 		if (jumlahKopiDibeli >= 3) {
@@ -57,6 +57,9 @@ public class Soal10SaldoOPO {
 			System.out.println("Saldo akhir = " + sisaSaldo);
 		} else {
 			System.out.println("Anda tidak mendapat promo");
+			sisaSaldo = saldoOPO - ((hargaKopi + hargaDiskon) * jumlahKopiDibeli);
+			System.out.println("Jumlah cup = " + jumlahKopiDibeli);
+			System.out.println("Saldo akhir = " + sisaSaldo);
 		}
 	}
 
