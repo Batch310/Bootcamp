@@ -25,11 +25,9 @@ public class Soal8 {
 			}
 			if (bilprima == 2) {
 				prima[current] = i;
-				System.out.print(i + " ");
 				current++;
 			}
 		}
-		System.out.println();
 		System.out.print("Bilangan Prima : ");
 		for (int i = 0; i < prima.length; i++) {
 			System.out.print(prima[i] + " ");
@@ -39,22 +37,24 @@ public class Soal8 {
 
 		int fibo0 = 0;
 		int fibo1 = 1;
-		int currentfibo = 0;
-		int bilfibo = 0;
 
-		for (int i = 1; i <= n; i++) {
-			System.out.print(fibo0+ " ");
-			bilfibo = fibo0 + fibo1;
+		System.out.print("Bilangan Fibonacci : ");
+		for (int i = 0; i < n; i++) {
+			fibonacci[i] = fibo0 + fibo1;
 			fibo0 = fibo1;
-			fibo1 = bilfibo;
+			fibo1 = fibonacci[i];
+			System.out.print(fibonacci[i]+ " ");
 		}
-		for (int i = 1; currentfibo < n; i++) {
-			fibonacci[bilfibo] = fibo0;
-			System.out.println(fibonacci[fibo0]+ " ");
-			currentfibo++;
+		
+		System.out.println();
+		
+		int[] total = new int [n];
+		for (int i = 0; i < n; i++) {
+			total[i] = prima[i] + fibonacci[i];
+			System.out.print(total[i] + " ");
+			
 		}
 
-		System.out.println();
 	}
 
 	// Program penjumlahan data index 1 dan data index 2
