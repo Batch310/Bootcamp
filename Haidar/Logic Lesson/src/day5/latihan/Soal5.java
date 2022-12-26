@@ -43,7 +43,7 @@ public class Soal5 {
 //				System.out.println(jumlahOrang);
 		}
 		
-		if ((jumlahOrang >= 5) && (jumlahOrang%2 != 0)) {
+		if ((jumlahOrang > 5) && (jumlahOrang%2 != 0)) {
 			for (int i = 0; i < arrOrang.length; i++) {
 				String[] tiapOrang = arrOrang[i].split(" = ");
 				for (int j = 0; j < tiapOrang.length; j++) {
