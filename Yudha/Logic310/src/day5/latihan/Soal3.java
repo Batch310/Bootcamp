@@ -45,10 +45,10 @@ int found = 0;
 					}
 				}
 			}
-			
+			//CRTL + SHift + F = merapikan program
 //			System.out.println(hasil);
 		}
 		
-	}
+	}// challege : 11 dan 111 termasuk angka 1
 
 }
