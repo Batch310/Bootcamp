@@ -24,7 +24,7 @@ public class Soal8PrimaFibo {
 				}
 			}
 			if (angka == 2) {
-				prima = prima + (i + " ");
+				prima += (i + " ");
 				found++;
 			}
 		}

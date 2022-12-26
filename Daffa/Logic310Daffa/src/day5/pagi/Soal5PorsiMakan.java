@@ -40,10 +40,9 @@ public class Soal5PorsiMakan {
 					String jmlOrang = yangMakan[j].replace(" orang", "");
 //					System.out.println(jmlOrang);
 					intOrang = Integer.parseInt(jmlOrang);
-					
 
 				}
-				
+
 			}
 			if (orang.equalsIgnoreCase("Laki-laki dewasa")) {
 				porsiLaki += intOrang * dLaki;
@@ -63,7 +62,7 @@ public class Soal5PorsiMakan {
 			} else {
 				totalJumlahPorsi = porsiLaki + porsiPerempuan + porsiRemaja + porsiAnak + porsiBalita;
 			}
-			
+
 //			String jmlOrang = yangMakan[1].substring(0, 1);
 
 		}
