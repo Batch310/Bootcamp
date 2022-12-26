@@ -1,6 +1,5 @@
 package day5.pagi;
 
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Soal8PrimaFibo {
@@ -17,28 +16,16 @@ public class Soal8PrimaFibo {
 
 		int angka = 0, found = 0, fib1 = 0, fib2 = 1;
 
-		while (found < deret) {
-			int bagiHabis = 0;
-
-			if (angka == 0 || angka == 1) {
-				angka++;
-			} else if (angka >= 2) {
-				if (angka == 2) {
-					prima += angka + " ";
-					angka++;
-					found++;
-				} else {
-					for (int i = 2; i < Math.sqrt(angka); i++) {
-						if (angka % i == 0) {
-							bagiHabis++;
-						}
-					}
-					if (bagiHabis == 0) {
-						prima += angka + " ";
-						found++;
-					}
+		for (int i = 1; found < deret; i++) {
+			angka = 0;
+			for (int j = 1; j <= i; j++) {
+				if (i % j == 0) {
 					angka++;
 				}
+			}
+			if (angka == 2) {
+				prima += (i + " ");
+				found++;
 			}
 		}
 
@@ -51,6 +38,8 @@ public class Soal8PrimaFibo {
 			fib2 = fiboNext;
 			found++;
 		}
+		System.out.println(prima + " ");
+		System.out.println(fibonacci + " ");
 		String[] arrPrima = prima.split(" ");
 		String[] arrFibonacci = fibonacci.split(" ");
 
