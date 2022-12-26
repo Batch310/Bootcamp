@@ -16,13 +16,13 @@ public class Soal4 {
 		// Tempat 3 ke Tempat 4 = 2,5km
 
 		// Jarak perjalanan
-		double jarakToko1 = 2; // dalam km
-		double jarak1Tempat2 = 0.5; // dalam km
-		double jarakTempat2Tempat3 = 1.5; // dalam km
-		double jarakTempat3Tempat4 = 2.5; // dalam km
+//		double jarakToko1 = 2; // dalam km
+//		double jarak1Tempat2 = 0.5; // dalam km
+//		double jarakTempat2Tempat3 = 1.5; // dalam km
+//		double jarakTempat3Tempat4 = 2.5; // dalam km
 
-		int jarak = 0;
-		double jarakTotal = 0;
+		double jarak = 0;
+//		double jarakTotal = 0;
 		double jumlahBensin = 0;
 
 		System.out.print("Rute : ");
@@ -33,62 +33,63 @@ public class Soal4 {
 			dataList.add(elemen);
 		}
 
-		for (int i = 0; i < dataList.size(); i++) {
+		for (int i = 1; i < dataList.size(); i++) {
 			if (dataList.get(i).equalsIgnoreCase("Toko")) {
-				if (dataList.get(i).equalsIgnoreCase("Tempat 1")) {
-					jarak += jarakToko1;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 2")) {
-					jarak += jarakToko1 + jarak1Tempat2;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 3")) {
-					jarak += jarakToko1 + jarak1Tempat2 + jarakTempat2Tempat3;
-				} else {
-					jarak += jarakToko1 + jarak1Tempat2 + jarakTempat2Tempat3 + jarakTempat3Tempat4;
+				jarak += 0;
+				if (dataList.get(i - 1).equalsIgnoreCase("Tempat 1")) {
+					jarak += 2;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 2")) {
+					jarak += 2.5;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 3")) {
+					jarak += 4;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 4")) {
+					jarak += 6.5;
 				}
 			} else if (dataList.get(i).equalsIgnoreCase("Tempat 1")) {
-				if (dataList.get(i).equalsIgnoreCase("Toko")) {
-					jarak += jarakToko1;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 2")) {
-					jarak += jarak1Tempat2;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 3")) {
-					jarak += jarak1Tempat2 + jarakTempat2Tempat3;
-				} else {
-					jarak += jarak1Tempat2 + jarakTempat2Tempat3 + jarakTempat3Tempat4;
+				if (dataList.get(i - 1).equalsIgnoreCase("Toko")) {
+					jarak += 2;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 2")) {
+					jarak += 0.5;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 3")) {
+					jarak += 2;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 4")) {
+					jarak += 4.5;
 				}
 			} else if (dataList.get(i).equalsIgnoreCase("Tempat 2")) {
-				if (dataList.get(i).equalsIgnoreCase("Toko")) {
-					jarak += jarakToko1 + jarak1Tempat2;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 1")) {
-					jarak += jarakToko1;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 3")) {
-					jarak += jarakTempat2Tempat3;
-				} else {
-					jarak += jarakToko1 + jarak1Tempat2 + jarakTempat2Tempat3;
+				if (dataList.get(i - 1).equalsIgnoreCase("Toko")) {
+					jarak += 2.5;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 1")) {
+					jarak += 0.5;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 3")) {
+					jarak += 1.5;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 4")) {
+					jarak += 4;
 				}
 			} else if (dataList.get(i).equalsIgnoreCase("Tempat 3")) {
-				if (dataList.get(i).equalsIgnoreCase("Toko")) {
-					jarak += jarakToko1 + jarak1Tempat2 + jarakTempat2Tempat3;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 1")) {
-					jarak += jarakToko1;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 2")) {
-					jarak += jarakTempat2Tempat3;
-				} else {
-					jarak += jarakTempat3Tempat4;
+				if (dataList.get(i - 1).equalsIgnoreCase("Toko")) {
+					jarak += 4;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 1")) {
+					jarak += 2;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 2")) {
+					jarak += 1.5;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 4")) {
+					jarak += 2.5;
 				}
 			} else if (dataList.get(i).equalsIgnoreCase("Tempat 4")) {
-				if (dataList.get(i).equalsIgnoreCase("Toko")) {
-					jarak += jarakToko1 + jarak1Tempat2 + jarakTempat2Tempat3 + jarakTempat3Tempat4;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 1")) {
-					jarak += jarak1Tempat2 + jarakTempat2Tempat3 + jarakTempat3Tempat4;
-				} else if (dataList.get(i).equalsIgnoreCase("Tempat 2")) {
-					jarak += jarakTempat2Tempat3 + jarakTempat3Tempat4;
-				} else {
-					jarak += jarakTempat3Tempat4;
+				if (dataList.get(i - 1).equalsIgnoreCase("Toko")) {
+					jarak += 6.5;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 1")) {
+					jarak += 4.5;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 2")) {
+					jarak += 4;
+				} else if (dataList.get(i - 1).equalsIgnoreCase("Tempat 3")) {
+					jarak += 2.5;
 				}
 			}
 		}
 		jumlahBensin = (jarak / 2.5);
-		if (jarakTotal % 2.5 == 0) {
-			System.out.println((int) (jumlahBensin) + " liter");
-		}
+
+		System.out.println((int) (jumlahBensin) + " liter");
+
 	}
 }

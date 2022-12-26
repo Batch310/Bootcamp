@@ -45,7 +45,7 @@ public class Soal8PrimaFibo {
 
 		for (int i = 0; i < deret; i++) {
 			int jumlahPriFibo = Integer.parseInt(arrPrima[i]) + Integer.parseInt(arrFibonacci[i]);
-			System.out.print(jumlahPriFibo + ", ");
+			System.out.print(jumlahPriFibo + " ");
 		}
 	}
 

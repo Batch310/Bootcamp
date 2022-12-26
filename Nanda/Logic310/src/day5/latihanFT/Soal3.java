@@ -7,6 +7,7 @@ public class Soal3 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
+		//input
 		System.out.print("input : ");
 		int n = input.nextInt();
 		
@@ -36,7 +37,7 @@ public class Soal3 {
 							tampung += hasil2;
 						}
 						if (tampung == 1) {
-							System.out.print(i+ " adalah Si angka 1");
+							System.out.println(i+ " adalah Si angka 1");
 							awal++;
 						}
 					}

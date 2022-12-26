@@ -9,13 +9,13 @@ public class Soal2 {
 		// TODO Auto-generated method stub
 		Scanner input = new Scanner(System.in);
 		System.out.println("Masukkan Kalimat : ");
-		String kalimat = input.nextLine().toLowerCase();
-		String [] arrayKalimat = kalimat.split("");
-		Arrays.sort(arrayKalimat);
+		String kalimat = input.nextLine().toLowerCase();//kalimat berupa input yang telah diubah huruf kecil
+		String [] arrayKalimat = kalimat.split(""); // yykw => y,y,k,w
+		Arrays.sort(arrayKalimat);// y, y, k, w => k, w, y, y
 		String vokal =  "aeiou";
 		String konsonan = "bcdfghjklmnpqrstvwxyz";
 		String vokalKalimat="",konsonanKalimat="";
-		for (int i = 0; i < arrayKalimat.length; i++) {
+		for (int i = 0; i < arrayKalimat.length; i++) {// perulangan untuk setiap 
 			//System.out.println(kalimat.charAt(i));
 			if(vokal.contains(arrayKalimat[i])) {
 				vokalKalimat+=arrayKalimat[i];
@@ -27,6 +27,6 @@ public class Soal2 {
 		}
 		System.out.println("Huruf Vokal : " + vokalKalimat);
 		System.out.println("Huruf Konsonan : " + konsonanKalimat);
-		}
+		}//challege : cetak vokal dan konsonan unik
 
 }

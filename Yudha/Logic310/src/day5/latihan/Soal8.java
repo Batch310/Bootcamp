@@ -43,5 +43,5 @@ public class Soal8 {
 		}
 		System.out.println(primaPlusFibo);
 	}
-
+// ganjil dijumlah genap dikurangi nilai harus absolut
 }

@@ -40,7 +40,6 @@ public class Soal5PorsiMakan {
 					String jmlOrang = yangMakan[j].replace(" orang", "");
 //					System.out.println(jmlOrang);
 					intOrang = Integer.parseInt(jmlOrang);
-
 				}
 
 			}

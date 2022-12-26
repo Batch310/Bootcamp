@@ -8,6 +8,8 @@ public class Soal2 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
+		
+		//input
 		System.out.print("Masukkan Kalimat : ");
 		String kalimat = input.nextLine();
 		

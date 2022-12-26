@@ -77,7 +77,11 @@ public class Soal8 {
 		
 		for (int i = 0; i < deret; i++) {
 			int jumlahPribo = Integer.parseInt(arrPrima[i]) + Integer.parseInt(arrFibo[i]);
-			System.out.print(jumlahPribo + ", ");
+			if (i == (deret-1)) {
+				System.out.print(jumlahPribo);
+			} else {
+				System.out.print(jumlahPribo + ", ");				
+			}
 		}
 		
 	}
