@@ -16,13 +16,13 @@ public class Soal4 {
 		// Tempat 3 ke Tempat 4 = 2,5km
 
 		// Jarak perjalanan
-		double jarakToko1 = 2; // dalam km
-		double jarak1Tempat2 = 0.5; // dalam km
-		double jarakTempat2Tempat3 = 1.5; // dalam km
-		double jarakTempat3Tempat4 = 2.5; // dalam km
+//		double jarakToko1 = 2; // dalam km
+//		double jarak1Tempat2 = 0.5; // dalam km
+//		double jarakTempat2Tempat3 = 1.5; // dalam km
+//		double jarakTempat3Tempat4 = 2.5; // dalam km
 
 		double jarak = 0;
-		double jarakTotal = 0;
+//		double jarakTotal = 0;
 		double jumlahBensin = 0;
 
 		System.out.print("Rute : ");
@@ -89,11 +89,7 @@ public class Soal4 {
 		}
 		jumlahBensin = (jarak / 2.5);
 
-		if (jarak % 2.5 == 0) {
-			System.out.println((int) (jumlahBensin) + " liter");
-		} else {
-			System.out.println(((int) (jumlahBensin) + 1) + " liter");
-		}
+		System.out.println((int) (jumlahBensin) + " liter");
 
 	}
 }
