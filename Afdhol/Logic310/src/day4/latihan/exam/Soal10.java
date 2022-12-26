@@ -14,7 +14,7 @@ public class Soal10 {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("bayar: ");
 		int setor = scan.nextInt();
-		if (!(setor >= 18000 && setor <= 100000)) {
+		if (!(setor >= 40000 && setor <= 200000)) {
 			System.out.println("tidak sesuai");
 			System.exit(0);
 		}

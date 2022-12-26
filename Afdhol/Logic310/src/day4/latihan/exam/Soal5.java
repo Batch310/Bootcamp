@@ -22,47 +22,83 @@ public class Soal5 {
 
 		double totalPorsi = 0;
 		int totalOrang = 0;
-		int tambahPorsi=0;
-		
+		int tambahPorsi = 0;
+
 		System.out.println("input: ");
 		String input = scan.nextLine();
 
-		String laki ="";
-		String perempuan="";
-		
-		String[] newArray = input.split(" orang;");
+//		String laki = "";
+//		String perempuan = "";
+
+		String[] newArray = input.split(";");
 		for (int i = 0; i < newArray.length; i++) {
-			newArray[i] = scan.nextLine();
-			System.out.println(newArray[i]);
+
+
+			if (newArray[i].contains("laki-laki dewasa=")) {
+
+				String[] lakiDewasa = newArray[i].split("=");
+				// System.out.println(lakiDewasa[1]);
+				String[] jmlLakiDewasa = lakiDewasa[1].split(" ");
+				String jumlahLakiDewsa = jmlLakiDewasa[0];
+
+				int jml = Integer.parseInt(jumlahLakiDewsa);
+
+				dewasaL += jml;
+
+			}
+			
+			if (newArray[i].contains("perempuan dewasa=")) {
+				
+				String[] splitPerempuanD = newArray[i].split("=");
+				
+				String[] jml = splitPerempuanD[1].split(" ");
+				String jmlPDewasa = jml[0];
+				
+				int jml_akhir = Integer.parseInt(jmlPDewasa);
+				
+				dewasaP += jml_akhir;
+				
+			}if (newArray[i].contains("remaja=")) {
+				String[] splitRemaja = newArray[i].split("=");
+				String jml[] = splitRemaja[1].split(" ");
+				String jmlRemaja = jml[0];
+				
+				int jml_akhir_Remaja = Integer.parseInt(jmlRemaja);
+				
+				remaja += jml_akhir_Remaja;
+				
+			}if (newArray[i].contains("anak-anak=")) {
+				String[] splitAnak = newArray[i].split("=");
+				String jml[] = splitAnak[1].split(" ");
+				String jmlAnak = jml[0];
+				
+				int jml_akhir_anak = Integer.parseInt(jmlAnak);
+				
+				anak += jml_akhir_anak;
+			}if (newArray[i].contains("balita=")) {
+				String[] splitBalita = newArray[i].split("=");
+				String jml[] = splitBalita[1].split(" ");
+				String jmlBalita = jml[0];
+				
+				int jml_akhir_balita = Integer.parseInt(jmlBalita);
+				
+				balita += jml_akhir_balita;
+			}
+			
 
 		}
-		//laki =
-		
-		
-		
-		
-		System.exit(0);
-//		System.out.print("Jumlah Dewasa Laki: ");
-//		dewasaL = scan.nextInt();
-//		System.out.print("Jumlah Dewasa Perempuan: ");
-//		dewasaP = scan.nextInt();
-//		System.out.print("Jumlah Remaja: ");
-//		remaja = scan.nextInt();
-//		System.out.print("Jumlah anak: ");
-//		anak = scan.nextInt();
-//		System.out.print("Jumlah balita: ");
-//		balita = scan.nextInt();
+
 
 		totalOrang = dewasaL + dewasaP + remaja + anak + balita;
+		
+		System.out.println(totalOrang);
 
 		if (totalOrang % 2 == 1 && totalOrang > 5) {
 			tambahPorsi++;
 		}
 
-		totalPorsi = (dewasaL * porsiDewasaL) + (dewasaP * porsiDewasaP) + (remaja * porsiRemaja)
-				+ (anak * porsiAnak) + (balita * porsiBalita)+tambahPorsi;
-
-	//	System.out.println("jml orang "+totalOrang);
+		totalPorsi = (dewasaL * porsiDewasaL) + (dewasaP * porsiDewasaP) + (remaja * porsiRemaja) + (anak * porsiAnak)
+				+ (balita * porsiBalita) + tambahPorsi;
 
 		System.out.println(totalPorsi);
 
