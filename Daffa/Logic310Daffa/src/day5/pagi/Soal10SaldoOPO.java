@@ -10,13 +10,13 @@ public class Soal10SaldoOPO {
 
 		System.out.println("Masukkan saldo OPO : ");
 		int saldoOPO = input.nextInt();
-
+		input.close();
 		int hargaKopi = 18000;
 		int diskon = 50;
 		int hargaDiskon = 0;
 		int totalDiskon = 0;
 
-		int minOrder = 40000;
+//		int minOrder = 40000;
 		int maxDiskon = 100000;
 
 		int cashback = 10;
@@ -25,7 +25,7 @@ public class Soal10SaldoOPO {
 
 		int sisaSaldo = 0;
 
-		int minBeliKopi = minOrder / hargaKopi;
+//		int minBeliKopi = minOrder / hargaKopi;
 		int jumlahKopiDibeli = saldoOPO / hargaKopi;
 
 		int totalHarga = 0;
