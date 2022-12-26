@@ -48,6 +48,7 @@ public class Soal8 {
 		
 		System.out.println();
 		
+		System.out.print("Total : ");
 		int[] total = new int [n];
 		for (int i = 0; i < n; i++) {
 			total[i] = prima[i] + fibonacci[i];

@@ -55,7 +55,10 @@ public class Soal8 {
 				}		
 			}			
 		}
-//		System.out.println(prima);
+//		System.out.print(prima + " ");
+		
+//		System.out.println();
+		
 		found = 0;
 		while (found < deret) {
 			int nextFibo = 0;	
@@ -65,13 +68,20 @@ public class Soal8 {
 			fibo2 = nextFibo; // 1->1, 2, 3 
 			found++;
 		}
-//		System.out.println(fibonacci);
+//		System.out.print(fibonacci + " ");
+		
+//		System.out.println();
+		
 		String[] arrPrima = prima.split(" ");
 		String[] arrFibo = fibonacci.split(" ");
 		
 		for (int i = 0; i < deret; i++) {
 			int jumlahPribo = Integer.parseInt(arrPrima[i]) + Integer.parseInt(arrFibo[i]);
-			System.out.print(jumlahPribo + ", ");
+			if (i == (deret-1)) {
+				System.out.print(jumlahPribo);
+			} else {
+				System.out.print(jumlahPribo + ", ");				
+			}
 		}
 		
 	}

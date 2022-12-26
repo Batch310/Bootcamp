@@ -12,7 +12,7 @@ public class Soal3SiAngka1 {
 		input.close();
 
 		int ketemu = 0;
-		
+
 		for (int ratusan = 100; ketemu < n; ratusan++) {
 			int hasilJumlah = 0;
 			String awalanStr = Integer.toString(ratusan);
@@ -22,12 +22,11 @@ public class Soal3SiAngka1 {
 				int hasilPangkat = (int) Math.pow(convAngka, 2);
 				hasilJumlah += hasilPangkat;
 			}
-			if(hasilJumlah == 1) {
+			if (hasilJumlah == 1) {
 				System.out.println(ratusan + " adalah Si Angka 1");
 				ketemu++;
-			}
-			else {
-				while(hasilJumlah >9) {
+			} else {
+				while (hasilJumlah > 9) {
 					String jumlahStr = Integer.toString(hasilJumlah);
 					String[] arrJumlahStr = jumlahStr.split("");
 					hasilJumlah = 0;
@@ -36,7 +35,7 @@ public class Soal3SiAngka1 {
 						int hasilPangkat = (int) Math.pow(convAngka, 2);
 						hasilJumlah += hasilPangkat;
 					}
-					if(hasilJumlah == 1) {
+					if (hasilJumlah == 1) {
 						System.out.println(ratusan + " adalah Si Angka 1");
 						ketemu++;
 					}

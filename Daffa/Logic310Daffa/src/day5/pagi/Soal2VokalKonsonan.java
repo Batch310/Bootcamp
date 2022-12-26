@@ -10,7 +10,7 @@ public class Soal2VokalKonsonan {
 		Scanner input = new Scanner(System.in);
 
 		String vokal = "aeiou", konsonan = "bcdfghijklmnpqrstvwxyz";
-		
+
 		System.out.print("Masukkan kalimat : ");
 		String kalimat = input.nextLine();
 		kalimat = kalimat.toLowerCase();
@@ -24,11 +24,11 @@ public class Soal2VokalKonsonan {
 
 		for (int i = 0; i < splitKalimat.length; i++) {
 			if (vokal.contains(splitKalimat[i])) {
-				outputVokal = outputVokal + splitKalimat[i];
-				
+				outputVokal += splitKalimat[i];
+
 			}
 			if (konsonan.contains(splitKalimat[i])) {
-				outputKonsonan = outputKonsonan + splitKalimat[i];
+				outputKonsonan += splitKalimat[i];
 			}
 		}
 		System.out.println(outputVokal);
