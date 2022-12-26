@@ -40,7 +40,7 @@ public class Soal7 {
 				angkaA = random1;
 				angkaB = random2;
 				
-				System.out.print("Memilih kotak, A atau B? ");
+				System.out.print("Memilih kotak A, B, atau Menyerah? ");
 				String kotak = masukan.next();
 				
 				if (kotak.equals("A") && (angkaA > angkaB)) {
@@ -52,6 +52,9 @@ public class Soal7 {
 				} else if ((kotak.equals("A") && angkaA == angkaB) || (kotak.equals("B") && angkaB == angkaA)) {
 					kartuPlayer += 0;
 					kartuKomputer += 0;
+				} else if (kotak.equals("Menyerah")) {
+					System.out.println("Permainan berakhir, kamu telah menyerah");
+					System.exit(0);
 				} else {
 					kartuPlayer -= tawaran;
 					kartuKomputer += tawaran;

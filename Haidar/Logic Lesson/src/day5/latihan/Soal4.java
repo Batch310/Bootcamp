@@ -18,83 +18,66 @@ public class Soal4 {
 		//5. Jarak Tempat 3 - Tempat 4 = 2.5km
 		//6. Dan rute terakhir akan kembali ke Toko
 		//7. 1 Liter bensin dapat digunakan untuk 2.5km
+		// Challenge = Tempat 2 tutup, langsung ke rute selanjutnya
+		//Toko - Tempat 1 -Tempat 2 - Toko
 		
 		String[] arrRute = rute.split(" - ");
 		
 		double totalJarak = 0;
 		int urutanRute = 1;
 		
-		for (int i = urutanRute; i < arrRute.length; ) {
+		for (int i = urutanRute; i < arrRute.length;i++) {
 			if (arrRute[i].equals("Toko")) {
 				totalJarak += 0;
-				if (arrRute[i-1].equals("Tempat 1")) {
+				if (arrRute[i-1].equals("Tempat 1") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Tempat 1"))) {
 					totalJarak += 2;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 2")) {
-					totalJarak += 2.5;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 3")) {
+//				} else if (arrRute[i-1].equals("Tempat 2")) {
+//					totalJarak += 2.5;
+				} else if (arrRute[i-1].equals("Tempat 3") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Tempat 3"))) {
 					totalJarak += 4;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 4")) {
+				} else if (arrRute[i-1].equals("Tempat 4") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Tempat 4"))) {
 					totalJarak += 6.5;
-					i++;
 				}
 			} else if (arrRute[i].equals("Tempat 1")) {
-				if (arrRute[i-1].equals("Toko")) {
+				if (arrRute[i-1].equals("Toko") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Toko"))) {
 					totalJarak += 2;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 2")) {
-					totalJarak += 0.5;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 3")) {
+//				} else if (arrRute[i-1].equals("Tempat 2")) {
+//					totalJarak += 0.5;
+				} else if (arrRute[i-1].equals("Tempat 3") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Tempat 3"))) {
 					totalJarak += 2;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 4")) {
+				} else if (arrRute[i-1].equals("Tempat 4") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Tempat 4"))) {
 					totalJarak += 4.5;
-					i++;
 				}
 			} else if (arrRute[i].equals("Tempat 2")) {
-				if (arrRute[i-1].equals("Toko")) {
-					totalJarak += 2.5;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 1")) {
-					totalJarak += 0.5;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 3")) {
-					totalJarak += 1.5;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 4")) {
-					totalJarak += 4;
-					i++;
-				}
+				totalJarak += 0;
+//				if (arrRute[i-1].equals("Toko")) {
+//					totalJarak += 2.5;
+//				} else if (arrRute[i-1].equals("Tempat 1")) {
+//					totalJarak += 0.5;
+//				} else if (arrRute[i-1].equals("Tempat 3")) {
+//					totalJarak += 1.5;
+//				} else if (arrRute[i-1].equals("Tempat 4")) {
+//					totalJarak += 4;
+//				}
 			} else if (arrRute[i].equals("Tempat 3")) {
-				if (arrRute[i-1].equals("Toko")) {
+				if (arrRute[i-1].equals("Toko") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Toko"))) {
 					totalJarak += 4;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 1")) {
+				} else if (arrRute[i-1].equals("Tempat 1") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Tempat 1"))) {
 					totalJarak += 2;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 2")) {
-					totalJarak += 1.5;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 4")) {
+//				} else if (arrRute[i-1].equals("Tempat 2")) {
+//					totalJarak += 1.5;
+				} else if (arrRute[i-1].equals("Tempat 4") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Tempat 4"))) {
 					totalJarak += 2.5;
-					i++;
 				}
 			} else if (arrRute[i].equals("Tempat 4")) {
-				if (arrRute[i-1].equals("Toko")) {
+				if (arrRute[i-1].equals("Toko") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Toko"))) {
 					totalJarak += 6.5;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 1")) {
+				} else if (arrRute[i-1].equals("Tempat 1") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Tempat 1"))) {
 					totalJarak += 4.5;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 2")) {
-					totalJarak += 4;
-					i++;
-				} else if (arrRute[i-1].equals("Tempat 3")) {
+//				} else if (arrRute[i-1].equals("Tempat 2")) {
+//					totalJarak += 4;
+				} else if (arrRute[i-1].equals("Tempat 3") || (arrRute[i-1].equals("Tempat 2") && arrRute[i-2].equals("Tempat 3"))) {
 					totalJarak += 2.5;
-					i++;
 				}
 			} else {
 				System.out.println("Rute tidak valid!");
@@ -109,8 +92,8 @@ public class Soal4 {
 		} else {
 			System.out.println(((int) (liter) + 1) + " liter");
 		}
-//		System.out.println(totalJarak);
+		System.out.println(totalJarak);
 //		System.out.println(liter);
 		
-	}
+	} 
 }
