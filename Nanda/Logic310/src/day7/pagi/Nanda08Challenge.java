@@ -62,13 +62,11 @@ public class Nanda08Challenge {
 		for (int i = 0; i < n; i++) {
 			if (i % 2 != 0) {
 				total[i] = prima[i] + fibonacci[i];
-				
 			}
 			if (i % 2 == 0) {
 				total[i] = prima[i] - fibonacci[i];
 				if (total[i] < 0)
 					total[i] *= -1;
-			
 			}
 		}
 		for (int i = 0; i < n; i++) {
