@@ -45,7 +45,7 @@ public class Exam8 {
 
 		System.out.println();
 
-		int fibo = 0;
+//		int fibo = 0;
 		int fibo1 = 1;
 		int fibo2 = 0;
 		System.out.print("Bilangan Fibonaci = ");
