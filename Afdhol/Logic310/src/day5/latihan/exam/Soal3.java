@@ -33,7 +33,7 @@ public class Soal3 {
 
 			}
 
-			if (hasil == 1 || hasil == 11 || hasil == 111 || seratusInt == 111) { // jika hasil=1 atau hasil = 11 atau
+			if (hasil == 1 || hasil == 11 || hasil == 111 || seratusInt == 111 || seratusInt ==101) { // jika hasil=1 atau hasil = 11 atau
 																					// hasil = 3
 				System.out.println(seratusInt + " adalah Si Angka 1"); // Cetak angka (100 + (berapa kali perulangan))
 																		// adalah Si Angka 1
