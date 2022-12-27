@@ -1,14 +1,13 @@
-package day5.latihan.exam;
+package day7.pagi;
 
 import java.util.Scanner;
 
-public class Soal3 {
-
+public class Afdhol03Challenge {
 	public static void main(String[] args) {
 
 		// input sebanyak n
 		//
-		// challenge : apabila hasil 11 atau 111 atau 111 maka langsung menjadi "Si Angka 1"
+		// challenge : apabila hasil 11 atau 111 atau nilai 111 maka langsung menjadi "Si Angka 1"
 
 		Scanner input = new Scanner(System.in);
 
@@ -16,7 +15,8 @@ public class Soal3 {
 		int data = input.nextInt();
 
 		int found = 0;
-
+		int angka=1;
+		
 		for (int seratusInt = 100; found < data; seratusInt++) { // Perulangan mulai dari 100 ditambah 1
 			int hasil = 0;
 			String seratusStr = Integer.toString(seratusInt);
@@ -33,11 +33,12 @@ public class Soal3 {
 
 			}
 
-			if (hasil == 1 || hasil == 11 || hasil == 111 || seratusInt == 111 ) { // jika hasil=1 atau hasil = 11 atau
-																					
-				System.out.println(seratusInt + " adalah Si Angka 1"); // Cetak angka (100 + (berapa kali perulangan))
+			if (hasil == 1 || hasil == 11 || hasil == 111 || seratusInt == 111) { // jika hasil=1 atau hasil = 11 atau
+																					// hasil = 3
+				System.out.println(angka+" " +seratusInt + " adalah Si Angka 1"); // Cetak angka (100 + (berapa kali perulangan))
 																		// adalah Si Angka 1
 				found++;
+				angka++;
 
 			} else { // !=1
 				while (hasil > 9) { // Perulangan untuk menemukan hasil penjumlahan pangkat yang banyaknya 1 digit
@@ -53,14 +54,15 @@ public class Soal3 {
 						hasil += totalPangkat;
 					}
 					if (hasil == 1) { // Kondisi jika hasil penjumlahan pangkat setiap digit sama dengan 1
-						System.out.println(seratusInt + " adalah Si Angka 1"); // Cetak
+						System.out.println(angka+" " +seratusInt + " adalah Si Angka 1"); // Cetak
 						found++;
+						angka++;
 					}
 				}
 			}
 
 		}
-
+		
 	}
 
 }

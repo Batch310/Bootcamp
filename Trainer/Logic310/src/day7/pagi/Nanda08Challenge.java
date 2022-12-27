@@ -3,7 +3,6 @@ package day7.pagi;
 import java.util.Scanner;
 
 public class Nanda08Challenge {
-
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 
@@ -55,15 +54,15 @@ public class Nanda08Challenge {
 		System.out.println();
 
 		// int[] prima = new int[n]; //panjang array prima = 5 {2, 3, 5, 7, 11}
-		// int[] fibonacci = new int[n]; // panjang array fibo =5 {1, 2, 3, 5, 8}
+		// int[] fibonacci = new int[n]; // panjang array fibo =5 {0, 1, 1, 2, 3}
 
 		System.out.print("Total : ");
-		int[] total = new int[n];
-		for (int i = 0; i < n; i++) {
+		int[] total = new int[n];   // arr.length = 5 {2, 4, 4, 9, 8}
+		for (int i = 0; i < n; i++) { // i = 5, n = 5, 5<5
 			if (i % 2 != 0) {
 				total[i] = prima[i] + fibonacci[i];
 			}
-			else if (i % 2 == 0 ) {
+			if (i % 2 == 0) {
 				total[i] = prima[i] - fibonacci[i];
 				if (total[i] < 0)
 					total[i] *= -1;
@@ -78,15 +77,3 @@ public class Nanda08Challenge {
 		}
 	}
 }
-
-//		int[] total = new int[n]; // panjangnya = 5 {3, 5, 8, 12, 19}
-//		for (int i = 0; i < n; i++) { // i = 5, n = 5
-//			total[i] = prima[i] + fibonacci[i];
-//			if (i == (n-1) ) {
-//			System.out.print(total[i] + " "); // 3 5 8 12 19
-//			}else {
-//				System.out.print(total[i] + ", ");
-
-// Program penjumlahan data index 1 dan data index 2
-// index ganjil+ganjil, index genap-genap, 0 masuk genap, selisih tidak boleh
-// minusssssssssss

@@ -39,7 +39,7 @@ public class Soal3 {
 			} 
 			
 			if (hasil == 1) { //Kondisi jika hasil penjumlahan pangkat setiap digit sama dengan 1
-				System.out.println(seratusInt + " adalah Si Angka 1"); //Cetak angka (100 + (berapa kali perulangan)) adalah Si Angka 1
+				System.out.println((found+1) + ". " + seratusInt + " adalah Si Angka 1"); //Cetak angka (100 + (berapa kali perulangan)) adalah Si Angka 1
 				found++; //Menambahkan penemuan Si Angka 1
 			} else { //Kondisi jika hasil penjumlahan pangkat setiap digit tidak sama dengan 1
 				while (hasil > 9) { //Perulangan untuk menemukan hasil penjumlahan pangkat yang banyaknya 1 digit
@@ -52,7 +52,7 @@ public class Soal3 {
 						hasil += totalPangkat; //Menambahkan hasil penjumlahan pangkat setiap digit
 					}
 					if (hasil == 1) { //Kondisi jika hasil penjumlahan pangkat setiap digit sama dengan 1
-						System.out.println(seratusInt + " adalah Si Angka 1"); //Cetak angka (100 + (berapa kali perulangan)) adalah Si Angka 1
+						System.out.println((found+1) + ". " + seratusInt + " adalah Si Angka 1"); //Cetak angka (100 + (berapa kali perulangan)) adalah Si Angka 1
 						found++; //Menambahkan penemuan Si Angka 1
 					}
 				}
