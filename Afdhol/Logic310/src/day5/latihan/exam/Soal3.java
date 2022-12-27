@@ -1,4 +1,4 @@
-package day4.latihan.exam;
+package day5.latihan.exam;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class Soal3 {
 
 		// input sebanyak n
 		//
-		// challenge : apabila 11 atau 111 maka langsung menjadi "Si Angka 1"
+		// challenge : apabila hasil 11 atau 111 maka langsung menjadi "Si Angka 1"
 
 		Scanner input = new Scanner(System.in);
 
@@ -33,18 +33,10 @@ public class Soal3 {
 
 			}
 
-			if (hasil == 1) {
+			if (hasil == 1 || hasil == 11 || hasil == 111 || seratusInt == 111) { // jika hasil=1 atau hasil = 11 atau
+																					// hasil = 3
 				System.out.println(seratusInt + " adalah Si Angka 1"); // Cetak angka (100 + (berapa kali perulangan))
 																		// adalah Si Angka 1
-				found++;
-
-			} else if (hasil == 11) {
-				System.out.println(seratusInt + " adalah si Angka 1(11)");
-				found++;
-
-			} else if (hasil == 3) {
-				System.out.println(seratusInt + " adalah si Angka 1(6)");
-
 				found++;
 
 			} else { // !=1
