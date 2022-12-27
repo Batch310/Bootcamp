@@ -10,6 +10,15 @@ public class Soal03 {
 		
 		System.out.println("Sistem Konversi\n\n");
 		
+		double botol, gelas, cangkir, teko;
+		
+		botol = 1;
+		gelas = 1;
+		cangkir = 1;
+		teko = 1;
+		
+		double botolKeGelas = gelas * 2, tekoKeCangkir = cangkir * 25, gelasKeCangkir = cangkir * 2.5;
+		
 		
 	}
 

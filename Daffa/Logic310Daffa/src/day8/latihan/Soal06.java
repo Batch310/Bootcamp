@@ -44,5 +44,4 @@ public class Soal06 {
 		}
 		input.close();
 	}
-
 }
