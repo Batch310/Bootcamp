@@ -10,8 +10,6 @@ public class Soal10 {
 		System.out.print("Masukkan jumlah Saldo OPO : ");
 		int saldo = scanner.nextInt();
 
-		
-
 		int hargaEsKopi = 18000;
 		double diskon = 0.5;
 		double cashback = 0.1;
@@ -19,21 +17,18 @@ public class Soal10 {
 
 		int cup = 1;
 		int totalCup = 0;
-		
-		
+
 		// untuk mencari jumlah cup
-		while (hargaEsKopi * cup * diskon < saldo) { 
-			cup++;
+		while (hargaEsKopi * cup * diskon < saldo) {
+			cup++;  
 		}
-		
-		
-		
-		if(saldo % (hargaEsKopi*cup*diskon) == 0) {
+
+		if (saldo % (hargaEsKopi * cup * diskon) == 0) {
 			totalCup = cup;
 			// output
 			System.out.println("jumlah cup = " + totalCup + "; Saldo Akhir = Rp." + (int) saldoAkhir);
-		}else {
-			totalCup = cup - 1; // 
+		} else {
+			totalCup = cup - 1; //
 			double hargaKopiDiskon = totalCup * hargaEsKopi * diskon; // harga kopi sebanyak cup dengan diskon
 			double uangCasback = hargaKopiDiskon * cashback; // uang casback 10 %
 
@@ -42,16 +37,7 @@ public class Soal10 {
 			// output
 			System.out.println("jumlah cup = " + totalCup + "; Saldo Akhir = Rp." + (int) saldoAkhir);
 		}
-		
 
-
-		
-		
-		
-		
-		
-		
-		
 		// int hargaEsKopi = 18000; // Harga satuan es kopi susu
 //		int diskon = hargaEsKopi / 2; // Persentase diskon
 //		int jumlahCup = saldo / diskon; // Hitung jumlah cup
