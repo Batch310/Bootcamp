@@ -3,7 +3,7 @@ package day7.pagi;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Jambronx06 {
+public class Jambrong07 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner input = new Scanner(System.in);
