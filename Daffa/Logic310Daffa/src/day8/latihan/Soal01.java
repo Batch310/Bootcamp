@@ -20,8 +20,6 @@ public class Soal01 {
 		int b1 = 0;
 		int b2 = 10000;
 		int b3 = 30000;
-		int b4 = 75000;
-		int b5 = b3 - b2;
 
 		if (pulsa >= b1 && pulsa <= b2) {
 			point1 = 0;
