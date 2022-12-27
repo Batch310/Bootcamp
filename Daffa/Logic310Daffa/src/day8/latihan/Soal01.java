@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Soal01 {
 
 	public static void main(String[] args) {
-		// BELUM SELESAI
+		//
 		Scanner input = new Scanner(System.in);
 
 		System.out.println("Masukkan nominal pulsa : ");
@@ -34,7 +34,8 @@ public class Soal01 {
 
 			System.out.println(point3);
 		}
-		System.out.println(point1 + " + " + ((b3 -b2) / 1000) + " + " + point3 + " = " + (((b3 -b2) / 1000)+ point3) );
+		System.out
+				.println(point1 + " + " + ((b3 - b2) / 1000) + " + " + point3 + " = " + (((b3 - b2) / 1000) + point3));
 //		System.out.println(totalPointAll);
 	}
 
