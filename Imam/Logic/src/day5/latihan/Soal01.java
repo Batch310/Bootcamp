@@ -12,7 +12,7 @@ public class Soal01 {
 
 		if (n > 0) {
 
-			for (int i = 1; i <= n; i++) {
+			for (int i = 1; i <= n; i++) {  //atau bisa i di += 2 aja
 				if (i % 2 != 0) {
 					System.out.print(i + " ");
 				}
