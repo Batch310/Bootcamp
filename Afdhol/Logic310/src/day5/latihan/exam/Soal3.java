@@ -8,7 +8,7 @@ public class Soal3 {
 
 		// input sebanyak n
 		//
-		// challenge : apabila hasil 11 atau 111 maka langsung menjadi "Si Angka 1"
+		// challenge : apabila hasil 11 atau 111 atau 111 maka langsung menjadi "Si Angka 1"
 
 		Scanner input = new Scanner(System.in);
 
@@ -33,8 +33,8 @@ public class Soal3 {
 
 			}
 
-			if (hasil == 1 || hasil == 11 || hasil == 111 || seratusInt == 111 || seratusInt ==101) { // jika hasil=1 atau hasil = 11 atau
-																					// hasil = 3
+			if (hasil == 1 || hasil == 11 || hasil == 111 || seratusInt == 111 ) { // jika hasil=1 atau hasil = 11 atau
+																					
 				System.out.println(seratusInt + " adalah Si Angka 1"); // Cetak angka (100 + (berapa kali perulangan))
 																		// adalah Si Angka 1
 				found++;
