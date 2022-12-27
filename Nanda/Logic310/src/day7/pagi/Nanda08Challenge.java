@@ -63,7 +63,7 @@ public class Nanda08Challenge {
 			if (i % 2 != 0) {
 				total[i] = prima[i] + fibonacci[i];
 			}
-			if (i % 2 == 0 ) {
+			else if (i % 2 == 0 ) {
 				total[i] = prima[i] - fibonacci[i];
 				if (total[i] < 0)
 					total[i] *= -1;
