@@ -2,7 +2,7 @@ package day5.latihan;
 
 import java.util.Scanner;
 
-public class Exam5 {
+public class exam5 {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
