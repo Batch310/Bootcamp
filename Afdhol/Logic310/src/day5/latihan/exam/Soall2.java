@@ -1,4 +1,4 @@
-package day4.latihan.exam;
+package day5.latihan.exam;
 
 import java.util.Arrays;
 import java.util.Scanner;
