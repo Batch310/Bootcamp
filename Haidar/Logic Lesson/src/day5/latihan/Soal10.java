@@ -38,25 +38,31 @@ public class Soal10 {
 			jumlahKopi = saldo/hargaKopi; //27000/9000		
 			totalDiskon = hargaKopi*jumlahKopi; //9k*3=27k
 			
-		if (jumlahKopi >= 3) {
+		if ((hargaKopi+hargaDiskon)*jumlahKopi >= minOrder) {
 			if (totalDiskon <= maxDiskon) {
 				totalHarga = ((hargaKopi+hargaDiskon)*jumlahKopi)-totalDiskon; 
 			} else {
-//				int sisaDiskon = 0;
+				totalDiskon = 0;
 //				jumlahKopi = 1; //saldo 200000
-				for (jumlahKopi = 1; totalHarga < saldo; jumlahKopi++) { //i=1,2,3,4,5,6,7,8,9,10,11,12
-					totalDiskon = hargaKopi*jumlahKopi; //9k*1 = 9k,18k,27k,36k,45k,54k,63k,72k,81k,90k,99k,108k
-//					if (totalDiskon-maxDiskon < 0) {
-//						sisaDiskon = maxDiskon-totalDiskon;
+//				for (jumlahKopi = 1; totalHarga < saldo; jumlahKopi++) { //i=1,2,3,4,5,6,7,8,9,10,11,12
+//					totalDiskon = hargaKopi*jumlahKopi; //9k*1 = 9k,18k,27k,36k,45k,54k,63k,72k,81k,90k,99k,108k
+////					if (totalDiskon-maxDiskon < 0) {
+////						sisaDiskon = maxDiskon-totalDiskon;
+////					}
+//					if (totalDiskon > maxDiskon) { //<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,>100k
+////						hargaKopi = hargaKopi+hargaDiskon; //hargaKopi = 9000+9000;
+//						totalDiskon = maxDiskon;
+//						totalHarga = ((hargaKopi+hargaDiskon)*jumlahKopi)-totalDiskon;
 //					}
-					if (totalDiskon > maxDiskon) { //<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,<100k,>100k
-//						hargaKopi = hargaKopi+hargaDiskon; //hargaKopi = 9000+9000;
-						totalDiskon = maxDiskon;
-						totalHarga = ((hargaKopi+hargaDiskon)*jumlahKopi)-totalDiskon;
-					}
-					//18k*1-9k=9k;36k-18k=18k;54k-27k=27k;72-36k=36k;90k-45k=45k;108k-54k=54k;126k-63k=63k;144k-72k=72k;162k-81k=81k;180k-90k=90k;198k-99k=99k
+//					//18k*1-9k=9k;36k-18k=18k;54k-27k=27k;72-36k=36k;90k-45k=45k;108k-54k=54k;126k-63k=63k;144k-72k=72k;162k-81k=81k;180k-90k=90k;198k-99k=99k
+//				}
+//				jumlahKopi--;
+				for (jumlahKopi = 1; totalDiskon <= maxDiskon-hargaKopi; jumlahKopi++) {
+					totalDiskon = hargaKopi*jumlahKopi;
 				}
-				jumlahKopi--;
+				jumlahKopi -= 1;
+				System.out.println(totalDiskon);
+				totalHarga = totalDiskon;
 			}
 			
 			totalCashback = totalHarga*cashback/100;
@@ -64,8 +70,8 @@ public class Soal10 {
 				totalCashback = maxCashback;
 			}
 			saldoAkhir = saldo-totalHarga+totalCashback;
-			System.out.println("Jumlah cup = " + jumlahKopi);
-			System.out.println("Saldo akhir = " + saldoAkhir);
+			System.out.print("Jumlah cup = " + jumlahKopi + "; ");
+			System.out.print("Saldo akhir = Rp." + saldoAkhir);
 //			System.out.println(hargaKopi);
 		} else {
 			System.out.println("Anda tidak mendapat promo");
