@@ -2,11 +2,10 @@ package day5.latihan;
 
 import java.util.Scanner;
 
-public class Soal10 {
+public class Soal10ke2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//
 		Scanner input = new Scanner(System.in);
 		System.out.print("Inputkan Saldo : Rp.");
 		int saldo = input.nextInt();
@@ -35,26 +34,6 @@ public class Soal10 {
 					jumlahKopi++;
 //					System.out.println(jumlahKopi);
 				}
-				jumlahKopi = jumlahKopi-2;
-				totalDiskon = diskon*jumlahKopi;
-				sisaDiskon = maxDiskon - totalDiskon;
-				totalHarga = kopiDiskon * jumlahKopi;
-				saldo = saldo-totalHarga;
-				if(saldo >= (kopi - sisaDiskon)) {
-					saldo = saldo - (kopi-sisaDiskon);
-					jumlahKopi++;
-					totalHarga = totalHarga + (kopi-sisaDiskon);
-					totalDiskon = totalDiskon + sisaDiskon;
-					
-				}
-				if(saldo >= kopi) {
-					while(saldo>kopi) {
-						saldo = saldo - kopi;
-						jumlahKopi++;
-						totalHarga = totalHarga + kopi;
-					}
-					
-				}
 			}
 		}
 		else {
@@ -72,14 +51,7 @@ public class Soal10 {
 		saldo = saldo + cashBack;
 		
 		System.out.println("Jumlah cup = " + jumlahKopi + "; Saldo akhir = Rp." + saldo); 
-//		System.out.println(diskon);
-//		System.out.println(kopi);
-//		System.out.println(jumlahKopi);
-//		System.out.println(totalDiskon);
-//		System.out.println(totalHarga);
-//		System.out.println(saldo);
-//		System.out.println(kopi-sisaDiskon);
-		
+
 	}
 
 }
