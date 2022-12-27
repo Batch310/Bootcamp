@@ -26,7 +26,9 @@ public class Soal2 {
 			
 			for (int j = 0; j < arrVokal.length; j++) {
 				if (arrKalimat[i].equals(arrVokal[j])) {
-					hurufVokal += arrKalimat[i];
+					if (!(hurufVokal.contains(arrKalimat[i])))  { //Pengkondisian untuk tidak memasukkan huruf yang duplikat
+						hurufVokal += arrKalimat[i];						
+					}
 				} else if (arrKalimat[i].equals(" ")) {
 					hurufVokal += "";
 					hurufKonsonan += "";
@@ -34,7 +36,9 @@ public class Soal2 {
 			}
 			for (int k = 0; k < arrKonsonan.length; k++) {
 				if (arrKalimat[i].equals(arrKonsonan[k])) {
-					hurufKonsonan += arrKalimat[i];
+					if (!(hurufKonsonan.contains(arrKalimat[i]))) { //Pengkondisian untuk tidak memasukkan huruf yang duplikat
+						hurufKonsonan += arrKalimat[i];						
+					}
 				} else if (arrKalimat[i].equals(" ")) {
 					hurufVokal += "";
 					hurufKonsonan += "";
