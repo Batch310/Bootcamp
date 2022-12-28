@@ -5,6 +5,9 @@ class Animal {
 	int speed;
 	String sound;
 
+	// Atribut milik bersama
+	static String typeOfMove = "Merayap";
+
 	// Default Constructor
 	public Animal() {
 
@@ -13,6 +16,14 @@ class Animal {
 	// Custom Constructor 1
 	public Animal(String name) {
 		this.name = name;
+	}
+
+	// Custom Constructor 2
+	public Animal(String name, int speed, String sound) {
+		super();
+		this.name = name;
+		this.speed = speed;
+		this.sound = sound;
 	}
 
 	public void getInfo() {
@@ -37,5 +48,10 @@ class Animal {
 	public int hitungVolumeBalok(int panjang, int lebar, int tinggi) {
 		int volume = panjang * lebar * tinggi;
 		return volume;
+	}
+
+	public static void hitungPerkalian(int a, int b) {
+		int c = a * b;
+		System.out.println("Hasil perkalian a x b = " + c);
 	}
 }
