@@ -1,0 +1,11 @@
+1. inheritance / pewarisan
+- SuperClass (parent)
+- SubClass (child)
+2. Encapsulation / 
+3. Polymorphism 
+-overloading
+-overriding
+4. Abstrak
+- abstark
+- interface
+5. multiple inheritance

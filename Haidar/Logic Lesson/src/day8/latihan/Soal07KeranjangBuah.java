@@ -61,7 +61,7 @@ public class Soal07KeranjangBuah {
 		} else {
 			System.out.println("Keranjang tidak ada!");
 		}
-		System.out.println(isiKeranjang[0] + ", " + isiKeranjang[1] + ", " + isiKeranjang[2]);
+//		System.out.println(isiKeranjang[0] + ", " + isiKeranjang[1] + ", " + isiKeranjang[2]);
 		masukan.close();
 		
 	}
