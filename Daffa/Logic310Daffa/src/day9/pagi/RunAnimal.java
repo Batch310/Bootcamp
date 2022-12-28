@@ -21,7 +21,7 @@ public class RunAnimal {
 
 		int volume = kocheng.hitungVolumeBalok(10, 2, 5);
 		System.out.println("Volumenya : " + volume);
-		
+
 		volume = kocheng.hitungVolumeBalok(5, 4, 20);
 		System.out.println("Volumenya : " + volume);
 	}

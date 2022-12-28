@@ -7,7 +7,9 @@ class Kendaraan {
 
 	public void getInfo() {
 		System.out.println(
-				"Kendaraan model " + model + " memiliki jumlah roda " + jumlahRoda + " dengan harga USD " + harga);
+				"Kendaraan model " + model 
+				+ " memiliki jumlah roda " + jumlahRoda 
+				+ " dengan harga USD " + harga);
 	}
 
 	public long tawarHarga(long tawaran) {
