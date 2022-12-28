@@ -1,4 +1,4 @@
-package oop.latihanenkapsulasi;
+package oop.latihanpolymorfisme;
 
 class Kendaraan {
 	private String modelParam;
