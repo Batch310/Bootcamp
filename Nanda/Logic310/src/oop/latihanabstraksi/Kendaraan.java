@@ -1,6 +1,6 @@
-package oop.latihanenkapsulasi;
+package oop.latihanabstraksi;
 
-class Kendaraan {
+abstract class Kendaraan {
 	private String modelParam;
 	private int jumlahRodaParam;
 	private long hargaParam;
@@ -44,9 +44,7 @@ class Kendaraan {
 			this.hargaParam = hargaParam;
 		}
 	
-	public void gasPol() {
-		System.out.println("Gas Puooolll~~!!");
-	}
+	abstract void gasPol();
 
 	public void getInfo() {
 		System.out.println(
