@@ -18,7 +18,8 @@ public class Soal10 {
 		int limitJumlahDiskonKopi = 0;
 		int kopiDiskon = 0;
 		int cashBack = 0;
-		if(saldo>=40000) {
+		int minOrder = 40000;
+		if(saldo>=27000) {
 			diskon = kopi*50/100;
 			kopiDiskon = kopi - diskon;
 			jumlahKopi = saldo / diskon;
@@ -57,9 +58,10 @@ public class Soal10 {
 			}
 		}
 		else {
-			jumlahKopi = saldo/kopi;
-			totalHarga = jumlahKopi* kopi;
-			saldo = saldo - totalHarga;
+//			jumlahKopi = saldo/kopi;
+//			totalHarga = jumlahKopi* kopi;
+//			saldo = saldo - totalHarga;
+			System.out.println("Tidak jadi beli");
 		}
 		if(totalHarga/10>maxCB) {
 			cashBack = maxCB;

@@ -33,6 +33,7 @@ public class Soal02 {
 		}
 //		
 //		String[] newVoc = hurufVoc.split("");
+	
 //		
 //		int found=0;
 //		String[] NewVoc= new String[newVoc.length];
