@@ -1,8 +1,7 @@
 package oop.latihanabstraksi;
 
-public class Mobil extends Kendaraan implements Navigasi {
-	
-	
+public class Mobil extends Kendaraan implements Navigasi { // untuk menerapkan abstract ditambah menggunakan 'implements'
+															// klik add unimplemented method untuk otomatis mengisi agar tidak error
 	
 	public Mobil() {
 
@@ -21,6 +20,8 @@ public class Mobil extends Kendaraan implements Navigasi {
 		
 	}
 
+	
+	//untk membuat 
 	@Override
 	public void maju() {
 		System.out.println("maju menggunakan mobil");

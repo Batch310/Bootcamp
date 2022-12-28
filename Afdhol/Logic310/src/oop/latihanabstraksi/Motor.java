@@ -1,6 +1,7 @@
 package oop.latihanabstraksi;
 
-public class Motor extends Kendaraan implements Navigasi {
+public class Motor extends Kendaraan implements Navigasi {// untuk menerapkan abstract ditambah menggunakan 'implements'
+														   // klik add unimplemented method untuk otomatis mengisi agar tidak error
 
 	public Motor() {
 		// TODO Auto-generated constructor stub
