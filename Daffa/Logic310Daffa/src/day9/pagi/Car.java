@@ -7,6 +7,11 @@ public class Car extends Vehicle {
 	public Car() {
 		super();
 	}
+	
+	public Car(String nama, String kemudi) {
+		super(nama);
+		this.kemudi = kemudi;
+	}
 
 	public Car(String nama) {
 		super(nama);

@@ -8,6 +8,11 @@ public class RunCar {
 
 		abc.belokKiri();
 		abc.belokKanan();
+		
+		Car cer = new Car("Kijang", "Bulat");
+		cer.belokKanan();
+		cer.belokKiri();
+		cer.bukaJendela();
 	}
 
 }
