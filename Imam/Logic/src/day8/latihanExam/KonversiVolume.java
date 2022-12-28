@@ -15,10 +15,18 @@ public class KonversiVolume {
 		System.out.print(" ke ");
 		String b = scanner.nextLine();
 
-		int botol = 0;
-		int gelas = 0;
-		int teko = 0;
-		int cangkir = 0;
+		double botol = 0;
+		double gelas = 0;
+		double teko = 0;
+		double cangkir = 0;
+
+		if (a.equalsIgnoreCase("botol")) {
+			if (b.equalsIgnoreCase("gelas")) {
+				gelas += 2;
+			}else if(b.equalsIgnoreCase("cangkir")){
+			
+			}
+		}
 
 	}
 

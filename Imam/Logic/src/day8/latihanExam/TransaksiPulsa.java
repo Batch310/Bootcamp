@@ -19,7 +19,7 @@ public class TransaksiPulsa {
 
 		// cari range 1 (0-10.000)
 		if (pulsa >= 0) {
-			if (pulsa > range1) {
+			if (pulsa > range1) {       //cari sisa pulsa
 				pulsa = pulsa - range1;
 				point1 += totalPoint;
 			} else {
@@ -31,7 +31,7 @@ public class TransaksiPulsa {
 		// cari range 2(10.001-30.000)
 		if (pulsa > range2) {
 
-			if (pulsa > range2) {
+			if (pulsa > range2) {       
 				pulsa = pulsa - range2;
 				point2 += (range2 / 1000);
 			} else {
