@@ -52,5 +52,7 @@ public class ProgramUtama {
 		System.out.println();
 		Animal.hitungPerkalian(3, 6);
 		tupai.hitungPerkalian(5, 5);
+		
+		
 	}
 }
