@@ -51,7 +51,7 @@ public class Afdhol03Challenge {
 																	// hasil penjumlahan pangkat
 						int convAngka = Integer.parseInt(arrHasilStr[j]);
 						int totalPangkat = (int) Math.pow(convAngka, 2);
-						hasil += totalPangkat;
+						hasil += totalPangkat; 
 					}
 					if (hasil == 1) { // Kondisi jika hasil penjumlahan pangkat setiap digit sama dengan 1
 						System.out.println(angka+" " +seratusInt + " adalah Si Angka 1"); // Cetak
