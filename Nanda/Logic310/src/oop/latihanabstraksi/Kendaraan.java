@@ -45,7 +45,7 @@ abstract class Kendaraan {
 		}
 	
 	abstract void gasPol();
-	
+
 	public void getInfo() {
 		System.out.println(
 				"Kendaraan " + modelParam + " memiliki jumlah roda " + jumlahRodaParam + " dengan harga " + hargaParam);

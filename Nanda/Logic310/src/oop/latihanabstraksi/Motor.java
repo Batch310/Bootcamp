@@ -25,7 +25,7 @@ public class Motor extends Kendaraan implements Navigasi{
 
 	@Override
 	public void belokKanan() {
-		System.out.println("belok kanan dengan menggunakan Motor");
+		System.out.println("belok dengan menggunakan Motor");
 		
 	}
 
