@@ -4,7 +4,7 @@ public class KendaraanEnkapsulasiMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Mobil kijang = new Mobil();
+		Kendaraan kijang = new Mobil();
 		
 		kijang.setModelParam("Kijang");
 		kijang.setJumlahRodaParam(4);
@@ -15,7 +15,7 @@ public class KendaraanEnkapsulasiMain {
 		
 		System.out.println();
 		
-		Motor cbr = new Motor();
+		Kendaraan cbr = new Motor();
 		
 		cbr.setModelParam("CBR");
 		cbr.setJumlahRodaParam(2);
@@ -23,6 +23,9 @@ public class KendaraanEnkapsulasiMain {
 		System.out.println(cbr.getModelParam());
 		System.out.println(cbr.getJumlahRodaParam());
 		System.out.println(cbr.getHargaParam());
+		
+		
 	}
+	
 
 }
