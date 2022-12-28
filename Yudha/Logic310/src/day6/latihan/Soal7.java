@@ -30,7 +30,12 @@ public class Soal7 {
 				System.out.println("Keranjang " + (i+1) + " = " + keranjang[i]);
 			}
 		}
-		
+		System.out.println();
+		a = r.nextInt(3);
+		System.out.println("Keranjang " + (a+1) + " dibawa kepasar");
+		if(a==0) {
+			System.out.println("Jumlah buah -> " + keranjang[1] + " + " + keranjang[2]);
+		}
 		
 	}
 
