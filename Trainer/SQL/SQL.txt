@@ -161,3 +161,193 @@ insert into film values
 ('F012','RUSH HOUR',695000000,2),
 ('F013','KUNGFU PANDA',923000000,5);
 
+select * from film;
+
+--1 tampillkan nama film dan nominasi dari nominasi yg terbesar
+select 
+	nm_film as "nama film",
+	nominasi
+from film
+order by nominasi desc;
+
+--2 tampilkan nama film dan pendapatan dari yg terkecil
+select
+	nm_film as "nama film",
+	pendapatan
+from film
+order by pendapatan asc;
+
+--3 tampilkan nama film dan nominasi yg tidak dapat nominasi
+select 
+	nm_film as "Nama Film",
+	nominasi
+from film 
+where nominasi in (0);
+
+--4 tampilkan nama film dan nominasi yg paling banyak mendapatkan nominasi
+select nm_film as "Nama film", nominasi 
+from film
+where nominasi = (select max(nominasi) from film);
+
+
+
+--5 tampilkan nama film dan pendapatan yg terbesar
+select 
+	nm_film as "nama film",
+	pendapatan
+from film
+where pendapatan = (select max(pendapatan) from film);
+
+--6 tampikan nama film dan pendapatan yg terkecil
+select * from film;
+select 
+	nm_film as "Nama Film",
+	pendapatan as "Pendapatan"
+from Film
+where pendapatan = (select min(pendapatan) from Film);
+
+--7 tampilkan rata2 pendapatan film keseluruhan
+select * from film;
+select
+avg(pendapatan) as "Pendapatan Rata-rata"
+from film;
+
+--round / floor / ceil
+select round(2.3);
+select round(2.6);
+select floor(2.8);
+select ceil(2.1);
+
+select
+round(avg(pendapatan)) as "Pendapatan Rata-rata"
+from film;
+
+
+--8 tampilkan rata2 nominasi film keseluruhan
+select round(avg(nominasi)) as "Rata-rata Nominasi" from film;
+
+
+--9 tampilkan nama film yg huruf depannya 'p'
+select nm_film as "Nama Film" from film where nm_film like 'P%';
+
+--lower / upper
+select lower('YUDHA'); --saat dicetak jadi yudha
+select upper('imam'); --saat dicetak jadi IMAM
+
+select nm_film as "Nama Film" 
+from film 
+where lower(nm_film) like 'p%';
+
+-- ilike --tanpa memperhatikan case sensitif
+
+select nm_film as "Nama Film" 
+from film where nm_film ilike 'p%';
+
+
+--10 tampilkan nama film yg huruf terakhirnya 's'
+select
+	nm_film as "Nama Film" from film
+where
+	nm_film ilike '%s';
+
+
+--11 tampilkan nama film yang mengandung huruf 'd'
+select
+	nm_Film as "Nama Film"
+from
+	Film
+where nm_Film ilike '%d%';
+
+--12 tampilkan nama film dengan pendapatan terkecil yg mengandung huruf 'v'
+select 
+	nm_film as "Nama Film",
+	pendapatan as "Pendapatan"
+from film
+where nm_film ilike '%v%' 
+and pendapatan = (select min(pendapatan)from film where nm_film ilike '%v%'); 
+
+--13 tampilkan nama film dengan pendapatan terbesar yg mengandung huruf 'd'
+select
+nm_film as "Nama Film",
+pendapatan
+from film 
+where nm_film ilike '%d%' AND 
+pendapatan = (select max(pendapatan)from film where nm_film ilike '%d%');
+
+--Join Table
+create table kota (
+    id int primary key,
+    nama text,
+    id_provinsi int
+);
+create table provinsi(
+    id int primary key,
+    nama text
+);
+
+drop table kota;
+drop table provinsi;
+
+insert into kota values
+(1, 'Jakarta',1),
+(2, 'Bandung',2),
+(3, 'Sumedang',2),
+(4, 'Makasar',4),
+(5, 'Surabaya',5),
+(6, 'Medan',6);
+
+insert into provinsi values
+(1, 'DKI Jakarta'),
+(2, 'Jawa Barat'),
+(3, 'Papua Barat'),
+(4, 'Sulawesi Selatan'),
+(5, 'Jawa Timur');
+
+select * from kota;
+select * from provinsi;
+
+--1 join / inner join
+select 
+	kota.nama as "Kota",
+	provinsi.nama as "Provinsi"
+from kota
+inner join provinsi 
+	on kota.id_provinsi = provinsi.id;
+
+select *
+from kota
+inner join provinsi 
+	on kota.id_provinsi = provinsi.id;
+	
+--alias nama tabel
+select 
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+inner join provinsi p
+	on k.id_provinsi = p.id;
+	
+--left join
+select 
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+left join provinsi p
+	on k.id_provinsi = p.id;
+
+--right join
+select 
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+right join provinsi p
+	on k.id_provinsi = p.id;
+	
+--full outer join
+select 
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+right join provinsi p
+	on k.id_provinsi = p.id;
+
