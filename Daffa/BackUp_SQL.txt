@@ -196,12 +196,12 @@ where pendapatan = (select min(pendapatan) from Film);
 
 --7
 select 
-	avg(pendapatan) as "Rata-Rata Pendapatan"
+	round(avg(pendapatan)) as "Rata-Rata Pendapatan"
 from Film;
 
 --8
 select
-	avg(nominasi) as "Rata-Rata Nominasi"
+	round(avg(nominasi)) as "Rata-Rata Nominasi"
 from Film;
 
 --9
@@ -214,24 +214,26 @@ where nm_Film like 'P%';
 select
 	nm_Film as "Nama Film"
 from Film
-where nm_Film like '%S';
+where nm_Film ilike '%s';
 
 --11
 select
 	nm_Film as "Nama Film"
 from Film
-where nm_Film like '%D%';
+where nm_Film ilike '%d%';
 
 --12
 select
 	nm_Film as "Nama Film",
 	pendapatan as "Pendapatan"
 from Film
-where  pendapatan = (select min(pendapatan) from Film where nm_Film like '%B%');
+where nm_Film ilike '%v%' 
+and pendapatan = (select min(pendapatan) from Film where nm_Film ilike '%v%');
 
 --13
 select
 	nm_Film as "Nama Film",
 	pendapatan as "Pendapatan"
 from Film
-where  pendapatan = (select max(pendapatan) from Film where nm_Film like '%D%');
+where nm_Film ilike '%d%' 
+and pendapatan = (select max(pendapatan) from Film where nm_Film ilike '%d%');
