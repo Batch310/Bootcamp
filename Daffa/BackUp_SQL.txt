@@ -112,3 +112,15 @@ order by id_pegawai;
 --select like
 select * from pegawai
 where nama_pegawai like 'Pegawai%';
+
+--Fungsi aggregate
+--AVG -> rata-rata
+--SUM -> menjumlahkan
+--COUNT -> menghitung
+--MIN -> mendapatkan nilai terendah
+--MAX -> mendapatkan nilai tertinggi
+select avg(umur) from pegawai;
+
+--group by
+select nama_pegawai, count(umur) from pegawai
+group by nama_pegawai;
