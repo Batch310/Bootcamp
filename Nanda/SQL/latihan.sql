@@ -305,3 +305,313 @@ select
 from kota k
 inner join provinsi p
 on k.id_provinsi = p.id;
+
+--full outer join
+--DDL Buat Database
+create database batch310;
+
+--DDL Hapus Database
+drop database batch310;
+
+--DDL Buat Table
+create table PEGAWAI(
+	ID_PEGAWAI serial primary key,
+	UMUR integer,
+	NAMA_PEGAWAI text);
+	
+--DDL Hapus Table
+drop table pegawai;
+
+--Latihan
+create table KTP(
+	NIK integer primary key,
+	NAMA text,
+	TEMPAT_TANGGAL_LAHIR text,
+	JENIS_KELAMIN text,
+	ALAMAT text);
+	
+--DML, tampilkan semua kolom dari table ktp
+select * from ktp;
+
+
+--DDL, rename kolom table
+alter table ktp
+rename column tempat_tanggal_lahir to tempat_tgl_lahir;
+
+--DDL, ubah tipe data kolom
+alter table ktp
+alter column jenis_kelamin type boolean using jenis_kelamin::boolean;
+
+--DDL, delete kolom
+alter table ktp
+drop column tempat_tgl_lahir;
+
+--DDL, add kolom
+alter table ktp
+add column tempat_lahir text,
+add column tgl_lahir date;
+
+
+select * from pegawai;
+--DML insert data
+
+--Cara 1
+insert into pegawai(umur,nama_pegawai)
+values(20,'Jambrong'),
+(25,'Pegawai Nih');
+
+--Cara 2
+insert into pegawai
+values(6,22,'Yudha the Resinging Slesher');
+
+select * from pegawai;
+--DML Update data
+update pegawai
+set umur = 15
+where id_pegawai = 6;
+
+update pegawai
+set id_pegawai = 3, umur = 25, nama_pegawai = 'Pesulap Merah'
+where id_pegawai = 6;
+
+select * from pegawai;
+--DML Delete data
+delete from pegawai
+where id_pegawai = 3;
+
+--DML select select an euy
+select * from pegawai;
+--Select data dari kolom pilihan
+select nama_pegawai from pegawai;
+select nama_pegawai, umur from pegawai;
+
+--alias nama kolom
+select 
+	nama_pegawai as "Nama Pegawai",
+	umur as "Umur"
+from
+	pegawai;
+	
+--select order by
+select * from pegawai order by id_pegawai asc;
+select * from pegawai order by id_pegawai desc;
+
+--select distinct
+select distinct umur,nama_pegawai from pegawai;
+
+--select where biasa
+select * from pegawai;
+select distinct umur, nama_pegawai from pegawai
+where nama_pegawai = 'Jambrong';
+
+--select where in
+select * from pegawai
+where umur 
+in (20,25);
+
+select * from pegawai
+where nama_pegawai 
+in ('Jambrong','Wehehe');
+
+--select between
+select * from pegawai
+where umur between 20 and 23
+order by id_pegawai;
+
+--select like
+select * from pegawai
+where nama_pegawai like 'Pegawai%';
+
+--Fungsi aggregate
+--AVG -> rata-rata
+--SUM -> menjumlahkan
+--COUNT -> menghitung
+--MIN -> mendapatkan nilai terendah
+--MAX -> mendapatkan nilai tertinggi
+select min(umur) from pegawai;
+
+--group by
+select nama_pegawai, max(umur) from pegawai
+group by nama_pegawai;
+
+--Latihan Film
+create table film(
+    kd_film text primary key,
+    nm_film text,
+    pendapatan integer,
+    nominasi integer
+);
+
+insert into film values
+('F001','IRON MAN',2000000000,3),
+('F002','IRON MAN 2',1800000000,2),
+('F003','IRON MAN 3',1200000000,0),
+('F004','AVENGER:CIVIL WAR',2000000000,1),
+('F005','SPIDERMAN HOME COMING',1300000000,0),
+('F006','THE RAID',800000000,5),
+('F007','FAST & FURIOUS',830000000,2),
+('F008','HABIBI DAN AINUN',670000000,4),
+('F009','POLICE STORY',700000000,3),
+('F010','POLICE STORY 2',710000000,1),
+('F011','POLICE STORY 3',615000000,0),
+('F012','RUSH HOUR',695000000,2),
+('F013','KUNGFU PANDA',923000000,5);
+
+select * from film order by pendapatan;
+
+--1
+select 
+	nm_Film as "Nama Film", 
+	nominasi as "Nominasi"
+from film 
+order by nominasi desc;
+
+--2
+select 
+	nm_Film as "Nama Film", 
+	pendapatan as "Pendapatan"
+from film 
+order by pendapatan asc;
+
+--3
+select 
+	nm_Film as "Nama Film",
+	nominasi as "Nominasi"
+from film 
+where nominasi = (select min(nominasi) from film);
+
+--4
+select 
+	nm_Film as "Nama Film", 
+	nominasi as "Nominasi"
+from film 
+where nominasi = (select max(nominasi) from Film)
+order by nm_film;
+
+--5
+select 
+	nm_Film as "Nama Film", 
+	pendapatan as "Pendapatan"
+from film 
+where pendapatan = (select max(pendapatan) from film)
+order by nm_Film;
+
+--6
+select
+	nm_Film as "Nama Film",
+	pendapatan as "Pendapatan"
+from Film
+where pendapatan = (select min(pendapatan) from Film);
+
+--7
+select 
+	round(avg(pendapatan)) as "Rata-Rata Pendapatan"
+from Film;
+
+--8
+select
+	round(avg(nominasi)) as "Rata-Rata Nominasi"
+from Film;
+
+--9
+select
+	nm_Film as "Nama Film"
+from Film
+where nm_Film like 'P%';
+
+--10
+select
+	nm_Film as "Nama Film"
+from Film
+where nm_Film ilike '%s';
+
+--11
+select
+	nm_Film as "Nama Film"
+from Film
+where nm_Film ilike '%d%';
+
+--12
+select
+	nm_Film as "Nama Film",
+	pendapatan as "Pendapatan"
+from Film
+where nm_Film ilike '%v%' 
+and pendapatan = (select min(pendapatan) from Film where nm_Film ilike '%v%');
+
+--13
+select
+	nm_Film as "Nama Film",
+	pendapatan as "Pendapatan"
+from Film
+where nm_Film ilike '%d%' 
+and pendapatan = (select max(pendapatan) from Film where nm_Film ilike '%d%');
+
+
+create table kota(
+    id integer primary key,
+    nama text,
+    id_provinsi integer
+);
+
+
+insert into kota values
+(1,'Jakarta',1),
+(2,'Bandung',2),
+(3,'Sumedang',2),
+(4,'Makasar',4),
+(5,'Surabaya',5),
+(6,'Medan',6);
+
+
+create table provinsi(
+	id integer primary key,
+	nama text
+);
+
+insert into provinsi values
+(1,'DKI Jakarta'),
+(2,'Jawa Barat'),
+(3,'Papua Barat'),
+(4,'Sulawesi Selatan'),
+(5,'Jawa Timur');
+
+select * from kota;
+select * from provinsi;
+
+
+drop table kota;
+drop table provinsi;
+
+--1 join / inner join
+select
+	kota.nama as "Kota",
+	provinsi.nama as "Provinsi"
+from kota
+inner join provinsi
+on kota.id_provinsi = provinsi.id;
+
+--alias nama tabel
+select
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+inner join provinsi p
+on k.id_provinsi = p.id;
+
+--left join
+select
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+inner join provinsi p
+on k.id_provinsi = p.id;
+
+--right join
+select
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+full outer join provinsi p
+on k.id_provinsi = p.id;
+
