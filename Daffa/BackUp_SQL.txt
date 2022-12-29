@@ -1,0 +1,114 @@
+--DDL Buat Database
+create database batch310;
+
+--DDL Hapus Database
+drop database batch310;
+
+--DDL Buat Table
+create table PEGAWAI(
+	ID_PEGAWAI serial primary key,
+	UMUR integer,
+	NAMA_PEGAWAI text);
+	
+--DDL Hapus Table
+drop table pegawai;
+
+--Latihan
+create table KTP(
+	NIK integer primary key,
+	NAMA text,
+	TEMPAT_TANGGAL_LAHIR text,
+	JENIS_KELAMIN text,
+	ALAMAT text);
+	
+--DML, tampilkan semua kolom dari table ktp
+select * from ktp;
+
+
+--DDL, rename kolom table
+alter table ktp
+rename column tempat_tanggal_lahir to tempat_tgl_lahir;
+
+--DDL, ubah tipe data kolom
+alter table ktp
+alter column jenis_kelamin type boolean using jenis_kelamin::boolean;
+
+--DDL, delete kolom
+alter table ktp
+drop column tempat_tgl_lahir;
+
+--DDL, add kolom
+alter table ktp
+add column tempat_lahir text,
+add column tgl_lahir date;
+
+
+select * from pegawai;
+--DML insert data
+
+--Cara 1
+insert into pegawai(umur,nama_pegawai)
+values(20,'Jambrong'),
+(25,'Pegawai Nih');
+
+--Cara 2
+insert into pegawai
+values(6,22,'Yudha the Resinging Slesher');
+
+select * from pegawai;
+--DML Update data
+update pegawai
+set umur = 15
+where id_pegawai = 6;
+
+update pegawai
+set id_pegawai = 3, umur = 25, nama_pegawai = 'Pesulap Merah'
+where id_pegawai = 6;
+
+select * from pegawai;
+--DML Delete data
+delete from pegawai
+where id_pegawai = 3;
+
+--DML select select an euy
+select * from pegawai;
+--Select data dari kolom pilihan
+select nama_pegawai from pegawai;
+select nama_pegawai, umur from pegawai;
+
+--alias nama kolom
+select 
+	nama_pegawai as "Nama Pegawai",
+	umur as "Umur"
+from
+	pegawai;
+	
+--select order by
+select * from pegawai order by id_pegawai asc;
+select * from pegawai order by id_pegawai desc;
+
+--select distinct
+select distinct umur,nama_pegawai from pegawai;
+
+--select where biasa
+select * from pegawai;
+select distinct umur, nama_pegawai from pegawai
+where nama_pegawai = 'Jambrong';
+
+--select where in
+select * from pegawai
+where umur 
+in (20,25);
+
+select * from pegawai
+where nama_pegawai 
+in ('Jambrong','Wehehe');
+
+--select between
+select * from pegawai
+where umur between 20 and 23
+order by id_pegawai;
+
+--select like
+select * from pegawai
+where nama_pegawai like 'Pegawai%';
