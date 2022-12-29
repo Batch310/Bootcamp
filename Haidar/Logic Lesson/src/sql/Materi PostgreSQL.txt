@@ -1,0 +1,174 @@
+--Ini comment di SQL
+--DDL Buat Database
+Create Database Batch310;
+
+--DDL Hapus Database
+Drop Database Batch310;
+
+--DDL Buat Tabel
+Create Table Pegawai(
+	ID_Pegawai integer primary key, --Kalau mau auto increment, ubah tipe data menjadi serial
+	Umur integer,
+	Nama_Pegawai text
+);
+
+--DDL Hapus Tabel
+Drop Table Pegawai;
+
+--Buatlah Tabel KTP dengan Kolom
+--NIK int pk
+--Nama text
+--TTL text
+--Jenis_Kelamin text
+--Alamat text
+Create Table KTP(
+	NIK integer primary key, 
+	Nama text,
+	TTL text,
+	Jenis_Kelamin text,
+	Alamat text
+);
+
+--DML Tampilkan Semua Kolom dari Tabel KTP
+SELECT * FROM KTP;
+
+--DDL Rename Kolom pada Tabel
+Alter Table KTP
+Rename Column TTL to Tempat_Tgl_Lahir;
+
+--DDL Ubah Tipe Data Kolom
+Alter Table KTP
+Alter Column Jenis_Kelamin type boolean Using Jenis_Kelamin::boolean; 
+--Tanpa Using nama_kolom::tipe_data, tipe data pada kolom tersebut tidak akan berubah. Fungsi Using ini untuk memaksa tipe data diubah menjadi yang diinginkan
+
+--DDL Delete Kolom
+Alter Table KTP
+Drop Column Tempat_Tgl_Lahir;
+
+--DDL Add Kolom
+alter Table KTP
+add Column tempat_lahir text,
+add Column tgl_lahir date;
+
+
+select * from pegawai;
+
+--DDL Buat Tabel
+Create Table Pegawai(
+	ID_Pegawai serial primary key, --Kalau mau auto increment, ubah tipe data menjadi serial
+	Umur integer,
+	Nama_Pegawai text
+);
+
+--DDL Hapus Tabel
+Drop Table Pegawai;
+
+--DML Insert Data
+--Cara 1
+--1 Baris
+insert into pegawai(id_pegawai,umur,nama_pegawai)
+values(1,20,'Jambrong'); 
+
+--2 Baris atau lebih
+insert into pegawai(id_pegawai,umur,nama_pegawai)
+values(2,22,'Tian Swaseneger'),
+(3,25,'Panji Si Manusia Ular'); 
+
+--1 Baris dengan id_pegawai di auto increment
+insert into pegawai(umur,nama_pegawai)
+values(20,'Jambrong'); 
+
+--2 Baris atau lebih dengan id_pegawai di auto increment
+insert into pegawai(umur,nama_pegawai)
+values(22,'Tian Swaseneger'),
+(25,'Panji Si Manusia Ular'); 
+
+--Cara 2 Harus menginput data untuk setiap kolomnya
+insert into pegawai
+values(4,22,'Yudha the Resinging');
+
+--
+insert into pegawai(nama_pegawai)
+values('Tian Swaseneger');
+
+select * from pegawai;
+--DML Update Data //Pada postgre, ketika kita update suatu data maka data itu akan menjadi data paling akhir
+update pegawai
+set umur = 15
+where id_pegawai = 5;
+
+update pegawai
+set umur = 23, nama_pegawai = 'Panji Si Manusia Ular'
+where id_pegawai = 6;
+
+--DML Delete Data
+delete from pegawai
+where id_pegawai = 4;
+
+select * from pegawai order by id_pegawai asc;
+--DML Select
+select * from pegawai;
+select nama_pegawai from pegawai;
+select nama_pegawai,umur from pegawai; --urut sesuai yang dipanggil dahulu 
+
+--DML Alias Nama Kolom
+select 
+	nama_pegawai as "Nama Pegawai",
+	umur as "Umur"
+from
+	pegawai;
+	
+--Coba coba postgre
+select 23*4 as "Hasil Perkalian 23 x 4";
+select 'Panji' as "Pak Ketua";
+
+--Select order by asc atau desc
+select * from pegawai;
+select * from pegawai order by id_pegawai asc;
+select * from pegawai order by nama_pegawai desc;
+
+--Select distinct; Dia menggunakan logika dan
+select * from pegawai;
+select distinct umur,nama_pegawai from pegawai;
+select distinct * from pegawai;
+select distinct umur,nama_pegawai from pegawai order by umur asc;
+
+--Select where biasa
+select * from pegawai;
+select * from pegawai where nama_pegawai = 'Pesulap Merah'; 
+--^^Kalau data tidak ada, maka tabel tidak akan menampilkan data apapun. Dan untuk tipe data text atau varchar dia Case Sensitive
+select * from pegawai where umur = 20 and id_pegawai = 1;
+select distinct nama_pegawai from pegawai where umur = 25;
+select distinct umur,nama_pegawai from pegawai where id_pegawai = 1;
+
+--Select where in
+select * from pegawai;
+select * from pegawai where umur in (22,25); 
+select * from pegawai where nama_pegawai in ('Jambrong','Pesulap Merah','Panji Si Manusia Ular');
+
+--Select where between
+select * from pegawai;
+select * from pegawai where umur between 20 and 23;
+
+--Select where like
+select * from pegawai;
+select * from pegawai where nama_pegawai like 'Panji%';
+select * from pegawai where nama_pegawai like '%Ular';
+select * from pegawai where nama_pegawai like '%an%';
+
+--Fungsi Agregat
+--AVG -> Average, untuk menghitung rata - rata
+--SUM -> Menghitung penjumlahan
+--COUNT -> Menghitung banyak data
+--MIN -> Mencari nilai terendah
+--MAX -> Mencari niali tertinggi
+select * from pegawai;
+select max(umur) from pegawai where umur in (23,25);
+select min(umur) from pegawai where umur between 20 and 23;
+select avg(umur) from pegawai where nama_pegawai like '%an%';
+select sum(umur) from pegawai where umur between 20 and 23;
+select count(umur) from pegawai where umur = 25;
+
+--Group by untuk menampilkan data selain data yang diagregat dengan fungsi agregat
+select nama_pegawai,sum(umur) from pegawai group by nama_pegawai;
+select count(nama_pegawai),umur from pegawai group by umur;
