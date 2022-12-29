@@ -1,0 +1,170 @@
+--DDL Buat Database
+CREATE database batch310;
+
+--DDL Hapus Database
+drop database batch310;
+
+--DDL Buat Tabel
+CREATE TABLE PEGAWAI(
+	ID_PEGAWAI integer PRIMARY KEY,
+	UMUR integer,
+	NAMA_PEGAWAI text
+);
+
+--DDL hapus Tabel
+drop TABLE pegawai;
+
+-- Tabel KTP
+CREATE TABLE KTP(
+	nik integer PRIMARY KEY,
+	nama text,
+	ttl text,
+	jenis_kelamin text,
+	alamat text
+);
+
+--DML, tampilkan semua kolom dari tabel ktp
+SELECT * FROM ktp;
+
+--DDL, rename kolom tabel
+ALTER TABLE ktp
+rename column ttl to tempat_tgl_lahir;
+
+--DDL, ubah tipe data kolom
+alter table ktp
+alter COLUMN jenis_kelamin TYPE boolean USING jenis_kelamin::boolean;
+
+--DDL, delete kolom
+alter TABLE ktp
+drop COLUMN tempat_tgl_lahir;
+
+--DDL, add kolom
+alter TABLE ktp
+add column tempat_lahir TEXT,
+add column tgl_lahir date;
+
+
+CREATE TABLE PEGAWAI(
+	ID_PEGAWAI integer PRIMARY KEY,
+	UMUR integer,
+	NAMA_PEGAWAI text
+);
+
+SELECT * from pegawai;
+--DML, Insert Data
+
+--Cara 1
+insert into pegawai(umur,nama_pegawai)
+VALUES(20,'Iyannn'),(22,'Sikopet');
+
+--Cara 2
+INSERT INTO pegawai
+VALUES
+(4,22,'Arsenal');
+
+SELECT * from pegawai;
+--DML Update data
+UPDATE pegawai
+set umur = 15
+where id_pegawai = 3;
+
+update pegawai
+set umur =25, nama_pegawai = 'Pesulap Merah'
+WHERE id_pegawai = 3;
+
+--DML Delete Data
+delete from pegawai
+where id_pegawai = 4;
+
+SELECT * from pegawai;
+--DML Select select
+
+--Select data dari kolom pilihan
+SELECT nama_pegawai from pegawai;
+select umur, nama_pegawai from pegawai;
+
+-- Alias nama kolom
+SELECT
+	nama_pegawai as "Nama Pegawai",
+	umur
+from
+	pegawai;
+
+-- Select order by
+select * FROM pegawai;
+select * from pegawai order by id_pegawai asc; -- Ascending
+select * from pegawai order by id_pegawai desc;-- Descending
+
+--Select distinct
+select * from pegawai;
+select distinct umur from pegawai;
+
+--Select Where
+SELECT * FROM pegawai;
+SELECT * FROM pegawai where nama_pegawai = 'Iyannn';
+SELECT DISTINCT nama_pegawai from pegawai;
+
+--Select where in
+select * from pegawai where umur in (25);
+select * from pegawai where nama_pegawai in ('Iyannn');
+
+--Select where between / diantara
+SELECT * FROM pegawai WHERE umur between 19 and 24;
+
+--Select where like / seperti / mengandung
+SELECT * FROM pegawai where nama_pegawai like '%Iyannn';
+SELECT * FROM pegawai where nama_pegawai like 'Iyannn%';
+SELECT * FROM pegawai where nama_pegawai like '%Iyannn%';
+
+--Fungsi Agregat
+-- AVG => Average menghitung rata-rata
+-- SUM => Menghitung penjumlahan
+-- Count => Menhitung
+-- Min=> Nilai Terendah
+-- Max=> Nilai Tertinggi
+
+-- menghitung nilai max dari umur
+SELECT max(umur) from pegawai;
+-- menghitung nilai min dari umur
+select min(umur) from pegawai;
+
+--group by
+select nama_pegawai, count(umur) from pegawai group by nama_pegawai;
+
+-- round / buletin
+select round(2.3);
+select round(2.6);
+select floor(2.8);
+select ceil(2.1);
+
+-- lower / upper
+select lower('TYAN');
+select upper('ozil');
+
+select nm_film as "Nama Film"
+from film where lower(nm_film) like 'p%';
+
+-- ilike - tanpa memperhatikan case sensitif
+select nm_film as "Nama Film"
+from film where nm_film ilike 'p%';
+
+select * from kota;
+
+create table kota(
+	id integer PRIMARY key,
+	nama text,
+	id_provinsi integer
+)
+INSERT into kota (id, nama, id_provinsi)
+VALUES (3, 'Sumedang', 3),(4, 'Makasar', 4), (5, 'Surabaya', 5), (6, 'Medan', 6);
+
+create table provinsi(
+	id integer,
+	nama text
+)
+INSERT into Provinsi (id, nama)
+VALUES 	(1, 'DKI Jakarta'),
+		(2, 'Jawa Barat'),
+		(3, 'Papua Barat'),
+		(4, 'Sulawesi Selatan'),
+		(5, 'Jawa Timur');
