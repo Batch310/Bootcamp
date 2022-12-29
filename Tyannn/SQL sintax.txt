@@ -1,0 +1,241 @@
+--DDL Buat Database
+CREATE database batch310;
+
+--DDL Hapus Database
+drop database batch310;
+
+--DDL Buat Tabel
+CREATE TABLE PEGAWAI(
+	ID_PEGAWAI integer PRIMARY KEY,
+	UMUR integer,
+	NAMA_PEGAWAI text
+);
+
+--DDL hapus Tabel
+drop TABLE pegawai;
+
+-- Tabel KTP
+CREATE TABLE KTP(
+	nik integer PRIMARY KEY,
+	nama text,
+	ttl text,
+	jenis_kelamin text,
+	alamat text
+);
+
+--DML, tampilkan semua kolom dari tabel ktp
+SELECT * FROM ktp;
+
+--DDL, rename kolom tabel
+ALTER TABLE ktp
+rename column ttl to tempat_tgl_lahir;
+
+--DDL, ubah tipe data kolom
+alter table ktp
+alter COLUMN jenis_kelamin TYPE boolean USING jenis_kelamin::boolean;
+
+--DDL, delete kolom
+alter TABLE ktp
+drop COLUMN tempat_tgl_lahir;
+
+--DDL, add kolom
+alter TABLE ktp
+add column tempat_lahir TEXT,
+add column tgl_lahir date;
+
+
+CREATE TABLE PEGAWAI(
+	ID_PEGAWAI integer PRIMARY KEY,
+	UMUR integer,
+	NAMA_PEGAWAI text
+);
+
+SELECT * from pegawai;
+--DML, Insert Data
+
+--Cara 1
+insert into pegawai(umur,nama_pegawai)
+VALUES(20,'Iyannn'),(22,'Sikopet');
+
+--Cara 2
+INSERT INTO pegawai
+VALUES
+(4,22,'Arsenal');
+
+SELECT * from pegawai;
+--DML Update data
+UPDATE pegawai
+set umur = 15
+where id_pegawai = 3;
+
+update pegawai
+set umur =25, nama_pegawai = 'Pesulap Merah'
+WHERE id_pegawai = 3;
+
+--DML Delete Data
+delete from pegawai
+where id_pegawai = 4;
+
+SELECT * from pegawai;
+--DML Select select
+
+--Select data dari kolom pilihan
+SELECT nama_pegawai from pegawai;
+select umur, nama_pegawai from pegawai;
+
+-- Alias nama kolom
+SELECT
+	nama_pegawai as "Nama Pegawai",
+	umur
+from
+	pegawai;
+
+-- Select order by
+select * FROM pegawai;
+select * from pegawai order by id_pegawai asc; -- Ascending
+select * from pegawai order by id_pegawai desc;-- Descending
+
+--Select distinct
+select * from pegawai;
+select distinct umur from pegawai;
+
+--Select Where
+SELECT * FROM pegawai;
+SELECT * FROM pegawai where nama_pegawai = 'Iyannn';
+SELECT DISTINCT nama_pegawai from pegawai;
+
+--Select where in
+select * from pegawai where umur in (25);
+select * from pegawai where nama_pegawai in ('Iyannn');
+
+--Select where between / diantara
+SELECT * FROM pegawai WHERE umur between 19 and 24;
+
+--Select where like / seperti / mengandung
+SELECT * FROM pegawai where nama_pegawai like '%Iyannn';
+SELECT * FROM pegawai where nama_pegawai like 'Iyannn%';
+SELECT * FROM pegawai where nama_pegawai like '%Iyannn%';
+
+--Fungsi Agregat
+-- AVG => Average menghitung rata-rata
+-- SUM => Menghitung penjumlahan
+-- Count => Menhitung
+-- Min=> Nilai Terendah
+-- Max=> Nilai Tertinggi
+
+-- menghitung nilai max dari umur
+SELECT max(umur) from pegawai;
+-- menghitung nilai min dari umur
+select min(umur) from pegawai;
+
+--group by
+select nama_pegawai, count(umur) from pegawai group by nama_pegawai;
+
+-- round / buletin
+select round(2.3);
+select round(2.6);
+select floor(2.8);
+select ceil(2.1);
+
+-- lower / upper
+select lower('TYAN');
+select upper('ozil');
+
+select nm_film as "Nama Film"
+from film where lower(nm_film) like 'p%';
+
+-- ilike - tanpa memperhatikan case sensitif
+select nm_film as "Nama Film"
+from film where nm_film ilike 'p%';
+
+--Latihan Film
+create table film(
+    kd_film text primary key,
+    nm_film text,
+    pendapatan integer,
+    nominasi integer
+);
+
+insert into film values
+('F001','IRON MAN',2000000000,3),
+('F002','IRON MAN 2',1800000000,2),
+('F003','IRON MAN 3',1200000000,0),
+('F004','AVENGER:CIVIL WAR',2000000000,1),
+('F005','SPIDERMAN HOME COMING',1300000000,0),
+('F006','THE RAID',800000000,5),
+('F007','FAST & FURIOUS',830000000,2),
+('F008','HABIBI DAN AINUN',670000000,4),
+('F009','POLICE STORY',700000000,3),
+('F010','POLICE STORY 2',710000000,1),
+('F011','POLICE STORY 3',615000000,0),
+('F012','RUSH HOUR',695000000,2),
+('F013','KUNGFU PANDA',923000000,5);
+
+SELECT * from film;
+-- 1 tampil nama film dan nominasi berdasarkan nominasi terbesar
+select nm_film,nominasi 
+from film 
+order by nominasi desc; 
+
+-- 2 tampil nama film dan pendapatan dari yang terkecil
+select nm_film,pendapatan 
+from film 
+order by pendapatan asc; 
+
+-- 3 tampil nama film dan nominasi yang tidak dapat nominasi
+select nm_film,nominasi 
+from film 
+where nominasi in (0);
+
+-- 4 tampilkan nama film dan nominasi yang paling banyak
+SELECT nm_film,nominasi 
+from film where nominasi = (SELECT max (nominasi)from film)
+
+-- 5 tampilkn nama film dan pendapatan terbesar
+SELECT nm_film,pendapatan 
+from film where pendapatan = (SELECT max (pendapatan)from film)
+
+-- 6 tampilkan nama film dan pendapatan yg terkecil
+select * from film;
+select 
+	nm_film as "Nama Film",
+	pendapatan as "Pendapatan"
+from film
+where pendapatan= (select min(pendapatan) from film);
+
+-- 7 tampilkan rata2 pendapatan film keseluruhan
+select 
+round(avg(pendapatan)) as "Pendapatan Rata-rata"
+from film; 
+
+-- 8 tampilkan rata2 nominasi film keseluruhan
+select 
+round(avg(nominasi)) as "Nominasi Rata-rata"
+from film;
+
+-- 9 tampilkan nama film yang huruf depannya 'p'
+SELECT nm_film FROM film where nm_film like 'P%';
+--10 tampilkan nama film yang huruf terakhirnya 's'
+select nm_film as "Nama Film"
+from film 
+where nm_film ilike '%s';
+--11 tampilkan nama film yang mengandung huruf 'd'
+select nm_film as "Nama Film"
+from film 
+where nm_film ilike '%d%';
+--12 tampilkan nama film dengan pendapatan terkecil yang mengandung huruf 'v'
+select 
+	nm_film as "Nama Film",
+	pendapatan as "Pendapatan"
+from film
+where nm_film ilike '%v%' 
+and pendapatan = (select min(pendapatan)from film where nm_film ilike '%v%' ); 
+--13 Tampilkan ;nama film dengan pendapatan terbesar yang mengandung hurud 'd'
+select 
+	nm_film as "Nama Film",
+	pendapatan as "Pendapatan"
+from film
+where nm_film ilike '%d%' 
+and pendapatan = (select min(pendapatan)from film where nm_film ilike '%d%' ); 
+
+

@@ -1,0 +1,72 @@
+create table kota(
+	id integer PRIMARY key,
+	nama text,
+	id_provinsi integer
+)
+
+drop table kota;
+INSERT into kota (id, nama, id_provinsi)
+VALUES 	(1,'Jakarta',1),
+		(2, 'Bandung',2),
+		(3, 'Sumedang', 2),
+		(4, 'Makasar', 4), 
+		(5, 'Surabaya', 5), 
+		(6, 'Medan', 6);
+
+create table provinsi(
+	id integer,
+	nama text
+)
+INSERT into Provinsi (id, nama)
+VALUES 	(1, 'DKI Jakarta'),
+		(2, 'Jawa Barat'),
+		(3, 'Papua Barat'),
+		(4, 'Sulawesi Selatan'),
+		(5, 'Jawa Timur');
+
+--1. join / inner join
+SELECT
+	provinsi.nama as "Provinsi",
+	kota.nama as "kota"
+FROM kota
+inner join provinsi
+on kota.id_provinsi = provinsi.id;
+
+SELECT *
+from kota;
+inner join provinsi
+	on kota.id_provinsi = provinsi.id;
+	
+-- alias nama tabel
+SELECT
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+FROM kota K
+inner join provinsi p
+	on k.id_provinsi = p.id;
+
+-- left join
+SELECT
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+FROM kota K
+LEFT join provinsi p
+	on k.id_provinsi = p.id;
+	
+-- right join
+SELECT
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+FROM kota K
+RIGHT join provinsi p
+	on k.id_provinsi = p.id;	
+	
+-- full outer join
+SELECT
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+FROM kota K
+full outer join provinsi p
+	on k.id_provinsi = p.id;
+	
+	

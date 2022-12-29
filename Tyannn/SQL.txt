@@ -1,0 +1,11 @@
+SQL
+-DDL (Data Definition Language)
+=> Create (Database Table)
+=> Alter (Kolom Table)
+=> Drop (Table)
+
+- DML (Data Manipulation Language)
+=> Select
+=> Insert
+=> Update
+=> Delete
