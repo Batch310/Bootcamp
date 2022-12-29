@@ -1,0 +1,122 @@
+--DDL Buat Database
+create database batch310;
+
+--DDL Hapus Database
+drop database batch310;
+
+--DDL Buat Table
+create table pegawai(
+	ID_Pegawai serial primary key, 
+	Umur integer,
+	Nama_Pegawai text
+);
+
+--DDL Hapus Table
+drop table pegawai;
+
+--Buatlah Table KTP dengan kolom
+
+create table KTP(
+	nik integer primary key,
+	nama text,
+	ttl text,
+	jenis_kelamin text,
+	alamat text
+);
+
+--DML, tampilkan semua kolom dari table
+select * from ktp;
+
+
+--DDL, rename kolom tabel
+alter table KTP
+rename column ttl to tempat_tgl_lahir;
+
+--DDL, ubah tipe data kolom
+alter table KTP
+alter column jenis_kelamin type boolean using jenis_kelamin::boolean;
+
+--DDL, delete kolom
+alter table ktp
+drop column tempat_tgl_lahir;
+
+--DDL, add kolom
+alter table ktp
+add column tempat_lahir text,
+add column tgl_lahir date;
+
+--DML, insert data
+insert into pegawai(umur,nama_pegawai)
+values(24,'Panji'),(22,'Dewa');
+
+--DML, update data
+update pegawai
+set nama_pegawai = 'Nur Rohman'
+where id_pegawai = 4;
+
+update pegawai
+set umur = 23, nama_pegawai = 'Bernadinus'
+where id_pegawai = 1;
+
+select * from pegawai;
+--DML, delete data
+delete from pegawai
+where id_pegawai = 4;
+
+--DML, select
+select * from pegawai;
+select * from ktp;
+
+select nama_pegawai from pegawai;
+select nama_pegawai, umur from pegawai;
+
+--Alias nama kolom
+select nama_Pegawai as pegawai, umur from pegawai;
+
+--select order by
+select * from pegawai order by id_pegawai ASC; --mengurutkan data dari kecil ke besar brdasarkan id_pegawai
+select * from pegawai order by id_pegawai DESC; --mengurutkan data dari besar ke kecil 
+
+--select distinct
+select * from Pegawai;
+select distinct umur from pegawai;
+
+--select where
+select * from pegawai where umur = 23 and id_pegawai = 1;
+
+--Select where pake in
+select * from pegawai where umur in (23);
+select * from pegawai where umur in (23,25);
+
+--select where pake between / diantara (khusus buat integer/numeric)
+select * from pegawai where umur between 22 and 24;
+
+--select where like / sepeerti / mengandung
+select * from pegawai where nama_pegawai like '%Panji';
+select * from pegawai where nama_pegawai like '%an%';
+
+--select agregat
+--Average >> menghitung rata-rata
+--Sum >> menjumlahkan
+--Count >> menghitung
+--Min >> nilai terendah
+--Max >> nilai tertinggi
+
+--menampilkan nilai tertinggi di variabel umur
+select max(umur) from pegawai; 
+--menampilkan nilai terendah di variabel umur
+select min(umur) from pegawai;
+--menghitung nilai rata-rata di variabel umur
+select avg(umur) from pegawai;
+--menjumlahkan data umur
+select sum(umur) from pegawai;
+select count(umur) from pegawai;
+
+--group by
+select nama_pegawai,sum(umur) from pegawai group by nama_pegawai;
+
+
+
+
+
+
