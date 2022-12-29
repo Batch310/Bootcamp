@@ -229,13 +229,13 @@ select
 	pendapatan as "Pendapatan"
 from film
 where nm_film ilike '%v%' 
-and pendapatan = (insert min(pendapatan)from film while nm_film ilike '%v%' ); 
---13 Tampilkan nama film dengan pendapatan terbesar yang mengandung hurud 'd'
+and pendapatan = (select min(pendapatan)from film where nm_film ilike '%v%' ); 
+--13 Tampilkan ;nama film dengan pendapatan terbesar yang mengandung hurud 'd'
 select 
 	nm_film as "Nama Film",
 	pendapatan as "Pendapatan"
 from film
 where nm_film ilike '%d%' 
-and pendapatan = (insert min(pendapatan)from film while nm_film ilike '%d%' ); 
+and pendapatan = (select min(pendapatan)from film where nm_film ilike '%d%' ); 
 
 
