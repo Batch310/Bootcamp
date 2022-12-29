@@ -274,3 +274,35 @@ select
 from kota
 join provinsi
 on kota.id_provinsi = provinsi.id_provinsi;
+
+--alias nama table
+select 
+	k.nama_kota as "Nama Kota",
+	p.nama_provinsi as "Nama Provinsi"
+from kota k
+join provinsi p
+on k.id_provinsi = p.id_provinsi;
+
+--left join
+select 
+	k.nama_kota as "Nama Kota",
+	p.nama_provinsi as "Nama Provinsi"
+from kota k
+left join provinsi p
+on k.id_provinsi = p.id_provinsi;
+
+--right join
+select 
+	k.nama_kota as "Nama Kota",
+	p.nama_provinsi as "Nama Provinsi"
+from kota k
+right join provinsi p
+on k.id_provinsi = p.id_provinsi;
+
+--full outer join
+select 
+	k.nama_kota as "Nama Kota",
+	p.nama_provinsi as "Nama Provinsi"
+from kota k
+full outer join provinsi p
+on k.id_provinsi = p.id_provinsi;
