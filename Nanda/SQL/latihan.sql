@@ -238,3 +238,70 @@ from Film
 where nm_Film ilike '%d%' 
 and pendapatan = (select max(pendapatan) from Film where nm_Film ilike '%d%');
 
+
+create table kota(
+    id integer primary key,
+    nama text,
+    id_provinsi integer
+);
+
+
+insert into kota values
+(1,'Jakarta',1),
+(2,'Bandung',2),
+(3,'Sumedang',2),
+(4,'Makasar',4),
+(5,'Surabaya',5),
+(6,'Medan',6);
+
+
+create table provinsi(
+	id integer primary key,
+	nama text
+);
+
+insert into provinsi values
+(1,'DKI Jakarta'),
+(2,'Jawa Barat'),
+(3,'Papua Barat'),
+(4,'Sulawesi Selatan'),
+(5,'Jawa Timur');
+
+select * from kota;
+select * from provinsi;
+
+
+drop table kota;
+drop table provinsi;
+
+--1 join / inner join
+select
+	kota.nama as "Kota",
+	provinsi.nama as "Provinsi"
+from kota
+inner join provinsi
+on kota.id_provinsi = provinsi.id;
+
+--alias nama tabel
+select
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+inner join provinsi p
+on k.id_provinsi = p.id;
+
+--left join
+select
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+inner join provinsi p
+on k.id_provinsi = p.id;
+
+--right join
+select
+	k.nama as "Kota",
+	p.nama as "Provinsi"
+from kota k
+inner join provinsi p
+on k.id_provinsi = p.id;
