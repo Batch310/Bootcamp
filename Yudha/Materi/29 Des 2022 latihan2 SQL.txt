@@ -1,0 +1,88 @@
+create table kota(
+	id integer primary key,
+	nama text,
+	id_propinsi integer
+)
+
+create table propinsi(
+	id integer primary key,
+	nama text
+)
+
+drop table kota
+drop table propinsi
+
+insert into kota(id,nama,id_propinsi)
+values
+(1,'Jakarta',1),
+(2,'Bandung',2),
+(3,'Sumedang',2),
+(4,'Makasar',4),
+(5,'Surabaya',5),
+(6,'Medan',6);
+
+insert into propinsi(id,nama)
+values
+(1,'DKI Jakarta'),
+(2,'Jawa Barat'),
+(3,'Papua Barat'),
+(4,'Sulawesi Selatan'),
+(5,'Jawa Timur');
+
+select * from kota;
+select * from propinsi;
+
+--1 join / inner join
+select 
+	propinsi.nama as "Propinsi",
+	kota.nama as "Kota"
+from
+	kota
+inner join 
+	propinsi
+on
+	kota.id_propinsi = propinsi.id;
+	
+--Alias nama tabel
+select 
+	p.nama as "Propinsi",
+	k.nama as "Kota"
+from
+	kota k
+inner join 
+	propinsi p
+on
+	k.id_propinsi = p.id;
+
+--Left join
+select 
+	p.nama as "Propinsi",
+	k.nama as "Kota"
+from
+	kota k
+left join 
+	propinsi p
+on
+	k.id_propinsi = p.id;
+
+--Right Join
+select 
+	p.nama as "Propinsi",
+	k.nama as "Kota"
+from
+	kota k
+right join 
+	propinsi p
+on
+	k.id_propinsi = p.id;
+	
+-- full outer join / full join
+select 
+	p.nama as "Propinsi",
+	k.nama as "Kota"
+from
+	kota k
+full join 
+	propinsi p
+on
+	k.id_propinsi = p.id;
