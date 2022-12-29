@@ -1,0 +1,136 @@
+--DDL Buat Database
+create database batch310;
+
+--DDL Hapus Database
+drop database batch310;
+
+--DDL Bikin Tabel
+create table pegawai(
+	id_pegawai serial primary key,
+	umur integer,
+	nama_pegawai text
+);
+
+--DDL Hapus Tabel
+drop table pegawai;
+
+--TABEL KTP
+create table KTP(
+	NIK integer primary key,
+	Nama text,
+	ttl text,
+	Jenis_Kelamin text,
+	Alamat text
+);
+
+--DML, tampilkan semua kolom dari tabel ktp
+select * from ktp;
+
+--DDL, rename kolom tabel
+alter table ktp
+rename column ttl to tempat_tanggal_lahir;
+
+--DDL, ubah tipe data kolom
+alter table ktp
+alter column jenis_kelamin type boolean using jenis_kelamin::boolean;
+
+--DDL, delete kolom
+alter table ktp
+drop column tempat_tanggal_lahir;
+
+--DDL, add kolom
+alter table ktp
+add column tempat_lahir text;
+add column tanggal_lahir date;
+
+select * from pegawai;
+--DML, Insert Data
+
+--Cara 1
+insert into pegawai(id_pegawai,umur,nama_pegawai)
+values
+(2,20,'Jambrong'),
+(3,25,'Panji'),
+(4,25, 'Panji');
+
+--Cara 2
+insert into pegawai
+values
+(9,22,'Yudha')
+
+select * from pegawai;
+--DML, update data
+update pegawai
+set umur = 15
+where id_pegawai = 3;
+
+update pegawai
+set umur = 25, nama_pegawai = 'Konami'
+where id_pegawai = 3;
+
+select * from pegawai;
+--DML, delete data
+delete from pegawai
+where id_pegawai = 9;
+
+--DML select
+select * from pegawai;
+select nama_pegawai from pegawai;
+select nama_pegawai, umur from pegawai;
+
+--alias nama kolom
+select
+	nama_pegawai as "Nama Pegawai",
+	umur
+from
+	pegawai;
+	
+--Coba coba postgre
+select 23*4 "hasil perkalian 23 x 4";
+select 'Panji' as "Ketua";
+
+--Select order by
+select * from pegawai;
+select * from pegawai order by id_pegawai ASC;
+select * from pegawai order by id_pegawai DESC;
+
+--Select distinct (hapus duplikat)
+select distinct umur, nama_pegawai from pegawai;
+
+--Select where
+select * from pegawai;
+select * from pegawai where nama_pegawai = 'Jambrong';
+select * from pegawai where umur = '25';
+select * from pegawai where umur = '25' AND id_pegawai = 3;
+select nama_pegawai from pegawai where umur = 25;
+select distinct nama_pegawai from pegawai where umur = 25;
+select distinct * from pegawai where nama_pegawai = 'Panji';
+
+--Select where in
+select * from pegawai where umur in (20,25);
+select * from pegawai where nama_pegawai in ('Panji');
+
+--Select where between
+select * from pegawai where umur between 20 and 22;
+
+--Select where like
+select * from pegawai where nama_pegawai like 'Pan%';
+select * from pegawai where nama_pegawai like '%ng';
+select * from pegawai where nama_pegawai like '%n%';
+
+--Fungsi Aggregate
+-- AVG > Average
+-- SUM > penjumlahan
+-- Count > menghitung
+-- Min > nilai terendah
+-- Max > nilai tertinggi
+
+select max(umur) from pegawai;
+select min(umur) from pegawai;
+select avg(umur) from pegawai;
+select sum(umur) from pegawai;
+select count(umur) from pegawai;
+
+--group by
+select nama_pegawai, count(umur) from pegawai group by nama_pegawai;
+select nama_pegawai, sum(umur) from pegawai group by nama_pegawai;
