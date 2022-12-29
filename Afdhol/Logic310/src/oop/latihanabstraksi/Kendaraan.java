@@ -1,6 +1,6 @@
 package oop.latihanabstraksi;
 
-abstract class Kendaraan {
+abstract class Kendaraan { // diubah menjadi abstract 
 
 	String modelParam;
 	int jumlahRodaParam;
@@ -29,6 +29,6 @@ abstract class Kendaraan {
 		return hargaParam;
 	}
 	
-	public abstract void gaspol();
+	abstract void gaspol();
 	
 	}
