@@ -223,11 +223,11 @@ where t1."jml film" = (select  -- copy dari step 2
 --Cara 2, pakai temporary table
 
 	--buat table temporary
-drop table if exists temp_table;
-create temporary table temp_table(
-	nm_artis text,
-	jml_film int
-);
+DROP TABLE IF EXISTS TEMP_TABLE;
+
+
+CREATE
+TEMPORARY TABLE TEMP_TABLE(NM_ARTIS text, JML_FILM int);
 
 	--query langsung insert ke table
 INSERT INTO TEMP_TABLE
@@ -249,10 +249,49 @@ WHERE JML_FILM =
 			FROM TEMP_TABLE);
 
 --24 tampilkan negara mana yg paling banyak filmnya
+DROP TABLE IF EXISTS TEMP_TABLE;
+
+
+CREATE
+TEMPORARY TABLE TEMP_TABLE(NM_NEGARA text, JML_FILM int);
+
+
+INSERT INTO TEMP_TABLE
+SELECT NM_NEGARA,
+	COUNT(NM_FILM) AS "jml film"
+FROM FILM F
+INNER JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+RIGHT JOIN NEGARA N ON A.NEGARA = N.KD_NEGARA
+GROUP BY NM_NEGARA;
+
+
+SELECT *
+FROM TEMP_TABLE
+WHERE JML_FILM =
+		(SELECT MAX(JML_FILM)
+			FROM TEMP_TABLE);
 --25 tampilkan data negara dengan jumlah filmnya
+SELECT NM_NEGARA,
+	COUNT(NM_FILM) AS "jml film"
+FROM FILM F
+INNER JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+RIGHT JOIN NEGARA N ON A.NEGARA = N.KD_NEGARA
+GROUP BY NM_NEGARA;
 --26 tampilkan nama produser yg skalanya international
+SELECT NM_PRODUSER, INTERNATIONAL FROM PRODUSER
+WHERE INTERNATIONAL ILIKE 'YA';
 --27 tampilkan jumlah film dr masing2 produser
+SELECT NM_PRODUSER,
+	COUNT(NM_FILM) AS "jml film"
+FROM FILM F
+RIGHT JOIN PRODUSER P ON F.PRODUSER = P.KD_PRODUSER
+GROUP BY NM_PRODUSER;
 --28 tampilkan jumlah nominasi dari masing2 produser
+SELECT NM_PRODUSER,
+	SUM(NOMINASI)
+FROM FILM F
+RIGHT JOIN PRODUSER P ON F.PRODUSER = P.KD_PRODUSER
+GROUP BY NM_PRODUSER;
 --29 tampilkan jumlah pendapatan produser marvel secara keseluruhan
 --30 tampilkan jumlah pendapatan produser yg skalanya tidak international
 --31 tampilkan produser yg tidak punya film
