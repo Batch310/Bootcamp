@@ -72,140 +72,112 @@ INSERT INTO public.artis (kd_artis, nm_artis, jk, bayaran, award, negara) VALUES
 
 --Lanjutan latihan
 --14
-select 
-	f.nm_film, a.nm_artis
-from film f
-inner join artis a
-	on f.artis = a.kd_artis;
+SELECT F.NM_FILM,
+	A.NM_ARTIS
+FROM FILM F
+INNER JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS;
 	
 --15
-select
-	f.nm_film,
-	a.nm_artis,
-	n.nm_negara
-from film f
-inner join artis a
-	on f.artis = a.kd_artis
-inner join negara n
-	on a.negara = n.kd_negara
-where n.kd_negara = 'HK';
+SELECT F.NM_FILM,
+	A.NM_ARTIS,
+	N.NM_NEGARA
+FROM FILM F
+INNER JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+INNER JOIN NEGARA N ON A.NEGARA = N.KD_NEGARA
+WHERE N.KD_NEGARA = 'HK';
 
 --16
-select
-	f.nm_film,
-	a.nm_artis,
-	n.nm_negara
-from film f
-inner join artis a
-	on f.artis = a.kd_artis
-inner join negara n
-	on a.negara = n.kd_negara
-where n.nm_negara not ilike '%o%';
+SELECT F.NM_FILM,
+	A.NM_ARTIS,
+	N.NM_NEGARA
+FROM FILM F
+INNER JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+INNER JOIN NEGARA N ON A.NEGARA = N.KD_NEGARA
+WHERE N.NM_NEGARA not ilike '%o%';
 
 --17
-select
-	f.nm_film,
-	a.nm_artis,
-	a.award
-from film f
-join artis a
-	on f.artis  = a.kd_artis
-where a.award = (select max(award) from artis);
+SELECT F.NM_FILM,
+	A.NM_ARTIS,
+	A.AWARD
+FROM FILM F
+JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+WHERE A.AWARD =
+		(SELECT MAX(AWARD)
+			FROM ARTIS);
 
 --18
-select
-	f.nm_film,
-	a.nm_artis,
-	a.bayaran
-from film f
-join artis a
-	on f.artis = a.kd_artis
-where a.bayaran = (select min(bayaran) from artis);
+SELECT F.NM_FILM,
+	A.NM_ARTIS,
+	A.BAYARAN
+FROM FILM F
+JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+WHERE A.BAYARAN =
+		(SELECT MIN(BAYARAN)
+			FROM ARTIS);
 
 --19
-select
-	a.nm_artis,
-	f.nm_film
-from artis a
-left join film f
-	on a.kd_artis = f.artis
-where f.nm_film is null;
+SELECT A.NM_ARTIS,
+	F.NM_FILM
+FROM ARTIS A
+LEFT JOIN FILM F ON A.KD_ARTIS = F.ARTIS
+WHERE F.NM_FILM IS NULL;
 
 --20
-select
-	a.nm_artis,
-	f.nm_film,
-	g.nm_genre
-from artis a
-join film f
-	on a.kd_artis = f.artis
-join genre g
-	on f.genre = g.kd_genre
-where
-	g.nm_genre = 'DRAMA'; 
+SELECT A.NM_ARTIS,
+	F.NM_FILM,
+	G.NM_GENRE
+FROM ARTIS A
+JOIN FILM F ON A.KD_ARTIS = F.ARTIS
+JOIN GENRE G ON F.GENRE = G.KD_GENRE
+WHERE G.NM_GENRE = 'DRAMA';
 	
 --21
-select
-	a.nm_artis,
-	f.nm_film,
-	g.nm_genre
-from artis a
-join film f
-	on a.kd_artis = f.artis
-join genre g
-	on f.genre = g.kd_genre
-where
-	g.nm_genre = 'HORROR'; 
+SELECT A.NM_ARTIS,
+	F.NM_FILM,
+	G.NM_GENRE
+FROM ARTIS A
+JOIN FILM F ON A.KD_ARTIS = F.ARTIS
+JOIN GENRE G ON F.GENRE = G.KD_GENRE
+WHERE G.NM_GENRE = 'HORROR';
 	
 --22
-select
-	f.nm_film,
-	a.nm_artis
-from film f
-join artis a
-	on f.artis = a.kd_artis
-where a.nm_artis ilike 'j%';
+SELECT F.NM_FILM,
+	A.NM_ARTIS
+FROM FILM F
+JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+WHERE A.NM_ARTIS ilike 'j%';
 
 --23;
 --Step 1 tampilkan semua nama artis & jumlah film
-select
-	nm_artis,
-	count(*) as "Jumlah Film"
-from film f
-join artis a
-	on f.artis = a.kd_artis
-group by 
-	nm_artis
+SELECT NM_ARTIS,
+	COUNT(*) AS "Jumlah Film"
+FROM FILM F
+JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+GROUP BY NM_ARTIS;
 --Step 2 tampilkan jumlah maksimal film  yang dimainkan
-select
-	max(t1."Jumlah Film")
-	from (select
-			nm_artis,
-			count(*) as "Jumlah Film"
-		from film f
-		join artis a
-			on f.artis = a.kd_artis
-		group by 
-			nm_artis) t1
+SELECT MAX(T1."Jumlah Film")
+FROM
+	(SELECT NM_ARTIS,
+			COUNT(*) AS "Jumlah Film"
+		FROM FILM F
+		JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+		GROUP BY NM_ARTIS) T1;
 --Step 3 tampilkan nama artis yang paling banyak bermain film
-select 
-	*
-from (select
-		nm_artis,
-		count(*) as "Jumlah Film"
-	from film f
-	join artis a
-		on f.artis = a.kd_artis
-	group by 
-		nm_artis) t2
-where t2."Jumlah Film" = (select
-							max(t1."Jumlah Film")
-						from (select
-							nm_artis,
-							count(*) as "Jumlah Film"
-						from film f
-						join artis a
-							on f.artis = a.kd_artis
-						group by 
-							nm_artis) t1)
+SELECT *
+FROM
+	(SELECT NM_ARTIS,
+			COUNT(*) AS "Jumlah Film"
+		FROM FILM F
+		JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+		GROUP BY NM_ARTIS) T2
+WHERE T2."Jumlah Film" =
+		(SELECT MAX(T1."Jumlah Film")
+			FROM
+				(SELECT NM_ARTIS,
+						COUNT(*) AS "Jumlah Film"
+					FROM FILM F
+					JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+					GROUP BY NM_ARTIS) T1);
+					
 --24
+ 
