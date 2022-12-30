@@ -70,83 +70,205 @@ INSERT INTO public.artis (kd_artis, nm_artis, jk, bayaran, award, negara) VALUES
 INSERT INTO public.artis (kd_artis, nm_artis, jk, bayaran, award, negara) VALUES ('A005', 'CHELSEA ISLAN', 'WANITA', 300000000, 0, 'ID');
 INSERT INTO public.artis (kd_artis, nm_artis, jk, bayaran, award, negara) VALUES ('A002', 'ANGELINA JOLIE', 'WANITA', 700000000, 1, 'AS');
 
--- Latihan soal film 2
+select * from artis;
 select * from film;
-select * from produser;
-select * from negara;
 select * from genre;
+select * from negara;
+select * from produser;
 
--- 14 tampilkan nama film dan artisnya
-select 
-	f.nm_film,
-	a.nm_artis
-from film f
-inner join artis a
-	on f.artis = a.kd_artis;
-	
---15 tampilkan film yang artisnya berasal dari nehgara hongkong
-select 
-	f.nm_film,
-	a.nm_artis,
-	nm_negara
-from film f
-inner join artis a
-	on f.artis = a.kd_artis
-inner join negara n
-	on a.negara = n.kd_negara
-where n.nm_negara ='HONGKONG';
-	
---16 tampilkan nama film, nama artis & nama negara artisnya berasal dari negara 
---   yang tidak mengangdung huruf 'o'
-select 
+--1 tampil nama film dan artis
+select
+  f.nm_film,
+  a.nm_artis
+ from film f
+ inner join artis a
+ on f.artis=a.kd_artis;
+ 
+--15 tampil film yg artis berasal dari hongkong 
+select
 	f.nm_film,
 	a.nm_artis,
-	nm_negara
+	n.nm_negara
 from film f
 inner join artis a
-	on f.artis = a.kd_artis
+on f.artis=a.kd_artis
 inner join negara n
-	on a.negara = n.kd_negara
-where nm_negara not like '%O%';
+	on a.negara=n.kd_negara
+where nm_negara= 'HONGKONG';
 
---17 tampilkan nama film, artis, & awardnya yang memiliki award terbanyak
-select 
-	f.nm_film,
+--16. Tampilkan nama film, nama artis & nama negara yg artisny
+   -- dari negara yg tidak mengandung huruf "o"
+select
+  	f.nm_film,
 	a.nm_artis,
+	n.nm_negara
+from film f
+inner join artis a
+on f.artis=a.kd_artis
+inner join negara n
+on a.negara=n.kd_negara
+where nm_negara not ilike '%o%'; 
+
+--17 tampilkan nama film,artis, & awardnya yg memiliki award trbanyak
+select
+	nm_film,
+	nm_artis,
 	award
 from film f
-inner join artis a
-	on f.artis = a.kd_artis
+right join artis a
+on f.artis =a.kd_artis
 where award = (select max(award)from artis);
 
---18 tampilkan nama film, nama artis & bayaran dengan artis bayaran murah
-select 
-	f.nm_film,
-	a.nm_artis,
+--18 tampilkan nama film,nama artis & bayaran dgn artis bayran trndah
+select
+	nm_film,
+	nm_artis,
 	bayaran
 from film f
-inner join artis a
-	on f.artis = a.kd_artis
-where a.bayaran = (select min(bayaran)from artis);
---19 tampilkan nama artis yang tidak pernah bermain film
-select 
+right join artis a
+on f.artis=a.kd_artis
+where bayaran =(select min(bayaran) from artis);
+
+	
+--19 tampilkan nama artis yg tidak pernah bermain film
+select
 	a.nm_artis,
 	f.nm_film
-from film f
-right join artis a
-	on f.artis = a.kd_artis
-where f.nm_film is null;
+from artis a
+left join film f
+on a.kd_artis=f.artis
+where nm_film is null;
 
---20 tampilkan nama artis, film & genre yang bermain film dengan genre drama
-select 
+--20 tampilkan nama artis, film & genre yg main film genre drama
+select
 	a.nm_artis,
 	f.nm_film,
 	g.nm_genre
+from artis a
+inner join film f
+on a.kd_artis=f.artis
+inner join genre g
+on f.genre=g.kd_genre
+where g.nm_genre ='DRAMA';
+-- atau
+where g.nm_genre ilike 'drama';
+
+-- 21 Tampilkan nama artis, film, & genre yg bermain film dgn genre horor
+select
+	a.nm_artis as "Nama Artis",
+	f.nm_film as "Nama Film",
+	g.nm_genre as "Genre"
+from artis a
+inner join film f
+on a.kd_artis=f.artis
+right join genre g
+on f.genre=g.kd_genre
+where g.nm_genre ilike 'horror';
+
+--22 Tampilkan nama film & artis yg dibintangi oleh artis yg huruf depan 'j'
+select
+	f.nm_film,
+	a.nm_artis
+from film f
+right join artis a
+on f.artis=a.kd_artis
+where a.nm_artis ilike 'j%';
+
+-- 23 Tampilkan nama artis yg paling byk bermain film
+--Cara 1
+--step 1 tampilin semua nama artis dan berapa jml filmnya 
+select
+  nm_artis,
+  count(nm_film) as "jml film"
 from film f
 inner join artis a
-	on f.artis = a.kd_artis
-inner join genre g
-	on f.genre = g.kd_genre 
---where g.nm_genre ilike 'DRAMA';
-where g.nm_genre = 'DRAMA';
---where lower(g.nm_genre) = lower('DRAMA');
+	on f.artis=a.kd_artis
+group by nm_artis;
+-- step 2 tampilin jumlah maksimal film yg dumainkan
+select
+	max(t1."jml film")
+from(
+select
+  nm_artis,
+  count(nm_film) as "jml film"
+from film f
+inner join artis a
+	on f.artis=a.kd_artis
+group by nm_artis
+) t1
+
+--Step 3 tampilin nama artis yg paling banyak bermain film
+select
+	*
+from(
+select  -- Copy step 1
+  nm_artis,
+  count(nm_film) as "jml film"
+from film f
+inner join artis a
+	on f.artis=a.kd_artis
+group by nm_artis
+) t1
+where t1."jml film" =(select   --copy step 2
+	max(t2."jml film")
+from(
+select
+  nm_artis,
+  count(nm_film) as "jml film"
+from film f
+inner join artis a
+	on f.artis=a.kd_artis
+group by nm_artis
+) t2)
+)
+
+-- Cara 2, Pakai temporary table
+--step 1, buat table temporary
+drop table if exists temp_table; --jika ada table duplicate
+create temporary table temp_table(
+	nm_artis text,
+	jml_film int
+);
+select * from temp_table
+-- step 2, query langsung insert ke table
+insert into temp_table
+select
+  nm_artis,
+  count(nm_film) as "jml film"
+from film f
+inner join artis a
+	on f.artis=a.kd_artis
+group by nm_artis;
+
+--Cek isi tabel temporary
+select * from temp_table;
+
+--Tampilkan artis dgn film paling banyak
+select *
+from temp_table t1
+where t1.jml_film=(select max(jml_film)
+				  from temp_table );
+
+
+
+
+
+--24 tampilkan negara yg paling banyak filmnya
+select
+	f.nm_film as "Nama Film",
+	a.nm_artis as "Nama artis",
+	count(*)
+from film f
+inner join artis a
+on f.artis=a.kd_artis
+
+--25 tampilkan data negara dgn jumlah filmnya
+
+
+
+
+
+
+
+
+
