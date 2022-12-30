@@ -70,6 +70,8 @@ INSERT INTO public.artis (kd_artis, nm_artis, jk, bayaran, award, negara) VALUES
 INSERT INTO public.artis (kd_artis, nm_artis, jk, bayaran, award, negara) VALUES ('A005', 'CHELSEA ISLAN', 'WANITA', 300000000, 0, 'ID');
 INSERT INTO public.artis (kd_artis, nm_artis, jk, bayaran, award, negara) VALUES ('A002', 'ANGELINA JOLIE', 'WANITA', 700000000, 1, 'AS');
 
+
+
 --Latihan Soal Film 2
 select * from film;
 select * from produser;
@@ -84,8 +86,8 @@ select
 from film f
 inner join artis a
 	on f.artis = a.kd_artis;
-
---15 tampilkan film yg artisnya berasal dari negara HONGKONG
+	
+--15 tampilkan nama film yang artisnya berasal dari negara hongkong
 select
 	f.nm_film,
 	a.nm_artis,
@@ -95,25 +97,22 @@ inner join artis a
 	on f.artis = a.kd_artis
 inner join negara n
 	on a.negara = n.kd_negara
-where n.nm_negara = 'HONGKONG';
+where n.nm_negara ilike 'hongkong';
 
---16 tampilkan nama film, nama artis & nama negara yg artisnya 
---   berasal dr negara yg tidak mengandung huruf 'o'
-
-select 
+--16 tampilkan nama film, nama artis dan nama negara yang artisnya
+--	berasal dari negara yang tidak mengandung huruf 'o'
+select
 	f.nm_film,
 	a.nm_artis,
 	n.nm_negara
 from film f
 inner join artis a
-	on f.artis = a.kd_artis 
+	on f.artis = a.kd_artis
 inner join negara n
 	on a.negara = n.kd_negara
-where nm_negara not ilike '%o%'
-	
---17 tampilkan nama film, artis, & awardnya yg memiliki award terbanyak
-select *  from film;
-select * from artis;
+where n.nm_negara not ilike '%o%';
+
+--17 tampilkan nama film, artis dan awardnya yang memiliki award terbanyak
 select
 	f.nm_film,
 	a.nm_artis,
@@ -123,181 +122,314 @@ inner join artis a
 	on f.artis = a.kd_artis
 where award = (select max(award) from artis);
 
---18 tampilkan nama film, nama artis & bayaran dengan artis bayaran terendah
-select 
+--18 tampilkan nama film, nama artis dan bayaran dengan artis bayaran terendah
+select
 	f.nm_film,
 	a.nm_artis,
 	a.bayaran
 from film f
 inner join artis a
 	on f.artis = a.kd_artis
-where a.bayaran = (select min(bayaran) from artis);
---19 tampilkan nama artis yg tidak pernah bermain film
-select 
-	a.nm_artis 
+where bayaran = (select min(bayaran) from artis);
+
+--19 tampilkan nama artis yang tidak pernah bermain film
+select
 	--f.nm_film
+	a.nm_artis
 from film f
 right join artis a
 	on f.artis = a.kd_artis
 where f.nm_film is null;
 
---20 tampilkan nama artis, film & genre yg bermain film dengan genre drama
+--20 tampilkan nama artis, film dan genre yang bermain film dengan genre drama
 select
 	a.nm_artis,
 	f.nm_film,
 	g.nm_genre
 from artis a
 inner join film f
-on a.kd_artis=f.artis
+	on a.kd_artis = f.artis
 inner join genre g
-on f.genre=g.kd_genre
---where lower(g.nm_genre) = lower('dRaMa');
-where g.nm_genre ilike 'drama';
+	on g.kd_genre =  f.genre
+where lower(g.nm_genre) = lower('DrAmA');
 
 
---21 tampilkan nama artis, film & genre yg bermain film dengan genre horror\
-select nm_artis, nm_film, nm_genre
-from film f
-join artis a on f.artis = a.kd_artis
-join genre g on f.genre = g.kd_genre
+--21 tampilkan nama artis, film & genre yang bermain film dengan genre horror
+select
+	a.nm_artis,
+	f.nm_film,
+	g.nm_genre
+from artis a
+inner join film f
+	on a.kd_artis = f.artis
+inner join genre g
+	on g.kd_genre = f.genre
 where g.nm_genre ilike 'horror';
-
---22 tampilkan nama film & artis yg dibintangi oleh artis yg huruf depannya 'J'
+	
+--22 tampilkan nama film dan artis yang dibintangi oleh artis yang huruf depannya 'J'
 select
 	f.nm_film,
 	a.nm_artis
-from film f
-join artis a
+from artis a
+inner join film f
 	on f.artis = a.kd_artis
 where a.nm_artis ilike 'j%';
 
---23 tampilkan nama artis yg paling banyak bermain film
-
---Step 1 tampilin semua nama artis dan berapa jumlah filmnya
-select 
-	nm_artis,
+--23 tampilkan nama artis yang paling banyak bermain film
+--step 1 tampilkan nama artis dan brp jml filmnya
+select
+	a.nm_artis,
 	count(nm_film) as "jml film"
 from film f
 inner join artis a
 	on f.artis = a.kd_artis
-group by nm_artis; 
+group by nm_artis
 
---Step 2 tampilin jumlah maksimal film yang dimainkan
-select 
+--step 2 tampilkan jumlah maksimal film yang dimainkan
+select
 	max(t1."jml film")
 from (
-		select --copy dari step 1
-			nm_artis,
-			count(nm_film) as "jml film"
-		from film f
-		inner join artis a
-			on f.artis = a.kd_artis
-		group by nm_artis
-	  ) t1
-
---Step 3 menampilkan nama artis yang paling banyak bermain film
-select
-	*
-from (
-	select -- copy dari step 1
-		nm_artis,
+	select
+		a.nm_artis,
 		count(nm_film) as "jml film"
 	from film f
 	inner join artis a
 		on f.artis = a.kd_artis
 	group by nm_artis
-	) t1
-where t1."jml film" = (select  -- copy dari step 2
+	)t1
+	
+--step 3 menampilkan nama artis yang paling banyak bermain film
+select
+	*
+from (
+	select
+		a.nm_artis,
+		count(nm_film) as "jml film"
+	from film f
+	inner join artis a
+		on f.artis = a.kd_artis
+	group by nm_artis
+	)t1
+where t1."jml film" = (select
 						max(t2."jml film")
 					from (
-						select 
-							nm_artis,
+						select
+							a.nm_artis,
 							count(nm_film) as "jml film"
 						from film f
 						inner join artis a
 							on f.artis = a.kd_artis
 						group by nm_artis
-	 					 ) t2)
-
-
---Cara 2, pakai temporary table
-
-	--buat table temporary
-DROP TABLE IF EXISTS TEMP_TABLE;
-
-
-CREATE
-TEMPORARY TABLE TEMP_TABLE(NM_ARTIS text, JML_FILM int);
+						)t2
+					  )
+					  
+--Cara 2, dengan  temporary table
+	-- buat table temporary
+drop table if exists temp_table;
+create temporary table temp_table(
+	nm_artis text,
+	jml_film int
+);
 
 	--query langsung insert ke table
-INSERT INTO TEMP_TABLE
-SELECT NM_ARTIS,
-	COUNT(NM_FILM) AS "jml film"
-FROM FILM F
-INNER JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
-GROUP BY NM_ARTIS;
-	
+insert into temp_table
+select
+	nm_artis,
+	count(nm_film) as "jmlh film"
+from film f
+inner join artis a
+	on f.artis = a.kd_artis
+group by nm_artis;
+
 	--cek isi table
-SELECT *
-FROM TEMP_TABLE;
-	
+select * from temp_table;
+
 	--tampilkan artis dengan film paling banyak
-SELECT *
-FROM TEMP_TABLE
-WHERE JML_FILM =
-		(SELECT MAX(JML_FILM)
-			FROM TEMP_TABLE);
+select *
+from temp_table t1
+where t1.jml_film =
+		(select max(t2.jml_film)
+			from temp_table t2);
 
---24 tampilkan negara mana yg paling banyak filmnya
-DROP TABLE IF EXISTS TEMP_TABLE;
+--24 tampilkan negara mana yang paling banyak filmnya
+	--table temporary
+drop table if exists temp_table;
+create temporary table temp_table(
+	nm_artis text,
+	nm_negara text,
+	jml_film int
+	);
+	
+	--query ke table
+insert into temp_table
+select
+	a.nm_artis,
+	n.nm_negara,
+	count(nm_film) as "jml film"
+from film f
+inner join artis a
+	on f.artis = a.kd_artis
+inner join negara n
+	on n.kd_negara = a.negara
+group by nm_artis, nm_negara;
 
+	--cek isi table
+select * from temp_table;
 
-CREATE
-TEMPORARY TABLE TEMP_TABLE(NM_NEGARA text, JML_FILM int);
+	--tampilkan negara dengan film terbanyak
+select 
+	nm_negara
+from temp_table t1
+where t1.jml_film =
+	(select max(t2.jml_film)
+		from temp_table t2);
 
-
-INSERT INTO TEMP_TABLE
-SELECT NM_NEGARA,
-	COUNT(NM_FILM) AS "jml film"
-FROM FILM F
-INNER JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
-RIGHT JOIN NEGARA N ON A.NEGARA = N.KD_NEGARA
-GROUP BY NM_NEGARA;
-
-
-SELECT *
-FROM TEMP_TABLE
-WHERE JML_FILM =
-		(SELECT MAX(JML_FILM)
-			FROM TEMP_TABLE);
 --25 tampilkan data negara dengan jumlah filmnya
-SELECT NM_NEGARA,
-	COUNT(NM_FILM) AS "jml film"
-FROM FILM F
-INNER JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
-RIGHT JOIN NEGARA N ON A.NEGARA = N.KD_NEGARA
-GROUP BY NM_NEGARA;
+select
+	n.nm_negara,
+	count(nm_film) as "jml film"
+from film f
+inner join artis a
+	on f.artis = a.kd_artis
+inner join negara n
+	on n.kd_negara = a.negara
+group by nm_negara;
+	
+
 --26 tampilkan nama produser yg skalanya international
-SELECT NM_PRODUSER, INTERNATIONAL FROM PRODUSER
-WHERE INTERNATIONAL ILIKE 'YA';
+select
+	nm_produser
+from produser
+where international ilike 'ya%';
+
 --27 tampilkan jumlah film dr masing2 produser
-SELECT NM_PRODUSER,
-	COUNT(NM_FILM) AS "jml film"
-FROM FILM F
-RIGHT JOIN PRODUSER P ON F.PRODUSER = P.KD_PRODUSER
-GROUP BY NM_PRODUSER;
+select
+	p.nm_produser,
+	count(nm_film) as "jml film"
+from film f
+right join produser p
+	on f.produser = p.kd_produser
+group by nm_produser;
+	
 --28 tampilkan jumlah nominasi dari masing2 produser
-SELECT NM_PRODUSER,
-	SUM(NOMINASI)
-FROM FILM F
-RIGHT JOIN PRODUSER P ON F.PRODUSER = P.KD_PRODUSER
-GROUP BY NM_PRODUSER;
+select
+	p.nm_produser,
+	f.nominasi
+from film f
+right join produser p
+	on f.produser = p.kd_produser;
+
 --29 tampilkan jumlah pendapatan produser marvel secara keseluruhan
+select
+	p.nm_produser,
+	sum(pendapatan) as "total pendapatan"
+from film f
+inner join produser p
+	on f.produser = p.kd_produser
+where p.nm_produser ilike 'marvel'
+group by nm_produser;
+
 --30 tampilkan jumlah pendapatan produser yg skalanya tidak international
+select
+	p.nm_produser,
+	international,
+	f.pendapatan
+from film f
+inner join produser p
+	on f.produser = p.kd_produser
+where p.international ilike 'tidak';
+
 --31 tampilkan produser yg tidak punya film
+select
+	p.nm_produser,
+	f.nm_film
+from film f
+right join produser p
+	on f.produser = p.kd_produser
+where nm_film is null;
+
 --32 tampilkan produser film yg memilik artis termahal
---33 tampilkan produser yg memiliki artis paling banyak	
+select
+	p.nm_produser,
+	a.nm_artis,
+	a.bayaran
+from film f
+inner join artis a
+	on f.artis = a.kd_artis
+inner join produser p
+	on f.produser = p.kd_produser
+where bayaran = (select max(bayaran) from artis);
+
+--33 tampilkan produser yg memiliki artis paling banyak
+	
+--
+select *
+from (
+	select
+		p.nm_produser,
+		count (distinct artis) as "jml artis"
+	from film f
+	inner join produser p
+		on f.produser = p.kd_produser
+	group by nm_produser
+	)t1
+where t1."jml artis" = (select
+							max(t2."jml artis")
+						from(
+							select distinct
+								p.nm_produser,
+								count (distinct artis) as "jml artis"
+							from film f
+							inner join produser p
+								on f.produser = p.kd_produser
+							group by nm_produser
+						)t2
+
+);
+
+
+
 --34 tampilkan produser yg memiliki artis paling sedikit
+
+select *
+from (
+	select
+		p.nm_produser,
+		count (distinct artis) as "jml artis"
+	from film f
+	inner join produser p
+		on f.produser = p.kd_produser
+	group by nm_produser
+	)t1
+where t1."jml artis" = (select
+							min(t2."jml artis")
+						from(
+							select distinct
+								p.nm_produser,
+								count (distinct artis) as "jml artis"
+							from film f
+							inner join produser p
+								on f.produser = p.kd_produser
+							group by nm_produser
+						)t2
+
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
