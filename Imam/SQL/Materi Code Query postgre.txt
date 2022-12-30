@@ -1,0 +1,139 @@
+--DDL => Buat Database
+create database batch310;
+
+--DDL => Hapus Database
+drop database batch310;
+
+--DDL Buat table(Create)
+create table PEGAWAI(
+   ID_PEGAWAI integer primary key,  --Serial(auto_increment)
+   UMUR integer,
+   NAMA_PEGAWAI text
+);
+
+--DDL Hapus Tabel
+drop table pegawai;
+
+create table KTP(
+    nik integer primary key,
+	nama text,
+	ttl text,
+	jenis_kelamin text,
+	alamat text
+);
+
+--DML, Tampilkan semua kolom dari tabel ktp
+select * from ktp;
+
+--DDL, Rename kolom tabel
+alter table ktp
+rename column ttl to tempat_tgl_lahir;
+
+--DDL, Rename tipe data
+alter table ktp
+alter column jenis_kelamin type boolean using jenis_kelamin::boolean;
+
+--DDL, Delete kolom
+alter table ktp
+drop column tempat_tgl_lahir;
+
+--DDL, Add kolom
+alter table ktp
+add column tgl_lahir date;
+
+select * from pegawai
+--DML, Insert data
+
+--Cara 1
+ insert into pegawai(id_pegawai,umur,nama_pegawai)
+ values(2,22,'TyAN'),
+ (4,22,'Yuda');
+ 
+--Car 2
+insert into pegawai
+values
+(1,23,'Rika');
+
+select * from pegawai;
+--DML, Update pegawai
+update pegawai
+set umur = 20
+where id_pegawai=1;
+ 
+update pegawai
+set umur =19, nama_pegawai = 'Aditya'
+where id_pegawai=1;
+
+select * from pegawai
+--DML Delete data
+delete from pegawai
+where id_pegawai = 2;
+
+--DML Select select
+--select data dari kolom pilihan
+select nama_pegawai from pegawai;
+select nama_pegawai,umur from pegawai;
+
+--Alias atau ubah nama kolom(sementara sat di run)
+select
+nama_pegawai as "Nama Pegawai",
+umur
+from
+pegawai;
+
+select * from pegawai
+--Select order by(Mengurutkan)
+select * from pegawai order by id_pegawai ASC;
+select * from pegawai order by id_pegawai DESC;
+
+--Select distinct(Hapus duplicate)
+select distinct umur from pegawai;
+
+--Select where(Tampilkan pilihan)
+select * from pegawai where nama_pegawai ='Rika';
+select * from pegawai where umur=22 AND id_pegawai=4;
+
+--select where .. in (Tampil pilihan yg dipilih)
+select * from pegawai where umur in(22,19); 
+select * from pegawai where nama_pegawai in('Yuda','Rika');
+
+--select where beetween(diantara)=>numeric
+select * from pegawai where umur between 17 and 23;
+
+select * from pegawai;
+--select where like/ seperti/mengandung
+-- (%) => mewakili kata yg tersembunyi
+select * from pegawai where nama_pegawai like 'R%'; 
+
+select * from pegawai;
+--Fungsi agregat
+   -- AVG => Average, hitung rata2
+   -- SUM =>Penjumlahan
+   -- Count => Menghitung jumlah
+   -- Min => Nilai terendah
+--Max => Nilai tertinggi
+
+select max(umur) from pegawai;
+select min(umur) from pegawai;
+
+--Group by(nampilin data kalo ada fungsi agregat)/distinct
+select nama_pegawai,count(umur) from pegawai group by nama_pegawai;
+
+--Round => Pembulatan
+  select round(2.3) => jadi 2
+  select round(2.8) => jadi 3
+  select floor(2.8) => 2 (pembulatan ke bawah)
+  select floor(2.1) => 3 (pembulatan ke atas)
+
+--Lower & Upper => mengecilkan huruf
+   select lower('YUDHA'); =>yudha
+   select upper('imam'); =>IMAM
+
+--ilike => tanpa memperhatikan case sensitif
+   select nm_film from film where nm_film ilike '%p%';
+
+
+
+
+
+
