@@ -21,7 +21,14 @@ public class exam10 {
 		int totalCup = 0;
 
 		// untuk mencari jumlah cup
-		while ( ((hargaEsKopi * cup) + ongkir ) *diskon <= saldo &&  ((hargaEsKopi * cup) + ongkir) * diskon <= 100000) { // 18000 * 12 * 0.5 <																		// 2000000
+		while (((hargaEsKopi * cup) + ongkir) * diskon <= saldo && ((hargaEsKopi * cup) + ongkir) * diskon <= 100000) { // 18000
+																														// *
+																														// 12
+																														// *
+																														// 0.5
+																														// <
+																														// //
+																														// 2000000
 			cup++;
 		}
 
@@ -38,34 +45,16 @@ public class exam10 {
 				System.out.println("saya beli nanti ya");
 				System.exit(0);
 			}
-			hargaKopiDiskon = ((hargaEsKopi * totalCup) + ongkir) * diskon; // 6 * 18000 * 0.5 = 54000 // harga kopi sebanyak cup dengan diskon
+			hargaKopiDiskon = ((hargaEsKopi * totalCup) + ongkir) * diskon; // 6 * 18000 * 0.5 = 54000 // harga kopi
+																			// sebanyak cup dengan diskon
 			uangCashback = hargaKopiDiskon * cashback; // 54000 * 0.1 = 5400 // uang casback 10 %
-			saldoAkhir = (saldo - hargaKopiDiskon) + uangCashback; // (60000 - 54000) + 5400 = 11400 // hitung saldo akhir
-			
+			saldoAkhir = (saldo - hargaKopiDiskon) + uangCashback; // (60000 - 54000) + 5400 = 11400 // hitung saldo
+																	// akhir
 
 			// output
 			System.out.println("jumlah cup = " + totalCup + "; Saldo Akhir = Rp." + (int) saldoAkhir);
 			// jumlah cup = 6; Saldo Akhir = Rp11400
 		}
 
-		// int hargaEsKopi = 18000; // Harga satuan es kopi susu
-//		int diskon = hargaEsKopi / 2; // Persentase diskon
-//		int jumlahCup = saldo / diskon; // Hitung jumlah cup
-//		int kembalian = saldo % diskon; // Hitung kembalian
-//		int hitungCashback = diskon * jumlahCup;
-//		int cashback = hitungCashback / 10;
-//		int jumlahSaldoAkhir = kembalian + cashback;
-
-//		if ((hargaEsKopi * jumlahCup) / 2 > 100000) {
-//			System.out.print("Mohon maaf transaksi tidak berhasil, karena maksimal diskon Rp. 100000");
-//		} else if (hargaEsKopi * jumlahCup < 40000) {
-//			if (saldo - (hargaEsKopi * jumlahCup) <= 0) {
-//				System.out.print("Mohon maaf minimal transaksi Rp. 40000");
-//			} else {
-//				System.out.print("Saldo anda tida mencukupi, saldo anda " + (saldo - (hargaEsKopi * jumlahCup)));
-//			}
-//		} else {
-//			System.out.println("Jumlah Cup = " + jumlahCup + "; Saldo Akhir = " + jumlahSaldoAkhir);
-//		}
 	}
 }
