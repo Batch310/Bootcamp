@@ -1,0 +1,30 @@
+int found = 0;
+        
+for (int i = 2; i <= arrP.length; i++) {
+
+int bil = 0; // cek bilangan apakah prima(dibagi 1 dan bil itu sendiri)
+for (int j = 1; j <= arrP.length; j++) {
+	if (i % j == 0) { // pasti dibagi 1
+		bil = bil + 1;// agar hanya bisa dibagi bil itu sendiri
+	}
+	}
+	if (bil == 2) {
+		arrP[found] = i;
+	found++;
+		}
+	}
+		
+		for (int i : arrP) {
+		System.out.print(i);
+		}
+
+
+
+
+awalnya 2 =
+
+cek = ini udah brp?
+1 variabel a tugas
+
+
+
