@@ -397,9 +397,7 @@ from (
 		p.nm_produser,
 		count (distinct artis) as "jml artis"
 	from film f
-	right join artis a
-		on f.artis = a.kd_artis
-	right join produser p
+	inner join produser p
 		on f.produser = p.kd_produser
 	group by nm_produser
 	)t1
@@ -410,11 +408,28 @@ where t1."jml artis" = (select
 								p.nm_produser,
 								count (distinct artis) as "jml artis"
 							from film f
-							right join artis a
-								on f.artis = a.kd_artis
-							right join produser p
+							inner join produser p
 								on f.produser = p.kd_produser
 							group by nm_produser
 						)t2
 
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
