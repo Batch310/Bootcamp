@@ -9,15 +9,12 @@ CREATE TABLE biodata (
 	marital_status boolean
 );
 
-
 INSERT INTO biodata VALUES (1, 'Raya', 'Indriyani', '1991-01-01', 'Bali', 'Jl. Raya Baru, Bali', false);
 INSERT INTO biodata VALUES (2, 'Rere', 'Wulandari', '1992-01-02', 'Bandung', 'Jl. Berkah Ramadhan, Bandung', false);
 INSERT INTO biodata VALUES (3, 'Bunga', 'Maria', '1991-03-03', 'Jakarta', 'Jl. Mawar Semerbak, Bogor', true);
 INSERT INTO biodata VALUES (4, 'Natasha', 'Wulan', '1990-04-10', 'Jakarta', 'Jl. Mawar Harum, Jakarta', false);
 INSERT INTO biodata VALUES (5, 'Zahra', 'Aurelia Putri', '1991-03-03', 'Jakarta', 'Jl. Mawar Semerbak, Bogor', true);
 INSERT INTO biodata VALUES (6, 'Katniss', 'Everdeen', '1989-01-12', 'Jakarta', 'Jl. Bunga Melati, Jakarta', true);
-SELECT *
-FROM BIODATA;
 
 DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
@@ -33,8 +30,6 @@ INSERT INTO employee VALUES (2, 2, 'NX002', 'Kontrak', 15000000);
 INSERT INTO employee VALUES (3, 4, 'NX003', 'Permanen', 13500000);
 INSERT INTO employee VALUES (4, 5, 'NX004', 'Permanen', 12000000);
 INSERT INTO employee VALUES (5, 6, 'NX005', 'Permanen', 17000000);
-SELECT *
-FROM EMPLOYEE;
 
 DROP TABLE IF EXISTS contact_person;
 CREATE TABLE contact_person (
@@ -53,8 +48,6 @@ INSERT INTO contact_person VALUES (6, 3, 'MAIL', 'bunga.maria@gmail.com');
 INSERT INTO contact_person VALUES (7, 4, 'MAIL', 'natasha.wulan@gmail.com');
 INSERT INTO contact_person VALUES (8, 5, 'MAIL', 'zahra.putri@gmail.com');
 INSERT INTO contact_person VALUES (9, 6, 'MAIL', 'katniss.everdeen@gmail.com');
-SELECT *
-FROM CONTACT_PERSON;
 
 DROP TABLE IF EXISTS leave;
 CREATE TABLE leave (
@@ -67,8 +60,6 @@ INSERT INTO leave VALUES (1, 'Regular', 'Cuti Tahunan');
 INSERT INTO leave VALUES (2, 'Khusus', 'Cuti Menikah');
 INSERT INTO leave VALUES (3, 'Khusus', 'Cuti Haji & Umroh');
 INSERT INTO leave VALUES (4, 'Khusus', 'Melahirkan');
-SELECT *
-FROM LEAVE;
 
 DROP TABLE IF EXISTS employee_leave;
 CREATE TABLE employee_leave (
@@ -85,8 +76,6 @@ INSERT INTO employee_leave VALUES (4, 2, '2021', 12);
 INSERT INTO employee_leave VALUES (5, 4, '2021', 12);
 INSERT INTO employee_leave VALUES (6, 5, '2021', 12);
 INSERT INTO employee_leave VALUES (7, 6, '2021', 12);
-SELECT *
-FROM EMPLOYEE_LEAVE;
 
 DROP TABLE IF EXISTS leave_request;
 CREATE TABLE leave_request (
@@ -103,8 +92,6 @@ INSERT INTO leave_request VALUES (2, 1, 1, '2020-11-12', '2020-11-15', 'Acara ke
 INSERT INTO leave_request VALUES (3, 2, 2, '2020-05-05', '2020-05-07', 'Menikah');
 INSERT INTO leave_request VALUES (4, 2, 1, '2020-09-09', '2020-09-13', 'Touring');
 INSERT INTO leave_request VALUES (5, 2, 1, '2020-12-24', '2020-12-25', 'Acara keluarga');
-SELECT *
-FROM LEAVE_REQUEST;
 
 DROP TABLE IF EXISTS travel_type;
 CREATE TABLE travel_type (
@@ -115,8 +102,6 @@ CREATE TABLE travel_type (
 
 INSERT INTO travel_type VALUES (1, 'In Indonesia', 200000);
 INSERT INTO travel_type VALUES (2, 'Out Indonesia', 350000);
-SELECT *
-FROM TRAVEL_TYPE;
 
 DROP TABLE IF EXISTS travel_request;
 CREATE TABLE travel_request (
@@ -130,8 +115,6 @@ CREATE TABLE travel_request (
 INSERT INTO travel_request VALUES (1, 1, 1, '2020-07-07', '2020-07-08');
 INSERT INTO travel_request VALUES (2, 1, 1, '2020-08-07', '2020-08-08');
 INSERT INTO travel_request VALUES (3, 2, 2, '2020-04-04', '2020-04-07');
-SELECT *
-FROM TRAVEL_REQUEST;
 
 DROP TABLE IF EXISTS travel_settlement;
 CREATE TABLE travel_settlement (
@@ -150,8 +133,6 @@ INSERT INTO travel_settlement VALUES (6, 2, 'Tiket pesawat pulang', 1250000);
 INSERT INTO travel_settlement VALUES (7, 3, 'Tiket pesawat berangkat', 4750000);
 INSERT INTO travel_settlement VALUES (8, 3, 'Hotel', 6000000);
 INSERT INTO travel_settlement VALUES (9, 2, 'Tiket pesawat pulang', 4250000);
-SELECT *
-FROM TRAVEL_SETTLEMENT;
 
 DROP TABLE IF EXISTS position;
 CREATE TABLE position (
@@ -163,8 +144,6 @@ INSERT INTO position VALUES (1, 'Direktur');
 INSERT INTO position VALUES (2, 'General Manager');
 INSERT INTO position VALUES (3, 'Manager');
 INSERT INTO position VALUES (4, 'Staff');
-SELECT *
-FROM POSITION;
 
 DROP TABLE IF EXISTS employee_position;
 CREATE TABLE employee_position (
@@ -178,8 +157,6 @@ INSERT INTO employee_position VALUES (2, 4, 2);
 INSERT INTO employee_position VALUES (3, 3, 3);
 INSERT INTO employee_position VALUES (4, 2, 4);
 INSERT INTO employee_position VALUES (5, 1, 4);
-SELECT *
-FROM EMPLOYEE_POSITION;
 
 DROP TABLE IF EXISTS department;
 CREATE TABLE department (
@@ -191,8 +168,6 @@ INSERT INTO department VALUES (1, 'Recruitment');
 INSERT INTO department VALUES (2, 'Sales');
 INSERT INTO department VALUES (3, 'Human Resource');
 INSERT INTO department VALUES (4, 'General Affair');
-SELECT *
-FROM DEPARTMENT;
 
 DROP TABLE IF EXISTS family;
 CREATE TABLE family (
@@ -208,86 +183,84 @@ INSERT INTO family VALUES (3, 5, 'Jaka Samudera Buana', 'Suami');
 INSERT INTO family VALUES (4, 5, 'Friska Davira', 'Anak');
 INSERT INTO family VALUES (5, 5, 'Harum Indah Az Zahra', 'Anak');
 INSERT INTO family VALUES (6, 6, 'Adya Pratama Yuda', 'Suami');
-SELECT *
-FROM FAMILY;
 
---MATERI
---CONCAT : MENGGABUNGKAN 2 ATAU LEBIH TEKS
-SELECT * FROM BIODATA;
 
---CARA 1
-SELECT 
-	FIRST_NAME AS "FIRST NAME",
-	LAST_NAME AS "LAST NAME",
-	CONCAT(FIRST_NAME,' ',LAST_NAME) AS "FULL NAME"	
-FROM BIODATA;
+---------------------------------------------------------------------------------------
+select * from biodata;
+select * from ;
 
---CARA 2
-SELECT 
-	FIRST_NAME AS "FIRST NAME",
-	LAST_NAME AS "LAST NAME",
-	FIRST_NAME || ' ' || LAST_NAME AS "FULL NAME"	
-FROM BIODATA;
+--CONCAT : MENGGABUNGKAN DUA ATAU LEBIH TEXT
 
---FUNGSI NOW() : MENAMPILKAN WAKTU/DATE SEKARANG
-SELECT NOW(); --TIPE DATA DATE
+SELECT
+	FIRST_NAME,
+	LAST_NAME,
+	CONCAT(FIRST_NAME, ' ',LAST_NAME) AS "FULL NAME 1",
+	FIRST_NAME || ' '|| LAST_NAME AS "FULL NAME 2"
+FROM BIODATA
 
---DATE_PART() : AMBIL/EXTRACT BAGIAN DARI WAKTU/DATE
+--FUNGSI NOW() : MENAMPILKAN WAKTU / DATE SEKARANG
+
+SELECT NOW();
+
+--DATE_PART() : UNTUK AMBIL ATAU EKSTRAK BAGIAN DARI WAKTU
+
 SELECT DATE_PART('YEAR',NOW());
 SELECT DATE_PART('MONTH',NOW());
 SELECT DATE_PART('DAY',NOW());
 SELECT DATE_PART('HOUR',NOW());
 SELECT DATE_PART('MINUTE',NOW());
-SELECT DATE_PART('SECOND',NOW());
+SELECT DATE_PART('SECOND',NOW());	
 
-SELECT DATE_PART('YEAR','2023/01/02'); --ERROR, KARENA '2023/01/02' TIPE DATANYA BUKAN DATE
+--TO_DATE = KONVERSI STRING KE DATE
 
---TO_DATE() : UNTUK CONVERT TIPE DATA STRING KE DATE
-SELECT '2023/01/02'; --TIPE DATA TEXT
-SELECT TO_DATE('2023/01/02','YYYY/MM/DD'); --TIPE DATA DATE
-SELECT DATE_PART('YEAR',TO_DATE('2023/01/02','YYYY/MM/DD'));
+SELECT TO_DATE('02/01/2023', 'DD/MM/YYYY');
+
+--CONTOH
 
 SELECT
-	FIRST_NAME || ' ' || LAST_NAME AS "FULL NAME",
 	DOB,
-	TO_DATE(DOB,'YYYY-MM--DD'),
-	--DATE_PART('YEAR',TO_DATE(DOB,'YYYY-MM-DD')),
-	--AGE(NOW(),TO_DATE(DOB,'YYYY-MM--DD')),
-	DATE_PART('YEAR',AGE(NOW(),TO_DATE(DOB,'YYYY-MM--DD')))
-FROM BIODATA
-ORDER BY AGE(NOW(),TO_DATE(DOB,'YYYY-MM--DD')) ASC;
+	DATE_PART('YEAR', TO_DATE(DOB,'YYYY-MM-DD'))
+FROM BIODATA;
 
---AGE() : MENGHITUNG SELISIH DARI 2 DATE
+
+--AGE : MENGHITUNG SELISIH DARI DUA DATE
 SELECT NOW();
-SELECT TO_DATE('15/04/2000','DD/MM/YYYY');
-SELECT AGE(NOW(),TO_DATE('15/04/2000','DD/MM/YYYY'));
-SELECT DATE_PART('YEAR',AGE(NOW(),TO_DATE('15/04/2000','DD/MM/YYYY')));
+SELECT TO_DATE('27/12/1997', 'DD/MM/YYYY');
+SELECT AGE(NOW(), TO_DATE('27/12/1997','DD/MM/YYYY'));
+SELECT DATE_PART('YEAR', AGE(NOW(), TO_DATE('27/12/1997', 'DD/MM/YYY')));
 
---CASE WHEN END -> KONDISI PERCABANGAN DI SQL
-SELECT 
+SELECT
+	DOB,
+	TO_DATE(DOB,'YYYY-MM-DD'),
+	AGE(NOW(),TO_DATE(DOB,'YYYY-MM-DD')),
+	DATE_PART('YEAR',AGE(NOW(),TO_DATE(DOB,'YYYY-MM-DD'))) AS UMUR
+FROM BIODATA;
+
+--CASE WHEN END : KONDISI PERCABANGAN DI SQL
+SELECT
 	--KOLOM 1
 	POB,
 	--KOLOM 2
 	CASE
-		WHEN POB ILIKE 'bali' THEN 'BALI'
-		WHEN POB = 'Bandung' THEN 'BANDUNG PARIS VAN JAVA'
-		ELSE 'KOTA ANTAH BERANTAH'
+		WHEN POB ilike 'BAli' THEN 'Denpasar'
+		WHEN POB = 'Bandung' THEN 'Paris Van Java'
+		ELSE 'Kota Antah Berantah'
 	END
 FROM BIODATA;
 
+
+
 --LATIHAN 1
---1 TAMPILKAN FULL NAME, JABATAN, USIA & JUMLAH ANAK DARI MASING - MASING KARYAWAN
-SELECT * FROM BIODATA;
-SELECT * FROM FAMILY;
-SELECT
-	B.FIRST_NAME || ' ' || B.LAST_NAME AS "FULL NAME",
-	P.NAME AS "JABATAN",
-	DATE_PART('YEAR',AGE(NOW(),TO_DATE(B.DOB,'YYYY-MM-DD'))) AS "USIA",
-	SUM(CASE
-			WHEN F.STATUS ILIKE 'ANAK' THEN 1
-			ELSE 0
+-- 1 TAMPILKAN FULLNAME, JABATAN, USIA & JUMLAH ANAK DARI MASING2 KARYAWAN
+SELECT 
+	CONCAT(FIRST_NAME,' ',LAST_NAME) AS FULL_NAME,
+	P.NAME AS JABATAN,
+	DATE_PART('YEAR',AGE(NOW(),TO_DATE(B.DOB,'YYYY-MM-DD'))) AS USIA,
+	SUM (CASE
+		 WHEN F.STATUS ILIKE 'ANAK' THEN 1
+		ELSE 0
 		END) 
-	AS "JUMLAH ANAK" 
+		AS JUMLAH_ANAK
 FROM BIODATA B
 INNER JOIN EMPLOYEE E
 	ON B.ID = E.BIODATA_ID
@@ -297,206 +270,194 @@ INNER JOIN POSITION P
 	ON EP.POSITION_ID = P.ID
 LEFT JOIN FAMILY F
 	ON B.ID = F.BIODATA_ID
-GROUP BY 
-	"FULL NAME",
-	"JABATAN",
-	"USIA";
+GROUP BY FULL_NAME, JABATAN, USIA;
 
---2 HITUNG BERAPA HARI CUTI YANG SUDAH DIAMBIL MASING - MASING KARYAWAN
---COALESC() -> MENGUBAH YANG NULL JADI NILAI LAIN
+-- 2 HITUNG BERAPA HARI CUTI YANG SUDAH DI AMBIL MASING MASING KARYAWAN
+--COALESCE untuk mengubah null menjadi yang lain
+
 SELECT
-	B.FIRST_NAME || ' ' || B.LAST_NAME AS "FULL NAME",
-	COALESCE(SUM(DATE_PART('DAY',AGE(LR.END_DATE,LR.START_DATE))),0) AS "JUMLAH CUTI",
-	CASE
-		WHEN SUM(DATE_PART('DAY',AGE(LR.END_DATE,LR.START_DATE))) IS NULL THEN 0
-		ELSE SUM(DATE_PART('DAY',AGE(LR.END_DATE,LR.START_DATE)))
-	END
-	AS "JUMLAH CUTI"
+	 B.FIRST_NAME || ' ' || B.LAST_NAME AS NAMA_KARYAWAN,
+	COALESCE (DATE_PART('DAY', SUM (AGE(LR.END_DATE, LR.START_DATE))),0) AS JUMLAH_CUTI
 FROM BIODATA B
-INNER JOIN EMPLOYEE E
+JOIN EMPLOYEE E
 	ON B.ID = E.BIODATA_ID
 LEFT JOIN LEAVE_REQUEST LR
 	ON E.ID = LR.EMPLOYEE_ID
-GROUP BY "FULL NAME";
+GROUP BY NAMA_KARYAWAN;
 
---3 TAMPILKAN FULL NAME DAN JABATAN 3 KARYAWAN PALING TUA
+-- 3 TAMPILKAN FULLNAME DAN JABATAN 3 KARYAWAN PALING TUA
 SELECT
-	B.FIRST_NAME || ' ' || B.LAST_NAME AS "FULL NAME",
-	P.NAME AS "JABATAN"
-	--AGE(NOW(),TO_DATE(DOB,'YYYY-MM-DD'))
+	B.FIRST_NAME || ' ' || B.LAST_NAME AS FULL_NAME,
+	P.NAME AS JABATAN
 FROM BIODATA B
-INNER JOIN EMPLOYEE E
+JOIN EMPLOYEE E
 	ON B.ID = E.BIODATA_ID
-INNER JOIN EMPLOYEE_POSITION EP
+JOIN EMPLOYEE_POSITION EP
 	ON E.ID = EP.EMPLOYEE_ID
-INNER JOIN POSITION P
+LEFT JOIN POSITION P
 	ON EP.POSITION_ID = P.ID
-ORDER BY AGE(NOW(),TO_DATE(DOB,'YYYY-MM-DD')) DESC
+ORDER BY DOB ASC
 LIMIT 3;
-	
---4 TAMPILKAN NAMA NAMA PELAMAR YANG TIDAK DITERIMA KARYAWAN
+
+-- 4 TAMPILKAN NAMA NAMA PELAMAR YANG TIDAK DITERIMA KARYAWAN
 SELECT
-	B.FIRST_NAME || ' ' || B.LAST_NAME AS "FULL NAME"
+	B.FIRST_NAME || ' ' || B.LAST_NAME AS FULL_NAME,
 FROM BIODATA B
 LEFT JOIN EMPLOYEE E
 	ON B.ID = E.BIODATA_ID
-WHERE E.ID IS NULL;
+WHERE E.BIODATA_ID is null;
 
---5 HITUNG BERAPA GAJI RATA - RATA KARYAWAN DENGAN LEVEL STAFF
+-- 5 HITUNG BERAPA RATA-RATA GAJI KARYAWAN DENGAN LEVEL STAFF
 SELECT
-	P.NAME AS "JABATAN",
-	ROUND(AVG(E.SALARY)) AS "RATA - RATA GAJI STAFF"
+	--B.FIRST_NAME || ' ' || B.LAST_NAME,
+	--P.NAME 
+	ROUND(AVG(E.SALARY)) AS "RATA-RATA_GAJI"
 FROM BIODATA B
-INNER JOIN EMPLOYEE E
+JOIN EMPLOYEE E
 	ON B.ID = E.BIODATA_ID
-INNER JOIN EMPLOYEE_POSITION EP
-	ON E.ID = EP.EMPLOYEE_ID
-INNER JOIN POSITION P
-	ON EP.POSITION_ID = P.ID
-WHERE P.NAME ILIKE 'STAFF'
-GROUP BY P.NAME;
-
-----------------------------------------------------------------------
-SELECT * FROM BIODATA;
-SELECT * FROM EMPLOYEE;
-SELECT * FROM FAMILY;
---1 Tampilkan status karyawan dan jumlah karyawan untuk setiap statusnya
+JOIN EMPLOYEE_POSITION EP
+	ON EP.EMPLOYEE_ID = E.ID
+JOIN POSITION P
+	ON P.ID = EP.POSITION_ID
+	
+	
+	
+-- 1 tampilkan status karyawan dan jumlah karyawan untuk setiap statusnya
 SELECT
-	E.STATUS AS "STATUS KARYAWAN",
-	COUNT(E.BIODATA_ID) AS "JUMLAH KARYAWAN"
+	E.STATUS,
+	COUNT(B.FIRST_NAME)
 FROM BIODATA B
-INNER JOIN EMPLOYEE E
+JOIN EMPLOYEE E
 	ON B.ID = E.BIODATA_ID
 GROUP BY E.STATUS;
 
---2 Tampilkan data biodata yang bukan merupakan karyawan
+-- 2 tampilkan data biodata yang bukan karyawan
+select
+	b.*
+from biodata b
+left join employee e
+	on b.id = e.biodata_id
+where e.biodata_id is null;
+
+-- 3 tampilkan fullname, status pernikahan dan nama anak dari data biodata yang sudah punya anak
+select
+	b.first_name || ' ' || b.last_name as full_name,
+	case 
+		when b.marital_status = true then 'sudah menikah'
+		else 'belum menikah'
+	end
+	as "status pernikahan",
+	f.name
+from biodata b
+full join family f
+	on b.id = f.biodata_id;
+
+-- 5 tampilkan tahun lahir dan jumlah karyawan yang mempunyai tahun lahir yang sama
+select
+	distinct (date_part('year', to_date (b.dob, 'yyyy-mm-dd'))) as "tahun lahir",
+	count (date_part('year', to_date (b.dob, 'yyyy-mm-dd'))) as "jumlah karyawan"
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+group by "tahun lahir";
+
+-- 6 tampilkan data biodata & jabatan dari karyawan
+select
+	b.*,
+	p.name
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join employee_position ep
+	on e.id = ep.employee_id
+join position p
+	on ep.position_id = p.id;
+
+-- 7 tampilkan data biodata yang alamat dan tempat lahirnya bukan jakarta
+select
+	b.*
+from biodata b
+where not b.pob ilike '%jakarta%' and not address ilike '%jakarta';
+
+-- 8 tampilkan fullname, jabatan dan usia dari karyawan
+select
+	b.first_name || ' ' || b.last_name as full_name,
+	p.name,
+	date_part('year',age(now(), to_date (b.dob, 'yyyy-mm-dd'))) as usia
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join employee_position ep
+	on e.id = ep.employee_id
+join position p
+	on ep.position_id = p.id;
+	
+-- 9 tampilkan nama karyawan yang cutinya paling lama
+
+-- tabel 1
 SELECT
-	B.*
+	B.FIRST_NAME || ' ' || B.LAST_NAME AS NAMA_KARYAWAN,
+	SUM (AGE(LR.END_DATE, LR.START_DATE))) AS JUMLAH_CUTI
 FROM BIODATA B
-LEFT JOIN EMPLOYEE E
+JOIN EMPLOYEE E
 	ON B.ID = E.BIODATA_ID
-WHERE E.ID IS NULL;
+JOIN LEAVE_REQUEST LR
+	ON E.ID = LR.EMPLOYEE_ID
+GROUP BY NAMA_KARYAWAN;
 
---3 Tampilkan fullname, status pernikahan (sudah menikah/belum menikah) dan nama anak dari data biodata yang sudah punya anak
-SELECT
-	B.FIRST_NAME || ' ' || B.LAST_NAME AS "FULLNAME",
-	CASE
-		WHEN B.MARITAL_STATUS = TRUE THEN 'SUDAH MENIKAH'
-		ELSE 'BELUM MENIKAH'
-	END 
-	AS "STATUS PERNIKAHAN",
-	F.NAME AS "NAMA ANAK"
+select max(t.JUMLAH_CUTI) from (SELECT B.FIRST_NAME || ' ' || B.LAST_NAME AS NAMA_KARYAWAN,
+	SUM (AGE(LR.END_DATE, LR.START_DATE))) AS JUMLAH_CUTI
 FROM BIODATA B
-LEFT JOIN EMPLOYEE E
-	ON B.ID = E.BIODATA_ID
-LEFT JOIN FAMILY F
-	ON B.ID = F.BIODATA_ID
-WHERE F.STATUS ILIKE 'ANAK';
+JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
+JOIN LEAVE_REQUEST LR ON E.ID = LR.EMPLOYEE_ID
+GROUP BY NAMA_KARYAWAN)t
 
---5 Tampilkan tahun lahir & jumlah karyawan yang mempunyai tahun lahir yang sama
-SELECT
-	DATE_PART('YEAR',TO_DATE(B.DOB,'YYYY-MM-DD')) AS "TAHUN LAHIR",
-	COUNT(DATE_PART('YEAR',TO_DATE(B.DOB,'YYYY-MM-DD')))
-FROM BIODATA B
-INNER JOIN EMPLOYEE E
-	ON B.ID = E.BIODATA_ID
-GROUP BY "TAHUN LAHIR";
-
---6 Tampilkan data biodata & jabatan dari karyawan
-SELECT
-	B.*,
-	P.NAME AS JABATAN
-FROM BIODATA B
-INNER JOIN EMPLOYEE E
-	ON B.ID = E.BIODATA_ID
-INNER JOIN EMPLOYEE_POSITION EP
-	ON E.ID = EP.EMPLOYEE_ID
-INNER JOIN POSITION P
-	ON EP.POSITION_ID = P.ID;
-
---7 Tampilkan data biodata yang alamat & tempat lahirnya bukan jakarta
-SELECT 
-	B.*
-FROM BIODATA B
-WHERE B.POB NOT ILIKE 'JAKARTA' AND B.ADDRESS NOT ILIKE '%JAKARTA%';
-
---8 Tampilkan fullname, jabatan dan usia dari karyawan
-SELECT
-	B.FIRST_NAME || ' ' || B.LAST_NAME AS "FULLNAME",
-	P.NAME AS "JABATAN",
-	DATE_PART('YEAR',AGE(NOW(),TO_DATE(B.DOB,'YYYY-MM-DD'))) AS "USIA"
-FROM BIODATA B
-INNER JOIN EMPLOYEE E
-	ON B.ID = E.BIODATA_ID
-INNER JOIN EMPLOYEE_POSITION EP
-	ON E.ID = EP.EMPLOYEE_ID
-INNER JOIN POSITION P
-	ON EP.POSITION_ID = P.ID;
-
---9 Tampilkan nama karyawan yang cutinya paling lama
-SELECT T1.*
+--jadi
+SELECT *
 FROM
-	(SELECT B.FIRST_NAME || ' ' || B.LAST_NAME AS "NAMA KARYAWAN",
+	(SELECT B.FIRST_NAME || ' ' || B.LAST_NAME AS FULLNAME,
 			SUM(AGE(LR.END_DATE,
 
-								LR.START_DATE)) AS "JUMLAH CUTI"
+								LR.START_DATE)) AS JUMLAH_CUTI
 		FROM BIODATA B
-		INNER JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
-		LEFT JOIN LEAVE_REQUEST LR ON E.ID = LR.EMPLOYEE_ID
-		GROUP BY "NAMA KARYAWAN") T1
-WHERE T1."JUMLAH CUTI" =
-		(SELECT MAX(T2."JUMLAH CUTI")
+		JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
+		JOIN LEAVE_REQUEST LR ON E.ID = LR.EMPLOYEE_ID
+		GROUP BY FULLNAME) T
+WHERE T.JUMLAH_CUTI =
+		(SELECT MAX(T.JUMLAH_CUTI)
 			FROM
-				(SELECT B.FIRST_NAME || ' ' || B.LAST_NAME AS "NAMA KARYAWAN",
+				(SELECT B.FIRST_NAME || ' ' || B.LAST_NAME AS FULLNAME,
 						SUM(AGE(LR.END_DATE,
 
-											LR.START_DATE)) AS "JUMLAH CUTI"
+											LR.START_DATE)) AS JUMLAH_CUTI
 					FROM BIODATA B
-					INNER JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
-					LEFT JOIN LEAVE_REQUEST LR ON E.ID = LR.EMPLOYEE_ID
-					GROUP BY "NAMA KARYAWAN") T2);
-					
---TEMPORARY TABLE
-DROP TABLE IF EXISTS TEMP_TABLE;
-CREATE TEMPORARY TABLE TEMP_TABLE(
-	NAMA_KARYAWAN TEXT,
-	JUMLAH_CUTI INTERVAL
-);
+					JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
+					JOIN LEAVE_REQUEST LR ON E.ID = LR.EMPLOYEE_ID
+					GROUP BY FULLNAME) T)
 
-INSERT INTO TEMP_TABLE
-SELECT B.FIRST_NAME || ' ' || B.LAST_NAME AS FULLNAME,
-	SUM(AGE(LR.END_DATE,
 
-						LR.START_DATE))
-FROM BIODATA B
-INNER JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
-LEFT JOIN LEAVE_REQUEST LR ON E.ID = LR.EMPLOYEE_ID
-GROUP BY FULLNAME;
 
-SELECT *
-FROM TEMP_TABLE
-WHERE JUMLAH_CUTI =
-		(SELECT MAX(JUMLAH_CUTI)
-			FROM TEMP_TABLE);
-
---10 Tampilkan nama karyawan, jenis perjalanan dinas, tanggal perjalanan dinas dan total pengeluarannya selama perjalanan dinas tersebut
-SELECT B.FIRST_NAME || ' ' || B.LAST_NAME AS "NAMA KARYAWAN",
-	TT.NAME AS "JENIS PERJALANAN DINAS",
-	TR.START_DATE || ' s.d ' || TR.END_DATE AS "TANGGAL PERJALANAN DINAS",
-	TT.TRAVEL_FEE + SUM(TS.ITEM_COST) AS "TOTAL PENGELUARAN"
-FROM BIODATA B
-INNER JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
-RIGHT JOIN TRAVEL_REQUEST TR ON E.ID = TR.EMPLOYEE_ID
-LEFT JOIN TRAVEL_TYPE TT ON TT.ID = TR.TRAVEL_TYPE_ID
-LEFT JOIN TRAVEL_SETTLEMENT TS ON TR.ID = TS.TRAVEL_REQUEST_ID
-GROUP BY "NAMA KARYAWAN",
-	"JENIS PERJALANAN DINAS",
-	"TANGGAL PERJALANAN DINAS",
-	TT.TRAVEL_FEE;
+-- 10 tampilkan nama karyawan, jenis perjalanan dinas, tanggal perjalanan dinas dan total
+-- pengeluarannya selama perjalanan dinas tersebut
+select
+	b.first_name || ' ' || b.last_name as full_name,
+	tt.name as jenis_perjalanan,
+	tr.start_date || ' S.D ' || tr.end_date as tanggal_perjalanan,
+	sum(ts.item_cost) + tt.travel_fee as total_pengeluaran
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join travel_request tr
+	on e.id = tr.employee_id
+join travel_type tt
+	on tt.id = tr.travel_type_id
+join travel_settlement ts
+	on ts.travel_request_id = tr.id
+group by full_name, jenis_perjalanan, tanggal_perjalanan, tt.travel_fee
 	
---Casting atau convert tipe data yang ditampilkan atau diolah
-SELECT '100' AS DATA;
-SELECT '100'::INT AS DATA;
-SELECT 100::TEXT AS DATA;
-SELECT '100' + 50 AS DATA;
-SELECT '100' + '50'::INT AS DATA;
+
+--casting / convert tipe data yang ditampilkan / diolah
+select '100' as data;
+select '100'::int as data;
+
+

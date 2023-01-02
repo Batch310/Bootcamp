@@ -136,6 +136,13 @@ select nama_pegawai,count(umur) from pegawai group by nama_pegawai;
 -- note : "Kalo sudah jelas 1 data langsung eksekusi,
             kalo hasil, perlu di query"
 
+--order by ...ASC;
+limit 1 (menampilkan data urutan paling atas)
+
+--Casting/convert tipe data yg ditampilkan/diolah
+  select '100' as data; -- tipe string
+  select '100'::int as data ; --convert text to int
+  select 100::text as data ; --convert int to text
 
 --Latihan Film
 create table film(
