@@ -249,16 +249,137 @@ WHERE JML_FILM =
 			FROM TEMP_TABLE);
 
 --24 tampilkan negara mana yg paling banyak filmnya
+ select nm_negara as "nama negara", count (nm_film) as total from film f right join artis a
+ on f.artis = a.kd_artis join negara n on a.negara = n.kd_negara group by nm_negara
+ 
+ select * from ( select nm_negara as "nama negara", count (nm_film) as total from film f right join artis a
+ on f.artis = a.kd_artis join negara n on a.negara = n.kd_negara group by nm_negara) kesatu
+ where kesatu.total = (select max(kedua.total) 
+					   from( select nm_negara as "nama negara", count (nm_film) as total from film f right join artis a
+ on f.artis = a.kd_artis join negara n on a.negara = n.kd_negara group by nm_negara)kedua
+					  );
+
 --25 tampilkan data negara dengan jumlah filmnya
+SELECT 
+	nm_negara AS "Negara", 
+	Count(f.nm_film) AS "Jumlah film" 
+FROM negara n 
+JOIN artis a ON a.negara = n.kd_negara
+JOIN film f ON f.artis = a.kd_artis
+GROUP BY nm_negara
+
 --26 tampilkan nama produser yg skalanya international
+SELECT nm_produser as "produser"
+FROM produser
+WHERE international = 'YA';
+
 --27 tampilkan jumlah film dr masing2 produser
+SELECT 
+  P.nm_produser,
+  COUNT(F.nm_film)
+FROM FILM F
+RIGHT JOIN PRODUSER P
+	ON F.produser = P.kd_produser 
+GROUP BY P.nm_produser;
+
 --28 tampilkan jumlah nominasi dari masing2 produser
+select
+	nm_produser,
+	--Keyword Coalesce untuk menghandle null
+	Coalesce(sum(nominasi),0)  as "jumlah nominasi"
+from film f
+right join produser p on f.produser = p.kd_produser
+group by nm_produser
+order by "jumlah nominasi" desc
+
+select coalesce(null,null,null,4)
+
 --29 tampilkan jumlah pendapatan produser marvel secara keseluruhan
+select
+	nm_produser as "nama produser",
+	sum(pendapatan)
+from film f join produser p
+on f.produser = p.kd_produser
+group by nm_produser
+having lower(nm_produser) = 'marvel';
+
 --30 tampilkan jumlah pendapatan produser yg skalanya tidak international
+select nm_produser, coalesce(sum(pendapatan),0)
+from film f
+right join produser p on f.produser = p.kd_produser
+-- where p.international = 'TIDAK' --Cara Pake Where
+group by nm_produser,international
+having international = 'TIDAK'
+
 --31 tampilkan produser yg tidak punya film
+--CARA 1
+SELECT NM_PRODUSER
+FROM PRODUSER P
+LEFT JOIN FILM F ON P.KD_PRODUSER = F.PRODUSER
+WHERE KD_FILM IS NULL;
+
+--CARA 2
+SELECT NM_PRODUSER
+FROM PRODUSER
+WHERE KD_PRODUSER NOT IN(SELECT PRODUSER FROM FILM)
+
 --32 tampilkan produser film yg memilik artis termahal
+--CARA 1
+SELECT * 
+FROM (SELECT NM_PRODUSER, MAX(BAYARAN) AS BAYARAN
+		FROM PRODUSER P
+		LEFT JOIN FILM F ON P.KD_PRODUSER= F.PRODUSER 
+		LEFT JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+		GROUP BY NM_PRODUSER) KESATU
+WHERE KESATU.BAYARAN = (SELECT MAX(KEDUA.BAYARAN) FROM
+					   		(SELECT NM_PRODUSER, MAX(BAYARAN) AS BAYARAN
+								FROM PRODUSER P
+								LEFT JOIN FILM F ON P.KD_PRODUSER= F.PRODUSER 
+								LEFT JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS
+								GROUP BY NM_PRODUSER
+							) KEDUA
+					   )
+
+-CARA 2
+SELECT DISTINCT(NM_PRODUSER), BAYARAN
+FROM PRODUSER P
+LEFT JOIN FILM F ON P.KD_PRODUSER= F.PRODUSER 
+LEFT JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS 
+WHERE BAYARAN = (SELECT MAX(BAYARAN) FROM ARTIS)		
+
 --33 tampilkan produser yg memiliki artis paling banyak	
+SELECT *
+	FROM (SELECT NM_PRODUSER, COUNT(NM_ARTIS) AS TOTAL_ARTIS
+		FROM (SELECT DISTINCT NM_PRODUSER, NM_ARTIS
+		FROM PRODUSER P
+		LEFT JOIN FILM F ON P.KD_PRODUSER = F.PRODUSER
+		LEFT JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS) KESATU
+		GROUP BY NM_PRODUSER) KEDUA
+WHERE KEDUA.TOTAL_ARTIS = (SELECT MAX(KEEMPAT.TOTAL_ARTIS) FROM
+						   (SELECT NM_PRODUSER, COUNT(NM_ARTIS) AS TOTAL_ARTIS
+							 FROM (SELECT DISTINCT NM_PRODUSER, NM_ARTIS
+							 FROM PRODUSER P
+							 LEFT JOIN FILM F ON P.KD_PRODUSER = F.PRODUSER
+							 LEFT JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS) KETIGA
+							 GROUP BY NM_PRODUSER) KEEMPAT
+						  )
+		
 --34 tampilkan produser yg memiliki artis paling sedikit
+SELECT *
+	FROM (SELECT NM_PRODUSER, COUNT(NM_ARTIS) AS TOTAL_ARTIS
+		FROM (SELECT DISTINCT NM_PRODUSER, NM_ARTIS
+		FROM PRODUSER P
+		LEFT JOIN FILM F ON P.KD_PRODUSER = F.PRODUSER
+		LEFT JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS) KESATU
+		GROUP BY NM_PRODUSER) KEDUA
+WHERE KEDUA.TOTAL_ARTIS = (SELECT MIN(KEEMPAT.TOTAL_ARTIS) FROM
+						   (SELECT NM_PRODUSER, COUNT(NM_ARTIS) AS TOTAL_ARTIS
+							 FROM (SELECT DISTINCT NM_PRODUSER, NM_ARTIS
+							 FROM PRODUSER P
+							 LEFT JOIN FILM F ON P.KD_PRODUSER = F.PRODUSER
+							 LEFT JOIN ARTIS A ON F.ARTIS = A.KD_ARTIS) KETIGA
+							 GROUP BY NM_PRODUSER) KEEMPAT
+						  )
 
 
 
