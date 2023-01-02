@@ -328,10 +328,138 @@ join position p
 	on ep.position_id = p.id
 where name ilike 'staff'
 
+------------------------------------------------------------------------
+
+-- 1 Tampilkan status karyawan dan jumlah karyawan untuk setiap statusnya
+select 
+	status as "Status Karyawan",
+	count(*) as "Jumlah Karyawan"
+from employee
+group by "Status Karyawan"
+
+-- 2 Tampilkan data biodata yang bukan merupakan karyawan
+select 
+	*
+from biodata b
+left join employee e
+	on b.id = e.biodata_id
+where e.id is null;
+
+-- 3. Tampilkan fullname, status pernikahan (sudah menikah/ belum menikah) dan nama anak
+--	 dari data biodata yang sudah punya anak
+
+select
+	b.first_name || ' ' || b.last_name as fullname,
+	case
+		when b.marital_status = true then 'Sudah Menikah'
+		else 'Belum Menikah'
+	end
+	as "Status Pernikahan",
+	f.status as "Nama Anak"
+from biodata b
+join family f
+	on f.biodata_id = b.id 
+where f.status ilike 'anak'
+	
+-- 4 Tampilkan nama lengkap karyawan beserta departementnya
+-- (Bonus karena tabel departement tidak ada relasi)
+
+-- 5 Tampilkan tahun lahir & jumlah karyawan yang mempunyai tahun lahir yang sama
+select 
+	date_part('year',to_date(b.dob,'yyyy-mm-dd')) as "tahun lahir",
+	count (*)
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+group by "tahun lahir"
+
+-- 6 Tampilkan data biodata & jabatan dari karyawan
+select
+	b.*,
+	p.name as jabatan
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join employee_position ep
+	on e.id = ep.employee_id
+join position p
+	on p.id = ep.position_id
 
 
+-- 7 Tampilkan data biodata yang alamat & tempat lahirnya bukan jakarta
+select *
+from biodata
+where address not ilike '%jakarta%' AND pob not ilike 'jakarta'
 
+-- 8 Tampilkan fullname, jabatan dan usia dari karyawan
+select
+	b.first_name || ' ' || b.last_name as fullname,
+	p.name as jabatan,
+	date_part('year', age(now(),to_date(b.dob,'yyyy-mm-dd')))as usia
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join employee_position ep
+	on e.id = ep.employee_id
+join position p
+	on p.id = ep.position_id
+	
+-- 9 Tampilkan nama karyawan yang cutinya paling lama
+select 
+	b.first_name || ' ' || b.last_name as fullname,
+	sum(age(lr.end_date,lr.start_date)) as jumlah_cuti
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join leave_request lr
+	on e.id = lr.employee_id
+group by fullname
 
+select max(t.jumlah_cuti) from (select 
+	b.first_name || ' ' || b.last_name as fullname,
+	sum(age(lr.end_date,lr.start_date)) as jumlah_cuti
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join leave_request lr
+	on e.id = lr.employee_id
+group by fullname) t
+
+SELECT *
+FROM
+	(SELECT B.FIRST_NAME || ' ' || B.LAST_NAME AS FULLNAME,
+			SUM(AGE(LR.END_DATE,
+
+								LR.START_DATE)) AS JUMLAH_CUTI
+		FROM BIODATA B
+		JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
+		JOIN LEAVE_REQUEST LR ON E.ID = LR.EMPLOYEE_ID
+		GROUP BY FULLNAME) T
+WHERE T.JUMLAH_CUTI =
+		(SELECT MAX(T.JUMLAH_CUTI)
+			FROM
+				(SELECT B.FIRST_NAME || ' ' || B.LAST_NAME AS FULLNAME,
+						SUM(AGE(LR.END_DATE,
+
+											LR.START_DATE)) AS JUMLAH_CUTI
+					FROM BIODATA B
+					JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
+					JOIN LEAVE_REQUEST LR ON E.ID = LR.EMPLOYEE_ID
+					GROUP BY FULLNAME) T)
+
+-- 10 Tampilkan nama karyawan, jenis perjalanan dinas, tanggal perjalanan dinas
+-- dan total pengeluarannya selama perjalanan dinas tersebut
+SELECT 
+	B.FIRST_NAME || ' ' || B.LAST_NAME AS FULLNAME,
+	TT.NAME AS JENIS_PERJALANAN,
+	TR.START_DATE || ' s.d ' || TR.END_DATE AS TANGGAL_PERJALANAN,
+	sum(ts.item_cost) + tt.travel_fee as total_pengeluaran
+FROM BIODATA B
+JOIN EMPLOYEE E ON B.ID = E.BIODATA_ID
+JOIN TRAVEL_REQUEST TR ON E.ID = TR.EMPLOYEE_ID
+JOIN TRAVEL_TYPE TT ON TR.TRAVEL_TYPE_ID = TT.ID
+RIGHT JOIN TRAVEL_SETTLEMENT TS ON TR.ID = TS.TRAVEL_REQUEST_ID
+group by FULLNAME, JENIS_PERJALANAN, TANGGAL_PERJALANAN, travel_fee;
 
 
 
