@@ -28,7 +28,7 @@ public class Soall2 {
 				System.out.print(arrKalimat[i]);
 			}
 		}
-		System.out.println();
+		//System.out.println();
 
 		for (int i = 0; i < arrKalimat.length; i++) {
 			if (konsonan.contains(arrKalimat[i])) { //jika mengandung huruf vokal konsonan

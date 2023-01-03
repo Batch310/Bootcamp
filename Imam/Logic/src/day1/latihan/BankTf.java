@@ -2,7 +2,7 @@ package day1.latihan;
 
 import java.util.Scanner;
 
-public class Latihan10 {
+public class BankTf {
 
 	public static void main(String[] args) {
 

@@ -2,7 +2,7 @@ package day1.latihan;
 
 import java.util.Scanner;
 
-public class Latihan7 {
+public class GanjilGenap {
 
 	public static void main(String[] args) {
 

@@ -19,7 +19,7 @@ public class Soal3 {
 
 		for (int seratusInt = 100; found < data; seratusInt++) { // Perulangan mulai dari 100 ditambah 1
 			int hasil = 0;
-			String seratusStr = Integer.toString(seratusInt);
+			String seratusStr = Integer.toString(seratusInt); //ubah dari integer ke string
 
 			String[] arrStringSeratus = seratusStr.split(""); // split per karakter
 

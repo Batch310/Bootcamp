@@ -12,7 +12,6 @@ public class Soal1 {
 		System.out.println("n: ");
 		int n = scan.nextInt();
 
-		int[] arrgenap;
 		for (int i = 1; i <= n; i++) {
 
 			if (i % 2 == 1) {
