@@ -31,35 +31,19 @@ public class Soal3 {
 			
 			String[] arrSeratusStr = seratusStr.split(""); //Pemecahan angka 100 tipe data String untuk mengambil setiap digit dari angka 100 dan dimasukkan array
 			
-			for (int j = 0; j < arrSeratusStr.length; j++) { //Perulangan untuk mengambil angka digit pada array angka seratus 
-				int convAngka = Integer.parseInt(arrSeratusStr[j]); //Konversi atau pengubahan setiap digit pada angka array seratus dari tipe data String ke int
-				int totalPangkat = (int) Math.pow(convAngka, 2); //Mempangkatkan setiap digitnya dengan pangkat 2
-				hasil += totalPangkat; //Menambahkan hasil penjumlahan pangkat setiap digit
-//				System.out.println(hasil);
-			} 
+				for (int j = 0; j < arrSeratusStr.length; j++) { // Perulangan untuk mengambil angka digit pada arra  angka seratu 
+					int convAngka = Integer.parseInt(arrSeratusStr[j]); // Konversi atau pengubahan setiap digit pad  angka array seratus dari tipe data String k  in
+					int totalPangkat = (int) Math.pow(convAngka, 2); // Mempangkatkan setiap digitnya dengan pangkat 
+					hasil += totalPangkat; // Menambahkan hasil penjumlahan pangkat setiap digit
+//				System.out.println(hasil)}
+				}
 			
-			if (hasil == 1) { //Kondisi jika hasil penjumlahan pangkat setiap digit sama dengan 1
+			if (hasil == 1) { //Kondzisi jika hasil penjumlahan pangkat setiap digit sama dengan 1
 				System.out.println((found+1) + ". " + seratusInt + " adalah Si Angka 1"); //Cetak angka (100 + (berapa kali perulangan)) adalah Si Angka 1
 				found++; //Menambahkan penemuan Si Angka 1
-			} else { //Kondisi jika hasil penjumlahan pangkat setiap digit tidak sama dengan 1
-				while (hasil > 9) { //Perulangan untuk menemukan hasil penjumlahan pangkat yang banyaknya 1 digit
-					String hasilStr = Integer.toString(hasil); //Konversi atau pengubahan hasil penjumlahan pangkat dari tipe data int ke String untuk dipisah per satu digit supaya bisa dipecah
-					String[] arrHasilStr = hasilStr.split(""); //Pemecahan hasil penjumlahan pangkat tipe data String untuk mengambil setiap satu digitnya dan dimasukkan ke array
-					hasil = 0; //Mereset hasil menjadi 0 kembali untuk menemukan hasil penjumlahan pangkat yang sama dengan 1
-					for (int k = 0; k < arrHasilStr.length; k++) { //Perulangan untuk mengambil setiap digit dari array hasil penjumlahan pangkat
-						int convAngka = Integer.parseInt(arrHasilStr[k]); //Konversi atau pengubahan setiap digit pada hasil penjumlahan pangkat dari tipe data String ke int 
-						int totalPangkat = (int) Math.pow(convAngka, 2); //Mempangkatkan setiap digitnya dengan pangkat 2
-						hasil += totalPangkat; //Menambahkan hasil penjumlahan pangkat setiap digit
-					}
-					if (hasil == 1) { //Kondisi jika hasil penjumlahan pangkat setiap digit sama dengan 1
-						System.out.println((found+1) + ". " + seratusInt + " adalah Si Angka 1"); //Cetak angka (100 + (berapa kali perulangan)) adalah Si Angka 1
-						found++; //Menambahkan penemuan Si Angka 1
-					}
-				}
+			} else { //Kondisi jika hasil penjumlahan pangkat setiap digit tidak sama dengan 1				while (hasil > 9) { //Perulangan untuk menemukan hasil penjumlahan pangkat yang banyaknya 1 digit					String hasilStr = Integer.toString(hasil); //Konversi atau pengubahan hasil penjumlahan pangkat dari tipe data int ke String untuk dipisah per satu digit supaya bisa dipecah					String[] arrHasilStr = hasilStr.split(""); //Pemecahan hasil penjumlahan pangkat tipe data String untuk mengambil setiap satu digitnya dan dimasukkan ke array					hasil = 0; //Mereset hasil menjadi 0 kembali untuk menemukan hasil penjumlahan pangkat yang sama dengan 1					for (int k = 0; k < arrHasilStr.length; k++) { //Perulangan untuk mengambil setiap digit dari array hasil penjumlahan pangkat						int convAngka = Integer.parseInt(arrHasilStr[k]); //Konversi atau pengubahan setiap digit pada hasil penjumlahan pangkat dari tipe data String ke int 						int totalPangkat = (int) Math.pow(convAngka, 2); //Mempangkatkan setiap digitnya dengan pangkat 2						hasil += totalPangkat; //Menambahkan hasil penjumlahan pangkat setiap digit					}					if (hasil == 1) { //Kondisi jika hasil penjumlahan pangkat setiap digit sama dengan 1						System.out.println((found+1) + ". " + seratusInt + " adalah Si Angka 1"); //Cetak angka (100 + (berapa kali perulangan)) adalah Si Angka 1						found++; //Menambahkan penemuan Si Angka 1					}				}
+//			System.out.println(hasil);	
 			}
-			
-//			System.out.println(hasil);
 		}
-		
 	}
 }
