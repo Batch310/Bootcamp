@@ -3,7 +3,7 @@ package day1.latihan;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Latihan9 {
+public class Random_TebakAngka {
 
 	public static void main(String[] args) {
 
@@ -14,7 +14,7 @@ public class Latihan9 {
 		System.out.println("");
 
 		Random randomGen = new Random();
-		int a = randomGen.nextInt(10);
+		int a = randomGen.nextInt(10); //10 => 0-9
 		System.out.println("Angka dari bandar " + a);
 
 		if (tebakan == a) {

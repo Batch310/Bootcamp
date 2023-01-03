@@ -8,6 +8,25 @@ public class Mobil extends Kendaraan implements Navigasi{
 	public void bukaPintu() {
 		System.out.println("Pintu terbuka buat BosQ");
 	}
+	
+	public void isiBensin() {
+		System.out.println("Isi bensin sebanyak-banyaknya ahh~");
+	}
+	
+	public void isiBensin(int liter) {
+		if (liter == 0) {
+			System.out.println("Dorong motor");
+		} else {
+			System.out.println("Isi bensin sebanyak " + liter + " Liter");
+		}
+		
+	}
+
+	@Override
+	void gasPol() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void maju() {
@@ -16,20 +35,14 @@ public class Mobil extends Kendaraan implements Navigasi{
 	}
 
 	@Override
-	public void beloKiri() {
-	System.out.println("Belok kiri");
+	public void belokKiri() {
+		System.out.println("Kiri Mobil");
 		
 	}
 
 	@Override
 	public void belokKanan() {
-		System.out.println("Blok kanan");
-		
-	}
-
-	@Override
-	void gasPoll() {
-		// TODO Auto-generated method stub
+		System.out.println("Kanan Mobil");
 		
 	}
 	
