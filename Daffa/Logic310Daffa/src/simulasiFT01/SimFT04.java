@@ -9,7 +9,7 @@ public class SimFT04 {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Masukkan jumlah uang : ");
 		int uang = scanner.nextInt();
-		
+		scanner.close();
 		int hargaCokelat = 1000;
 		int stempel = uang/hargaCokelat;
 		int cokelat = 0;

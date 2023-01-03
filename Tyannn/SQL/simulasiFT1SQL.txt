@@ -1,0 +1,111 @@
+
+-- Soal 1
+
+select 
+	e.status,
+	count(status) as jumlah_karyawan
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+group by status
+
+-- soal 2
+select 
+	b.*
+from biodata b
+right join employee e
+	on b.id = e.biodata_id
+ where status not like 'Permanen' 
+
+-- soal 3
+select
+	b.first_name || ' ' || last_name as fullname,
+	b.marital_status,
+	f.status
+from biodata b	
+left join family f
+	on b.id = f.biodata_id
+group by fullname,status,marital_status
+
+-- soal 4
+select 
+	d.id,
+	d.name as name_departement
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join employee_leave el
+	on e.id = el.employee_id
+join department d
+	on el.id = d.id
+
+-- soal 5
+select 
+	date_part('year',to_date(dob,'YYYY-MM-DD')) as tahun
+from biodata b
+order by tahun desc
+
+--soal6
+select
+	b.*,
+	p.name as jabatan
+from biodata b
+left join employee e
+	on b.id = e.biodata_id
+left join employee_position ep
+	on e.id = ep.employee_id
+left join position p
+	on ep.position_id = p.id
+where p.name not like 'null'
+
+--soal 7
+select
+	b.*,
+	b.pob as tempat_lahir, 
+	b.address as alamat_tinggal
+from biodata b
+where b.pob ilike 'jakarta' and b.address not like '%Jakarta'
+
+--soal 8
+select 
+	b.first_name || ' ' || last_name as fullname,
+	p.name as jabatan,
+	age(now(),to_date(dob,'YYYY-MM-DD')) as tahun,
+	f.status 
+from biodata b
+left join employee e
+	on b.id = e.biodata_id
+left join employee_position ep
+	on e.id = ep.employee_id
+left join position p
+	on ep.position_id = p.id
+join family f
+	on b.id = f.biodata_id
+
+--soal 9
+select 
+	b.first_name || ' ' || last_name as fullname,
+	count(lr.start_date) as jumlah_cuti
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join leave_request lr
+	on e.id = lr.employee_id
+group by fullname
+	
+--soal 10
+select 
+	b.first_name || ' ' || last_name as fullname,
+	ts.item_name as perjalanan_dinas,
+	tr.start_date || 'S/D' || tr.end_date as tanggal_perjalanan,
+	ts.item_cost as total_pengeluaran
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join travel_request tr
+	on e.id = tr.employee_id
+join travel_settlement ts
+	on tr.id = ts.travel_request_id
+join travel_type tt
+	on tr.travel_type_id = tt.id
+

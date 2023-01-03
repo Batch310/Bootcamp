@@ -35,9 +35,9 @@ public class Soal7 {
 			if (vokal.contains(arrKalimat[i])) {
 				System.out.print(arrKalimat[i]);
 				if (vokal.contains(arrKalimat[i])) {
-					System.out.print("|");
+					System.out.print(" ");
 					vokal = vokal+arrKalimat[i];
-				}else {
+				}else if (vokal==vokal) {
 					
 				}
 			}
