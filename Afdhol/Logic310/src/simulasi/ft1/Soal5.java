@@ -30,7 +30,7 @@ public class Soal5 {
 	
 		int ketemu = inputX*inputY;
 		
-		System.out.println(inputZ);
+		//System.out.println(inputZ);
 		
 		Locale locale = new Locale("id", "ID");
 		
@@ -49,17 +49,11 @@ public class Soal5 {
 		long hari = 24 * 60 * 60 *1000;
 		
 		
-		if (inputX*inputY==inputY*inputX) {
-			
-		}
-		
 		millis = millis + (ketemu*hari);
 		tanggalDate.setTime(millis); //update ke millis terbaru agar millis sebelumnya berubah
 		
-		// 3. convert Date ke String 
 		String tanggalConvert = sdf.format(tanggalDate);// melakukan format dari tanggal ke String
 		
-		// 4.Cetak
 		System.out.println(tanggalConvert);
 		
 

@@ -1,0 +1,103 @@
+
+--1
+select	
+	e.status,
+	count( b.first_name ) as jumlah_karyawan
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+group by e.status;
+
+--2
+select
+	b.*
+from biodata b
+left join employee e
+	on b.id = e.biodata_id
+where e.biodata_id is null;
+
+--3
+select
+	b.first_name || '' || b.last_name as full_name,
+	b.marital_status,
+	case
+	when f.status ilike 'anak' then anak = 1
+	anak = 0
+	end
+from biodata b
+left join family f
+	on b.id = f.biodata_id
+group by full_name, b.marital_status
+
+--4
+select * from department;
+
+--5
+select
+	b.dob,
+	to_date(dob, 'yyyy-mm-dd')
+from biodata b
+group by b.dob
+
+--6
+select
+	b.*,
+	p.name
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join employee_position ep
+	on e.id = ep.employee_id
+join position p
+	on ep.position_id = p.id
+	
+--7
+select
+	b.*
+from biodata b
+where pob ilike '%jakarta%' and not address ilike '%jakarta';
+
+--8
+select
+	b.first_name || '' || b.last_name as full_name,
+	p.name as jabatan,
+	date_part('year')
+	f.status as jumlah_anak
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join employee_position ep
+	on e.id = ep.employee_id
+join position p
+	on ep.position_id = p.id
+left join family f
+	on b.id = f.biodata_id
+
+--9
+select
+	b.first_name,
+	(sum (age(lr.end_date, lr.start_date))) as hari_cuti
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+left join leave_request lr
+	on e.id = lr.employee_id
+group by b.first_name
+
+--10
+select
+	b.first_name,
+	tt.name,
+	tr.start_date,
+	sum(ts.item_cost),
+	tt.name
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join travel_request tr
+	on e.id = tr.employee_id
+join travel_type tt
+	on tr.travel_type_id = tt.id
+join travel_settlement ts
+	on tr.id = ts.travel_request_id
+group by b.first_name, tt.name, tr.start_date;
