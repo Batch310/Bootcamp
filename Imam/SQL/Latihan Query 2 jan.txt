@@ -1,0 +1,473 @@
+DROP TABLE IF EXISTS biodata;
+CREATE TABLE biodata (
+	id bigint,
+	first_name varchar(20), 
+	last_name varchar(30), 
+	dob varchar(10), 
+	pob varchar(50), 
+	address varchar(255), 
+	marital_status boolean
+);
+
+INSERT INTO biodata VALUES (1, 'Raya', 'Indriyani', '1991-01-01', 'Bali', 'Jl. Raya Baru, Bali', false);
+INSERT INTO biodata VALUES (2, 'Rere', 'Wulandari', '1992-01-02', 'Bandung', 'Jl. Berkah Ramadhan, Bandung', false);
+INSERT INTO biodata VALUES (3, 'Bunga', 'Maria', '1991-03-03', 'Jakarta', 'Jl. Mawar Semerbak, Bogor', true);
+INSERT INTO biodata VALUES (4, 'Natasha', 'Wulan', '1990-04-10', 'Jakarta', 'Jl. Mawar Harum, Jakarta', false);
+INSERT INTO biodata VALUES (5, 'Zahra', 'Aurelia Putri', '1991-03-03', 'Jakarta', 'Jl. Mawar Semerbak, Bogor', true);
+INSERT INTO biodata VALUES (6, 'Katniss', 'Everdeen', '1989-01-12', 'Jakarta', 'Jl. Bunga Melati, Jakarta', true);
+
+DROP TABLE IF EXISTS employee;
+CREATE TABLE employee (
+	id bigint,
+	biodata_id bigint,
+	nip varchar(5), 
+	status varchar(10), 
+	salary decimal(10, 0)
+);
+
+INSERT INTO employee VALUES (1, 1, 'NX001', 'Permanen', 12000000);
+INSERT INTO employee VALUES (2, 2, 'NX002', 'Kontrak', 15000000);
+INSERT INTO employee VALUES (3, 4, 'NX003', 'Permanen', 13500000);
+INSERT INTO employee VALUES (4, 5, 'NX004', 'Permanen', 12000000);
+INSERT INTO employee VALUES (5, 6, 'NX005', 'Permanen', 17000000);
+
+DROP TABLE IF EXISTS contact_person;
+CREATE TABLE contact_person (
+	id bigint,
+	biodata_id bigint,
+	type varchar(5), 
+	contact varchar(100)
+);
+
+INSERT INTO contact_person VALUES (1, 1, 'MAIL', 'raya.indriyani@gmail.com');
+INSERT INTO contact_person VALUES (2, 1, 'PHONE', '085612345678');
+INSERT INTO contact_person VALUES (3, 2, 'MAIL', 'rere.wulandari@gmail.com');
+INSERT INTO contact_person VALUES (4, 2, 'PHONE', '081312345678');
+INSERT INTO contact_person VALUES (5, 2, 'PHONE', '087812345678');
+INSERT INTO contact_person VALUES (6, 3, 'MAIL', 'bunga.maria@gmail.com');
+INSERT INTO contact_person VALUES (7, 4, 'MAIL', 'natasha.wulan@gmail.com');
+INSERT INTO contact_person VALUES (8, 5, 'MAIL', 'zahra.putri@gmail.com');
+INSERT INTO contact_person VALUES (9, 6, 'MAIL', 'katniss.everdeen@gmail.com');
+
+DROP TABLE IF EXISTS leave;
+CREATE TABLE leave (
+	id bigint,
+	type varchar(10), 
+	name varchar(100)
+);
+
+INSERT INTO leave VALUES (1, 'Regular', 'Cuti Tahunan');
+INSERT INTO leave VALUES (2, 'Khusus', 'Cuti Menikah');
+INSERT INTO leave VALUES (3, 'Khusus', 'Cuti Haji & Umroh');
+INSERT INTO leave VALUES (4, 'Khusus', 'Melahirkan');
+
+DROP TABLE IF EXISTS employee_leave;
+CREATE TABLE employee_leave (
+  id integer,
+  employee_id integer,
+  period varchar(4),
+  regular_quota integer
+);
+
+INSERT INTO employee_leave VALUES (1, 1, '2020', 16);
+INSERT INTO employee_leave VALUES (2, 2, '2020', 12);
+INSERT INTO employee_leave VALUES (3, 1, '2021', 16);
+INSERT INTO employee_leave VALUES (4, 2, '2021', 12);
+INSERT INTO employee_leave VALUES (5, 4, '2021', 12);
+INSERT INTO employee_leave VALUES (6, 5, '2021', 12);
+INSERT INTO employee_leave VALUES (7, 6, '2021', 12);
+
+DROP TABLE IF EXISTS leave_request;
+CREATE TABLE leave_request (
+	id bigint,
+	employee_id bigint,
+	leave_id bigint,
+	start_date date,
+	end_date date,
+	reason varchar(255)
+);
+
+INSERT INTO leave_request VALUES (1, 1, 1, '2020-10-10', '2020-10-12', 'Liburan');
+INSERT INTO leave_request VALUES (2, 1, 1, '2020-11-12', '2020-11-15', 'Acara keluarga');
+INSERT INTO leave_request VALUES (3, 2, 2, '2020-05-05', '2020-05-07', 'Menikah');
+INSERT INTO leave_request VALUES (4, 2, 1, '2020-09-09', '2020-09-13', 'Touring');
+INSERT INTO leave_request VALUES (5, 2, 1, '2020-12-24', '2020-12-25', 'Acara keluarga');
+
+DROP TABLE IF EXISTS travel_type;
+CREATE TABLE travel_type (
+	id bigint,
+	name varchar(50),
+	travel_fee integer
+);
+
+INSERT INTO travel_type VALUES (1, 'In Indonesia', 200000);
+INSERT INTO travel_type VALUES (2, 'Out Indonesia', 350000);
+
+DROP TABLE IF EXISTS travel_request;
+CREATE TABLE travel_request (
+	id bigint,
+	employee_id bigint,
+	travel_type_id bigint,
+	start_date date,
+	end_date date
+);
+
+INSERT INTO travel_request VALUES (1, 1, 1, '2020-07-07', '2020-07-08');
+INSERT INTO travel_request VALUES (2, 1, 1, '2020-08-07', '2020-08-08');
+INSERT INTO travel_request VALUES (3, 2, 2, '2020-04-04', '2020-04-07');
+
+DROP TABLE IF EXISTS travel_settlement;
+CREATE TABLE travel_settlement (
+	id bigint,
+	travel_request_id bigint,
+	item_name varchar(100),
+	item_cost integer
+);
+
+INSERT INTO travel_settlement VALUES (1, 1, 'Tiket travel Do-Car berangkat', 165000);
+INSERT INTO travel_settlement VALUES (2, 1, 'Hotel', 750000);
+INSERT INTO travel_settlement VALUES (3, 1, 'Tiket travel Do-Car pulang', 165000);
+INSERT INTO travel_settlement VALUES (4, 2, 'Tiket pesawat berangkat', 750000);
+INSERT INTO travel_settlement VALUES (5, 2, 'Hotel', 650000);
+INSERT INTO travel_settlement VALUES (6, 2, 'Tiket pesawat pulang', 1250000);
+INSERT INTO travel_settlement VALUES (7, 3, 'Tiket pesawat berangkat', 4750000);
+INSERT INTO travel_settlement VALUES (8, 3, 'Hotel', 6000000);
+INSERT INTO travel_settlement VALUES (9, 2, 'Tiket pesawat pulang', 4250000);
+
+DROP TABLE IF EXISTS position;
+CREATE TABLE position (
+	id bigint,
+	name varchar(100)
+);
+
+INSERT INTO position VALUES (1, 'Direktur');
+INSERT INTO position VALUES (2, 'General Manager');
+INSERT INTO position VALUES (3, 'Manager');
+INSERT INTO position VALUES (4, 'Staff');
+
+DROP TABLE IF EXISTS employee_position;
+CREATE TABLE employee_position (
+	id bigint,
+	employee_id bigint,
+	position_id bigint
+);
+
+INSERT INTO employee_position VALUES (1, 5, 1);
+INSERT INTO employee_position VALUES (2, 4, 2);
+INSERT INTO employee_position VALUES (3, 3, 3);
+INSERT INTO employee_position VALUES (4, 2, 4);
+INSERT INTO employee_position VALUES (5, 1, 4);
+
+DROP TABLE IF EXISTS department;
+CREATE TABLE department (
+	id bigint,
+	name varchar(100)
+);
+
+INSERT INTO department VALUES (1, 'Recruitment');
+INSERT INTO department VALUES (2, 'Sales');
+INSERT INTO department VALUES (3, 'Human Resource');
+INSERT INTO department VALUES (4, 'General Affair');
+
+DROP TABLE IF EXISTS family;
+CREATE TABLE family (
+	id bigint, 
+	biodata_id bigint, 
+	name varchar(100), 
+	status varchar(50)
+);
+
+INSERT INTO family VALUES (1, 3, 'Azka Fadlan Zikrullah', 'Suami');
+INSERT INTO family VALUES (2, 3, 'Primrose Everdeen', 'Anak');
+INSERT INTO family VALUES (3, 5, 'Jaka Samudera Buana', 'Suami');
+INSERT INTO family VALUES (4, 5, 'Friska Davira', 'Anak');
+INSERT INTO family VALUES (5, 5, 'Harum Indah Az Zahra', 'Anak');
+INSERT INTO family VALUES (6, 6, 'Adya Pratama Yuda', 'Suami');
+
+
+-----------------------------------------------------------------
+--concat : menggabungkan 2 atau lebih text
+select *from biodata
+select 
+first_name,
+last_name,
+concat(first_name,'',last_name) as "full name 1",
+first_name ||''||last_name as "ful name 2"
+from biodata;
+
+--Fungsi now() : Menampilkan waktu/date sekarang
+select now(); --tipe datanya date
+
+--date_part() : buat ambil/extract bagian dari waktu
+select date_part('year', now()); 
+select date_part('month', now());
+
+--error, karena '02/01/2023' parameter bukan bertipe date
+select date_part ('year', '02/01/2023');
+
+--to_date() : buat convert string ke date
+select '02/01/2023'; --masih tipe string
+select to_date('02/01/2023', 'DD/MM/YYYY');
+select date_part('year', to_date('02/01/2023','DD/MM/YYYY'));
+
+select
+dob,
+to_date(dob, 'yyyy-mm-dd'), --convert dari string ke date
+date_part('year', to_date(dob,'yyyy-mm-dd')) --(-)ikuti format tanggal
+from biodata;
+
+--age() : menghitung selisih date, dari 2 date
+select now();
+select to_date('02/05/2000', 'DD/MM/YYYY');
+select age(now(),to_date('02/05/2000', 'DD/MM/YYYY'));
+select date_part('year', age(now(),to_date('02/05/2000', 'DD/MM/YYYY')) )
+
+--itung selisih dinamis dari tabel
+select 
+	dob,                        							--dari kolom
+	to_date(dob, 'yyyy-mm-dd'),     						--convert string ke date
+	age(now(),to_date(dob, 'yyyy-mm-dd')), 					 --hitung selisih
+	date_part('year',age(now(),to_date(dob, 'yyyy-mm-dd')))  --ambil tahunnya
+from biodata;
+
+--case when end : Kondisi percabangan di sql
+select
+	pob,
+	case
+	    when pob ilike 'bali' then 'Bali joss'      -- ilike => bisa custom
+		when pob = 'Bandung' then 'Paris Van java'  -- (=) => harus sama 
+		else 'Kota Antah Brantah'
+	end
+from biodata;
+
+--LATIHAN 1
+--1. Tampilkan full name, jabatan, usia &jumlah anak dari masing2 karyawan
+
+select 
+	concat(first_name, ' ',last_name) as "Full Name",
+	p.name as "Jabatan",
+	date_part('year', age(now(), to_date(dob,'yyyy-mm-dd'))) as "Usia",
+	sum(case
+		when f.status ilike 'anak' then 1
+		else 0
+	end) as "Jumlah Anak"
+from biodata b
+inner join employee e
+	on b.id=e.biodata_id
+inner join employee_position ep
+	on ep.employee_id=e.id
+inner join position p
+	on p.id=ep.position_id
+left join family f
+	on f.biodata_id=b.id
+group by "Full Name", "Jabatan","Usia"
+
+-- Hitung berapa hari cuti yg sudah diambil masing masing karyawan
+-- Coalesce => Mengubah null menjadi yg lain
+
+select
+    first_name ||' '||last_name as "Nama Karyawan",
+	sum(age(lr.end_date, lr.start_date) )as "Lama Cuti"	,
+	coalesce(date_part('day',sum(age(lr.end_date, lr.start_date)) ),0),
+	case
+		when date_part('day',sum(age(lr.end_date, lr.start_date)) ) is null then 0
+		else date_part('day',sum(age(lr.end_date, lr.start_date)) )
+	end
+	--start_date,
+	--end_date
+from biodata b
+inner join employee e
+	on b.id=e.biodata_id
+left join leave_request lr
+	on e.id=lr.employee_id
+group by "Nama Karyawan";
+
+-- Tampilkan fullname dan jabatan 3 karyawan paling tua
+select
+   b.first_name ||' '|| b.last_name as "Full Name",
+   p.name as "Jabatan",
+   age(now(),  to_date(dob, 'yyyy-mm-dd')) as "Usia"
+from biodata b
+inner join employee e
+	on b.id=e.biodata_id
+inner join employee_position ep
+	on e.id=ep.employee_id
+left join position p
+	on p.id=ep.position_id
+order by "Usia" desc 	
+limit 3;
+
+
+--4 Tampilkan nama-nama pelamar yang tidak diterima karyawan
+select
+     b.first_name||' '||b.last_name as "Nama Lengkap",
+	 e.status
+from biodata b
+left join employee e
+	on b.id=e.biodata_id
+where e.status is null
+
+--5 Hitung berapa rata-rata gaji karyawan dgn level staff
+select
+	p.name,
+	round(avg(e.salary))
+from biodata b
+inner join employee e
+	on b.id=e.biodata_id
+inner join employee_position ep
+	on e.id=ep.employee_id
+inner join position p
+	on ep.position_id=p.id
+Where p.name ilike 'staff'
+group by p.name
+
+--1 Tampilkan status karyawan dan jumlah karyawan utk setiap statusnya
+select
+    e.status,
+   count(e.status) as "Jumlah Karyawan"
+ 
+from biodata b
+inner join employee e
+	on b.id=e.biodata_id
+group by e.status
+
+--2 Tampilkan data biodata yg bukan merupakan karyawan
+select
+	b.*
+from biodata b
+left join employee e
+	on b.id=e.biodata_id
+where e.status is null;
+
+
+--3 Tampilkan fullName, status pernikahan (sudah menikah/belum menikah) dan nama anak
+--  dari data biodata yg sudah punya anak (x)
+select
+	b.first_name||' '||last_name as "Full Name",
+	(case
+		when b.marital_status = 'true' then 'Sudah Menikah'
+		else 'Belum Menikah'
+	end) as "Status pernikahan",
+	f.name as "Nama Anak",
+	f.status
+from biodata b
+left join family f
+	on b.id=f.biodata_id
+where f.status ilike 'anak'
+
+--4 
+--5 Tampilkan tahun lahir & jumlah karyawan yg mempunyai tahun lahir sama
+select 
+	date_part('year',to_date(dob,'yyyy-mm-dd')) as "Tahun Lahir",
+	count(date_part('year',to_date(dob,'yyyy-mm-dd'))) as "Jumlah Karyawan"
+from biodata b
+inner join employee e
+	on b.id=e.biodata_id
+group by  "Tahun Lahir";
+
+--6 tampilkan data biodata & jabatan dari karyawan 
+select
+ b.*,
+ p.name
+from biodata b
+inner join employee e
+	on b.id=e.biodata_id
+inner join employee_position ep
+	on e.id=ep.employee_id
+right join position p 
+	on ep.position_id=p.id;
+	
+--7 Tampilkan data biodata yg alamat & tempat lahirnya bukan jkt
+select
+  b.*
+from biodata b
+where b.pob not ilike 'jakarta';
+
+--8 Tampilkan fullname, jabatan dan usia dari karyawan
+select
+  b.first_name||' '||b.last_name as "Full Name",
+  p.name as "Jabatan",
+  date_part('year', age(now(),to_date(b.dob, 'yyyy-mm-dd'))) as "Usia"
+from biodata b
+inner join employee e
+	on b.id=e.biodata_id
+inner join employee_position ep
+	on e.id=ep.employee_id
+inner join position p
+	on ep.position_id=p.id
+
+--9 tampilkan nama karyawan yg cutinya paling lama
+select
+     b.first_name,
+	 sum(age(end_date, start_date))
+from  biodata b
+inner join employee e
+	on b.id=e.biodata_id
+inner join leave_request lr
+    on e.id=lr.employee_id
+group by first_name	
+
+select
+*
+from(select
+     b.first_name,
+	 sum(age(end_date, start_date)) as "Cuti"
+from  biodata b
+inner join employee e
+	on b.id=e.biodata_id
+inner join leave_request lr
+    on e.id=lr.employee_id
+group by first_name
+) t1
+where t1."Cuti"=(select max(t2."Cuti")
+				from (select
+     b.first_name,
+	 sum(age(end_date, start_date)) as "Cuti"
+from  biodata b
+inner join employee e
+	on b.id=e.biodata_id
+inner join leave_request lr
+    on e.id=lr.employee_id
+group by first_name)t2 )
+
+--10 tampilkan nama karyawan, jenis perjalanan dinas, tanggal
+--perjalanan dinas dan total pengeluarannya selama perjalanan dinas tersebut
+
+select
+	 b.first_name||' '||b.last_name as "Full Name",
+	tt.name as "Jenis Perjalanan",
+	tr.start_date||'s/d'|| tr.end_date as "Tanggal Perjalanan",
+	sum(ts.item_cost) + tt.travel_fee  as "Total Pengeluaran"
+from biodata b
+inner join employee e
+	on b.id=e.biodata_id
+inner join travel_request tr
+	on e.id=tr.employee_id
+inner join travel_type tt 
+	on tr.travel_type_id=tt.id
+inner join travel_settlement ts
+	on ts.travel_request_id=tr.id
+group by "Full Name", "Jenis Perjalanan", "Tanggal Perjalanan",tt.travel_fee
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
