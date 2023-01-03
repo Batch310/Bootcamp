@@ -1,0 +1,118 @@
+--SOAL 1 Tampilkan status karyawan dan jumlah karyawan untuk setiap statusnya
+select 
+	status as status karyawan,
+	count() as jumlah karyawan
+from employee
+group by status karyawan
+
+--SOAL 2 Tampilkan data biodata yang bukan merupakan karyawan
+select
+	b.
+from biodata b
+left join employee e
+	on b.id = e.biodata_id
+where e.id is null
+
+--SOAL 3 Tampilkan fullname, status pernikahan (sudah menikahbelum menikah) dan jumlah anak dari biodata
+select
+	b.first_name  ' '  b.last_name as fullname,
+	case
+		when b.marital_status = true then 'Sudah Menikah'
+		else 'Belum Menikah'
+	end 
+	as status pernikahan,
+	sum(case
+		when f.status = 'Anak' then 1
+		else 0
+	end)  ' anak'
+	as jumlah anak
+from biodata b
+left join family f
+	on b.id = f.biodata_id
+group by fullname, status pernikahan
+
+
+--Soal 4 Tampilkan semua departemen
+select  from department
+
+-- Soal 5 Tampilkan tahun lahir & Jumlah karyawan yang mempunyai tahun lahir yang sama
+select
+	date_part('year',to_date(b.dob,'yyyy-mm-dd')) as tahun lahir,
+	count() as jumlah karyawan
+from biodata b
+join employee e
+on b.id = e.biodata_id
+group by tahun lahir
+
+-- Soal 6 Tampilkan Data biodata & Jabatan dari karyawan
+select 
+	b.,
+	p.name as jabatan
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join employee_position ep
+	on e.id = ep.employee_id
+join position p
+	on p.id = ep.position_id
+	
+--Soal 7 Tampilkan data biodata yang lahir di jakarta namun tidak tinggal di jakarta
+select 
+	
+from biodata
+where pob ilike '%jakarta%' and address not ilike '%jakarta%'
+
+--Soal 8 Tampilkan fullname, jabatan, usia, dan jumlah anak dari masing-masing karyawan saat ini
+select 
+	b.first_name  ' '  b.last_name as fullname,
+	p.name as jabatan,
+	date_part('year',age(now(),to_date(b.dob,'yyyy-mm-dd'))) as usia,
+	sum(case
+		when f.status = 'Anak' then 1
+		else 0
+	end)  ' anak'
+	as jumlah anak
+from biodata b
+join employee e
+	on e.biodata_id = b.id
+join employee_position ep
+	on e.id = ep.employee_id
+join position p
+	on p.id = ep.position_id
+left join family f
+	on b.id = f.biodata_id
+group by fullname, jabatan, usia
+
+--Soal 9 tampilkan nama karyawan dan jumlah cuti yang pernah diambil
+select
+	b.first_name  ' '  b.last_name as nama karyawan,
+	coalesce(sum(date_part('day',age(lr.end_date,lr.start_date))),0) as jumlah_cuti
+from biodata b
+join employee e
+	on e.biodata_id = b.id
+left join leave_request lr
+	on e.id = lr.employee_id
+group by nama karyawan
+
+--Soal 10 tampilkan nama karyawan, jenis perjalanan dinas, tanggal perjalanan dinas, dan total
+--pengeluarnnya selama perjalanan dinas tersebut
+
+select
+	b.first_name  ' '  b.last_name as nama karyawan,
+	tt.name as jenis perjalanan dinas,
+	tr.start_date  ' s.d '  tr.end_date as tanggal perjalanan dinas,
+	sum(ts.item_cost) + tt.travel_fee as total pengeluaran
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join travel_request tr
+	on e.id = tr.employee_id
+join travel_type tt
+	on tt.id = tr.travel_type_id
+join travel_settlement ts
+	on tr.id = ts.travel_request_id
+group by nama karyawan,jenis perjalanan dinas,tanggal perjalanan dinas,tt.travel_fee
+
+
+
+
