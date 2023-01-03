@@ -13,17 +13,17 @@ public class Soal4 {
 		int coklatbonus = 0;
 		int stempel = 0;
 		int harga = 1000;
-		int coklat = (n/harga);
+		int coklat = 0;
 		int coklatt = 0;
 		
-		for (stempel = 0; stempel <= coklat ;stempel++) {
-			if(stempel == 5) {
+		for (coklat = 0; coklat < (n/harga) ; coklat++) {
+			stempel++;
+			if(stempel %5 == 0) {
 			coklatbonus++;
 		}
-			
 	}
 		coklatt = coklat+coklatbonus;
-		System.out.print(coklatt);
+		System.out.print("Nanda mendapatka " +coklatt+ " coklat dilan");
 	}
 }
 

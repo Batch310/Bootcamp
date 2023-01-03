@@ -4,9 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Scanner;
 
 public class MateriDate {
 	public static void main(String[] args) throws ParseException {
+		Scanner input = new Scanner(System.in);
 		//Tujuan
 		//1. Convert String to date
 		//2. Tambah 3 hari
@@ -18,7 +20,8 @@ public class MateriDate {
 		
 		//String tanggal = "31-12-2022 13:30:30"; //pattern: dd-MM-yyyy HH:mm:ss
 		//String tanggal = "31 January 2022";
-		String tanggal = "31 Januari 2022";
+		System.out.println("tanggal = ");
+		String tanggal = input.nextLine();
 		//h untuk format 12 jam
 		//H untuk format 24 jam
 		//MM : 03

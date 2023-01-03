@@ -13,12 +13,15 @@ public class Soal5 {
 
 		System.out.print("x = ");
 		int x = input.nextInt();
+
 		
 		System.out.print("y = ");
 		int y = input.nextInt();
+		input.nextLine();
 		
 		System.out.print("z = ");
-		String z = input.next();
+		String z = input.nextLine();
+
 		
 		String pattern = "dd MMMM yyyy";	
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern, locale); //Objek untuk konversi
