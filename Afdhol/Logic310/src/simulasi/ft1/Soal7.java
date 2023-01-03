@@ -1,19 +1,27 @@
-package day5.latihan.exam;
+package simulasi.ft1;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Soall2 {
+public class Soal7 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Scanner scan = new Scanner(System.in);
-
-		System.out.println("Kalimat: ");
-		String input = scan.nextLine();
+		//urutkan huruf /karakter dari gabungan bbrp kata sesuai abjad
+		//batasan 
+		//-urut dan pisahkan huruf/karakter dengan tanda |
+		//kelompokkan huruf sama
+		//diproses sebagai huruf kecil
+		//input : sample case
+		//output aa|c|ee|l|m|p|ss
 		
-//		String input = "simple case";
+//		Scanner scan = new Scanner(System.in);
+//
+//		System.out.println("Kalimat: ");
+//		String input = scan.nextLine();
+		
+		String input = "sample case";
 
 		String vokal = "aeiou"; //filter huruf vokal
 		String konsonan = "bcdfghjklmnpqrstvwxyz"; //filter huruf konsonan
@@ -35,8 +43,9 @@ public class Soall2 {
 				System.out.print(arrKalimat[i]);
 
 			}
-		}
-
+		
+		
 	}
 
+	}
 }
