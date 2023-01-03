@@ -18,10 +18,7 @@ public class Soal10 {
 		int[] array = new int[a];
 		
 	    
-	    for(i =0; i<array.lenght; i++) {
-	    		
-	    	
-	    }
+	   
 	    
 	    
 	    

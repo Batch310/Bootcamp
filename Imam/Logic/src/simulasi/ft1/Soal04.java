@@ -14,18 +14,14 @@ public class Soal04 {
 		int stempel = 0;
 		int coklat = 0;
 
-		coklat = n / hargaCoklat;
+		coklat = n / hargaCoklat; //jumlah coklat
 
-		stempel = coklat / stempel;
-
-		if (stempel == 5) {
-			coklat += 1;
-		}if else (
-				){
+		stempel=coklat/5; //jml stempel
 			
-		}
-
-		System.out.println("Nanda Mendapatkan " + coklat + "Coklat dilan");
+		int sumCoklat=coklat+stempel;
+		
+		
+		System.out.println("Nanda Mendapatkan " + sumCoklat + " Coklat dilan");
 
 	}
 
