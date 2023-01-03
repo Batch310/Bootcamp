@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Soal5 {
 	public static void main(String[] args) throws ParseException {
 		Scanner input = new Scanner(System.in);
-		Locale locale = new Locale("en", "EN"); //Locale Indonesia
+		Locale locale = new Locale("id", "ID"); //Locale Indonesia
 
 		System.out.print("x = ");
 		int x = input.nextInt();
@@ -17,9 +17,9 @@ public class Soal5 {
 		
 		System.out.print("y = ");
 		int y = input.nextInt();
-		input.nextLine();
 		
 		System.out.print("z = ");
+		input.nextLine();
 		String z = input.nextLine();
 
 		

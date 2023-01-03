@@ -12,22 +12,29 @@ public class Soal07 {
 		String kalimat = scanner.nextLine().toLowerCase(); // sample case
 
 		String[] arrKalimat = kalimat.split("");
-	
+		Arrays.sort(arrKalimat);
 		for (String string : arrKalimat) {
 			System.out.print(string + " | ");
 		}
 
 		System.out.println();
-		
+
 		String abjad = "aiueoqwrtypsdfghjklzxcvbnm";
 		String hurufKel = "";
 
-		for (int i = 0; i < arrKalimat.length; i++) {
+		for (int i = 1; i < arrKalimat.length + 1; i++) {
 			if (abjad.contains(arrKalimat[i])) {
+				hurufKel = hurufKel + arrKalimat[i];
+				if (hurufKel.contains(arrKalimat[i])) {
 					hurufKel = hurufKel + arrKalimat[i];
-			}
+				} else {
+					hurufKel = hurufKel + " | ";
+				}
+			} 
 		}
-		Arrays.sort(arrKalimat);
+
+		System.out.println(hurufKel);
+
 	}
 
 }
