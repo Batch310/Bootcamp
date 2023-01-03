@@ -3,7 +3,7 @@ package day5.test;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class Soal1 {
+public class Soal1GanjilGenap {
 
 	public static void main(String[] args) {
 
