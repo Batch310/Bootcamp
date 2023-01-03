@@ -1,7 +1,0 @@
-konvert jam
-1. buat sample dulu
-2. buat input
-3. buat label(ket/nam inputan = misal "masukkan jam =...")
-4. analisis logika, apa yang sama dari ? utk buat kondisi
-
-

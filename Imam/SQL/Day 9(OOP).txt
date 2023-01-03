@@ -1,3 +1,0 @@
-class = rancangan
-object = realisasi
-di class buatan disebut => atribut = variabel <= di fungsi main
