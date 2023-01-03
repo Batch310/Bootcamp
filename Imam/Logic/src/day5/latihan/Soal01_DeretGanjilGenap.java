@@ -2,7 +2,7 @@ package day5.latihan;
 
 import java.util.Scanner;
 
-public class Soal01 {
+public class Soal01_DeretGanjilGenap {
 
 	public static void main(String[] args) {
 
@@ -14,13 +14,13 @@ public class Soal01 {
 
 			for (int i = 1; i <= n; i++) {  //atau bisa i di += 2 aja
 				if (i % 2 != 0) {
-					System.out.print(i + " ");
+					System.out.print(i + " "); //bil ganjil
 				}
 			}
 
 			System.out.println();
 
-			for (int i = 1; i <= n; i++) {
+			for (int i = 1; i <= n; i++) {     //bil genap
 				if (i % 2 == 0) {
 					System.out.print(i + " ");
 				}
