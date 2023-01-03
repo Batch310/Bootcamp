@@ -2,24 +2,43 @@ package oop.latihanabstraksi;
 
 abstract class Kendaraan {
 
-	// Atribut
-	String model;
-	int jumlahRoda;
-	long harga;
+	private String model;
+	private int jumlahRoda;
+	private long harga; //1000
 
-	// method
 	public void getInfo() {
-		System.out.println("Kendaraan " + model + " memiliki jumlah roda" + jumlahRoda + " dengan harga" + harga);
+		System.out.println("Kendaraan " + model + " memiliki jumlah roda " + jumlahRoda + " dengan harga" + harga);
 	}
-
-	// method dengan return value
+	
 	public long tawarHarga(long tawaran) {
 		harga = harga - tawaran;
 		return harga;
 	}
+	
+	abstract void gasPol();
 
-	public void Abstract() {
-		System.out.println("Gas Puollll...!");
+	public String getModel() {
+		return model;
 	}
 
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public int getJumlahRoda() {
+		return jumlahRoda;
+	}
+
+	public void setJumlahRoda(int jumlahRoda) {
+		this.jumlahRoda = jumlahRoda;
+	}
+
+	public long getHarga() {
+		return harga;
+	}
+
+	public void setHarga(long harga) {
+		this.harga = harga;
+	}
+	
 }
