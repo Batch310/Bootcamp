@@ -1,0 +1,81 @@
+--1 tampilkan status karyawan dan jumlah karyawan setiap statusnya
+select status, count(status) as jumlah
+from employee
+group by status
+
+--2 tampilkan data biodata yg bukan merupakan karyawan
+select b.*
+from biodata b
+left join employee e on e.biodata_id = b.id
+where e.id is null;
+
+--3
+select	concat(first_name,' ',last_name) as"Full Name", 
+		marital_status, 
+		sum(case
+		when f.status ilike 'anak' then 1
+		else 0
+		end)
+from biodata b
+join family f on f.biodata_id = b.id 
+where f.status ilike 'anak'
+group by "Full Name", b.marital_status;
+
+--4 tampilkan semua department
+select *
+from department
+
+--5 tampilkan tahun lahir dan jumlah karyawan yg mempunyai tahun lahir yg sma
+select	date_part('YEAR',date(dob)) as tahun,
+		count(date_part('YEAR',date(dob))) as jumlah
+from biodata
+group by tahun
+
+--6 tampilkan data biodata dan jabatan dari karyawan
+select	b.*,
+		p.name
+from biodata b
+join employee e on e.biodata_id = b.id
+join employee_position ep on ep.employee_id = e.id
+join position p on p.id = ep.position_id
+
+--7 
+select *
+from biodata
+where pob ilike 'jakarta' and address not ilike '%jakarta%'
+
+--8
+select 	concat(first_name,' ',last_name) as "Full Name",
+		p.name,
+		age(now(),date(b.dob)) as usia,
+		sum(case
+			when f.status ilike 'anak' then 1
+			else 0
+		end)
+from biodata b
+join employee e on e.biodata_id = b.id
+join employee_position ep on ep.employee_id = e.id
+join position p on p.id = ep.position_id
+left join family f on f.biodata_id = b.id
+group by "Full Name", p.name, usia
+
+--9
+select 	concat(first_name,' ',last_name) as "Full Name", 
+		sum(date_part('day',age(end_date,start_date))) as "Jumlah Cuti"
+from biodata b
+join employee e on e.biodata_id = b.id
+join leave_request lr on lr.employee_id = e.id
+group by "Full Name"
+
+--10
+select 	concat(first_name,' ',last_name) as "Full Name",
+		tt.name,
+		tr.start_date,
+		tr.end_date,
+		(sum(ts.item_cost)+tt.travel_fee)
+from biodata b
+join employee e on e.biodata_id = b.id
+join travel_request tr on tr.employee_id = e.id
+join travel_type tt on tt.id = tr.travel_type_id
+join travel_settlement ts on ts.travel_request_id = tr.id
+group by "Full Name", tt.name, tr.start_date, tr.end_date, tt.travel_fee;
