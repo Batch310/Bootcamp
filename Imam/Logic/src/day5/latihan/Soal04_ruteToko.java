@@ -2,7 +2,7 @@ package day5.latihan;
 
 import java.util.Scanner;
 
-public class Soal04 {
+public class Soal04_ruteToko {
 
 	public static void main(String[] args) {
 

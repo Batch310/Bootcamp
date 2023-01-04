@@ -1,0 +1,49 @@
+1. A
+2. B 
+3. B
+4. C
+5. C
+6. D
+7. A
+8. B
+9. C
+10. D
+
+11. 	//Super Class
+	Class Kendaraan{
+                 }
+	//Sub Class
+	Class Kendaraan extend Car{
+                 }
+
+12. Privat Car{
+     }
+    setter()
+    getter()
+
+13. Clas Kendaraan{
+        //Overloading
+	gaspoll(String name){
+
+		}
+
+	gaspoll(String name, String suara){
+
+		}
+	}
+
+14. 	Abstract Kendaraan{
+
+	}
+
+15.      //Super Class
+	Class Kendaraan {  
+                 }
+
+	//Sub Class
+	Class Kendaraan extend Car {
+                 }
+	//Sub Class
+	Class Kendaraan extend Motorcycle {
+                 }
+

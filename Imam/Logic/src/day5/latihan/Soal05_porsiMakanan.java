@@ -2,7 +2,7 @@ package day5.latihan;
 
 import java.util.Scanner;
 
-public class Soal05 {
+public class Soal05_porsiMakanan {
 
 	public static void main(String[] args) {
 
