@@ -1,0 +1,54 @@
+1. A
+2. B
+3. B
+4. C
+5. A
+6. B
+7. A
+8. B
+9. C
+10. D
+11.
+class Kendaraan {
+}
+
+class Mobil extends Kendaraan {
+}
+
+12. 
+class Kendaraa {
+	private name;
+}
+
+13.
+class Kendaraan {
+ public void jalan() {
+	System.out.print("jalan");
+}
+class Mobil extends Kendaraan {
+	Mobil mobil = new Mobil();
+
+	mobil.(jalan);
+}
+14.
+class Kendaraa {
+	Abstract void jalan() {
+}
+}
+
+15.
+class Kendaraan {
+	
+}
+
+class Mobil extends Kendaraan {
+	String jenis = "Toyota";
+
+	public void jalan(){
+	System.out.print(jenis +" jalan");
+}
+
+}
+class Motor extends Kendaraan {
+	int jumlahRoda = 2;
+}
