@@ -5,27 +5,37 @@ import java.util.Scanner;
 public class soal10 {
 
 	public static void main(String[] args) {
+
+		// Variable bantu bobot
+		String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String[] arrKata = alpha.split("");
+
 		Scanner input = new Scanner(System.in);
 
 		System.out.print("input String : ");
-		String kata = input.nextLine().toLowerCase();
+		String x = input.nextLine();
+		String[] arrX = x.split("");
+
 		System.out.print("input Array : ");
-		String kata1 = input.nextLine().toLowerCase();
+		String y = input.nextLine();
+		String[] arrY = y.split(",");
 
-		String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		int[] angka = new int[25];
+		for (int i = 0; i < arrY.length; i++) {
+			String hurufSekarang = arrX[i];
+			String indexSekarang = arrY[i];
+			// integer.parseInt untuk mengubah String ke Int
+			int indexSekarangInt = Integer.parseInt(indexSekarang);
+			//Variabel bantu untuk mengecek apakah huruf sekarang udah sesuai
+			String hurufBobotIndexSekarang = arrKata[indexSekarangInt];
 
-		String[] arrKata = kata.split("");
-
-		String a = "";
-		String b = "";
-
-		for (int i = 0; i < arrKata.length; i++) {
-			
+			if (hurufSekarang.equals(hurufBobotIndexSekarang)) {
+				System.out.print("True ");
+			} else {
+				System.out.print("False ");
+			}
 		}
 
 		System.out.println();
-		System.out.print(a + b);
 	}
 
 }
