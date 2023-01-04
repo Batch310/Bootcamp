@@ -1,0 +1,65 @@
+1. A
+2. B
+3. B
+4. C
+5. C
+6. D
+7. A
+8. B
+9. C
+10. D
+
+11. 
+Class Kendaraan {
+String model;
+}
+
+Class Mobil extends Kendaraan{
+
+}
+Class Main{
+sedan = new Mobil();
+sedan.model = "Sedan";
+}
+
+12.
+Class Kendaraan {
+private String model;
+
+}
+
+13.
+Class Animal{
+static String gerak = jalan;
+merpati = new Animal();
+merpati.gerak = terbang
+}
+
+
+14.
+Abstract Class Kendaraan{
+
+public void belok();
+
+}
+Class Mobil extends Kendaraan{
+super()
+public void belok(){
+System.out.println("belok belok belok");
+}
+}
+
+
+15.
+Class Kendaraan {
+String model;
+
+}
+
+Class Mobil extends Kendaraan{
+
+}
+
+Class Motor extends Kendaraan{
+
+}
