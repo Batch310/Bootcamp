@@ -1,0 +1,96 @@
+1. a. Inheritance
+2. b. SuperClass & SubClass
+3. b. Encapsulation
+4. c. Polymorphism
+5. d. Overloading
+6. d. Overriding
+7. a. Class Abstract
+8. b. Method Abstract
+9. c. Interface
+10. d. Multiple Inheritance
+
+
+
+11. Class Vehicle {
+	String model;    
+	String tahun;
+    }
+----------------------------------------------------
+    Class Mobil extends Vehicle {
+	String Merk;
+	int kapasitasTanki;
+    }
+
+
+12. Class Vehicle {
+	private String model;    
+	private String tahun;
+
+	public String getModel() {
+	   return model;
+	}
+
+	public String setModel(String modelParam) { 
+	   model = modelParam;
+	   return model;
+	}
+
+	//Yang set harusnya:
+	public void setModel(String modelParam) { 
+	   model = modelParam;
+	}
+    }
+
+
+13. Class Animal {
+	String name;    
+	int jumlahKaki;
+
+	public void  lompat() {
+	System.out.println(name + " lompat");
+	}
+
+	public void lompat(String lompatApa) {
+	System.out.println(name + " lompat " + lompatApa);
+    }
+
+
+14. abstract class Vehicle {
+	String model;    
+	String tahun;
+
+	abstract void bukaPintu();
+    }
+----------------------------------------------------
+   Class Mobil extends Vehicle {
+	void bukaPintu() {
+	    System.out.println("Buka pintu!");
+	}	
+   }
+
+
+15. Class Vehicle {
+	String model;
+	String tahun;
+    }
+----------------------------------------------------    
+    Interface Operasi {
+	void bukaPintu();
+	void belokKiri();
+	void belokKanan();
+    }
+----------------------------------------------------
+    Class Mobil extends Vehicle implements Operasi {
+	void bukaPintu() {
+	    System.out.println("Buka pintu!");
+	}
+
+	void belokKiri() {
+	    System.out.println("Belok kiri!");
+	}
+
+	void belokKanan() {
+	    System.out.println("Belok kanan!");
+	}
+
+    }

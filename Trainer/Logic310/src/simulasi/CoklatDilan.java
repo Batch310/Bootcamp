@@ -10,8 +10,8 @@ public class CoklatDilan {
 		System.out.print("Input n : ");
 		int n = scanner.nextInt();
 		
-		int bonus = n/5;
-		int total = n + bonus;
+		int bonus = (n/5)/1000;
+		int total = (n/1000) + bonus;
 		
 		System.out.println("Nanda mendapatkan " + total + " coklat dilan");
 	}
