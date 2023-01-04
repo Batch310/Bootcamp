@@ -2,7 +2,7 @@ package day5.latihan.exam;
 
 import java.util.Scanner;
 
-public class Soal8 {
+public class Soal8Fibonacci {
 
 	public static void main(String[] args) {
 

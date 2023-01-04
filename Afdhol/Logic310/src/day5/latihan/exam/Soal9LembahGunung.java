@@ -2,7 +2,7 @@ package day5.latihan.exam;
 
 import java.util.Scanner;
 
-public class Soal9 {
+public class Soal9LembahGunung {
 
 	// N = naik
 	// T = turun

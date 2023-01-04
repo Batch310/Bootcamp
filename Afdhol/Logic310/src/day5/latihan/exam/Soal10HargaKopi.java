@@ -2,7 +2,7 @@ package day5.latihan.exam;
 
 import java.util.Scanner;
 
-public class Soal10 {
+public class Soal10HargaKopi {
 
 	public static void main(String[] args) {
 

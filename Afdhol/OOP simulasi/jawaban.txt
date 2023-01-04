@@ -1,0 +1,133 @@
+1. A
+2. B
+3. B
+4. C
+5. C
+6. D
+7. A
+8. B
+9. C
+10. D
+
+11.
+
+public class Manusia{
+   String nama;
+   String alamat;
+   int umur;
+}
+
+public class Mahasiswa extends Manusia{
+   Manusia manusia = new Manusia();
+
+}
+
+12. 
+
+public class Bank{
+
+private String info;
+
+public void setInfo(){
+   this.info;
+  }
+
+public void getInfo(){
+   return info;
+  }
+
+}
+
+public class BankMain extends Bank{
+
+Bank bank = new Bank();
+
+bank.setInfo("Info bank");
+
+bank.getInfo();
+
+}
+
+13.
+
+
+//Overloading
+
+public class Gerak{
+
+public void lari(){
+System.out.print("Lariii");
+}
+
+public void lari (int kecepatan){
+   kecepatan = 10*10;
+   System.out.print("Kecepatan = "+kecepatan);
+  }
+}
+
+public class ProgramUtama {
+
+Gerak gerak = new Gerak();
+
+gerak.lari();
+gerak.lari(10);
+
+}
+
+//Overriding
+
+public class Manusia{
+   String nama;
+   String alamat;
+   int umur;
+
+   public void lari(){
+   System.out.print("Lariii");
+  }
+
+}
+
+public class Mahasiswa extends Manusia{
+   Manusia manusia = new Manusia();
+
+   public void lari(){
+   System.out.print("Lariii");
+  }
+
+}
+
+14.
+abstract class Kendaraan{
+
+}
+
+abstract class Motor extends Kendaraan{
+
+}
+
+abstract class Mobil extens Kendaraan{
+
+}
+
+15.
+
+
+public class Kendaraan {
+  String model;
+  String nama;
+  int roda;
+
+}
+
+public class Arah{
+
+
+interface belokKanan(){
+
+   }
+}
+
+public class Mobil extends Kendaraan implements Arah{
+
+}
+

@@ -2,7 +2,7 @@ package day5.latihan.exam;
 
 import java.util.Scanner;
 
-public class Soal6 {
+public class Soal6PinBank {
 
 	public static void main(String[] args) {
 

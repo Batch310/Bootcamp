@@ -3,7 +3,7 @@ package day5.latihan.exam;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Soall2 {
+public class Soal2VokalKonsonan {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
