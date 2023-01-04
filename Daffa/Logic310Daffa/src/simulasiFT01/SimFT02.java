@@ -16,6 +16,8 @@ public class SimFT02 {
 		if (porsi > 0) {
 			System.out.println("Dibutuhkan " + porsi * indomie + " bungkus Indomie, " + porsi * garam + " gr garam, "
 					+ porsi * telur + " butir telur, dan " + porsi * gula + " gr gula pasir.");
+		} else {
+			System.out.println("Input tidak dikenal");
 		}
 	}
 
