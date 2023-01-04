@@ -6,7 +6,7 @@ public class Soal04CoklatDenganUangX {
 	public static void main(String[] args) {
 		//1 coklat dapet 1 stempel gratis.
 		//Setiap 5 stempel = 1 coklat dilan gratis
-		//1 coklat dialn = 1000
+		//1 coklat dilan = 1000
 		//Output => Nanda mendapatkan x coklat dilan
 		
 		Scanner masukan = new Scanner(System.in);
