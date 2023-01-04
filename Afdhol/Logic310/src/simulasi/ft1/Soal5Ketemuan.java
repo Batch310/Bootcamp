@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Soal5 {
+public class Soal5Ketemuan {
 
 	public static void main(String[] args) throws ParseException {
 		// TODO Auto-generated method stub
@@ -27,17 +27,26 @@ public class Soal5 {
 		scan.nextLine();
 		System.out.print("z= ");
 		String inputZ = scan.nextLine();
-	
-		int ketemu = inputX*inputY;
 		
-		//System.out.println(inputZ);
+	
+		int ketemu = 0; //menampung berapa hari mereka akan bertemu
+		
+		if ( inputX<inputY) {
+			ketemu = inputX;
+		}else {
+			ketemu = inputY;
+		}
+		
+		while (ketemu % inputX != 0 || ketemu % inputY !=0) {
+			ketemu++;
+		}
+		
 		
 		Locale locale = new Locale("id", "ID");
 		
 		String pattern = "dd MMMM yyyy";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern,locale); 
-		//System.out.println(inputZ);
 		
 		Date tanggalDate = sdf.parse(inputZ); // akan ada merah, pilih throws
 		long millis = tanggalDate.getTime();// mengambil millis yang bisa convert ke tanggal
