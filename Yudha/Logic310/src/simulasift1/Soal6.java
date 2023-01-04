@@ -25,6 +25,7 @@ public class Soal6 {
 			if(d%2!=0) {
 				ganjil++;
 			}
+			System.out.println(d);
 		}
 		System.out.println("Sebanyak " + ganjil + " bilangan ganjil");
 	}
