@@ -31,6 +31,8 @@ public class Soal10Bahas {
 			String hurufSekarang = arrX[i];
 			String indexSekarang = arrY[i];
 			int indexSekarangInt = Integer.parseInt(indexSekarang);
+			
+			//Variabel bantu untuk cek apakah hurufSekarang sudah sesuai dengan bobot
 			String hurufBobotIndexSekarang = arrBobot[indexSekarangInt];
 			
 			if (hurufSekarang.equals(hurufBobotIndexSekarang)) {
