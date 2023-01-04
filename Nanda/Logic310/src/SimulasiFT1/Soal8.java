@@ -25,12 +25,12 @@ public class Soal8 {
 		for (int i = 0; i < deret3.length; i++) {
 			System.out.print(deret3[i] + " ");
 		}
-		
+
 		System.out.println();
-		
+
 		int k40 = 2;
 		int k41 = k40 + 2;
-		
+
 		int[] deret4 = new int[n];
 		deret4[0] = k40;
 
@@ -44,16 +44,14 @@ public class Soal8 {
 			System.out.print(deret4[i] + " ");
 
 		}
-		
+
 		System.out.println();
-		
-		
-		
+
 		System.out.print("Total : ");
-		int[] total = new int [n];
+		int[] total = new int[n];
 		for (int i = 0; i < n; i++) {
 			total[i] = deret3[i] + deret4[i];
 			System.out.print(total[i] + " ");
-	}
+		}
 	}
 }

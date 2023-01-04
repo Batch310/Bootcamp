@@ -16,42 +16,34 @@ public class Soal7 {
 		// input : sample case
 		// output aa|c|ee|l|m|p|ss
 
-//		Scanner scan = new Scanner(System.in);
-//
-//		System.out.println("Kalimat: ");
-//		String input = scan.nextLine();
+		Scanner scan = new Scanner(System.in);
 
-		String input = "sample case";
+		System.out.println("Kalimat: ");
+		String n = scan.nextLine();
 
-		String vokal = "aeiou";
-		String konsonan = "bcdfghjklmnpqrstvwxyz"; 
 
-		input = input.toLowerCase(); 
-
-		String[] arrKalimat = input.split(""); 
-		Arrays.sort(arrKalimat);  
-
-		for (int i = 0; i < arrKalimat.length; i++) {
-			if (vokal.contains(arrKalimat[i])) {
-				System.out.print(arrKalimat[i]);
-				if (vokal.contains(arrKalimat[i])) {
-					System.out.print("|");
-					vokal = vokal+arrKalimat[i];
-				}else if (vokal==vokal) {
-					
+		String kumpulanKarakter = "abcdefghijklmnopqrstuvwxyz";//variabel bantu untuk kumpulan karakter abjad
+		
+		String[] arrN = n.toLowerCase().split("");//lakukan spit per karakter
+		
+		Arrays.sort(arrN);//lakukan sorting 
+		
+		String hasil =""; //untuk menampung hasil
+		
+		String hurufSebelumnya = "";//variabel bantu untuk menyimpan huruf sebelumnya agar bisa dibandingkan
+		
+		for (int i = 0; i < arrN.length; i++) {
+			String hurufSekarang = arrN[i]; //menampung array ke variabel hurufSekarang
+			if (kumpulanKarakter.contains(hurufSekarang)) {//apakah kumpulanKarakter mengandung hurufSekarang
+				if (!hurufSekarang.equals(hurufSebelumnya)) {// jika hurufSekarang tidak sama dengan hurufSebelum
+					if (!hurufSebelumnya.equals("")) {
+						hasil = hasil + "|";
+					}
 				}
+				hasil = hasil+hurufSekarang;//mengisi variabel hasil dengan hurufSekarang dimana hurufSekarang adalah arrN[i]
+				hurufSebelumnya = hurufSekarang; //mengisi variabel hurufSebelumnya 
 			}
 		}
-
-		for (int i = 0; i < arrKalimat.length; i++) {
-			if (konsonan.contains(arrKalimat[i])) { 
-				System.out.print(arrKalimat[i]);
-				if (konsonan.contains(arrKalimat[i])) {
-					System.out.print("|");
-				}
-			}
-
-		}
-
+		System.out.println(hasil);
 	}
 }

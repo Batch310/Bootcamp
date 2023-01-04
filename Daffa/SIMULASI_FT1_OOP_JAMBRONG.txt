@@ -1,0 +1,108 @@
+1. A
+2. B
+3. B
+4. C
+5. C
+6. D
+7. A
+8. B
+9. C
+10. D
+
+11.
+public class Indonesia{
+	long jmlPenduduk;
+}
+
+public class Provinsi extends Indonesia(){
+	long luasWilayah;
+}
+
+12.
+public class Indonesia{
+	private long jmlPenduduk;
+
+	public long getJmlPenduduk(){
+		return long this.jmlPenduduk;
+	}
+	public void setJmlPenduduk(long jmlPenduduk){
+		this.jmlPenduduk = jmlPenduduk;
+	}
+}
+
+13.
+public class Indonesia{
+	private long jmlPenduduk;
+
+	public long getJmlPenduduk(){
+		return long this.jmlPenduduk;
+	}
+	public void setJmlPenduduk(long jmlPenduduk){
+		this.jmlPenduduk = jmlPenduduk;
+	}
+}
+
+public class Provinsi extends Indonesia(){
+	long luasWilayah;
+	
+	public void bansos(){
+		System.out.print("Bantuan sosial untuk semua kabupaten/kota");
+	}
+	public void bansos(int daerah)
+		System.out.print("Bantuan sosial untuk " + daerah " kabupaten/kota");
+	}
+}
+
+14.
+abstract class Indonesia{
+	private long jmlPenduduk;
+
+	public long getJmlPenduduk(){
+		return long this.jmlPenduduk;
+	}
+	public void setJmlPenduduk(long jmlPenduduk){
+		this.jmlPenduduk = jmlPenduduk;
+	}
+	abstract void turis();
+}
+
+public class Provinsi extends Indonesia(){
+	long luasWilayah;
+	
+	public void bansos(){
+		System.out.print("Bantuan sosial untuk semua kabupaten/kota");
+	}
+	public void bansos(int daerah)
+		System.out.print("Bantuan sosial untuk " + daerah " kabupaten/kota");
+	}
+	public void turis(){
+	
+	}
+}
+
+15.
+public class Indonesia{
+	private long jmlPenduduk;
+
+	public long getJmlPenduduk(){
+		return long this.jmlPenduduk;
+	}
+	public void setJmlPenduduk(long jmlPenduduk){
+		this.jmlPenduduk = jmlPenduduk;
+	}
+}
+
+public class Provinsi extends Indonesia(){
+	long luasWilayah;
+	
+	public void bansos(){
+		System.out.print("Bantuan sosial untuk semua kabupaten/kota");
+	}
+	public void bansos(int daerah)
+		System.out.print("Bantuan sosial untuk " + daerah " kabupaten/kota");
+	}
+}
+
+public class KabupatenKota extends Provinsi extends Indonesia(){
+	String nama;
+}

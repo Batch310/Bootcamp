@@ -13,7 +13,6 @@ public class Soal5 {
 
 		System.out.print("x = ");
 		int x = input.nextInt();
-
 		
 		System.out.print("y = ");
 		int y = input.nextInt();
@@ -21,12 +20,10 @@ public class Soal5 {
 		System.out.print("z = ");
 		input.nextLine();
 		String z = input.nextLine();
-
 		
 		String pattern = "dd MMMM yyyy";	
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern, locale); //Objek untuk konversi
 		System.out.println(z);
-
 		
 		Date tanggalDate = sdf.parse(z); //parse() : konversi String to date
 		long milis = tanggalDate.getTime(); //milis = seribu * detik
@@ -37,7 +34,6 @@ public class Soal5 {
 		long menit = 60 * 1000;
 		long jam = 60 * 60 * 1000;
 		long hari = 24 * 60 * 60 *1000;
-		
 		
 		milis = milis + (n*hari);
 		System.out.println(milis);
