@@ -2,7 +2,7 @@ package day5.latihan.exam;
 
 import java.util.Scanner;
 
-public class Soal3 {
+public class Soal3SiAngka100 {
 
 	public static void main(String[] args) {
 
