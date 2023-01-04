@@ -1,0 +1,77 @@
+-- Soal 3 Tampilkan fullname, status pernikahan (sudah menikah/ belum menikah) dan jumlah anak dari biodata
+select
+	b.first_name || ' ' || b.last_name as "Nama Karyawan",
+	case
+		when b.marital_status = True then 'Sudah Menikah'  
+		else 'Belum Menikah'
+	end as "Status Pernikahan",
+	sum(case
+		when f.status = 'Anak' then 1
+		else 0
+	end) || ' Anak' as "Jumlah Anak"
+	
+from biodata b
+left join family f
+	on b.id = f.biodata_id
+group by "Nama Karyawan", "Status Pernikahan"
+	
+-- Soal 5 Tampilkan tahun lahir & jumlah karyawan yang mempunyai tahun lahir yang sama
+select 
+	date_part('year',age(now(),to_date(b.dob,'yyyy-mm-dd'))) as "Tahun Lahir",
+	count(*) as "Tahun Lahir Sama"
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+group by "Tahun Lahir"
+
+-- Soal 8 Tampilkan fullname, jabatan, usia, dan jumlah anak dari masing-masing karyawan saat ini 
+-- (kalau tidak ada anak tulis 0 (nol) atau \'-\' saja)
+select 
+		b.first_name || ' ' || b.last_name as "Nama Karyawan",
+		p.name as "Jabatan",
+		date_part('year',age(now(),to_date(b.dob,'yyyy-mm-dd'))) as "Usia",
+		sum(case
+			when f.status = 'Anak' then 1
+			else 0
+		end) || ' anak' as "Jumlah Anak"
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join employee_position ep
+	on e.id = ep.employee_id
+join position p
+	on ep.position_id = p.id
+left join family f
+	on b.id = f.biodata_id
+group by "Nama Karyawan","Jabatan", "Usia"
+
+--Soal 9 Tampilkan nama karyawan dan jumlah hari cuti yang sudah pernah diambil
+select 
+	b.first_name || ' ' || b.last_name as "Nama Karyawan",
+	sum(date_part('day',age(lr.end_date,lr.start_date))) as "Lama Cuti"
+from biodata b
+join employee e
+	on b.id = e.biodata_id
+join leave_request lr
+	on e.id = lr.employee_id
+group by "Nama Karyawan"
+
+--Soal 10 tampilkan nama karyawan, jenis perjalanan dinas, tanggal perjalanan dinas, dan total
+--pengeluarnnya selama perjalanan dinas tersebut
+
+select
+	b.first_name || ' ' || b.last_name as "Nama Karyawan",
+	tt.name as "Perjalanan Dinas",
+	tr.start_date || ' s/d ' || tr.end_date as "Tanggal perjalanan",
+	sum(ts.item_cost) + tt.travel_fee as "Pengeluaran"
+from biodata b
+left join employee e 
+	on b.id = e.biodata_id
+join travel_request tr
+	on e.id = tr.employee_id
+join travel_settlement ts
+	on tr.id = ts.travel_request_id
+join travel_type tt
+	on tr.travel_type_id = tt.id 
+group by "Nama Karyawan", "Perjalanan Dinas", "Tanggal perjalanan", travel_fee
+	
