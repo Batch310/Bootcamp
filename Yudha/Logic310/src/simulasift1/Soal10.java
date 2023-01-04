@@ -15,8 +15,6 @@ public class Soal10 {
 		String[] c = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 		String indexOfA = "",hasil="";
 		
-		
-		
 		for (int i = 0; i < arrayA.length; i++) {
 			for (int j = 0; j < c.length; j++) {
 				if(arrayA[i].equals(c[j])) {
@@ -24,7 +22,6 @@ public class Soal10 {
 					break;
 				}
 			}
-			
 		}
 		//System.out.println(indexOfA);
 		String [] indexOfArray = indexOfA.split(",");

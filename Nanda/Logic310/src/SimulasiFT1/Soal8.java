@@ -33,9 +33,10 @@ public class Soal8 {
 
 		int[] deret4 = new int[n];
 		deret4[0] = k40;
+		deret4[1] = k41;
 
 		System.out.print("Deret 4 : ");
-		for (int i = 1; i < n; i++) {
+		for (int i = 2; i < n; i++) {
 			deret4[i] = k41 + 2;
 			k40 = k41;
 			k41 = deret4[i];

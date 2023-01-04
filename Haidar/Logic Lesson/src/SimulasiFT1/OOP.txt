@@ -30,9 +30,14 @@
 	   return model;
 	}
 
-	public String setModel(String modelParam) {
+	public String setModel(String modelParam) { 
 	   model = modelParam;
 	   return model;
+	}
+
+	//Yang set harusnya:
+	public void setModel(String modelParam) { 
+	   model = modelParam;
 	}
     }
 

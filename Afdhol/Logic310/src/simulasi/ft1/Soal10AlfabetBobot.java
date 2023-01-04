@@ -2,7 +2,7 @@ package simulasi.ft1;
 
 import java.util.Scanner;
 
-public class Soal10 {
+public class Soal10AlfabetBobot {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
