@@ -1,0 +1,34 @@
+1. a
+2. b
+3. b
+4. c
+5. a
+6. b
+7. a
+8. b
+9. c
+10.d
+
+11.	class kendaraan {	}
+	class mobil extend kendaraan{   }
+	
+12.	class kendaraan {	
+		pubilc warna()
+		public tipe ()
+	}
+13.	class kendaraan {	
+		pubilc warna("merah");
+		public tipe ("SupraGT");
+	}
+14.	abstract class kendaraan{
+	
+	}
+15.	class kendaraan {	
+		pubilc warna("merah");
+		public tipe ("SupraGT");
+	}
+	class mobil extend kendaraan{  
+		this -> warna;
+		this -> tipe;
+	}
+

@@ -2,7 +2,7 @@ package day5.latihan;
 
 import java.util.Scanner;
 
-public class Soal08 {
+public class Soal08_primaFibo {
 
 	public static void main(String[] args) {
 

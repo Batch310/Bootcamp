@@ -2,7 +2,7 @@ package day5.latihan;
 
 import java.util.Scanner;
 
-public class Soal09 {
+public class Soal09_gunungLembah {
 
 	public static void main(String[] args) {
 

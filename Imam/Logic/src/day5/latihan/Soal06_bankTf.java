@@ -2,7 +2,7 @@ package day5.latihan;
 
 import java.util.Scanner;
 
-public class Soal06 {
+public class Soal06_bankTf {
 
 	public static void main(String[] args) {
 		int saldo = 0;
