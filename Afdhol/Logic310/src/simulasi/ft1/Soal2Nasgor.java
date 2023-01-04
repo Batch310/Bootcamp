@@ -2,7 +2,7 @@ package simulasi.ft1;
 
 import java.util.Scanner;
 
-public class Soal2 {
+public class Soal2Nasgor {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

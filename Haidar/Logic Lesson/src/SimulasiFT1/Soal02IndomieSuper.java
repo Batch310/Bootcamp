@@ -12,7 +12,7 @@ public class Soal02IndomieSuper {
 		System.out.println("Masukkan nilai n : ");
 		int n = masukan.nextInt();
 		
-		int jumlahIndomie = (2);
+		int jumlahIndomie = (n*2);
 		int jumlahGaram = (n*100);
 		int jumlahTelur = (n*3);
 		int jumlahGulaPasir = (n*50);

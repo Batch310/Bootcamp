@@ -9,7 +9,6 @@ public class Soal4 {
 		System.out.print("n = ");
 		int n = input.nextInt();
 		
-		
 		int coklatbonus = 0;
 		int stempel = 0;
 		int harga = 1000;
@@ -18,7 +17,7 @@ public class Soal4 {
 		
 		for (coklat = 0; coklat < (n/harga) ; coklat++) {
 			stempel++;
-			if(stempel %5 == 0) {
+			if(stempel %5 == 0 && stempel > 0) {
 			coklatbonus++;
 		}
 	}
@@ -26,5 +25,3 @@ public class Soal4 {
 		System.out.print("Nanda mendapatka " +coklatt+ " coklat dilan");
 	}
 }
-
-
