@@ -3,7 +3,7 @@ package simulasi.ft1;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Soal7 {
+public class Soal7GantiHuruf {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

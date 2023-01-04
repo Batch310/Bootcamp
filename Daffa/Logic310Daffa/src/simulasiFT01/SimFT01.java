@@ -26,5 +26,4 @@ public class SimFT01 {
 			System.out.println("Input harus lebih dari 0 dan kurang dari 6");
 		}
 	}
-
 }

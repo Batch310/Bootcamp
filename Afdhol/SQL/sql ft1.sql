@@ -1,6 +1,6 @@
 --CONCAT = untuk menggabungkan dua atau lebih
 
-select *from biodata
+select *from biodata;
 
 select
 	first_name,

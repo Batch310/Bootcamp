@@ -2,7 +2,7 @@ package simulasi.ft1;
 
 import java.util.Scanner;
 
-public class Soal4 {
+public class Soal4Coklat {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -17,8 +17,7 @@ public class Soal4 {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("input: ");
 		int input = scan.nextInt();
-		
-		int stempel = 1;
+	
 		int coklatGratis = 5;
 		int hargaCoklat = 1000;
 		

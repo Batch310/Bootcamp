@@ -11,15 +11,15 @@ public class SimFT04 {
 		int uang = scanner.nextInt();
 		scanner.close();
 		int hargaCokelat = 1000;
-		int stempel = uang/hargaCokelat;
+		int stempel = uang / hargaCokelat;
 		int cokelat = 0;
-		
-		if(stempel >= 5) {
-			cokelat += stempel + (stempel/5);
-			System.out.println("Nanda mendapatkan "+cokelat+" cokelat Dilan");
+
+		if (stempel >= 5) {
+			cokelat += stempel + (stempel / 5);
+			System.out.println("Nanda mendapatkan " + cokelat + " cokelat Dilan");
 		} else {
 			cokelat += stempel;
-			System.out.println("Nanda mendapatkan "+cokelat+" cokelat Dilan");
+			System.out.println("Nanda mendapatkan " + cokelat + " cokelat Dilan");
 		}
 	}
 
