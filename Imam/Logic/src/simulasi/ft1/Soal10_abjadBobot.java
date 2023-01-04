@@ -2,13 +2,13 @@ package simulasi.ft1;
 
 import java.util.Scanner;
 
-public class Soal10 {
+public class Soal10_abjadBobot {
 
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
 
-		// Var bantu bobot
+		// Variabel bantu bobot
 		String bobot = "ABCDEFGHIJKLMOPQRSTUVWXYZ";
 		String[] arrBobot = bobot.split("");
 
