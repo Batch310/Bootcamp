@@ -27,21 +27,21 @@ public class MiniMaxSUM {
 		int min = 0;
 		int max = 0;
 			
-		for (int i = 0; i < deret.length; i++) {
+		for (int i = 0; i < deret.length; i++) { 
 			temp = 0;
 			for (int j = 0; j < deret.length; j++) {
-				if( i != j) {
-					temp = temp + deret[j];
-			}
+				if( i != j) { 
+					temp = temp + deret[j]; 
+			} 
 		}
 		if( min == 0) {
-			min = temp;
+			min = temp; //
 		}
 		if (temp < min ) {
-			min = temp;
+			min = temp; 
 		}
 		if (temp > max) {
-			max = temp;
+			max = temp; //13
 		}
 		}
 		System.out.println();

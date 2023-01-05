@@ -16,18 +16,18 @@ public class Latihan7 {
 	
 	System.out.println();
 	
-	int a = n-1;
-	for (int i = 0; i < n; i++) {
-		a++;
-		System.out.print(a+ " ");
+	int a = n-1; //4
+	for (int i = 0; i < n; i++) { //0,1,2,3,4
+		a++; //5,6,7,8,9
+		System.out.print(a+ " "); //5,6,7,8,9
 	}
 	
 	System.out.println();
 	
-	int b = a;
-	for (int i = 0; i < n; i++) {
-		b++;
-		System.out.print(b+ " ");
+	int b = a; //9
+	for (int i = 0; i < n; i++) { //0
+		b++; //10
+		System.out.print(b+ " "); //10,11,12,13,14
 	}
 	}
 }

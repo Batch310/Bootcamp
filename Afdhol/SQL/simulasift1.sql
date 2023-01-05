@@ -1,17 +1,11 @@
 --1
 select 
-	p.name as "Status",
-	count(ep.position_id) as "jumlah karyawan"
-from biodata b
-join employee e
-	on b.id = e.biodata_id
-join employee_position ep
-	on e.id = ep.employee_id
-join position p 
-	on ep.position_id = p.id
-group by p.name;
+	status,
+	count(biodata_id) as jumlah
+from employee
+group by status;
 
---2
+--2 ok
 
 select
 	b.*,
@@ -30,17 +24,23 @@ where p.name is null;
 
 select  
 	concat(b.first_name,' ', b.last_name) as "fullname",
-	count(f.name) as jml,
 	case
 	when b.marital_status = 'true' then 'Menikah'
 	when b.marital_status = 'false' then 'Belum Menikah'
-	end as "Status pernikahan"
+	end as "Status pernikahan",
+	sum(
+	case
+		when f.status = 'Anak' then 1
+		else 0
+	end
+	) as jml_anak
 from biodata b
 left join family f
 	on b.id = f.biodata_id
-group by "fullname", f.name,"Status pernikahan";
+group by "fullname","Status pernikahan";
 
---4
+
+--4 ok
 
 select *from department;
 
@@ -54,7 +54,7 @@ from biodata
 where dob like th_lahir;
 
 
---6
+--6 ok
 
 select
 	b.*,
@@ -67,7 +67,7 @@ join employee_position ep
 join position p 
 	on ep.position_id = p.id ;
 
---7
+--7 ok
 
 select 
 	*

@@ -27,7 +27,7 @@ public class Soal6 {
 			tribo2 = tribonacci[i];
 		}
 
-		for (int i = 0; i < (tribonacci.length); i++) {
+		for (int i = 0; i < (tribonacci.length-1); i++) {
 			System.out.print(tribonacci[i] + " "); // 1 2 3 5 8
 		}
 
@@ -39,7 +39,5 @@ public class Soal6 {
 			}
 		}
 		System.out.println("Sebanyak " +bilganjil+ " bilangan ganjil");
-
 	}
-
 }

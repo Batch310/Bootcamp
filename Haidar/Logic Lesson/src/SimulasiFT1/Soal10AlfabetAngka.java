@@ -30,13 +30,18 @@ public class Soal10AlfabetAngka {
 				String jStr = Integer.toString(j);
 				if ((arrString[i].equals(arrAlfabet[j])) && (arrInput[i].equals(jStr))) {
 					newFound++;
-					break;
+//					break;
 				}
 			}
-			if (found == newFound) {
-				System.out.println("false");
+			if ((found == newFound) && i == arrInput.length-1) {
+				System.out.print("false");
+			} else if (!(found == newFound) && i == arrInput.length-1) {
+				System.out.print("true");
+//				found = newFound;
+			} else if (found == newFound) {
+				System.out.print("false, ");
 			} else {
-				System.out.println("true");
+				System.out.print("true, ");
 				found = newFound;
 			}
 		}
