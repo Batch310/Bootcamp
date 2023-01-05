@@ -13,10 +13,10 @@ public class AVeryBigSum {
 		long a = 0;
 		long b = 0;
 		
-		for (int i = 0; i < n; i++) {
-			System.out.print("Masukkan angka : ");
+		for (int i = 0; i < n; i++) { //01234
+			System.out.print("Masukkan angka : "); //12345
 			a = scanner.nextLong();
-			b += a;
+			b += a; // b = 15
 		}
 		System.out.print("Hasil = " +b);
 		}		

@@ -90,6 +90,5 @@ public class Soal4 {
 		jumlahBensin = (jarak / 2.5);
 
 		System.out.println((int) (jumlahBensin) + " liter");
-
 	}
 }
