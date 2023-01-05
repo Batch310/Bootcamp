@@ -2,7 +2,7 @@ package simulasift1;
 
 import java.util.Scanner;
 
-public class soal4 {
+public class MenghitungCokelat4 {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -13,23 +13,13 @@ public class soal4 {
 		// inout n = 10000						n=20000
 		// output nanda mendapatkan 12 cokelat	nanda mendapatkan 24 cokelat dilan
 		
-//		System.out.println("input n : ");
-//		int n = input.nextInt();
+		System.out.println("input n : ");
+		int n = input.nextInt();
 		
-		int n =10000;
+		int bonus =(n/5)/1000;
+		int total=(n/1000)+bonus;	
 		
-		int cokelat =0;
-		int stempel =0;
-		int hargaCokelat=n/1000;	
-		
-//		if(cokelat == 1) {
-//			stempel+=1;
-//		}
-//		if(stempel == 5) {
-//			cokelat=+1;
-//		}
-		
-		System.out.print("Nanda mendapatkan "+hargaCokelat+" Coklat dilan");
+		System.out.print("Nanda mendapatkan "+total+" Coklat dilan");
 	}
 
 }
