@@ -11,86 +11,86 @@
 
 
 
-11. Class Vehicle {
-	String model;    
-	String tahun;
+11. class Vehicle {
+		String model;    
+		String tahun;
     }
 ----------------------------------------------------
-    Class Mobil extends Vehicle {
-	String Merk;
-	int kapasitasTanki;
+    class Mobil extends Vehicle {
+		String Merk;
+		int kapasitasTanki;
     }
 
 
-12. Class Vehicle {
-	private String model;    
-	private String tahun;
+12. class Vehicle {
+		private String model;    
+		private String tahun;
 
-	public String getModel() {
-	   return model;
-	}
+		public String getModel() {
+	   		return model;
+		}
 
-	public String setModel(String modelParam) { 
-	   model = modelParam;
-	   return model;
-	}
+		public String setModel(String modelParam) { 
+	   		model = modelParam;
+	   		return model;
+		}
 
-	//Yang set harusnya:
-	public void setModel(String modelParam) { 
-	   model = modelParam;
-	}
+		//Yang set harusnya:
+		public void setModel(String modelParam) { 
+	   		model = modelParam;
+		}
     }
 
 
-13. Class Animal {
-	String name;    
-	int jumlahKaki;
+13. class Animal {
+		String name;    
+		int jumlahKaki;
 
-	public void  lompat() {
-	System.out.println(name + " lompat");
+		public void  lompat() {
+			System.out.println(name + " lompat");
+		}
+
+		public void lompat(String lompatApa) {
+			System.out.println(name + " lompat " + lompatApa);
+    	}
 	}
-
-	public void lompat(String lompatApa) {
-	System.out.println(name + " lompat " + lompatApa);
-    }
-
 
 14. abstract class Vehicle {
-	String model;    
-	String tahun;
+		String model;    
+		String tahun;
 
-	abstract void bukaPintu();
+		abstract void bukaPintu();
     }
 ----------------------------------------------------
-   Class Mobil extends Vehicle {
-	void bukaPintu() {
-	    System.out.println("Buka pintu!");
-	}	
+   class Mobil extends Vehicle {
+		void bukaPintu() {
+	    	System.out.println("Buka pintu!");
+		}	
    }
 
 
-15. Class Vehicle {
-	String model;
-	String tahun;
+15. class Vehicle {
+		String model;
+		String tahun;
     }
 ----------------------------------------------------    
     Interface Operasi {
-	void bukaPintu();
-	void belokKiri();
-	void belokKanan();
+		void bukaPintu();
+		void belokKiri();
+		void belokKanan();
     }
 ----------------------------------------------------
-    Class Mobil extends Vehicle implements Operasi {
-	void bukaPintu() {
-	    System.out.println("Buka pintu!");
-	}
+    class Mobil extends Vehicle implements Operasi {
+		void bukaPintu() {
+	    	System.out.println("Buka pintu!");
+		}
 
-	void belokKiri() {
-	    System.out.println("Belok kiri!");
-	}
+		void belokKiri() {
+	   		System.out.println("Belok kiri!");
+		}
 
-	void belokKanan() {
-	    System.out.println("Belok kanan!");
-	}
+		void belokKanan() {
+	    	System.out.println("Belok kanan!");
+		}
 
     }
