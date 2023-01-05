@@ -74,7 +74,7 @@
 		String tahun;
     }
 ----------------------------------------------------    
-    Interface Operasi {
+    interface Operasi {
 		void bukaPintu();
 		void belokKiri();
 		void belokKanan();
