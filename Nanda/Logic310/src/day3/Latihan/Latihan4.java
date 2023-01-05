@@ -17,18 +17,18 @@ public class Latihan4 {
 		int a=0;
 		int b;
 		
-		for(int i=0; i<n; i++) {
+		for(int i=0; i<n; i++) { //01234
 			System.out.print(i+" ");
 		}
 		System.out.println();
-		for(int i=0; i<n; i++) {
+		for(int i=0; i<n; i++) { //0,1,2,3,4
 			if(i%2==0) {
-				a++;
-				System.out.print(a+" ");				
+				a++; //1,2,3
+				System.out.print(a+" "); //1,2,3		
 			}else {
-				b=a*n2;
-				System.out.print(b+" ");
-			}
+				b=a*n2; //10
+				System.out.print(b+" "); //5,10
+			} //1,5,2,10,3
 		}
 	}
 

@@ -10,19 +10,17 @@ public class Soal1 {
 		System.out.print("n = ");
 		int n = input.nextInt();
 		
-		for (int i = 1; i <= n; i++) {
-			if (i%2 != 0) {
-				System.out.print(i+ " ");
+		for (int i = 1; i <= n; i++) { //12345
+			if (i%2 != 0) { 
+				System.out.print(i+ " "); //1 3 5
 			}
 		}
 		
 		System.out.println();
-		for (int i = 1; i <= n; i++) {
+		for (int i = 1; i <= n; i++) { //1
 			if (i%2 == 0) {
-				System.out.print(i+ " ");
+				System.out.print(i+ " "); //2 4
 			}
 		}
-
 	}
-
 }

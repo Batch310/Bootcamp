@@ -7,7 +7,7 @@ public class Latihan1 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
-		int n, awal=1; 
+		int n, awal=2; 
 		
 		System.out.print("n = ");
 		n = input.nextInt();
