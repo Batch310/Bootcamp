@@ -2,7 +2,7 @@ package simulasift1;
 
 import java.util.Scanner;
 
-public class Alfabet10 {
+public class Soal10Alfabet {
 
 	public static void main(String[] args) {
 

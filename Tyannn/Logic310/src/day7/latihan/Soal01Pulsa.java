@@ -2,7 +2,7 @@ package day7.latihan;
 
 import java.util.Scanner;
 
-public class soal1 {
+public class Soal01Pulsa {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);

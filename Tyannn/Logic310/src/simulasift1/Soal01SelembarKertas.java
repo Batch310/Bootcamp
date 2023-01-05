@@ -2,7 +2,7 @@ package simulasift1;
 
 import java.util.Scanner;
 
-public class SelembarKertas1 {
+public class Soal01SelembarKertas {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);

@@ -3,7 +3,7 @@ package simulasift1;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class MengurutkanHuruf7 {
+public class Soal07MengurutkanHuruf {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);

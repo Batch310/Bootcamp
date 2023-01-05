@@ -2,7 +2,7 @@ package simulasift1;
 
 import java.util.Scanner;
 
-public class LembahGunung9 {
+public class Soal09LembahGunung {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);

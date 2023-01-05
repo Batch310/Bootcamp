@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class RumahNenek5 {
+public class Soal05RumahNenek {
 
 	public static void main(String[] args) throws ParseException {
 		Scanner input = new Scanner(System.in);

@@ -2,7 +2,7 @@ package simulasift1;
 
 import java.util.Scanner;
 
-public class Kelipatan3 {
+public class Soal03Kelipatan {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);

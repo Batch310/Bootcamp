@@ -2,7 +2,7 @@ package simulasift1;
 
 import java.util.Scanner;
 
-public class Indomie2 {
+public class Soal02Indomie {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
