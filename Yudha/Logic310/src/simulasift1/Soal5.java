@@ -7,6 +7,24 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Soal5 {
+	
+/*
+Imam pergi ke rumah nenek setiap x hari, sedangkan Yudha pergi ke rumah nenek setiap y hari. Jika mereka mengunjungi rumah nenek pada hari yang sama pada tanggal z, kapan tanggal terdekat mereka akan bertemu di rumah Nenek lagi?
+Input :
+x = 5
+y = 2
+z = 2 Januari 2023
+
+Output : 
+12 Januari 2023	Input :
+x = 3
+y = 2
+z = 2 Januari 2023
+
+Output : 
+8 Januari 2023
+
+*/
 
 	public static void main(String[] args) throws ParseException {
 		// TODO Auto-generated method stub
