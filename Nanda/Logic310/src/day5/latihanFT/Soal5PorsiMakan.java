@@ -24,7 +24,7 @@ public class Soal5PorsiMakan {
 		int intOrang = 0;
 		String orang = "";
 
-		System.out.print("Masukkan pelanggan : "); 
+		System.out.print("Masukkan pelanggan : "); //1Lakilaki ; 2Perempuan ; 
 		String pelanggan = input.nextLine();
 
 		String[] arrPelanggan = pelanggan.split(";");

@@ -2,7 +2,7 @@ package day8.latihanFT;
 
 import java.util.Scanner;
 
-public class Soal1 {
+public class Soal1PoinPulsa {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
