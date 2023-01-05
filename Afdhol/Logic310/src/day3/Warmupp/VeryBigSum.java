@@ -6,6 +6,8 @@ public class VeryBigSum {
 
 	public static void main(String[] args) {
 
+		//Menambahkan setiap array dengan tipe long
+		
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("n: ");

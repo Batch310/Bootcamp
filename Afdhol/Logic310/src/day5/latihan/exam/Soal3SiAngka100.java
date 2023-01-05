@@ -11,7 +11,6 @@ public class Soal3SiAngka100 {
 		// challenge : apabila hasil 11 atau 111 atau 111 maka langsung menjadi "Si Angka 1"
 
 		Scanner input = new Scanner(System.in);
-
 		System.out.print("input n: ");
 		int data = input.nextInt();
 

@@ -27,9 +27,15 @@ public class Soal1LembarKertas {
 //				}
 				
 				//Cara 2
-				int hasil = (int) Math.pow(2, 6-x);
+				if (x>0&&x<6) {
+					int hasil = (int) Math.pow(2, 6-x);
+					
+					System.out.println("Dibutuhkan " + hasil + " kertas A6 untuk membuat kertas A" + x);
+				}else {
+					System.out.println("input antara 1-5!");
+				}
 				
-				System.out.println("Dibutuhkan " + hasil + " kertas A6 untuk membuat kertas A" + x);
+			
 			
 
 	}
