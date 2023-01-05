@@ -2,7 +2,7 @@ package day5.latihanFT;
 
 import java.util.Scanner;
 
-public class Soal5 {
+public class Soal5PorsiMakan {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class Soal5 {
 		int intOrang = 0;
 		String orang = "";
 
-		System.out.print("Masukkan pelanggan : ");
+		System.out.print("Masukkan pelanggan : "); 
 		String pelanggan = input.nextLine();
 
 		String[] arrPelanggan = pelanggan.split(";");
@@ -36,7 +36,6 @@ public class Soal5 {
 					String jmlOrang = yangMakan[j].replace(" orang", "");
 					intOrang = Integer.parseInt(jmlOrang);
 				}
-				
 			}
 			if (orang.equalsIgnoreCase("Laki-laki dewasa")) {
 				porsiLakilaki += intOrang * Lakilaki;
@@ -56,10 +55,7 @@ public class Soal5 {
 			} else {
 				totalJumlahPorsi = porsiLakilaki + porsiPerempuan + porsiRemaja + porsiAnak + porsiBalita;
 			}
-
 		}
-
 		System.out.println(totalJumlahPorsi+ " porsi");
-
 	}
 }
