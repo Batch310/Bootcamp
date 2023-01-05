@@ -3,7 +3,7 @@ package simulasift1;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class soal7 {
+public class MengurutkanHuruf7 {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -31,6 +31,7 @@ public class soal7 {
 			// contains = mengandung
 			if (abjad.contains(arrKata[i])) {
 				if (!arrKata[i].equals(hurufSebelumnya)) {
+					// equals = membandingkan
 					if (!hurufSebelumnya.equals("")) {
 						a = a + " | ";
 					}
