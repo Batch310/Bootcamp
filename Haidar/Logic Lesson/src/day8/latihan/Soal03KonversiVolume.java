@@ -15,6 +15,7 @@ public class Soal03KonversiVolume {
 		
 		double volume = 0;
 		
+		//Karena ada 4 barang, maka setiap 1 barang dibandingkan sama 3 barang lainnya 
 		if (barang1.equalsIgnoreCase("botol") && barang2.equalsIgnoreCase("gelas")) {
 			volume = 2;
 		} else if (barang1.equalsIgnoreCase("botol") && barang2.equalsIgnoreCase("cangkir")) {

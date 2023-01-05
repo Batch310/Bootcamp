@@ -16,7 +16,7 @@ public class Soal01LembarA6 {
 			System.out.println("Masukkan nilai x : ");
 			kertasX = masukan.nextInt();
 		}
-		int lembar = (int) (2*Math.pow(2, 5-kertasX));
+		int lembar = (int) (2*Math.pow(2, 5-kertasX)); //Sama aja kek 2^(6-1), awalnya malah mikir ini. Gatau kenapa codingnya malah jadi kek gini -_-
 		
 		System.out.println("Dibutuhkan " + lembar + " kertas A6 untuk membuat selembar kertas A" + kertasX);
 		masukan.close();
