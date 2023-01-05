@@ -3,7 +3,7 @@ package day5.test;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Soal7 {
+public class Soal7TebakAngkaGameKartu {
 
 	public static void main(String[] args) {
 

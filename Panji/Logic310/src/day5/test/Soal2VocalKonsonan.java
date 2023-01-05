@@ -3,10 +3,11 @@ package day5.test;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Soal2 {
+public class Soal2VocalKonsonan {
 
 	public static void main(String[] args) {
 
+		//Pengelompokan huruf vocal dan konsonan
 		Scanner input = new Scanner(System.in);
 
 		System.out.print("input n : ");

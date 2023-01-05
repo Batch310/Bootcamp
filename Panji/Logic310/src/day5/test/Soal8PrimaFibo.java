@@ -2,7 +2,7 @@ package day5.test;
 
 import java.util.Scanner;
 
-public class Soal8 {
+public class Soal8PrimaFibo {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

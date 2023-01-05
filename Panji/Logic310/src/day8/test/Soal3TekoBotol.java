@@ -2,7 +2,7 @@ package day8.test;
 
 import java.util.Scanner;
 
-public class Soal3 {
+public class Soal3TekoBotol {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

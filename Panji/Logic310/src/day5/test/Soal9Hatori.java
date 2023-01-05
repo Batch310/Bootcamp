@@ -2,7 +2,7 @@ package day5.test;
 
 import java.util.Scanner;
 
-public class Soal9 {
+public class Soal9Hatori {
 
 	public static void main(String[] args) {
 

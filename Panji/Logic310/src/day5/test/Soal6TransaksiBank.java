@@ -2,7 +2,7 @@ package day5.test;
 
 import java.util.Scanner;
 
-public class Soal6 {
+public class Soal6TransaksiBank {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);

@@ -2,7 +2,7 @@ package day5.test;
 
 import java.util.Scanner;
 
-public class Soal10 {
+public class Soal10EsKopi {
 
 	public static void main(String[] args) {
 

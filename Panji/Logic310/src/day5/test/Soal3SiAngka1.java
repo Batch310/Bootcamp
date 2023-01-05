@@ -2,7 +2,7 @@ package day5.test;
 
 import java.util.Scanner;
 
-public class Soal3 {
+public class Soal3SiAngka1 {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);

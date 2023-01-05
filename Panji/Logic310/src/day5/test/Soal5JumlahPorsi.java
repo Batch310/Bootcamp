@@ -2,7 +2,7 @@ package day5.test;
 
 import java.util.Scanner;
 
-public class Soal5 {
+public class Soal5JumlahPorsi {
 
 	public static void main(String[] args) {
 

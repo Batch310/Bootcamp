@@ -3,7 +3,7 @@ package day5.test;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Soal4 {
+public class Soal4JarakToko {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
