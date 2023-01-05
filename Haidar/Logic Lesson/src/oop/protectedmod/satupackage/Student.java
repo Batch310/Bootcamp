@@ -1,4 +1,4 @@
-package coba.oop;
+package oop.protectedmod.satupackage;
 
 public class Student {
 	private int graduationYear = 2018;

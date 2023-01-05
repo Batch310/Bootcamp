@@ -1,6 +1,6 @@
-package coba.oop1;
+package oop.protectedmod.bedapackage;
 
-import coba.oop.Person;
+import oop.protectedmod.satupackage.Person;
 
 class Student extends Person {
 	private int graduationYear = 2018;
@@ -13,3 +13,4 @@ class Student extends Person {
 		System.out.println("Graduation Year: " + myObj.graduationYear);
 	}
 }
+//Sources ; W3Schools & javatpoint
