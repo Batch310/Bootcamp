@@ -18,18 +18,18 @@ public class Latihan6 {
 		
 		int a = 1;
 		
-		for (int i = 0; i < n; i++) {
-			System.out.print(a+ " ");
-			a *= n;
+		for (int i = 0; i < n; i++) { //0,1,2,3,4
+			System.out.print(a+ " "); //1,5,25,125,625
+			a *= n; //5,25,125,625
 		}
 		
 		System.out.println();
 		
 		int b = 1;
 		
-		for (int i = 0; i <= n; i++) {
-			System.out.print((b+i)+ " ");
-			b *= n;
+		for (int i = 0; i < n; i++) { //0, 1, 2, 3, 4
+			System.out.print((b+i)+ " "); //1, 6, 27, 128, 629 
+			b *= n; //5, 25, 125, 625
 		}
 	}
 

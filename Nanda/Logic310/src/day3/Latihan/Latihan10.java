@@ -21,17 +21,17 @@ public class Latihan10 {
 		System.out.println();
 		
 		int a = 0;
-		for (int i = 0; i < n; i++) {
-			System.out.print(a+ " ");
-			a += n2;
+		for (int i = 0; i < n; i++) { //0
+			System.out.print(a+ " "); //0,5,10,15,20
+			a += n2; //5,10,15,20,25
 		}
 		
 		System.out.println();
 		
 		int b = 0;
-		for (int i = 0; i < n; i++) {
-			System.out.print((b+i)+ " ");
-			b += n2;
+		for (int i = 0; i < n; i++) { //01234
+			System.out.print((b+i)+ " "); //1,6,12,18,24
+			b += n2; //5,10,15,20,15
 		}
 	}
 	}
