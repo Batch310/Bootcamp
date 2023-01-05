@@ -32,9 +32,7 @@ public class Soal8 {
 		for (int i = 0; i < prima.length; i++) {
 			System.out.print(prima[i] + " ");
 		}
-
 		System.out.println();
-
 		int fibo0 = 0;
 		int fibo1 = 1;
 
@@ -45,18 +43,12 @@ public class Soal8 {
 			fibo1 = fibonacci[i];
 			System.out.print(fibonacci[i]+ " ");
 		}
-		
 		System.out.println();
-		
 		System.out.print("Total : ");
 		int[] total = new int [n];
 		for (int i = 0; i < n; i++) {
 			total[i] = prima[i] + fibonacci[i];
-			System.out.print(total[i] + " ");
-			
+			System.out.print(total[i] + " ");	
 		}
-
 	}
-
-	// Program penjumlahan data index 1 dan data index 2
 }

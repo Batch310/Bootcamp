@@ -28,6 +28,8 @@ public class CompareTheTriplets {
 			arrayBob[i] = scan.nextInt();
 		}
 
+		
+		//perbandingan apakah skor
 		for (int i = 0; i < n; i++) {
 			if (arrayAlice[i] > arrayBob[i]) {
 				skorAlice++;

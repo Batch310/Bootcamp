@@ -8,7 +8,7 @@ public class MiniMaxSumCara2 {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
-
+		System.out.print("Masukkan Data = ");
 		int[] angka= new int[5];
 		
 		for (int i = 0; i < angka.length ; i++) {

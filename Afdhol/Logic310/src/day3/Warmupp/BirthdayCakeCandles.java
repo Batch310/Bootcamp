@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class BirthdayCakeCandles {
 
+	
+	//Soal = menentukan berapa banyak nilai terbesar
+	
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);
