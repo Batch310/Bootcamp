@@ -5,28 +5,41 @@ import java.util.Scanner;
 public class KonversiVolume {
 
 	public static void main(String[] args) {
-		// 1 Botol = 2 gelas => 5 cangkir (1 gelas = 2.5 cangkir)
-		// 1 teko = 25 cangkir => 10 gelas
-		// 1 gelas =2.5 cangkir
 
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("Komversi dari = 1  ");
-		String a = scanner.nextLine();
-		System.out.print(" ke ");
-		String b = scanner.nextLine();
-
-		double botol = 0;
-		double gelas = 0;
-		double teko = 0;
-		double cangkir = 0;
-
-		if (a.equalsIgnoreCase("botol")) {
-			if (b.equalsIgnoreCase("gelas")) {
-				gelas += 2;
-			}else if(b.equalsIgnoreCase("cangkir")){
-			
-			}
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		System.out.print("Input a : ");
+		String[] a = input.nextLine().split(" ");
+		int jumlah = Integer.parseInt(a[0]);
+		System.out.print("Input b : ");
+		String b = input.nextLine();
+		double gelas = 1, botol = 1, teko = 1, cangkir = 1, konversi = 0;
+		if (a[1].equals("botol") & b.equals("gelas")) {
+			konversi = jumlah * 2;
+		} else if (a[1].equals("gelas") & b.equals("botol")) {
+			konversi = jumlah / 2;
+		} else if (a[1].equals("teko") & b.equals("cangkir")) {
+			konversi = jumlah * 25;
+		} else if (a[1].equals("cangkir") & b.equals("teko")) {
+			konversi = jumlah / 25;
+		} else if (a[1].equals("gelas") & b.equals("cangkir")) {
+			konversi = jumlah * 2.5;
+		} else if (a[1].equals("cangkir") & b.equals("gelas")) {
+			konversi = jumlah / 2.5;
+		} else if (a[1].equals("botol") & b.equals("cangkir")) {
+			konversi = jumlah * (2 * 2.5);
+		} else if (a[1].equals("cangkir") & b.equals("botol")) {
+			konversi = jumlah / (2 * 2.5);
+		} else if (a[1].equals("teko") & b.equals("gelas")) {
+			konversi = jumlah * (25 / 2.5);
+		} else if (a[1].equals("gelas") & b.equals("teko")) {
+			konversi = jumlah / (25 / 2.5);
+		} else if (a[1].equals("teko") & b.equals("botol")) {
+			konversi = jumlah * (25 / (2.5 * 2));
+		} else if (a[1].equals("botol") & b.equals("teko")) {
+			konversi = jumlah / (25 / (2.5 * 2));
 		}
+		System.out.println(a[0] + " " + a[1] + " = " + konversi + " " + b);
 
 	}
 
