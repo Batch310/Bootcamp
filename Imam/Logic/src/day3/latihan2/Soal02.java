@@ -12,13 +12,16 @@ public class Soal02 {
 		System.out.print("n2 = ");
 		int n2 = inputan.nextInt();
 
-		int nilaiAwal = 1;
+	
 
 		for (int i = 0; i < n; i++) {
 			System.out.print(i + " ");
 		}
 
 		System.out.println();
+		
+		//Pangkat -2
+		int nilaiAwal = 1;
 		for (int i = 0; i <= n; i++) {
 
 			if (i % 3 == 2) {
