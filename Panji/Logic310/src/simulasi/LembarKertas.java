@@ -18,7 +18,7 @@ public class LembarKertas {
 		//Cara 1
 //		int angkaBantu = x;
 //		int hasil = 1;
-//		while(angkaBantu < 6) {
+//		while(angkaBantu < 6) { 
 //			hasil = hasil * 2;
 //			angkaBantu++;
 //		}
