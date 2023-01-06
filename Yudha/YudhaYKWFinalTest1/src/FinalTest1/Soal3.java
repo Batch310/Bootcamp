@@ -1,10 +1,13 @@
-package simulasift1;
+package FinalTest1;
 
 import java.util.Scanner;
 
 public class Soal3 {
 
+
+
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.print("Masukkan x : ");
