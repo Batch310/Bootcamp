@@ -14,6 +14,7 @@ public class Soal5 {
 		System.out.print("Panjang Salah satu rusuk : ");
 		int panjangRusuk = input.nextInt();
 		
+		
 		double luasPersegi = Math.pow(panjangSisi,2);
 		double luasPermukaan = Math.pow(panjangRusuk,2) * 6;
 		

@@ -19,6 +19,7 @@ public class Soal3 {
 
 		while (bilangan < x) {
 			if (bilangan % 2 == 0) {
+				System.out.print(bilangan + " ");
 				countBilanganGenap++;
 			}
 			bilangan = fibo0 + fibo1;

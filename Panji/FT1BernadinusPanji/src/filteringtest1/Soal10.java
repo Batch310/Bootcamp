@@ -48,6 +48,15 @@ public class Soal10 {
 				System.out.print(deretHasil[i] + ", ");
 			}
 		}
+
+		System.out.println();
+		
+		for (int i = 0; i < deretHasil.length; i++) {
+			if (deretHasil[i] % 3 == 0 && deretHasil[i] % 4 == 0) {
+				System.out.println(deretHasil[i]);
+			}
+		}
+
 	}
 
 }

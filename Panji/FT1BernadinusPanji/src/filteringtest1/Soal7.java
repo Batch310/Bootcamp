@@ -26,9 +26,9 @@ public class Soal7 {
 			int indexBaruInt = Integer.parseInt(indexBaru);
 			String allfabetBaru = arrAlfabet[indexBaruInt];
 			if (arrData1[i].equals(allfabetBaru)) {
-				System.out.println("true");
+				System.out.print("true ");
 			} else {
-				System.out.println("false");
+				System.out.print("false ");
 			}
 		}
 	}

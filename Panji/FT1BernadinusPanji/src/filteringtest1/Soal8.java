@@ -13,6 +13,7 @@ public class Soal8 {
 		// TODO Auto-generated method stub
 		Scanner input = new Scanner(System.in);
 
+		//output 8 maret 2020
 		System.out.print("X : ");
 		int x = input.nextInt();
 
@@ -23,6 +24,7 @@ public class Soal8 {
 		System.out.print("Z : ");
 		String z = input.nextLine();
 
+		
 		int hariLibur;
 		if (x < y) {
 			hariLibur = x;
