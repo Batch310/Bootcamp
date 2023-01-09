@@ -22,7 +22,6 @@ public class Soal03Kelipatan {
 			if (nilaiAwal % 5 == 0 && nilaiAwal % 8 == 0) {
 				arr[index] = nilaiAwal;
 				index++;
-	
 			}
 		}
 
