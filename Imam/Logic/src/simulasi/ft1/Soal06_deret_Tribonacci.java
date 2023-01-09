@@ -12,23 +12,23 @@ public class Soal06_deret_Tribonacci {
 		int x = scanner.nextInt();
 
 		int a = 0;
-		int b = 0;
+		int b = 1;
 		int c = 1;
 
 		int bilSaatIni = 1;
-		int countGanjil = 0;
+		int countGenap = 0;
 		while (bilSaatIni < x) {
-			if (bilSaatIni % 2 != 0) {
-				countGanjil++;
+			if (bilSaatIni % 2 == 0) {
+				countGenap++;
 			}
 
-			bilSaatIni = a + b + c;
+			bilSaatIni = a + b;
 			a = b;
 			b = c;
 			c = bilSaatIni;
 		}
 		
-		System.out.println("Sebanyak " + countGanjil + " bilangan ganjil");
+		System.out.println("Sebanyak " + countGenap + " bilangan gaenap");
 
 	}
 

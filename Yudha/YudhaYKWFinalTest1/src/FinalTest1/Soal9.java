@@ -13,14 +13,23 @@ public class Soal9 {
 		String[] buahArray = buah.split("");
 		String vokal = "aiueo";
 		int harga = 0;
+		String a = "";
 		
 		for (int i = 0; i < buahArray.length; i++) {
 			if(vokal.contains(buahArray[i])) {
-				harga+=10;
+				a=a+buahArray[i];
+				if(a.contains(buahArray[i])) {
+					
+				}else {
+					harga+=10;
+				}
+				
 			}
+			
 		}
 		
 		
+		System.out.println(a);
 		System.out.println(buah + " seharga " + harga + " ribu per kg");	
 	}
 

@@ -22,11 +22,11 @@ public class Soal3 {
 		while (bilSaatIni < x) {
 			if (bilSaatIni != 0 & bilSaatIni % 2 == 0) {
 				countGenap++;
+				System.out.println(bilSaatIni);
 			}
 			bilSaatIni = a + b;
 			a = b;
 			b = bilSaatIni;
-			
 		}
 		System.out.println("Sebanyak "+countGenap);
 	}

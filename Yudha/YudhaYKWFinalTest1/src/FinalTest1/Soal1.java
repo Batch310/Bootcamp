@@ -9,11 +9,11 @@ public class Soal1 {
 		Scanner input = new Scanner(System.in);
 		System.out.print("n = ");
 		int n = input.nextInt();
-		int esLoli = 1000;
+		int esLoli = 700;
 		int stempel=0;
 		int jumlah = 0;
-		while(n>=1000) {
-			n=n-1000;
+		while(n>=700) {
+			n=n-700;
 			stempel++;
 			jumlah++;
 			if(stempel%5==0) {
@@ -22,6 +22,7 @@ public class Soal1 {
 			}
 		}
 		System.out.println("Bambang mendapatkan "+ jumlah + " Es Loli");
+		System.out.println(n);
 		
 
 	}
