@@ -37,6 +37,7 @@ public class Soal08Kelipatan {
 			}
 		}
 		System.out.println();
+		
 		for (int i = 0; i < arr3.length; i++) {
 			tampung[i] = arr4[i] + arr3[i];
 			
