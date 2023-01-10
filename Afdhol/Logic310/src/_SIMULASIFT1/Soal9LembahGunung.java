@@ -37,9 +37,9 @@ public class Soal9LembahGunung {
 				lembah++;
 			}
 		}
-		
-		System.out.println("gunung "+gunung);
-		System.out.print("lembah "+lembah);
+
+		System.out.println("gunung " + gunung);
+		System.out.print("lembah " + lembah);
 
 	}
 
