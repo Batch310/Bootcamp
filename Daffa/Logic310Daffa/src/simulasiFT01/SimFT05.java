@@ -21,8 +21,6 @@ public class SimFT05 {
 		String tanggalTerakhir = scanner.nextLine();
 		scanner.close();
 
-		int bersama = hariImam * hariYudha;
-
 		String pattern = "dd MMMM yyyy";
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern, locale);
 
@@ -34,7 +32,14 @@ public class SimFT05 {
 		long jam = 60 * menit;
 		long hari = 24 * jam;
 
-		millis += bersama * hari;
+		if (hariImam % hariYudha == 0) {
+			millis += hariImam * hari;
+		} else if (hariYudha % hariImam == 0) {
+			millis += hariYudha * hari;
+		} else {
+			millis += hariImam * hariYudha * hari;
+		}
+
 		tanggalDate.setTime(millis);
 
 		String tanggalConvert = sdf.format(tanggalDate);

@@ -5,15 +5,7 @@ package day2.latihan;
 
 import java.util.Scanner;
 
-/**
- * @author Hilda Yuniarti
- *
- */
 public class Latihan2 {
-
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		

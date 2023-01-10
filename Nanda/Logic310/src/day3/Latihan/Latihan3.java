@@ -23,11 +23,11 @@ public class Latihan3 {
 		
 		for(int i=0; i<n; i++) {
 			if(i<n/2) {
-				System.out.print(n2+" ");
-				n2*=2;
+				System.out.print(n2+" "); 
+				n2*=2; 
 			}else {
-			System.out.print(n2+ " ");
-			n2/=2;
+			System.out.print(n2+ " "); 
+			n2/=2; 
 		}
 	}
 	}

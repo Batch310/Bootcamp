@@ -9,22 +9,19 @@ public class Soal4 {
 		System.out.print("n = ");
 		int n = input.nextInt();
 		
-		
-		int coklatbonus = 0;
-		int stempel = 0;
+		int eslolibonus = 0;
+		int stik = 0;
 		int harga = 1000;
-		int coklat = 0;
-		int coklatt = 0;
+		int esloli = 0;
+		int eslolitotal = 0;
 		
-		for (coklat = 0; coklat < (n/harga) ; coklat++) {
-			stempel++;
-			if(stempel %5 == 0) {
-			coklatbonus++;
+		for (esloli = 0; esloli < (n/harga) ; esloli++) {
+			stik++;
+			if(stik %5 == 0 && stik > 0) {
+			eslolibonus++;
 		}
 	}
-		coklatt = coklat+coklatbonus;
-		System.out.print("Nanda mendapatka " +coklatt+ " coklat dilan");
+		eslolitotal = esloli + eslolibonus;
+		System.out.print("Nanda mendapatka " +eslolitotal+ " coklat dilan");
 	}
 }
-
-

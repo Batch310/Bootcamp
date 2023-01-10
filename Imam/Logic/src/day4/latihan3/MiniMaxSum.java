@@ -7,7 +7,7 @@ public class MiniMaxSum {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
-
+		System.out.print("Masukkan Data = ");
 		int[] angka= new int[5];
 		
 		for (int i = 0; i < angka.length ; i++) {
@@ -16,18 +16,12 @@ public class MiniMaxSum {
 		}
 		
 		
-		
-		
-		//1 2 3 4 5 (i)
-		//1 2 3 4 5 (j)
-		
 		//cara 1
-		int temp = 0;
 		int min = 0;
 		int max = 0;
 		
 		for (int i = 0; i < angka.length; i++) {
-			temp = 0;
+			int temp = 0;
 			for (int j = 0; j < angka.length; j++) {
 				if(i != j) {
 					temp = temp + angka[j];

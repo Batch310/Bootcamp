@@ -11,29 +11,21 @@ public class SimFT06 {
 		int deret = scanner.nextInt();
 		scanner.close();
 
-		String tribonacci = "";
-		int tribo = 0, foundGanjil = 0, tri1 = 0, tri2 = 0, tri3 = 1;
+		int tribo0 = 0;
+		int tribo1 = 0;
+		int tribo2 = 1;
+		int found = 0;
 
-		while (tribo < deret) {
-			int nextTribo = 0;
-			tribonacci += tri1 + " ";
-			nextTribo = tri1 + tri2 + tri3;
-			tri1 = tri2;
-			tri2 = tri3;
-			tri3 = nextTribo;
-			tribo++;
-		}
-		
-		for (int j = 0; j < deret; j++) {
-			String[] arrTribonacci = tribonacci.split(" ");
-			int convertTribo = Integer.parseInt(arrTribonacci[j]);
-			if (convertTribo % 2 == 1) {
-				foundGanjil++;
+		while (tribo2 < deret) {
+			if (tribo2 % 2 != 0) {
+				found++;
 			}
+			int nextTribo = tribo0 + tribo1 + tribo2;
+			tribo0 = tribo1;
+			tribo1 = tribo2;
+			tribo2 = nextTribo;
 		}
-		
-		System.out.println(tribonacci);
-		System.out.println("Terdapat " + foundGanjil + " bilangan ganjil");
+		System.out.println("Terdapat " + found + " bilangan ganjil");
 	}
 
 }

@@ -5,17 +5,27 @@ import java.util.Scanner;
 public class Soal3 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner input = new Scanner(System.in);
-		System.out.print("X = ");
-		int n = input.nextInt();
-		int x = 5;
-		int y = 8;
-		String cetak = "";
-		for(int i=1;i<=n;i++) {
-			cetak = cetak + (x*y*i + " ");
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.print("Masukkan x : ");
+		int x = scanner.nextInt();
+
+		int a = 0;
+		int b = 1;
+		
+
+		int bilSaatIni = 0;
+		int countGenap = 0;
+		while (bilSaatIni < x) {
+			if (bilSaatIni != 0 & bilSaatIni % 2 == 0) {
+				countGenap++;
+			}
+			bilSaatIni = a + b;
+			a = b;
+			b = bilSaatIni;
+			
 		}
-		System.out.println(cetak);
+		System.out.println("Sebanyak "+countGenap);
 	}
 
 }
