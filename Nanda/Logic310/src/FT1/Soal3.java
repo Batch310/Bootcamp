@@ -23,12 +23,24 @@ public class Soal3 {
 			fibo1 = fibonacci[i];
 		}
 		
+		System.out.println();
+		for (int i = 0; i < fibonacci.length; i++) {
+			System.out.print(fibonacci[i] + " ");
+		}
+		
+		System.out.println();
+		System.out.println();
+
+		
 		int hasil = 0;
 		for (int i = 0; i < x; i++) {
-			if(fibonacci[i] > 0 && fibonacci[i] % 2 == 0) {
+			if(fibonacci[i] > 0 && fibonacci[i] % 2 == 0 && fibonacci[i] <= 50) {
 				hasil++;
-			}
+				System.out.print(fibonacci[i] + " ");
+			}					
 		}
+		
+		System.out.println();
 		System.out.println("Sebanyak " +hasil+ " bilangan genap" );
 	}
 

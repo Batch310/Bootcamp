@@ -8,10 +8,13 @@ public class Soal2 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		
+		//urutan dibalik (descending) dan vokal dicetak 1x
+		
 		System.out.print("input n : ");
 		String n = scanner.nextLine();
 		
-		String kumpulanKarakter = "abcdefghijklmnopqrstuvwxyz";
+		String kumpulanKarakter = "bcdfghjklmnpqrstvwxyz";
+		String vocal = "aiueo";
 		
 		String[] arrN = n.toLowerCase().split("");
 		
@@ -20,6 +23,8 @@ public class Soal2 {
 		String hasil = "";
 		
 		String hurufSebelumnya = "";
+		
+		String hasil1 = "";
 		
 		for (int i = 0; i < arrN.length; i++) {
 			String hurufSekarang = arrN[i];
@@ -33,7 +38,19 @@ public class Soal2 {
 				hurufSebelumnya = hurufSekarang;
 			}
 		}
+		for (int i = 0; i < arrN.length; i++) {
+			String hurufVocal = arrN[i];
+			if(vocal.contains(hurufVocal)) {
+				if(hurufVocal.equals(hurufSebelumnya)) {
+					hasil1 = hasil1 + " - ";
+				}
+			}
+			
+		}
+		
 		System.out.println(hasil);
+		System.out.println(hasil1);
+
 	}
 
 }
