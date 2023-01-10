@@ -13,11 +13,11 @@ public class Soal5 {
 		System.out.print("Masukkan Panjang Rusuk Kubus dalam cm : ");
 		int m = scanner.nextInt();
 		
-		double Lpersegi = (int) Math.pow(n, 2);
+		double Lpersegi = (int) Math.pow(n, 2); // n =1
 		
-		double LPkubus = (int) Math.pow(m, 2) * 6;
+		double LPkubus = (int) Math.pow(m, 2) * 6; // m = 54
 				
-		double hasil = Math.ceil(LPkubus / Lpersegi);
+		double hasil = Math.ceil(LPkubus / Lpersegi); // 54
 		
 		System.out.print("Banyaknya persegi adalah : " + hasil);
 	}
