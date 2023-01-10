@@ -10,6 +10,10 @@ public class Soal10 {
 		System.out.print("input panjang deret : ");
 		int n = scanner.nextInt();
 		
+		//deret baru dari output sebelumnya
+		//outputnya = kelipatan 4 habis dibagi 3
+		
+		
 		int k3 = 2;
 		int[] deret3 = new int[n];
 		deret3[0] = k3;
@@ -42,6 +46,15 @@ public class Soal10 {
 		for (int i = 0; i < total.length; i++) {
 			total[i] = deret3[i] + deret4[i];
 			System.out.print(total[i] + " ");
+		}
+		
+		System.out.println();
+		System.out.print("Kelipatan 4 Habis dibagi 3 : ");
+		int[] Kel4 = new int[n];
+		for (int i = 0; i < Kel4.length; i++) {
+			if(total[i] % 4 == 0 && total[i] %3 == 0) {
+				System.out.print(total[i] + " ");
+			}
 		}
 	}
 

@@ -17,9 +17,11 @@ public class Soal8 {
 		int y = scanner.nextInt();
 		
 		
-		System.out.println("z : ");
+		System.out.print("z : ");
 		scanner.nextLine();
 		String z = scanner.nextLine();
+		
+		//output 8 Maret 2020
 		
 		int nextDay;
 		if (x<y) {

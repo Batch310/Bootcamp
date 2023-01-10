@@ -29,11 +29,7 @@ public class Soal9 {
 				System.out.print(arrInput[i]);
 				String hurufSama = arrInput[i];
 				
-				tampungHasil++;
-				if (vokal=) {
-					
-				}
-//				//tampung++;
+			
 			
 			}
 		}
