@@ -12,5 +12,3 @@ public class HelloController {
 		return "hello-world.html"; //File HTML yang mau ditampilkan
 	}
 }
-
-// localhost:8080/hello/home
