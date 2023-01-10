@@ -43,7 +43,5 @@ public class Soal3KonversiVolume {
 		}
 		System.out.println("1 " + barang1 + " = " + volume + " " + barang2);
 		masukan.close();
-
 	}
-
 }
