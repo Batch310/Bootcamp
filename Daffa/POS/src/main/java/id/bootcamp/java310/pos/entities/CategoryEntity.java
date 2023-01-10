@@ -107,4 +107,12 @@ public class CategoryEntity {
 		this.modifyDate = mmodifyDate;
 	}
 
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
 }
