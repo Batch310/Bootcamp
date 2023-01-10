@@ -15,15 +15,18 @@ public class Soal1 {
 		int harga = 1000;
 		int esloli = 0;
 		int eslolitotal = 0;
+		int eslolinew = 0;
 
 		for (esloli = 0; esloli < (n / harga); esloli++) {
 			stik++;
 			if (stik % 5 == 0 && stik > 0) {
+				eslolinew = 0;
 				eslolibonus++;
+				eslolinew++;				
 			}
 		}
-		eslolitotal = esloli + eslolibonus;
-		System.out.print("Bambang mendapatkan " + eslolitotal + " coklat dilan");
+		eslolitotal = esloli + eslolibonus + eslolinew;
+		System.out.print("Bambang mendapatkan " + eslolitotal + " es loli");
 	}
 
 }
