@@ -19,6 +19,7 @@ public class No_03 {
 		while (bilSaatIni < x) {
 			if (bilSaatIni % 2 == 0) {
 				if (bilSaatIni != 0) {
+					System.out.print(bilSaatIni+" ");
 					countGenap++;
 				}
 			}
@@ -29,6 +30,7 @@ public class No_03 {
 
 		}
 
+		System.out.println();
 		System.out.println("Sebanyak " + countGenap + " bilangan genap");
 
 	}
