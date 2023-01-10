@@ -26,6 +26,7 @@ public class Soal2 {
 			}
 		}
 		System.out.println("Output : " + alpaKalimat);
+		
 	}
 
 }

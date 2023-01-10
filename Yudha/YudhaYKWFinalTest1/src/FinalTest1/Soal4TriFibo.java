@@ -15,7 +15,7 @@ public class Soal4TriFibo {
 		String deret = "";
 		for (int i = 0; found < x; i++) {
 			y = y + 3;
-			if(y%2==0) {
+			if(y%4!=0) {
 				deret = deret+y+" ";
 				found++;
 			}

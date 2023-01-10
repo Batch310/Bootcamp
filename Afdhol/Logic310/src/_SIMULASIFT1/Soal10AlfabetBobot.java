@@ -23,7 +23,7 @@ public class Soal10AlfabetBobot {
 
 		System.out.println("input array: ");
 		String y = scan.nextLine();
-		String[] arrY = y.split("");
+		String[] arrY = y.split(",");
 
 		for (int i = 0; i < arrY.length; i++) {
 			String hurufSekarang = arrX[i];

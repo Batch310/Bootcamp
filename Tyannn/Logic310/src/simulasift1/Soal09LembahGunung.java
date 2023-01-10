@@ -24,10 +24,10 @@ public class Soal09LembahGunung {
 				awal--;
 			}
 
-			if (awal == 0 && arrJalur[i].equals("T")) {
+			if (awal == 0 && arrJalur[i].equals("N")) {
 				gunung++;
 
-			} else if (awal == 0 && arrJalur[i].equals("N")) {
+			} else if (awal == 0 && arrJalur[i].equals("T")) {
 				lembah++;
 			}
 		}
