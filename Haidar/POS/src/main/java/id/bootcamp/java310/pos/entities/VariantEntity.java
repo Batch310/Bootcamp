@@ -13,17 +13,17 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
+@Entity //Anotasi. Menandakan bahwa class VariantEntity merupakan Entity
 @Table(name = "variant")
 public class VariantEntity {
-
+	
 	@Id
 	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "category_id", insertable = false, updatable = false)
+	@JoinColumn(name="category_id", insertable = false, updatable = false)
 	private CategoryEntity category;
 	
 	@Column(name = "category_id", nullable = false)
@@ -41,14 +41,14 @@ public class VariantEntity {
 	@Column(length = 50, nullable = false)
 	private String createBy;
 	
-	@Column(name = "create_date", nullable = false)
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(nullable = false)
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "Asia/Jakarta")
 	private Date createDate;
 	
-	@Column(name = "modify_by", length = 50)
+	@Column(length = 50)
 	private String modifyBy;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "Asia/Jakarta")
 	private Date modifyDate;
 
 	public Long getId() {
@@ -57,6 +57,14 @@ public class VariantEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
 	}
 
 	public Long getCategoryId() {
@@ -121,14 +129,6 @@ public class VariantEntity {
 
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
-	}
-
-	public CategoryEntity getCategory() {
-		return category;
-	}
-
-	public void setCategory(CategoryEntity category) {
-		this.category = category;
 	}
 	
 	

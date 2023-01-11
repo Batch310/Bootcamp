@@ -7,27 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "variant")
-public class VariantEntity {
-
-	@Id
-	@Column(nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity // menandakan clas CategoryEntity itu Entity
+@Table(name = "category") // meanamakan table
+public class CategoryEntity {
+	
+	@Id //Primary Key
+	@Column(nullable = false) // Kolom tdk boleh null
+	@GeneratedValue(strategy = GenerationType.IDENTITY)// auto increment
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "category_id", insertable = false, updatable = false)
-	private CategoryEntity category;
-	
-	@Column(name = "category_id", nullable = false)
-	private Long categoryId;
 	
 	@Column(length = 10, nullable = false, unique = true)
 	private String initial;
@@ -38,17 +29,18 @@ public class VariantEntity {
 	@Column(nullable = false)
 	private Boolean active;
 	
-	@Column(length = 50, nullable = false)
+	@Column(name = "create_by", length = 50, nullable = false)
 	private String createBy;
 	
-	@Column(name = "create_date", nullable = false)
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(name = "create_date",nullable = false)
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date createDate;
 	
 	@Column(name = "modify_by", length = 50)
 	private String modifyBy;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(name = "modify_date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date modifyDate;
 
 	public Long getId() {
@@ -57,14 +49,6 @@ public class VariantEntity {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
 	}
 
 	public String getInitial() {
@@ -122,14 +106,7 @@ public class VariantEntity {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-
-	public CategoryEntity getCategory() {
-		return category;
-	}
-
-	public void setCategory(CategoryEntity category) {
-		this.category = category;
-	}
+	
 	
 	
 }

@@ -13,20 +13,21 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "variant")
+@Entity // menandakan clas CategoryEntity itu Entity
+@Table(name = "variant") // meanamakan table
 public class VariantEntity {
-
-	@Id
-	@Column(nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	
+	@Id //Primary Key
+	@Column(nullable = false) // Kolom tdk boleh null
+	@GeneratedValue(strategy = GenerationType.IDENTITY)// auto increment
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "category_id", insertable = false, updatable = false)
+	@JoinColumn(name="category_id", insertable = false, updatable=false)
 	private CategoryEntity category;
 	
-	@Column(name = "category_id", nullable = false)
+	@Column(name = "category_id", nullable = false) // Kolom tdk boleh null
 	private Long categoryId;
 	
 	@Column(length = 10, nullable = false, unique = true)
@@ -38,17 +39,18 @@ public class VariantEntity {
 	@Column(nullable = false)
 	private Boolean active;
 	
-	@Column(length = 50, nullable = false)
+	@Column(name = "create_by", length = 50, nullable = false)
 	private String createBy;
 	
-	@Column(name = "create_date", nullable = false)
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(name = "create_date",nullable = false)
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date createDate;
 	
 	@Column(name = "modify_by", length = 50)
 	private String modifyBy;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(name = "modify_date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date modifyDate;
 
 	public Long getId() {
@@ -57,6 +59,14 @@ public class VariantEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
 	}
 
 	public Long getCategoryId() {
@@ -123,13 +133,6 @@ public class VariantEntity {
 		this.modifyDate = modifyDate;
 	}
 
-	public CategoryEntity getCategory() {
-		return category;
-	}
+	
 
-	public void setCategory(CategoryEntity category) {
-		this.category = category;
-	}
-	
-	
 }

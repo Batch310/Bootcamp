@@ -11,14 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ManyToAny;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "variant")
 public class VariantEntity {
-
-	@Id
-	@Column(nullable = false)
+	
+	@Id //Primary Key
+	@Column(nullable = false) // Kolom tidak dapat bernilai null
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -26,8 +28,9 @@ public class VariantEntity {
 	@JoinColumn(name = "category_id", insertable = false, updatable = false)
 	private CategoryEntity category;
 	
+	
 	@Column(name = "category_id", nullable = false)
-	private Long categoryId;
+	private Long categroryId;
 	
 	@Column(length = 10, nullable = false, unique = true)
 	private String initial;
@@ -36,19 +39,20 @@ public class VariantEntity {
 	private String name;
 	
 	@Column(nullable = false)
-	private Boolean active;
+	private boolean active;
 	
-	@Column(length = 50, nullable = false)
+	@Column(name = "create_By", length = 50, nullable = false)
 	private String createBy;
 	
 	@Column(name = "create_date", nullable = false)
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@JsonFormat(pattern = "dd-mm-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date createDate;
 	
-	@Column(name = "modify_by", length = 50)
+	@Column(name = "modify_by",length = 50)
 	private String modifyBy;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(name = "modify_date")
+	@JsonFormat(pattern = "dd-mm-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date modifyDate;
 
 	public Long getId() {
@@ -59,12 +63,20 @@ public class VariantEntity {
 		this.id = id;
 	}
 
-	public Long getCategoryId() {
-		return categoryId;
+	public CategoryEntity getCategory() {
+		return category;
 	}
 
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
+	}
+
+	public Long getCategroryId() {
+		return categroryId;
+	}
+
+	public void setCategroryId(Long categroryId) {
+		this.categroryId = categroryId;
 	}
 
 	public String getInitial() {
@@ -83,11 +95,11 @@ public class VariantEntity {
 		this.name = name;
 	}
 
-	public Boolean getActive() {
+	public boolean isActive() {
 		return active;
 	}
 
-	public void setActive(Boolean active) {
+	public void setActive(boolean active) {
 		this.active = active;
 	}
 
@@ -123,13 +135,7 @@ public class VariantEntity {
 		this.modifyDate = modifyDate;
 	}
 
-	public CategoryEntity getCategory() {
-		return category;
-	}
-
-	public void setCategory(CategoryEntity category) {
-		this.category = category;
-	}
 	
+
 	
 }
