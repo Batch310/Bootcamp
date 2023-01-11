@@ -3,108 +3,142 @@ package id.bootcamp.java310.pos.entities;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import id.bootcamp.java310.pos.dto.CategoryDTO;
+
+@NamedNativeQueries(value = { 
+		@NamedNativeQuery(
+		name= "get_categories_cara4",
+		query = "select \r\n"
+				+ "        id,\r\n"
+				+ "        initial,\r\n"
+				+ "        name,\r\n"
+				+ "        active\r\n"
+				+ "from category\r\n"
+				+ "order by initial asc",
+		resultSetMapping = "get_categories_cara4_result"
+) })
+@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(
+				name = "get_categories_cara4_result",
+				classes = @ConstructorResult(
+						targetClass = CategoryDTO.class,
+						columns = {
+								@ColumnResult(name = "id", type = Long.class),
+								@ColumnResult(name = "initial", type = String.class),
+								@ColumnResult(name = "name", type = String.class),
+								@ColumnResult(name = "active", type = Boolean.class),
+						}
+						)
+				)
+		
+})
 @Entity // Menandakan class CategoryEntity itu Entity
 @Table(name = "category") // Menamakan tabel
 public class CategoryEntity {
 
-		@Id // priamry key
-		@Column(nullable = false) //kolom gaboleh null
-		@GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment 
-		private Long id;
-		
-		@Column(length = 10, nullable = false, unique = true)
-		private String initial;
-		
-		@Column(length = 50, nullable = false, unique = true)
-		private String name;
-		
-		@Column(nullable = false)
-		private Boolean active;
-		
-		@Column(name = "create_by", length = 50, nullable = false)
-		private String createBy;
-		
-		@Column(nullable = false)
-		@JsonFormat(pattern = "dd-mm-yyyy HH:mm", timezone = "Asia/Jakarta")
-		private Date createDate;
-		
-		@Column(name = "modify_by", length = 50)
-		private String modifyBy;
-		
-		@JsonFormat(pattern = "dd-mm-yyyy HH:mm", timezone = "Asia/Jakarta")
-		private Date modifyDate;
+	@Id // priamry key
+	@Column(nullable = false) // kolom gaboleh null
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment
+	private Long id;
 
-		public Long getId() {
-			return id;
-		}
+	@Column(length = 10, nullable = false, unique = true)
+	private String initial;
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+	@Column(length = 50, nullable = false, unique = true)
+	private String name;
 
-		public String getInitial() {
-			return initial;
-		}
+	@Column(nullable = false)
+	private Boolean active;
 
-		public void setInitial(String initial) {
-			this.initial = initial;
-		}
+	@Column(name = "create_by", length = 50, nullable = false)
+	private String createBy;
 
-		public String getName() {
-			return name;
-		}
+	@Column(nullable = false)
+	@JsonFormat(pattern = "dd-mm-yyyy HH:mm", timezone = "Asia/Jakarta")
+	private Date createDate;
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	@Column(name = "modify_by", length = 50)
+	private String modifyBy;
 
-		public Boolean getActive() {
-			return active;
-		}
+	@JsonFormat(pattern = "dd-mm-yyyy HH:mm", timezone = "Asia/Jakarta")
+	private Date modifyDate;
 
-		public void setActive(Boolean active) {
-			this.active = active;
-		}
+	public Long getId() {
+		return id;
+	}
 
-		public String getCreateBy() {
-			return createBy;
-		}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-		public void setCreateBy(String createBy) {
-			this.createBy = createBy;
-		}
+	public String getInitial() {
+		return initial;
+	}
 
-		public Date getCreateDate() {
-			return createDate;
-		}
+	public void setInitial(String initial) {
+		this.initial = initial;
+	}
 
-		public void setCreateDate(Date createDate) {
-			this.createDate = createDate;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public String getModifyBy() {
-			return modifyBy;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-		public void setModifyBy(String modifyBy) {
-			this.modifyBy = modifyBy;
-		}
+	public Boolean getActive() {
+		return active;
+	}
 
-		public Date getModifyDate() {
-			return modifyDate;
-		}
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 
-		public void setModifyDate(Date modifyDate) {
-			this.modifyDate = modifyDate;
-		}
+	public String getCreateBy() {
+		return createBy;
+	}
 
-		
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getModifyBy() {
+		return modifyBy;
+	}
+
+	public void setModifyBy(String modifyBy) {
+		this.modifyBy = modifyBy;
+	}
+
+	public Date getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+
 }
