@@ -3,14 +3,50 @@ package id.bootcamp.java310.pos.entities;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import id.bootcamp.java310.pos.dto.CategoryDTO;
+
+@NamedNativeQueries(value = {
+		@NamedNativeQuery(
+				name = "get_categories_cara4",
+				query = "\r\n"
+						+ "select \r\n"
+						+ "        id,\r\n"
+						+ "        initial,\r\n"
+						+ "        name,\r\n"
+						+ "        active\r\n"
+						+ "from category\r\n"
+						+ "order by initial asc",
+				resultSetMapping = "get_categories_cara4_result"
+				)
+})
+@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(
+				name = "get_categories_cara4_result",
+				classes = @ConstructorResult(
+						targetClass = CategoryDTO.class,
+						columns = {
+							@ColumnResult(name = "id", type = Long.class),
+							@ColumnResult(name = "initial", type = String.class),
+							@ColumnResult(name = "name", type = String.class),
+							@ColumnResult(name = "active", type = Boolean.class)
+						}
+						)
+				)
+})
 @Entity // Menandakan CategoryEntity sebagai Entity
 @Table(name = "category") // Menamakan Table
 public class CategoryEntity {
