@@ -92,4 +92,17 @@ public class CategoryService {
 		return cr.insert2(dto, new Date());
 	}
 	
+	// UPDATE
+	public void update(CategoryDTO dto) {
+		cr.update(dto, new Date());
+	}
+	
+	//DELETE
+	public void delete(Long id) {
+		//Cara 1
+//		cr.deleteById(id);
+		
+		//Cara 2
+		cr.delete(id);
+	}
 }

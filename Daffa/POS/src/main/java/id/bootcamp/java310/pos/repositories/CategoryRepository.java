@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Tuple;
+import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -42,8 +44,8 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 			+ "order by initial")
 	public List<CategoryDTO> getAllCategories5();
 	
-	//INSERT
-	//Cara 2 - Insert memakai native query
+	// INSERT
+	// Cara 2 - Insert memakai native query
 	@Query(nativeQuery = true, 
 			value = "\r\n"
 					+ "INSERT INTO public.category(\r\n"
@@ -57,4 +59,28 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 			)
 	public Long insert2(@Param("dto") CategoryDTO dto,
 						@Param("createDate") Date createDate);
+	
+	// UPDATE
+	// Cara 1 - Menggunakan native query
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, 
+			value = "update category\r\n"
+					+ "set initial = :#{#dto.initial}, "
+					+ "name = :#{#dto.name}, "
+					+ "active = :#{#dto.active}, "
+					+ "modify_by = :#{#dto.modify_by}, "
+					+ "modify_date = :modifyDate\r\n"
+					+ "where id = :#{#dto.id}")
+	public void update(@Param("dto") CategoryDTO dto,
+						@Param("modifyDate") Date modifyDate);
+	
+	//DELETE
+	//Cara 2 - Menggunakan Native Query
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, 
+			value = "delete from category\r\n"
+					+ "where id = :id")
+	public void delete(@Param("id") Long id);
 }
