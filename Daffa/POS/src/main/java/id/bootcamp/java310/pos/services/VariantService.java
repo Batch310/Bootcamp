@@ -1,6 +1,7 @@
 package id.bootcamp.java310.pos.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class VariantService {
 	@Autowired
 	private VariantRepository vr;
 	
+	// READ
 	public List<VariantDTO> getAllVariant() {
 		List<VariantEntity> varSumber = vr.findAll();
 		
@@ -34,4 +36,20 @@ public class VariantService {
 		}
 		return varList;
 	}
+	
+	// CREATE
+	public Long insertVar(VariantDTO dto) {
+		return vr.insertVar(dto, new Date());
+	}
+	
+	// UPDATE
+	public void updateVar(VariantDTO dto) {
+		vr.updateVar(dto, new Date());
+	}
+	
+	// DELETE
+	public void deleteVar(Long id) {
+		vr.deleteVar(id);
+	}
+	
 }

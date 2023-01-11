@@ -74,7 +74,7 @@ public class CategoryService {
 	}
 
 	// CREATE
-	// Cara 1 - Memakai gunsi bawaan JPARepository
+	// Cara 1 - Memakai fungsi bawaan JPARepository
 	public Long insert1(CategoryDTO dto) {
 		CategoryEntity hasil = new CategoryEntity();
 		hasil.setInitial(dto.getInitial());
