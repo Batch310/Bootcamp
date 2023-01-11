@@ -1,11 +1,13 @@
 package id.bootcamp.java310.pos.repositories;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Tuple;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
@@ -14,6 +16,7 @@ import id.bootcamp.java310.pos.entities.CategoryEntity;
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
 
+	//READ
 	// Cara 2 + Query dasar + sedikit Custom
 	// Kelemahan cara 2
 	// 1. Query tidak boleh ada join
@@ -35,6 +38,23 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	//Querynya Java
 	@Query(value = "select new "
 			+ "id.bootcamp.java310.pos.dto.CategoryDTO(id, initial, name, active) "
-			+ "from CategoryEntity")
+			+ "from CategoryEntity "
+			+ "order by initial")
 	public List<CategoryDTO> getAllCategories5();
+	
+	//INSERT
+	//Cara 2 - Insert memakai native query
+	@Query(nativeQuery = true, 
+			value = "\r\n"
+					+ "INSERT INTO public.category(\r\n"
+					+ "        active, create_by, create_date, initial, name)\r\n"
+					+ "        VALUES ("
+					+ ":#{#dto.active}, "
+					+ ":#{#dto.create_by}, "
+					+ ":createDate, "
+					+ ":#{#dto.initial}, "
+					+ ":#{#dto.name}) returning id;"
+			)
+	public Long insert2(@Param("dto") CategoryDTO dto,
+						@Param("createDate") Date createDate);
 }
