@@ -16,31 +16,110 @@ import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.services.CategoryService;
 import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.utils.Resp;
 
 @RestController
-@RequestMapping("/api/variant") //Mapping URL secara umum
+@RequestMapping("/api/variant") // Mapping URL secara umum
 public class VariantRestControllers {
 
 	@Autowired
 	private VariantService vs;
-	
-	//localhost/api/variant/get
+
+	// localhost/api/variant/get
 	@GetMapping("/get")
-	public List<VariantDTO> getAll(){
-		return vs.getAllVariant();
+	public Resp<List<VariantDTO>> getAll() {
+		// Mengemas Response API
+		int code = 200;
+		String message = "Sukses";
+		List<VariantDTO> data = vs.getAllVariant();
+
+		Resp<List<VariantDTO>> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+
+		return response;
+
+		// return vs.getAllVariant();
 	}
-	
+
 	@PostMapping("/insert")
-	public Long insertVariant (@RequestBody VariantDTO dto) {
-		return vs.insert1(dto);
+	public Resp<Long> insertVariant(@RequestBody VariantDTO dto) {
+
+		// Mengemas Response API
+		try {
+			// Mengemas Response API
+			int code = 200;
+			String message = "Variant berhasil ditambahkan !";
+			Long data = vs.insert1(dto);
+
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+			response.setData(data);
+
+			return response;
+
+		} catch (Exception e) {
+			String exceptionMessage = e.getMessage();
+			String[] split = exceptionMessage.split("-");
+			int code = Integer.parseInt(split[0]);
+			String message = split[1];
+
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+
+			return response;
+		}
+
+		// return vs.insert1(dto);
 	}
+
 	@PutMapping("/update")
-	public void updateVariant(@RequestBody VariantDTO dto) {
-		vs.update(dto);
+	public Resp<Long> updateVariant(@RequestBody VariantDTO dto) {
+		// Mengemas Response API
+		try {
+			// Mengemas Response API
+			int code = 200;
+			String message = "Variant berhasil diubah !";
+			vs.update(dto);
+
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+
+			return response;
+		} catch (Exception e) {
+			String exceptionMessage = e.getMessage();
+			String[] split = exceptionMessage.split("-");
+			int code = Integer.parseInt(split[0]);
+			String message = split[1];
+
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+
+			return response;
+		}
+		
+
+		// vs.update(dto);
 	}
-	
+
 	@DeleteMapping("/delete")
-	public void deleteVariant (@RequestParam("id") Long id) {
+	public Resp<Long> deleteVariant(@RequestParam("id") Long id) {
+		// Mengemas Response API
+		int code = 200;
+		String message = "Variant berhasil dihapus !";
 		vs.delete(id);
+
+		Resp<Long> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+
+		return response;
+
+		// vs.delete(id);
 	}
 }
