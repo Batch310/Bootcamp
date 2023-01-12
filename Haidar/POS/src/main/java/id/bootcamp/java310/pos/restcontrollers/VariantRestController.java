@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.utils.Responses;
 
 @RestController
 @RequestMapping("api/variant")
@@ -24,27 +25,100 @@ public class VariantRestController {
 	
 	//localhost:8080/api/category/get
 	@GetMapping("/get")
-	public List<VariantDTO> getAll() {
-		return vs.getAllVariants();
+	public Responses<List<VariantDTO>> getAll() {
+		//Mengemas Response API
+				int code = 200;
+				String message = "Success";
+				List<VariantDTO> data = vs.getAllVariants();
+				
+				Responses<List<VariantDTO>> resp = new Responses<>();
+				resp.setCode(code);
+				resp.setMessage(message);
+				resp.setData(data);
+		return resp;
 	}
 	
 	@PostMapping("/insert")
-	public String insert(@RequestBody VariantDTO dto) {
-		return vs.createVariant(dto);
+	public Responses<Long> insert(@RequestBody VariantDTO dto) {
+		try {
+			//Mengemas Response API
+			int code = 200;
+			String message = "Variant Added Successfully";
+			Long data = vs.createVariant(dto);
+			
+			Responses<Long> resp = new Responses<>();
+			resp.setCode(code);
+			resp.setMessage(message);
+			resp.setData(data);
+			
+			return resp;
+		} catch (Exception e) {
+			String exceptionMessage = e.getMessage(); //"11-Initial sudah ada!"
+			String[] split = exceptionMessage.split("-");
+			int code = Integer.parseInt(split[0]);
+			String message = split[1];
+			
+			Responses<Long> resp = new Responses<>();
+			resp.setCode(code);
+			resp.setMessage(message);
+			
+			return resp;
+		}		
 	}
 	
 	@PutMapping("/update")
-	public String update(@RequestBody VariantDTO dto) {
-		return vs.updateVariant(dto);
+	public Responses<Long> update(@RequestBody VariantDTO dto) {
+		try {
+			// Mengemas Response API
+			int code = 200;
+			String message = "Variant Updated Successfully";
+			vs.updateVariant(dto);
+
+			Responses<Long> resp = new Responses<>();
+			resp.setCode(code);
+			resp.setMessage(message);
+			return resp;
+		} catch (Exception e) {
+			String exceptionMessage = e.getMessage(); // "11-Initial sudah ada!"
+			String[] split = exceptionMessage.split("-");
+			int code = Integer.parseInt(split[0]);
+			String message = split[1];
+
+			Responses<Long> resp = new Responses<>();
+			resp.setCode(code);
+			resp.setMessage(message);
+
+			return resp;
+		}
 	}
 	
 	@DeleteMapping("/delete")
-	public String delete(@RequestParam Long id) {
-		return vs.deleteVariant(id);
+	public Responses<Long> delete(@RequestParam Long id) {
+		try {
+			int code = 200;
+			String message = "Variant Deleted Successfully";
+			vs.deleteVariant(id);
+
+			Responses<Long> resp = new Responses<>();
+			resp.setCode(code);
+			resp.setMessage(message);
+			return resp;
+		} catch (Exception e) {
+			String exceptionMessage = e.getMessage(); // "11-Initial sudah ada!"
+			String[] split = exceptionMessage.split("-");
+			int code = Integer.parseInt(split[0]);
+			String message = split[1];
+
+			Responses<Long> resp = new Responses<>();
+			resp.setCode(code);
+			resp.setMessage(message);
+
+			return resp;
+		}
 	}
 	
-	@GetMapping("/getCat")
-	public List<VariantDTO> get() {
-		return vs.getCategory();
-	}
+//	@GetMapping("/getCat")
+//	public List<VariantDTO> get() {
+//		return vs.getCategory();
+//	}
 }

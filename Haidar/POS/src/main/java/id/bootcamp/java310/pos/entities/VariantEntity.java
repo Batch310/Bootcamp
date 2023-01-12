@@ -3,16 +3,47 @@ package id.bootcamp.java310.pos.entities;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import id.bootcamp.java310.pos.dto.VariantDTO;
+
+@NamedNativeQueries(value = {
+		@NamedNativeQuery(
+				name = "get_all_categories",
+				query = "select v.id, v.category_id, c.name as category_name, v.initial, v.name, v.active "
+						+ "from category c inner join variant v on c.id = v.category_id "
+						+ "order by v.category_id asc;",
+				resultSetMapping = "get_all_categories_result"
+				)
+})@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(
+				name = "get_all_categories_result",
+				classes = @ConstructorResult(
+						targetClass = VariantDTO.class,
+						columns = {
+						@ColumnResult(name = "id", type = Long.class),		
+						@ColumnResult(name = "category_id", type = Long.class),		
+						@ColumnResult(name = "category_name", type = String.class),		
+						@ColumnResult(name = "initial", type = String.class),		
+						@ColumnResult(name = "name", type = String.class),		
+						@ColumnResult(name = "active", type = Boolean.class)		
+						})
+		)
+})
 @Entity //Anotasi. Menandakan bahwa class VariantEntity merupakan Entity
 @Table(name = "variant")
 public class VariantEntity {
