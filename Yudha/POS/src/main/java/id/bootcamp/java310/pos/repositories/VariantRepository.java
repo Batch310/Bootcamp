@@ -33,11 +33,45 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 		@Modifying
 		@Transactional
 		@Query(nativeQuery = true,
-				value = "update category\r\n"
-						+ "set initial = :#{#dto.initial}, name = :#{#dto.name}, active = :#{#dto.active}, modify_by = :#{#dto.modify_by}, modify_date = :modifyDate\r\n"
+				value = "update variant\r\n"
+						+ "set category_id = :#{#dto.category_id}, initial = :#{#dto.initial}, name = :#{#dto.name}, active = :#{#dto.active}, modify_by = :#{#dto.modify_by}, modify_date = :modifyDate\r\n"
 						+ "where id = :#{#dto.id}")
-		public void update(@Param("dto") CategoryDTO dto,
+		public void update(@Param("dto") VariantDTO dto,
 							@Param("modifyDate") Date createDate);
 		
+		//DELETE
+		//CARA 2 - DELETE menggunakan Native Query
 		
+		@Modifying
+		@Transactional
+		@Query(nativeQuery = true,
+				value = "delete from variant\r\n"
+						+ "where id = :id")
+		public void delete(@Param("id") Long id);
+		
+		@Query(nativeQuery =true,
+				value="select exists(select initial from variant where initial = :initial)")
+		public Boolean isInitialExists(@Param("initial") String initial);
+		
+		@Query(nativeQuery =true,
+				value="select exists(select name from variant where name = :name)")
+		public Boolean isNameExists(@Param("name") String name);
+		
+
+		@Query(nativeQuery =true,
+				value="select exists(select initial from variant where initial = :initial AND id != :id)")
+		public Boolean isInitialExists(@Param("initial") String initial, @Param("id") Long id);
+		
+		@Query(nativeQuery =true,
+				value="select exists(select name from variant where name = :name AND id != :id)")
+		public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
+		
+		// Validasi apakah id category dipakai di variant
+		@Query(nativeQuery =true,
+				value="select exists(select * from product where variant_id = :id)")
+		public Boolean isVariantUsedByProduct(@Param("id") Long id);
+		
+		@Query(nativeQuery =true,
+				value="select exists(select id from category where id = :id)")
+		public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 }
