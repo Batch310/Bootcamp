@@ -23,29 +23,29 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	// 1. Query tdk boleh join
 	// 2. select harus *List<CategoryEntity> findByActive(Boolean active)
 	// 3. tabelnya harus sesuai repository
-	@Query(nativeQuery = true,
-			value = "select * from category order by name asc"
-			)
-	public List<CategoryEntity> getAllNameAsc();
-	
-	// Cara 3 - Query Lebih Lengkap
-	@Query(nativeQuery = true,
-			value = "select \r\n"
-					+ "        id,\r\n"
-					+ "        initial,\r\n"
-					+ "        name,\r\n"
-					+ "        active\r\n"
-					+ "from category\r\n"
-					+ "order by initial asc"
-			)
-	public List<Tuple> getAll3();
+//	@Query(nativeQuery = true,
+//			value = "select * from category order by name asc"
+//			)
+//	public List<CategoryEntity> getAllNameAsc();
+//	
+//	// Cara 3 - Query Lebih Lengkap
+//	@Query(nativeQuery = true,
+//			value = "select \r\n"
+//					+ "        id,\r\n"
+//					+ "        initial,\r\n"
+//					+ "        name,\r\n"
+//					+ "        active\r\n"
+//					+ "from category\r\n"
+//					+ "order by initial asc"
+//			)
+//	public List<Tuple> getAll3();
 	
 	// Cara 4 - Query Lebih Lengkap, didefinisikan dulu
-	@Query(nativeQuery = true,
-			name = "get_categories_cara4"
-			)
-	public List<CategoryDTO> getAll4();
-		
+//	@Query(nativeQuery = true,
+//			name = "get_categories_cara4"
+//			)
+//	public List<CategoryDTO> getAll4();
+//		
 	// Cara 5 - Menggunakan  Java Resistence Query Language (JPLQ)
 	@Query(value = "select new"
 			+ " id.bootcamp.java310.pos.dto.CategoryDTO(id,initial,name,active)"
@@ -81,4 +81,26 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 			value = "delete from category\r\n"
 					+ "where id = :id")
 	public void delete(@Param("id") Long id);
+	
+	@Query(nativeQuery =true,
+			value="select exists(select initial from category where initial = :initial)")
+	public Boolean isInitialExists(@Param("initial") String initial);
+	
+	@Query(nativeQuery =true,
+			value="select exists(select name from category where name = :name)")
+	public Boolean isNameExists(@Param("name") String name);
+	
+
+	@Query(nativeQuery =true,
+			value="select exists(select initial from category where initial = :initial AND id != :id)")
+	public Boolean isInitialExists(@Param("initial") String initial, @Param("id") Long id);
+	
+	@Query(nativeQuery =true,
+			value="select exists(select name from category where name = :name AND id != :id)")
+	public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
+	
+	// Validasi apakah id category dipakai di variant
+	@Query(nativeQuery =true,
+			value="select exists(select * from variant where category_id = :id)")
+	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 }
