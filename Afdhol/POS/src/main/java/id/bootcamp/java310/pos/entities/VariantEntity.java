@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table (name = "variant")
-public class Variantentity {
+public class VariantEntity {
 
 	@Id
 	@Column (nullable = false)
@@ -122,6 +122,14 @@ public class Variantentity {
 
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
+	}
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
 	}
 	
 	
