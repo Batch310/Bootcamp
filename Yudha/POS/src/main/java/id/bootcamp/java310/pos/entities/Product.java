@@ -13,21 +13,22 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity
-@Table(name = "variant")
-public class VariantEntity {
-
-	@Id
-	@Column(nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity // menandakan clas CategoryEntity itu Entity
+@Table(name = "product") // meanamakan table
+public class Product {
+	
+	
+	@Id //Primary Key
+	@Column(nullable = false) // Kolom tdk boleh null
+	@GeneratedValue(strategy = GenerationType.IDENTITY)// auto increment
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "category_id", insertable = false, updatable = false)
-	private CategoryEntity category;
+	@JoinColumn(name="variant_id", insertable = false, updatable=false)
+	private VariantEntity variant;
 	
-	@Column(name = "category_id", nullable = false)
-	private Long categoryId;
+	@Column(name = "variant_id", nullable = false) // Kolom tdk boleh null
+	private Long variantId;
 	
 	@Column(length = 10, nullable = false, unique = true)
 	private String initial;
@@ -35,20 +36,30 @@ public class VariantEntity {
 	@Column(length = 50, nullable = false, unique = true)
 	private String name;
 	
+	@Column(length = 500)
+	private String description;
+	
+	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
+	private Double price;
+	
+	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
+	private Double stock;
+	
 	@Column(nullable = false)
 	private Boolean active;
 	
-	@Column(length = 50, nullable = false)
+	@Column(name = "create_by", length = 50, nullable = false)
 	private String createBy;
 	
-	@Column(name = "create_date", nullable = false)
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(name = "create_date",nullable = false)
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date createDate;
 	
 	@Column(name = "modify_by", length = 50)
 	private String modifyBy;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(name = "modify_date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date modifyDate;
 
 	public Long getId() {
@@ -59,12 +70,20 @@ public class VariantEntity {
 		this.id = id;
 	}
 
-	public Long getCategoryId() {
-		return categoryId;
+	public VariantEntity getVariant() {
+		return variant;
 	}
 
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
+	public void setVariant(VariantEntity variant) {
+		this.variant = variant;
+	}
+
+	public Long getVariantId() {
+		return variantId;
+	}
+
+	public void setVariantId(Long variantId) {
+		this.variantId = variantId;
 	}
 
 	public String getInitial() {
@@ -81,6 +100,30 @@ public class VariantEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Double getStock() {
+		return stock;
+	}
+
+	public void setStock(Double stock) {
+		this.stock = stock;
 	}
 
 	public Boolean getActive() {
@@ -123,13 +166,6 @@ public class VariantEntity {
 		this.modifyDate = modifyDate;
 	}
 
-	public CategoryEntity getCategory() {
-		return category;
-	}
-
-	public void setCategory(CategoryEntity category) {
-		this.category = category;
-	}
 	
 	
 }

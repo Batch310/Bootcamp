@@ -1,0 +1,17 @@
+Spring Boot : Framework untuk memudahkan membuat web aplikasi
+
+DB -> Entity : representasi dari DB
+mengubah table menjadi class
+mengubah kolom menjadi atribut
+
+Entity -> Repository
+untuk meng-Queery DB melalui Entity
+
+Repository -> Service : Logic Bisnis
+
+Service -> Rest Controler : Logic API dikemas
+
+Data Transfer Object (DTO) -> Service 
+
+
+
