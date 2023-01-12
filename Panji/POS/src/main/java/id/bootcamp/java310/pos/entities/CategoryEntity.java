@@ -3,43 +3,78 @@ package id.bootcamp.java310.pos.entities;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import id.bootcamp.java310.pos.dto.CategoryDTO;
+
+@NamedNativeQueries(value = { 
+		@NamedNativeQuery(
+		name = "get_categories_cara4", 
+		query = "select \r\n" 
+				+ "        id,\r\n"
+				+ "        initial,\r\n" 
+				+ "        name,\r\n" 
+				+ "        active\r\n" 
+				+ "from category\r\n"
+				+ "order by initial asc", 
+		resultSetMapping = "get_categories_cara4_result") })
+
+@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(
+				name = "get_categories_cara4_result",
+				classes = @ConstructorResult(
+						targetClass = CategoryDTO.class,
+						columns = {
+								@ColumnResult(name = "id",type = Long.class),
+								@ColumnResult(name = "initial",type = String.class),
+								@ColumnResult(name = "name",type = String.class),
+								@ColumnResult(name = "active",type = Boolean.class)
+						}
+						)
+				
+				)
+})
 @Entity // Menandakan class CategoryEntity adalah entity
 @Table(name = "category") // Menandakan table
 public class CategoryEntity {
-	@Id //Primary Key
+	@Id // Primary Key
 	@Column(nullable = false) // Kolom tidak dapat bernilai null
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(length = 10, nullable = false, unique = true)
 	private String initial;
-	
+
 	@Column(length = 50, nullable = false, unique = true)
 	private String name;
-	
+
 	@Column(nullable = false)
 	private boolean active;
-	
+
 	@Column(name = "create_By", length = 50, nullable = false)
 	private String createBy;
-	
+
 	@Column(name = "create_date", nullable = false)
-	@JsonFormat(pattern = "dd-mm-yyyy HH:mm",timezone = "Asia/Jakarta")
+	@JsonFormat(pattern = "dd-mm-yyyy HH:mm", timezone = "Asia/Jakarta")
 	private Date createDate;
-	
+
 	@Column(name = "modify_By", length = 50)
 	private String modifyBy;
-	
+
 	@Column(name = "modify_date")
-	@JsonFormat(pattern = "dd-mm-yyyy HH:mm",timezone = "Asia/Jakarta")
+	@JsonFormat(pattern = "dd-mm-yyyy HH:mm", timezone = "Asia/Jakarta")
 	private Date modifyDate;
 
 	public Long getId() {
@@ -106,6 +141,4 @@ public class CategoryEntity {
 		this.modifyDate = modifyDate;
 	}
 
-	
-	
 }
