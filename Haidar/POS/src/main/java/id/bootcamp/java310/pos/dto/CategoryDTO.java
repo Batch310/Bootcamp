@@ -1,5 +1,8 @@
 package id.bootcamp.java310.pos.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryDTO {
 	//(id, initial, name, active, create_by, modify_by)
 	private Long id;

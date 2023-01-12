@@ -1,6 +1,5 @@
 package id.bootcamp.java310.pos.services;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import id.bootcamp.java310.pos.dto.VariantDTO;
-import id.bootcamp.java310.pos.entities.VariantEntity;
 import id.bootcamp.java310.pos.repositories.VariantRepository;
 
 @Service
@@ -19,44 +17,110 @@ public class VariantService {
 	
 	//READ
 	//Cara 1
+//	public List<VariantDTO> getAllVariants() {
+//		//SELECT * FROM VARIANT
+//		List<VariantEntity> varRef = vr.findAll();
+//		
+//		List<VariantDTO> varList = new ArrayList<>();
+//		
+//		for (int i = 0; i < varRef.size(); i++) {
+//			VariantDTO var = new VariantDTO();
+//			
+//			var.setId(varRef.get(i).getId());
+//			var.setCategory_id(varRef.get(i).getCategoryId());
+//			var.setCategory_name(varRef.get(i).getCategory().getName());
+//			var.setInitial(varRef.get(i).getInitial());
+//			var.setName(varRef.get(i).getName());
+//			var.setActive(varRef.get(i).getActive());
+//			
+//			varList.add(var);
+//		}
+//		return varList;
+//	}
+	
+	//Cara 4
 	public List<VariantDTO> getAllVariants() {
-		//SELECT * FROM VARIANT
-		List<VariantEntity> varRef = vr.findAll();
-		
-		List<VariantDTO> varList = new ArrayList<>();
-		
-		for (int i = 0; i < varRef.size(); i++) {
-			VariantDTO var = new VariantDTO();
-			
-			var.setId(varRef.get(i).getId());
-			var.setCategory_id(varRef.get(i).getCategoryId());
-			var.setCategory_name(varRef.get(i).getCategory().getName());
-			var.setInitial(varRef.get(i).getInitial());
-			var.setName(varRef.get(i).getName());
-			var.setActive(varRef.get(i).getActive());
-			
-			varList.add(var);
-		}
-		return varList;
+		return vr.getAllVariants();
 	}
 	
 	//CREATE
-	public String createVariant(VariantDTO dto) {
-		return "Data variant dengan id=" + vr.insert(dto, new Date()) + " berhasil diinput";
+	public Long createVariant(VariantDTO dto) throws Exception {
+		//Validasi		
+		Boolean isCategotyExists = vr.isCategoryExists(dto.getCategory_id());
+		if (isCategotyExists == false) {
+			throw new Exception("18-Gagal, category tidak ada!");
+		}
+		
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial());
+		if (isInitialExists == true) {
+			throw new Exception("11-Gagal, initial sudah ada!");
+		} 
+		
+		Boolean isNameExists = vr.isNameExists(dto.getName());
+		if (isNameExists == true) {
+			throw new Exception("12-Gagal, name sudah ada!");
+		} 
+		
+		if (dto.getInitial().length() > 10) {
+			throw new Exception("13-Gagal, Initial tidak boleh lebih dari 10 karakter");
+		}
+		
+		if (dto.getName().length() > 50) {
+			throw new Exception("14-Gagal, Name tidak boleh lebih dari 50 karakter");
+		}
+		
+		if (dto.getCreate_by().length() > 50) {
+			throw new Exception("17-Gagal, Create By tidak boleh lebih dari 50 karakter");
+		}
+		
+		return vr.insert(dto, new Date());
 	}
 	
 	//UPDATE
-	public String updateVariant(VariantDTO dto) {
-		return "Data variant dengan id=" + vr.update(dto, new Date()) + " berhasil diubah";
+	public Long updateVariant(VariantDTO dto) throws Exception {
+		//Validasi		
+		Boolean isCategotyExists = vr.isCategoryExists(dto.getCategory_id());
+		if (isCategotyExists == false) {
+			throw new Exception("18-Gagal, category tidak ada!");
+		}
+		
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial());
+		if (isInitialExists == true) {
+			throw new Exception("11-Gagal, initial sudah ada!");
+		} 
+		
+		Boolean isNameExists = vr.isNameExists(dto.getName());
+		if (isNameExists == true) {
+			throw new Exception("12-Gagal, name sudah ada!");
+		} 
+		
+		if (dto.getInitial().length() > 10) {
+			throw new Exception("13-Gagal, Initial tidak boleh lebih dari 10 karakter");
+		}
+		
+		if (dto.getName().length() > 50) {
+			throw new Exception("14-Gagal, Name tidak boleh lebih dari 50 karakter");
+		}
+		
+		if (dto.getModify_by().length() > 50) {
+			throw new Exception("17-Gagal, Modify By tidak boleh lebih dari 50 karakter");
+		}
+		
+		return vr.update(dto, new Date());
 	}
 	
 	//DELETE
-	public String deleteVariant(Long id) {
-		return "Data variant dengan id=" + vr.delete(id) + " berhasil dihapus";
+	public Long deleteVariant(Long id) throws Exception {
+		// Validasi Delete
+		Boolean isVariantUsedByProduct = vr.isVariantUsedByProduct(id);
+		if (isVariantUsedByProduct) {
+			throw new Exception("15-Gagal, category dipakai, tidak dapat dihapus!");
+		}
+		return vr.delete(id);
 	}
 	
 	//READ Category
-	public List<VariantDTO> getCategory() {
-		return vr.getCategory();
-	}
+//	public List<VariantDTO> getCategory() {
+//		return vr.getCategory();
+//	}
 }

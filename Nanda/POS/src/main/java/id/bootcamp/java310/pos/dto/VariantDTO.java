@@ -1,5 +1,8 @@
 package id.bootcamp.java310.pos.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class VariantDTO {
 	private Long id;
 	private Long category_id;
@@ -16,6 +19,9 @@ public class VariantDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+
+	
 	public Long getCategory_id() {
 		return category_id;
 	}

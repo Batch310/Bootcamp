@@ -49,12 +49,68 @@ public class VariantService {
 	
 	// Create
 	
-	public Long insert2(VariantDTO dto) {
+	public Long insert2(VariantDTO dto) throws Exception {
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial());
+		if(isInitialExists==true) {
+			throw new Exception("11-Initial sudah terpakai");
+		}
+		
+		Boolean isNameExists = vr.isNameExists(dto.getName());
+		if(isNameExists==true) {
+			throw new Exception("12-Nama sudah terpakai");
+		}
+		if(dto.getInitial().length() > 10) {
+			throw new Exception("13-Initial tidak boleh lebih dari 10 karakter");
+		}
+		if(dto.getName().length() > 50) {
+			throw new Exception("14-Nama tidak boleh lebih dari 50 karakter");
+		}
+		if(dto.getCreate_by().length() > 50) {
+			throw new Exception("17-Create By tidak boleh lebih dari 50 karakter");
+		}
+		Boolean isCategoryExists = vr.isCategoryUsedByVariant(dto.getCategory_id());
+		if(isCategoryExists==false) {
+			throw new Exception("18-Id category tidak ada");
+		}
 		return vr.insert2(dto, new Date());
 	}
 	
 	// Update
-	
+	public void update(VariantDTO dto) throws Exception {
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial(),dto.getId());
+		if(isInitialExists==true) {
+			throw new Exception("11-Initial sudah terpakai");
+		}
+		
+		Boolean isNameExists = vr.isNameExists(dto.getName(),dto.getId());
+		if(isNameExists==true) {
+			throw new Exception("12-Nama sudah terpakai");
+		}
+		if(dto.getInitial().length() > 10) {
+			throw new Exception("13-Initial tidak boleh lebih dari 10 karakter");
+		}
+		if(dto.getName().length() > 50) {
+			throw new Exception("14-Nama tidak boleh lebih dari 50 karakter");
+		}
+		if(dto.getModify_by().length() > 50) {
+			throw new Exception("17-Create By tidak boleh lebih dari 50 karakter");
+		}
+		Boolean isCategoryExists = vr.isCategoryUsedByVariant(dto.getCategory_id());
+		if(isCategoryExists==false) {
+			throw new Exception("18-Id category tidak ada");
+		}
+		vr.update(dto, new Date());
+	}
 	// Delete
-
+	// Delete
+		public void delete(Long id) throws Exception {
+			Boolean isCategoryUsedByVariant = vr.isVariantUsedByProduct(id);
+			if(isCategoryUsedByVariant) {
+				throw new Exception("15-Variant dipakai, tidak dapat dihapus");
+			}
+			// cara 1
+//			cr.deleteById(id);
+			// cara 2
+			vr.delete(id);
+		}
 }

@@ -12,8 +12,9 @@ import id.bootcamp.java310.pos.entities.VariantEntity;
 
 public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	//READ Category
-	@Query(value = "select new id.bootcamp.java310.pos.dto.VariantDTO(id, category_id, category_name, initial, name, active) from VariantEntity")
-	public List<VariantDTO> getCategory();
+	//Cara 4
+	@Query(nativeQuery = true, name = "get_all_categories")
+	public List<VariantDTO> getAllVariants();
 	
 	//INSERT
 	@Query(nativeQuery = true,
@@ -46,5 +47,41 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 			value = "DELETE FROM PUBLIC.VARIANT\r\n"
 					+ "WHERE ID = :id returning id")
 	public Long delete(@Param("id") Long id);
+	
+	// Query untuk Validasi
+	// Ketika insert initial yang sudah ada pada database
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT initial " 
+			+ "from variant " 
+			+ "where initial = :initial)")
+	public Boolean isInitialExists(@Param("initial") String initial);
 
+	// Ketika insert name yang sudah ada pada database
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT name " 
+			+ "from variant " 
+			+ "where name = :name)")
+	public Boolean isNameExists(@Param("name") String name);
+	
+	// Ketika insert/update Category id diisikan oleh category yang tidak ada
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT id " 
+			+ "from category "
+			+ "where id = :id)")
+	public Boolean isCategoryExists(@Param("id") Long id);
+	
+	// Ketika update initial yang sudah ada pada database
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT initial " 
+					+ "from variant " 
+					+ "where initial = :initial AND id != :id")
+	public Boolean isInitialExists(@Param("initial") String initial, @Param("id") Long id);
+	
+	// Ketika update name yang sudah ada pada database
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT name " 
+			+ "from variant " 
+			+ "where name = :name AND id != :id")
+	public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
+	
+	// Ketika delete id yang tidak ada
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT * " 
+			+ "from product " 
+			+ "where variant_id = :id)")
+	public Boolean isVariantUsedByProduct(@Param("id") Long id);
 }

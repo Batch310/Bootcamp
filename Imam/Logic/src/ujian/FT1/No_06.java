@@ -16,7 +16,7 @@ public class No_06 {
 
 		for (int i = 0; i < simbol.length; i++) {
 
-			if (simbol[i].equals("N")) {
+			if (simbol[i].equals("N")) { //N
 				batas++;
 
 			} else if (simbol[i].equals("T")) {

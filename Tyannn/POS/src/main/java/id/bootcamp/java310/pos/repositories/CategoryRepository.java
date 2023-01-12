@@ -18,85 +18,74 @@ import id.bootcamp.java310.pos.entities.CategoryEntity;
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> {
 
-	//cara 2 - Query dasar + sedikit costum
+	// cara 2 - Query dasar + sedikit costum
 	// kelemahan cara 2
 	// 1. Querynya gk boleh join
 	// 2. select harus*
 	// 3. tabelnya harus sesuai repository
-	@Query(nativeQuery = true,
-			value = "select * from category order by name asc"
-			)
+	@Query(nativeQuery = true, value = "select * from category order by name asc")
 	public List<CategoryEntity> getAllNameAsc();
-	
-	//cara 3 - query lebih lengkap
-	@Query(nativeQuery = true,
-			value = "select \r\n"
-					+ "        id,\r\n"
-					+ "        initial,\r\n"
-					+ "        name,\r\n"
-					+ "        active\r\n"
-					+ "from category\r\n"
-					+ "order by initial asc"
-			)
+
+	// cara 3 - query lebih lengkap
+	@Query(nativeQuery = true, value = "select \r\n" + "        id,\r\n" + "        initial,\r\n" + "        name,\r\n"
+			+ "        active\r\n" + "from category\r\n" + "order by initial asc")
 	public List<Tuple> getAll3();
-	
-	//cara 4 - Query lebih lengkap, didefinisikan dulu
-	@Query(nativeQuery = true,
-			name= "get_categories_cara4"
-			)
+
+	// cara 4 - Query lebih lengkap, didefinisikan dulu
+	@Query(nativeQuery = true, name = "get_categories_cara4")
 	public List<CategoryDTO> getAll4();
-	
-	//cara 5 - Menggunakan java Presistence Query Language (JPQL)
+
+	// cara 5 - Menggunakan java Presistence Query Language (JPQL)
 	// Querynya java
-	
-	@Query(value = "select new" 
-			+ " id.bootcamp.java310.pos.dto.CategoryDTO(id,initial,name,active)"
+
+	@Query(value = "select new" + " id.bootcamp.java310.pos.dto.CategoryDTO(id,initial,name,active)"
 			+ " from CategoryEntity order by initial asc")
-	public List <CategoryDTO> getAll5();
-	
-	//Insert
+	public List<CategoryDTO> getAll5();
+
+	// Insert
 	// Cara 2 - insert memakai native query
-	@Query(nativeQuery = true,
-			value = "INSERT INTO public.category(\r\n"
-					+ "        active, create_by, create_date, initial, name)\r\n"
-					+ "        VALUES ("
-					+ ":#{#dto.active}, "
-					+ ":#{#dto.create_by}, "
-					+ ":createDate, "
-					+ ":#{#dto.initial}, "
-					+ ":#{#dto.name}) returning id"
-			)
-	public Long insert2(@Param("dto") CategoryDTO dto,
-						@Param("createDate")Date createDate);
-	
+	@Query(nativeQuery = true, value = "INSERT INTO public.category(\r\n"
+			+ "        active, create_by, create_date, initial, name)\r\n" + "        VALUES (" + ":#{#dto.active}, "
+			+ ":#{#dto.create_by}, " + ":createDate, " + ":#{#dto.initial}, " + ":#{#dto.name}) returning id")
+	public Long insert2(@Param("dto") CategoryDTO dto, @Param("createDate") Date createDate);
+
 	// Update
 	// Cara 1 - Update menggunakan Native Query
 	@Modifying
 	@Transactional
-	@Query(nativeQuery = true,
-			value = "update category\r\n"
-					+ "set initial = :#{#dto.initial}, "
-					+ "name = :#{#dto.name}, "
-					+ "active = :#{#dto.active},"
-					+ "modify_by = :#{#dto.modify_by}, "
-					+ "modify_date = :modifyDate\r\n"
-					+ "where id = :#{#dto.id}"
-			)
-	public void update(@Param("dto") CategoryDTO dto,
-					@Param("modifyDate")Date modifyDate);
-	
+	@Query(nativeQuery = true, value = "update category\r\n" + "set initial = :#{#dto.initial}, "
+			+ "name = :#{#dto.name}, " + "active = :#{#dto.active}," + "modify_by = :#{#dto.modify_by}, "
+			+ "modify_date = :modifyDate\r\n" + "where id = :#{#dto.id}")
+	public void update(@Param("dto") CategoryDTO dto, @Param("modifyDate") Date modifyDate);
+
 	// Delete
 	// Cara 2 - menggunakan native query
-	
+
 	@Modifying
 	@Transactional
-	@Query(nativeQuery = true,
-		value = "delete from category\r\n"
-				+ "where id = :id"
-			)
+	@Query(nativeQuery = true, value = "delete from category\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
-		
-	
-	
-	
+
+	// QUERY UNTUK VALIDASI
+
+	// Validasi apakah initial sudah ada di DB
+	@Query(nativeQuery = true, value = "select exists (select initial from category where initial = :initial)")
+	public Boolean isInitialExists(@Param("initial") String initial);
+
+	// Validasi apakah name sudah ada di DB
+	@Query(nativeQuery = true, value = "select exists (select name from category where name = :name)")
+	public Boolean isNameExists(@Param("name") String name);
+
+	// Validasi apakah initial sudah sama dan bukan dari id yang sama
+	@Query(nativeQuery = true, value = "select exists (select initial from category where initial = :initial AND id != :id)")
+	public Boolean isInitialExists(@Param("initial") String initial, @Param("id") Long id);
+
+	// Validasi apakah initial sudah sama dan bukan dari id yang sama
+	@Query(nativeQuery = true, value = "select exists (select name from category where name = :name AND id != :id)")
+	public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
+
+	// validasi apakah id category dipakai di variant
+	@Query(nativeQuery = true, value = "select exists (select * from variant where category_id = :id)")
+	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
+
 }

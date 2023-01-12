@@ -45,8 +45,15 @@ public class No_10 {
 
 		// penjumlahan index
 		int[] arrHasil = new int[n];
-		for (int i = 0; i < arrY.length; i++) {
-			arrHasil[i] = arrX[i] + arrY[i];
+		for (int i = 0; i < arrY.length; i++) {// index genap -, //ganjil tambah
+
+			if (i % 2 == 0) {
+				arrHasil[i] = arrX[i] - arrY[i];
+
+			} else {
+				arrHasil[i] = arrX[i] + arrY[i];
+			}
+
 		}
 
 		// Cetak hasil penjumlahan
