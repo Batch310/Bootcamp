@@ -21,17 +21,22 @@ public class No_07 {
 		
 		for (int i = 0; i < arrX.length; i++) {
 			String hurufSekarang = arrX[i];
+			if(arrX.length-1==arrY.length) {
+					System.out.print("null");
+			}else {
 			String indexSekarang = arrY[i];
 			int indexSekarangInt = Integer.parseInt(indexSekarang);
 
 			// apakah huruf sekarang udh sesuai bobot ?
 			String hurufBobotIndekSekarang = arrBobot[indexSekarangInt];
 
+			
 			if (hurufSekarang.equals(hurufBobotIndekSekarang)) {
 				System.out.print("true, ");
 
 			} else {
 				System.out.print("false, ");
+			}
 			}
 		}
 		
