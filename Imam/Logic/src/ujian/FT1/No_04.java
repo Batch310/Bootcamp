@@ -17,7 +17,9 @@ public class No_04 {
 
 		while (found < n) {
 
-			if (nilaiAwal % 2 == 0) {
+			
+			if (nilaiAwal % 4 != 0 ) {
+				
 				arrHasil[found] = nilaiAwal;
 				found++;
 			}

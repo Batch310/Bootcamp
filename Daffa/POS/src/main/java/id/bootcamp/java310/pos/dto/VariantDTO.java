@@ -1,5 +1,8 @@
 package id.bootcamp.java310.pos.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class VariantDTO {
 
 	private Long id;
@@ -11,8 +14,22 @@ public class VariantDTO {
 	private String create_by;
 	private String modify_by;
 	
+	public VariantDTO() {
+		
+	}
 	
-	
+	public VariantDTO(Long id, Long category_id, String category_name, String initial, String name, Boolean active,
+			String create_by, String modify_by) {
+		super();
+		this.id = id;
+		this.category_id = category_id;
+		this.category_name = category_name;
+		this.initial = initial;
+		this.name = name;
+		this.active = active;
+		this.create_by = create_by;
+		this.modify_by = modify_by;
+	}
 	public Long getId() {
 		return id;
 	}

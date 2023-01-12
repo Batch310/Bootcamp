@@ -12,13 +12,26 @@ public class No_01 {
 
 		int hargaEs = 1000;
 		int bonus = 0;
-		int esLoli = 0;
+		int esLoli = 1;
+		int stik = 0;
+		int esLoliBaru = 0;
 
-		esLoli = n / hargaEs; // jumlah es Loli
+		// esLoli = n / hargaEs; // jumlah es Loli
 
-		bonus = esLoli / 5; // jml bonus
+		// bonus = esLoli / 5; // jml bonus
 
-		int sumEs = esLoli + bonus;
+		while (esLoli < (n / hargaEs)) {
+			stik++;
+			if (esLoli % 5 == 0 && stik > 0) {
+				esLoliBaru = 0;
+				bonus++;
+				esLoliBaru++;
+			}
+			esLoli++;
+
+		}
+
+		int sumEs = esLoli + bonus + esLoliBaru;
 
 		System.out.println("Bambang Mendapatkan " + sumEs + " Es Loli");
 
