@@ -3,18 +3,56 @@ package id.bootcamp.java310.pos.entities;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ManyToAny;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import id.bootcamp.java310.pos.dto.CategoryDTO;
+import id.bootcamp.java310.pos.dto.VariantDTO;
+
+@NamedNativeQueries( value = {
+		@NamedNativeQuery (
+		name = "get_variant",
+		query = "select \r\n"
+				+ "        id,\r\n"
+				+ "        category_id,\r\n"
+				+ "        initial,\r\n"
+				+ "        name,\r\n"
+				+ "        active\r\n"
+				+ "from variant\r\n",
+		resultSetMapping ="get_variant_result"
+		)
+})
+@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(
+		name ="get_variant_result",
+		classes = @ConstructorResult(
+				targetClass = VariantDTO.class,
+				columns = {
+						@ColumnResult(name = "id", type = Long.class),
+						@ColumnResult(name = "category_id", type = Long.class),
+						@ColumnResult(name = "initial", type = String.class),
+						@ColumnResult(name = "name", type = String.class),
+						@ColumnResult(name = "active", type = Boolean.class),
+				}
+				)
+			
+			)	
+})
 @Entity
 @Table(name ="variant")
 public class VariantEntity {
@@ -58,6 +96,20 @@ public class VariantEntity {
 	public Long getId() {
 		return id;
 	}
+	
+	
+
+	public CategoryEntity getCategory() {
+		return category;
+	}
+
+
+
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
+	}
+
+
 
 	public void setId(Long id) {
 		this.id = id;
