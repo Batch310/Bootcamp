@@ -1,10 +1,6 @@
 package id.bootcamp.java310.pos.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryDTO {
-
 	private Long id;
 	private String initial;
 	private String name;
@@ -13,9 +9,9 @@ public class CategoryDTO {
 	private String modify_by;
 
 	public CategoryDTO() {
-
+		// TODO Auto-generated constructor stub
 	}
-
+	
 	public CategoryDTO(Long id, String initial, String name, Boolean active) {
 		super();
 		this.id = id;
@@ -71,4 +67,5 @@ public class CategoryDTO {
 	public void setModify_by(String modify_by) {
 		this.modify_by = modify_by;
 	}
+
 }
