@@ -11,7 +11,7 @@ public class No_02 {
 		System.out.print("Masukkan kalimat = ");
 		String kalimat = scanner.nextLine().toLowerCase();
 
-		//pengurutan
+		// pengurutan
 		String arrKalimat[] = kalimat.split("");
 		Arrays.sort(arrKalimat);
 
@@ -22,15 +22,21 @@ public class No_02 {
 		String hurufSebelum = "";
 
 		for (int i = 0; i < arrKalimat.length; i++) {
-			String hurufSekarang = arrKalimat[i];
+			String hurufSekarang = arrKalimat[i]; // a
 			if (abjad.contains(hurufSekarang)) {
-				if (!hurufSekarang.equals(hurufSebelum)) {  //cek kondisi abjad double
-					if (!hurufSebelum.equals("")) {
-						hasil = hasil + " - ";
+				if (hurufSebelum.contains(hurufSekarang)) {
+
+				} else {
+					if (!hurufSekarang.equals(hurufSebelum)) { // cek kondisi abjad double
+						if (!hurufSebelum.equals("")) {
+							hasil = hasil + " - ";
+						}
 					}
+					hasil = hasil + hurufSekarang;
+					hurufSebelum = hurufSekarang;
+
 				}
-				hasil = hasil + hurufSekarang;
-				hurufSebelum = hurufSekarang;
+
 			}
 
 		}

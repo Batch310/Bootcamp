@@ -13,11 +13,19 @@ public class No_09 {
 		String vocal = "aeiou";
 		String cekVocal = "";
 		int found = 0;
+		//nanas 20 10
+		//pepaya 30 20
+		//semangka 30 20
+		//kesemek 30 10
 
 		for (int i = 0; i < arrBuah.length; i++) {
 			if (vocal.contains(arrBuah[i])) {
-				cekVocal = cekVocal + arrBuah[i];
-				found++;
+				if(cekVocal.contains(arrBuah[i])) {
+					
+				}else {
+					cekVocal = cekVocal + arrBuah[i];
+					found++;
+				}		
 			}
 		}
 

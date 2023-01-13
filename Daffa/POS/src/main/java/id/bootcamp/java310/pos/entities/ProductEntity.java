@@ -158,4 +158,20 @@ public class ProductEntity {
 		this.modifyDate = modifyDate;
 	}
 
+	public VariantEntity getVariant() {
+		return variant;
+	}
+
+	public void setVariant(VariantEntity variant) {
+		this.variant = variant;
+	}
+
+	public Long getVariantId() {
+		return variantId;
+	}
+
+	public void setVariantId(Long variantId) {
+		this.variantId = variantId;
+	}
+
 }
