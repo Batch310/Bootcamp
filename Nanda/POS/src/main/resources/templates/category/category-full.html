@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Category</title>
+
+	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+
+	<script src="/vendor/jquery/jquery-3.6.3.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/fontawesome/js/all.min.js"></script>
+
+
+</head>
+
+<body>
+	<!-- Header -->
+	<header class="container-fluid p-5 bg-dark text-white">
+		<h1>Category Page</h1>
+	</header>
+
+	<!-- Breadcrumb Navigation -->
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item"><a href="#">Admin</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Category</li>
+		</ol>
+	</nav>
+
+	<!-- Main Page -->
+	<section class="container">
+		<!-- Searchbar & Add Button -->
+		<div class="row p-3">
+			<div class="input-group col-sm-9">
+				<input class="form-control border-end-0 border rounded-pill" type="text" placeholder="search by name"
+					id="example-search-input">
+				<span class="input-group-append">
+					<button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3"
+						type="button">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</div>
+			<div class="col-sm-3 text-right">
+				<button id="content-add-button" class="btn btn-dark" onclick="bukaPopupAdd()">Add
+					Category</button>
+			</div>
+		</div>
+
+		<!-- Table -->
+		<table class="table">
+			<thead>
+				<!-- Baris Header -->
+				<tr>
+					<!-- Baris -->
+					<td>Initial</td> <!-- Kolom -->
+					<td>Name</td>
+					<td>Active</td>
+					<td>Action</td>
+				</tr>
+
+			</thead> <!-- Baris Kontennya -->
+			<tbody id="content-tbody">
+				<tr>
+					<td>MANCO</td>
+					<td>Main Course</td>
+					<td><input type="checkbox" disabled checked></td>
+					<td>
+						<button class="btn btn-warning" onclick="bukaPopupEdit('MANCO', 'Main Course',true)">
+							<i class="fa-solid fa-pen-to-square" color="white"></i>
+						</button>
+						<button class="btn btn-danger" onclick="bukaPopupDelete('MANCO', 'Main Course',true)">
+							<i class="fa-solid fa-trash" color="white"></i></button>
+					</td>
+				</tr>
+				<tr>
+					<td>SATE</td>
+					<td>Sate</td>
+					<td><input type="checkbox" disabled ></td>
+					<td>
+						<button class="btn btn-warning" onclick="bukaPopupEdit('SATE', 'Sate',false)">
+							<i class="fa-solid fa-pen-to-square" color="white"></i>
+						</button>
+						<button class="btn btn-danger" onclick="bukaPopupDelete('SATE', 'Sate',false)">
+							<i class="fa-solid fa-trash" color="white"></i></button>
+					</td>
+				</tr>
+				<tr>
+					<td>Ic</td>
+					<td>Ice Cream</td>
+					<td><input type="checkbox" disabled checked></td>
+					<td>
+						<button class="btn btn-warning" onclick="bukaPopupEdit('IC', 'Ice Cream',true)">
+							<i class="fa-solid fa-pen-to-square" color="white"></i>
+						</button>
+						<button class="btn btn-danger" onclick="bukaPopupDelete('IC', 'Ice Cream',true)">
+							<i class="fa-solid fa-trash" color="white"></i></button>
+					</td>
+				</tr>
+				<tr>
+					<td>CKE</td>
+					<td>Cake</td>
+					<td><input type="checkbox" disabled checked></td>
+					<td>
+						<button class="btn btn-warning" onclick="bukaPopupEdit('CKE', 'Cake',true)">
+							<i class="fa-solid fa-pen-to-square" color="white"></i>
+						</button>
+						<button class="btn btn-danger" onclick="bukaPopupDelete('CKE', 'Cake',true)">
+							<i class="fa-solid fa-trash" color="white"></i></button>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+		<!-- Pagination -->
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-end">
+				<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
+				<li class="page-item active"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			</ul>
+		</nav>
+
+	</section>
+
+	<footer class="container-fluid bg-dark text-white p-5 text-center">
+		<h6>© 2023 Batch 310 - Java Spring Boot</h6>
+	</footer>
+
+	<!-- Modal -->
+	<div class="modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add asdasdsa</h5>
+					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+						<i class="fa fa-close"></i>
+					</button>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		//Fungsi Ajax -> untuk koneksi ke API
+	function getAllCategoriesApi(){
+		return $.ajax({
+			url : "/api/category/get",
+			method : "GET",
+			async : false
+		});
+	}
+	
+	var response = getAllCategoriesApi().responseJSON;
+	console.log(response); 
+	
+	var list = response.data;
+	
+	$("#content-tbody").html("");
+	for(i = 0; i < list.length; i++){
+		$("#content-tbody").append(
+		`
+		<tr>
+		<td>${list[i].initial}</td>
+		<td>${list[i].name}</td>
+		<td><input type="checkbox" disabled ${list[i].active == true ? 'checked' : ''}></td>
+		<td>
+			<button class="btn btn-warning" onclick="bukaPopupEdit('${list[i].initial}', '${list[i].name}',${list[i].active})">
+				<i class="fa-solid fa-pen-to-square" color="white"></i>
+			</button>
+			<button class="btn btn-danger" onclick="bukaPopupDelete('${list[i].initial}', '${list[i].name}',${list[i].active})">
+				<i class="fa-solid fa-trash" color="white"></i></button>
+		</td>
+		</tr>
+		`
+		)
+	}
+
+		function bukaPopupAdd() {
+			console.log("Add Category Clicked")
+			//Ganti title
+			$(".modal-title").html("Create New");
+
+			//isi modal body
+			$(".modal-body").html(
+				`
+		<table class="table table-borderless">
+			<tr>
+				<td>Initial</td>
+				<td><input class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td><input class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Active</td>
+				<td><input type="checkbox"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button class="btn btn-light">Cancel</button>
+					<button class="btn btn-success">Create</button>
+				</td>
+			</tr>
+		</table>
+		`
+			);
+
+			//. class
+			//# id
+			$(".modal").modal("show");
+		}
+
+		function bukaPopupEdit(initial, name, active) {
+			console.log("Edit Category Clicked")
+			console.log(initial + " " + name + " " + active)
+			//Ganti title
+			$(".modal-title").html("Edit");
+
+			//isi modal body
+			$(".modal-body").html(
+				`
+		<table class="table table-borderless">
+			<tr>
+				<td>Initial</td>
+				<td><input class="form-control" value="${initial}"></td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td><input class="form-control" value="${name}"></td>
+			</tr>
+			<tr>
+				<td>Active</td>
+				<td><input type="checkbox"  ${active == true ? 'checked' : ''}></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button class="btn btn-light">Cancel</button>
+					<button class="btn btn-warning">Save Change</button>
+				</td>
+			</tr>
+		</table>
+		`
+			);
+
+			//. class
+			//# id
+			$(".modal").modal("show");
+		}
+
+		function bukaPopupDelete(initial, name, active) {
+			console.log("Delete Category Clicked")
+			console.log(initial + " " + name + " " + active)
+
+			//Ganti title
+			$(".modal-title").html("Delete");
+
+			//isi modal body
+			$(".modal-body").html(
+				`
+			<h5>Are you sure want to delete this ?</h5>
+			<table class="table table-borderless">
+			<tr>
+				<td>Initial</td>
+				<td>
+					${initial}
+				</td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td>
+					${name}
+				</td>
+			</tr>
+			<tr>
+				<td>Active</td>
+				<td><input type="checkbox" disabled checked></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button class="btn btn-light">Cancel</button>
+					<button class="btn btn-danger">Delete</button>
+				</td>
+			</tr>
+			</table>
+			`
+			);
+
+			//. class
+			//# id
+			$(".modal").modal("show");
+		}
+
+	</script>
+
+</body>
+
+</html>
