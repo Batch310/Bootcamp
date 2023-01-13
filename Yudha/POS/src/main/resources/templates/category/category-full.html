@@ -254,7 +254,25 @@
 				
 				var createBy = "yykw";
 				console.log(createBy)
-			})
+				
+				// ambil JSON
+				var categoriesDto = JSON.stringify({
+					"initial" : initial,
+					"name" : name,
+					"active" : active,
+					"create_by" : createBy
+				});
+				
+				// panggil API
+				var response = insertCategoriesApi(categoriesDto).responseJSON;
+				if(response.code == 200){
+					alert(response.message);
+					$(".modal").modal("hide");
+				}else{
+					alert(response.message)
+				}
+				
+			});
 			
 			$(".modal").modal("show");
 			
