@@ -9,6 +9,6 @@ public class CategoryController {
 	
 	@RequestMapping("/home")
 	public String home() {
-		return "category/category-template.html";
+		return "category/category-kanggo.html";
 	}
 }
