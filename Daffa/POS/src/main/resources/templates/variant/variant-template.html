@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Category</title>
+	<title>Variant</title>
 
 	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
@@ -19,7 +19,7 @@
 <body>
 	<!-- Header -->
 	<header class="container-fluid p-5 bg-dark text-white">
-		<h1>Category Page</h1>
+		<h1>Variant Page</h1>
 	</header>
 
 	<!-- Breadcrumb Navigation -->
@@ -27,7 +27,8 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Home</a></li>
 			<li class="breadcrumb-item"><a href="#">Admin</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Category</li>
+			<li class="breadcrumb-item"><a href="../home">Category</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Variant</li>
 		</ol>
 	</nav>
 
@@ -47,7 +48,7 @@
 			</div>
 			<div class="col-sm-3 text-right">
 				<button id="content-add-button" class="btn btn-dark" onclick="bukaPopupAdd()">Add
-					Category</button>
+					Variant</button>
 			</div>
 		</div>
 
@@ -56,6 +57,7 @@
 			<thead class="thead-dark">
 				<!--Baris Header -->
 				<tr>
+					<td scope="col">Category</td>
 					<td scope="col">Initial</td>
 					<td scope="col">Name</td>
 					<td scope="col">Active</td>
@@ -65,47 +67,55 @@
 			<tbody>
 				<!--Baris Konten -->
 				<tr>
-					<td>MANCO</td>
+					<td>Main Course</a></td>
+					<td>NASGOR</td>
+					<td>Nasi Goreng</td>
+					<td><input type="checkbox" disabled checked></td>
+					<td>
+						<button class="btn btn-warning" onclick="bukaPopupEdit('Main Course','Initial', 'Name', true)">
+							<i class="fa-regular fa-pen-to-square" color="white"></i>
+						</button>
+						<button class="btn btn-danger" onclick="bukaPopupDelete('Main Course','Initial', 'Name', true)">
+							<i class="fa-solid fa-trash" color="white"></i>
+						</button>
+					</td>
+				</tr>
+				<tr>
 					<td>Main Course</td>
+					<td>NASUD</td>
+					<td>Nasi Uduk</td>
 					<td><input type="checkbox" disabled checked></td>
 					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('MANCO','Main Course', true)">
+						<button class="btn btn-warning"
+							onclick="bukaPopupEdit('Main Course','NASUD', 'Nasi Uduk', false)">
 							<i class="fa-regular fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('MANCO','Main Course', true)">
+						<button class="btn btn-danger"
+							onclick="bukaPopupDelete('Main Course','NASUD', 'Nasi Uduk', false)">
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
 				</tr>
 				<tr>
-					<td>SATE</td>
-					<td>Sate</td>
-					<td><input type="checkbox" disabled></td>
-					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('SATE','Sate', false)">
-							<i class="fa-regular fa-pen-to-square" color="white"></i>
-						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('SATE','Sate', false)">
-							<i class="fa-solid fa-trash" color="white"></i>
-						</button>
-					</td>
-				</tr>
-				<tr>
-					<td>IC</td>
 					<td>Ice Cream</td>
+					<td>IC Ban</td>
+					<td>Ice Cream Banana</td>
 					<td><input type="checkbox" disabled checked></td>
 					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('IC','Ice Cream', true)">
+						<button class="btn btn-warning"
+							onclick="bukaPopupEdit('Ice Cream', 'IC Ban','Ice Cream Banana', true)">
 							<i class="fa-regular fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('IC','Ice Cream', true)">
+						<button class="btn btn-danger"
+							onclick="bukaPopupDelete('Ice Cream', 'IC Ban','Ice Cream Banana', true)">
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
 				</tr>
-				<tr>
+				<!--<tr>
 					<td>CKE</td>
 					<td>Cake</td>
+					<td></td>
 					<td><input type="checkbox" disabled checked></td>
 					<td>
 						<button class="btn btn-warning" onclick="bukaPopupEdit('CKE','Cake', true)">
@@ -115,7 +125,7 @@
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
-				</tr>
+				</tr>-->
 
 			</tbody>
 
@@ -154,16 +164,27 @@
 	</div>
 
 	<script type="text/javascript">
-		function bukaPopupAdd() {
-			console.log("Add Category Clicked!")
+		function bukaPopupAdd(category, initial, name, active) {
+			console.log("Add Variant Clicked!")
 
 			//Ganti title
-			$(".modal-title").html("Add Category");
+			$(".modal-title").html("Add Variant");
 
 			//Ganti Modal Body
 			$(".modal-body").html(
 				`
 				<table class="table table borderless">
+					<tr>
+						<td>Category</td>
+						<td>
+  							<select class="form-control">
+    							<option value="volvo">Main Course</option>
+    							<option value="saab">Sate</option>
+    							<option value="opel">Ice Cream</option>
+    							<option value="audi">Cake</option>
+  							</select>
+						</td>
+					</tr>
 					<tr>
 						<td>Initial</td>
 						<td><input class="form-control"></td>
@@ -191,16 +212,27 @@
 			//# id
 			$(".modal").modal("show");
 		}
-		function bukaPopupEdit(initial, name, active) {
-			console.log("Edit Category Clicked!")
-			console.log(initial + " " + name + " " + active)
+		function bukaPopupEdit(category, initial, name, active) {
+			console.log("Edit Variant Clicked!")
+			console.log(category + " " + initial + " " + name + " " + active)
 			//Ganti title
-			$(".modal-title").html("Edit Category");
+			$(".modal-title").html("Edit Variant");
 
 			//Ganti Modal Body
 			$(".modal-body").html(
 				`
 				<table class="table table borderless">
+					<tr>
+						<td>Category</td>
+						<td>
+  							<select class="form-control">
+    							<option value="volvo">Main Course</option>
+    							<option value="saab">Sate</option>
+    							<option value="opel">Ice Cream</option>
+    							<option value="audi">Cake</option>
+  							</select>
+						</td>
+					</tr>
 					<tr>
 						<td>Initial</td>
 						<td><input class="form-control" value="${initial}"></td>
@@ -228,18 +260,22 @@
 			//# id
 			$(".modal").modal("show");
 		}
-		function bukaPopupDelete(initial, name, active) {
-			console.log("Delete Category Clicked!")
-			console.log(initial + " " + name + " " + active)
+		function bukaPopupDelete(category, initial, name, active) {
+			console.log("Delete Variant Clicked!")
+			console.log(category + " " + initial + " " + name + " " + active)
 
 			//Ganti title
-			$(".modal-title").html("Delete Category");
+			$(".modal-title").html("Delete Variant");
 
 			//Ganti Modal Body
 			$(".modal-body").html(
 				`
 				<h5>Are you sure want to delete this?</h5>
 				<table class="table table borderless">
+					<tr>
+						<td>Category</td>
+						<td><input class="form-control" id="disabledInput" type="text" placeholder="${category}"" disabled></td>
+					</tr>
 					<tr>
 						<td>Initial</td>
 						<td><input class="form-control" id="disabledInput" type="text" placeholder="${initial}"" disabled></td>

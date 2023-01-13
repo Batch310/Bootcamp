@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Category</title>
+<title>Variant</title>
 
 <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
@@ -17,7 +17,7 @@
 <body>
 	<!-- Header -->
 	<header class="container-fluid p-5 bg-dark text-white">
-		<h1>Category Page</h1>
+		<h1>Variant Page</h1>
 	</header>
 
 	<!-- Breadcrumb Navigation -->
@@ -25,7 +25,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Home</a></li>
 			<li class="breadcrumb-item"><a href="#">Admin</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Category</li>
+			<li class="breadcrumb-item active" aria-current="page">Variant</li>
 		</ol>
 	</nav>
 
@@ -46,7 +46,7 @@
 			</div>
 			<div class="col-sm-3 text-right">
 				<button id="content-add-button" class="btn btn-dark" onclick="bukaPopupAdd()">
-					Add Category</button>
+					Add Variant</button>
 			</div>
 		</div>
 
@@ -54,47 +54,42 @@
 		<table class="table">
 			<thead> <!-- Baris Header Tabel -->
 				<tr> <!-- Baris Tabel -->
-					<td><b>Initial</b></td> <!-- Kolom Tabel -->
+					<td><b>Category</b></td> <!-- Kolom Tabel -->
+					<td><b>Initial</td> <!-- Kolom Tabel -->
 					<td><b>Name</b></td>
 					<td><b>Active</b></td>
 					<td><b>Action</b></td>
 				 </tr>
 			</thead>
 			<tbody> <!-- Baris Body Tabel -->
-				<tr>
-					<td>MANCO</td>		
+				<tr>	
 					<td>Main Course</td>		
+					<td>NASGOR</td>		
+					<td>Nasi Goreng</td>		
 					<td><input type="checkbox" disabled checked></td>		
 					<td>
-						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('MANCO','Main Course',true)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
-						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('MANCO','Main Course',true)"><i class="fa-solid fa-trash-can" color="white"></i></button>
+						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('Main Course','NASGOR','Nasi Goreng',true)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
+						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('Main Course','NASGOR','Nasi Goreng',true)"><i class="fa-solid fa-trash-can" color="white"></i></button>
 					</td>							
 				</tr>
-				<tr>
-					<td>SATE</td>		
-					<td>Sate</td>		
-					<td><input type="checkbox" disabled></td>		
+				<tr>		
+					<td>Main Course</td>		
+					<td>NASUD</td>		
+					<td>Nasi Uduk</td>		
+					<td><input type="checkbox" disabled checked></td>		
 					<td>
-						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('SATE','Sate',false)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
-						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('SATE','Sate',false)"><i class="fa-solid fa-trash-can" color="white"></i></button>
+						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('Main Course','NASUD','Nasi Uduk',true)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
+						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('Main Course','NASUD','Nasi Uduk',true)"><i class="fa-solid fa-trash-can" color="white"></i></button>
 					</td>							
 				</tr>
-				<tr>
-					<td>IC</td>		
+				<tr>	
 					<td>ICE Cream</td>		
+					<td>ICBan</td>		
+					<td>Ice Cream Banana</td>		
 					<td><input type="checkbox" disabled checked></td>		
 					<td>
-						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('IC','ICE Cream',true)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
-						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('IC','ICE Cream',true)"><i class="fa-solid fa-trash-can" color="white"></i></button>
-					</td>							
-				</tr>
-				<tr>
-					<td>CKE</td>		
-					<td>Cake	</td>		
-					<td><input type="checkbox" disabled checked></td>		
-					<td>
-						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('CKE','Cake',true)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
-						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('CKE','Cake',true)"><i class="fa-solid fa-trash-can" color="white"></i></button>
+						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('ICE Cream','ICBan','Ice Cream Banana',true)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
+						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('ICE Cream','ICBan','Ice Cream Banana',true)"><i class="fa-solid fa-trash-can" color="white"></i></button>
 					</td>							
 				</tr>
 			</tbody>
@@ -138,7 +133,7 @@
 	<script type="text/javascript">
 		
 		function bukaPopupAdd() {
-			console.log("Add Category Kepencet!")
+			console.log("Add Variant Kepencet!")
 			
 			$(".modal-title").html("Create New");
 			//. untuk class
@@ -150,26 +145,40 @@
 			`
 			<table class="table table-borderless">
 				<tr>
-					<td style="text-align: right">
-						Initial
+					<td style="text-align: right; vertical-align: middle">
+						<b>Category</b>
 					</td>
-					<td style="text-align: left">
+					<td style="text-align: left; vertical-align: middle">
+						<select class="form-control">
+							<option disabled selected hidden>Select Category</option>
+  							<option>Main Course</option>
+  							<option>Sate</option>
+  							<option>ICE Cream</option>
+  							<option>Cake</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Initial</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
 						<input class="form-control">
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: right">
-						Name
+					<td style="text-align: right; vertical-align: middle">
+						<b>Name</b>
 					</td>
-					<td style="text-align: left">
+					<td style="text-align: left; vertical-align: middle">
 						<input class="form-control">
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: right">
-						Active
+					<td style="text-align: right; vertical-align: middle">
+						<b>Active</b>
 					</td>
-					<td style="text-align: left">
+					<td style="text-align: left; vertical-align: middle">
 						<input type="checkbox">
 					</td>
 				</tr>
@@ -185,9 +194,9 @@
 		);
 		}
 				
-		function bukaPopupEdit(initial,name,active) {
+		function bukaPopupEdit(category,initial,name,active) {
 			console.log("Edit Category Kepencet!")	
-			console.log(initial + " " + name + " " + active)
+			console.log(category + " " + initial + " " + name + " " + active)
 			
 			$(".modal-title").html("Edit");
 			//. untuk class
@@ -198,26 +207,40 @@
 			`
 			<table class="table table-borderless">
 				<tr>
-					<td style="text-align: right">
+					<td style="text-align: right; vertical-align: middle">
+						<b>Category</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<select class="form-control">
+							<option disabled selected hidden>${category}</option>
+  							<option>Main Course</option>
+  							<option>Sate</option>
+  							<option>ICE Cream</option>
+  							<option>Cake</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
 						<b>Initial</b>
 					</td>
-					<td style="text-align: left">
+					<td style="text-align: left; vertical-align: middle">
 						<input class="form-control" value="${initial}">
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: right">
+					<td style="text-align: right; vertical-align: middle">
 						<b>Name</b>
 					</td>
-					<td style="text-align: left">
+					<td style="text-align: left; vertical-align: middle">
 						<input class="form-control" value="${name}">
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: right">
+					<td style="text-align: right; vertical-align: middle">
 						<b>Active</b>
 					</td>
-					<td style="text-align: left">
+					<td style="text-align: left; vertical-align: middle">
 						<input type="checkbox" style="accent-color: #DBDBDB" ${active == true ? 'checked' : ''}>
 					</td>
 				</tr>
@@ -233,9 +256,9 @@
 		);
 		}		
 								
-		function bukaPopupDelete(initial,name,active) {
+		function bukaPopupDelete(category,initial,name,active) {
 			console.log("Delete Category Kepencet!")
-			console.log(initial + " " + name + " " + active)
+			console.log(category + " " + initial + " " + name + " " + active)
 			
 			$(".modal-title").html("Delete");
 			//. untuk class
@@ -247,26 +270,34 @@
 			<h5>Are you sure you want to delete this?</h5>
 			<table class="table table-borderless">
 				<tr>
-					<td style="text-align: right">
+					<td style="text-align: right; vertical-align: middle">
+						<b>Category</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+    					${category}  							
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
 						<b>Initial</b>
 					</td>
-					<td style="text-align: left">
+					<td style="text-align: left; vertical-align: middle">
 						${initial}
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: right">
+					<td style="text-align: right; vertical-align: middle">
 						<b>Name</b>
 					</td>
-					<td style="text-align: left">
+					<td style="text-align: left; vertical-align: middle">
 						${name}
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: right">
+					<td style="text-align: right; vertical-align: middle">
 						<b>Active</b>
 					</td>
-					<td style="text-align: left">
+					<td style="text-align: left; vertical-align: middle">
 						<input type="checkbox" ${active == true ? 'checked' : ''} disabled>
 					</td>
 				</tr>
