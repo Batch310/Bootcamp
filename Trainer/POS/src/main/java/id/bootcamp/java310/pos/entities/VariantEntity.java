@@ -60,7 +60,7 @@ public class VariantEntity {
 		this.id = id;
 	}
 
-	public CategoryEntity getCategory() {
+	public CategoryEntity getCategoryEntity() {
 		return category;
 	}
 
