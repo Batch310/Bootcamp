@@ -4,12 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/variant")
-public class VariantController {
-	
-	@RequestMapping("/home")
+@RequestMapping("/category")
+public class CategoryController {
+	@RequestMapping("/home") // Buat mapping secara khusus
 	public String home() {
-		return "variant/variant-fullui.html";
+		return "category/category-full.html"; // File html yang mau ditampilkan
 	}
-
+	
 }
