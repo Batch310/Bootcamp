@@ -41,7 +41,27 @@ public class VariantService {
 		return catList;
 	}
 
-	public Long insertVariant(VariantDTO dto) {
+	public Long insertVariant(VariantDTO dto) throws Exception {
+		// Validasi
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial());
+		if (isInitialExists == true) {
+			throw new Exception("11-Initial sudah terpakai");
+		}
+
+		Boolean isNameExists = vr.isNameExists(dto.getName());
+		if (isNameExists == true) {
+			throw new Exception("12-Name sudah terpakai");
+		}
+		if (dto.getInitial().length() > 10) {
+			throw new Exception("13-Initial tidak boleh lebih dari 10 karakter!");
+		}
+		if (dto.getName().length() > 50) {
+			throw new Exception("14-Initial tidak boleh lebih dari 50 karakter!");
+		}
+		if (dto.getCreate_by().length() > 50) {
+			throw new Exception("17-Create By tidak boleh lebih dari 50 karakter!");
+		}
+
 		VariantEntity hasil = new VariantEntity();
 		hasil.setCategoryId(dto.getCategory_id());
 		hasil.setInitial(dto.getInitial());
@@ -53,6 +73,44 @@ public class VariantService {
 		// insert bawaan JPARepository
 		VariantEntity done = vr.save(hasil);
 		return done.getId();
+
+	}
+
+	public void update(VariantDTO dto) throws Exception {
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial(), dto.getId());
+		if (isInitialExists == true) {
+			throw new Exception("11-Initial sudah terpakai");
+		}
+
+		Boolean isNameExists = vr.isNameExists(dto.getName());
+		if (isNameExists == true) {
+			throw new Exception("12-Name sudah terpakai");
+		}
+		if (dto.getInitial().length() > 10) {
+			throw new Exception("13-Initial tidak boleh lebih dari 10 karakter!");
+		}
+		if (dto.getName().length() > 50) {
+			throw new Exception("14-Initial tidak boleh lebih dari 50 karakter!");
+		}
+		if (dto.getModify_by().length() > 50) {
+			throw new Exception("16-Create By tidak boleh lebih dari 50 karakter!");
+		}
+		Boolean isCategoryExists = vr.isCategoryExists(dto.getCategory_id());
+		if (isCategoryExists == false) {
+			throw new Exception("18-Initial sudah terpakai");
+		}
+
+
+		vr.update(dto, new Date());
+	}
+
+	public void delete(Long id) throws Exception {
+		Boolean isCategoryUsedByVariant = vr.isCategoryUsedByVariant(id);
+		if (isCategoryUsedByVariant) {
+			throw new Exception("15-Category dipaki, tidak dapat dihapus");
+		}
+		// Cara 2
+		vr.delete(id);
 
 	}
 

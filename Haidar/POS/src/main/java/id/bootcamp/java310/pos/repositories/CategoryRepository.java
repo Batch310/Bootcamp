@@ -23,16 +23,16 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	//2. Select harus bintang
 	//3. Tabel harus sesuai repository
 	
-	@Query(nativeQuery = true,
-		    value = "select * from category order by name asc"
-			)
-	public List<CategoryEntity> getAllNameAsc();
+//	@Query(nativeQuery = true,
+//		    value = "select * from category order by name asc"
+//			)
+//	public List<CategoryEntity> getAllNameAsc();
 	
 	//Cara 3 - Query Lebih Lengkap
-	@Query(nativeQuery = true,
-			value = "select id, initial, name, active from category order by initial asc;"
-			) 
-	public List<Tuple> getAll3();
+//	@Query(nativeQuery = true,
+//			value = "select id, initial, name, active from category order by initial asc;"
+//			) 
+//	public List<Tuple> getAll3();
 	
 	//Cara 4 - Query Lebih Lengkap, Didefinisikan Dulu - Step 1
 	@Query(nativeQuery = true, name = "get_categories_cara4")
@@ -41,8 +41,8 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	//Cara 5 - Menggunakan Java Persistence Query Language (JPQL) - Step 1
 	//Querynya Java
 	//Select new alamat.nama_class(kolom yang ingin di select) from Entity. Catatan: Harus ada Constructor dulu pada DTO terkait 
-	@Query(value = "select new id.bootcamp.java310.pos.dto.CategoryDTO(id,initial,name,active) from CategoryEntity order by initial asc")
-	public List<CategoryDTO> getAll5();
+//	@Query(value = "select new id.bootcamp.java310.pos.dto.CategoryDTO(id,initial,name,active) from CategoryEntity order by initial asc")
+//	public List<CategoryDTO> getAll5();
 	
 	//INSERT/CREATE
 	//Cara 2 - Insert menggunakan native query - Step 1
@@ -80,4 +80,35 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 			value = "delete from category\r\n"
 					+ "where id = :id")
 	public void delete(@Param("id") Long id);
+	
+	// Query Untuk Validasi
+	// Ketika insert initial yang sudah ada pada database
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT initial " 
+			+ "from category "
+			+ "where initial = :initial)")
+	public Boolean isInitialExists(@Param("initial") String initial);
+
+	// Ketika insert name yang sudah ada pada database
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT name " 
+			+ "from category " 
+			+ "where name = :name)")
+	public Boolean isNameExists(@Param("name") String name);
+
+	// Ketika update initial yang sudah ada pada database dengan id yang tidak sama
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT initial " 
+			+ "from category "
+			+ "where initial = :initial AND id != :id)")
+	public Boolean isInitialExists(@Param("initial") String initial, @Param("id") Long id);
+
+	// Ketika update name yang sudah ada pada database dengan id yang tidak sama
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT name " 
+			+ "from category "
+			+ "where name = :name AND id != :id)")
+	public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
+	
+	// Ketika delete id yang tidak ada
+	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT * " 
+			+ "from variant " 
+			+ "where category_id = :id)")
+	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 }
