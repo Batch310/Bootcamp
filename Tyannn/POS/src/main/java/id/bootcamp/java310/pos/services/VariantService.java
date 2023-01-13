@@ -95,10 +95,10 @@ public class VariantService {
 		if (dto.getModify_by().length() > 50) {
 			throw new Exception("16-Create By tidak boleh lebih dari 50 karakter!");
 		}
-		Boolean isCategoryExists = vr.isCategoryExists(dto.getCategory_id());
-		if (isCategoryExists == false) {
-			throw new Exception("18-Initial sudah terpakai");
-		}
+//		Boolean isCategoryExists = vr.isCategoryExists(dto.getCategory_id());
+//		if (isCategoryExists == false) {
+//			throw new Exception("18-Initial sudah terpakai");
+//		}
 
 
 		vr.update(dto, new Date());

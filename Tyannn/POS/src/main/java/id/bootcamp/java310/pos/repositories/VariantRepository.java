@@ -70,7 +70,7 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 	
 	//Ketika insert/update Category id diisikan oleh category yang tidak ada
-	@Query(nativeQuery = true, value = "select exists (select id from category where id = :id)")
-	public Boolean isCategoryExists(@Param("id") Long id);
+//	@Query(nativeQuery = true, value = "select exists (select id from category where id = :id)")
+//	public Boolean isCategoryExists(@Param("id") Long id);
 
 }
