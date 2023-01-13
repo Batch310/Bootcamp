@@ -73,13 +73,7 @@ public class VariantRestContrtoller {
 			return response;
 
 		}
-		
-		
-		
-		
-		
-		
-		
+			
 		
 	}
 	
