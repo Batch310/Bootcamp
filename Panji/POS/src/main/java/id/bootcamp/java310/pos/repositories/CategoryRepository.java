@@ -84,4 +84,29 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 					+ "where id = :id"
 					)
 	public void delete(@Param("id") Long id);
+	
+	//Query untuk validasi
+	//Validasi apakah initial sudah ada di DB
+	@Query(nativeQuery = true, value = "select exists (select initial from category where initial = :initial)")
+	public boolean isInitialExists(@Param("initial") String initial);
+	
+
+	//Validasi apakah name sudah ada di DB
+	@Query(nativeQuery = true, value = "select exists (select name from category where name = :name)")
+	public boolean isNameExists(@Param("name") String name);
+	
+	
+	// Validasi apakah initial sudah ada di DB dan bukan dari id yang sama
+	@Query(nativeQuery = true, value = "select exists (select initial from category where initial = :initial and id != :id)")
+	public boolean isInitialExists(@Param("initial") String name, @Param("id") Long id);
+	
+	
+	// Validasi apakah nama sudah ada di DB dan bukan dari id yang sama
+	@Query(nativeQuery = true, value = "select exists (select name from category where name = :name and id != :id)")
+	public boolean isNameExists(@Param("name") String name, @Param("id") Long id);
+	
+	// Validasi apakah id category dipakai variant
+	@Query(nativeQuery = true, value = "select exists(select * from variant where category_id = :id)")
+	public boolean isCategoryUsedByVariant(@Param("id") Long id);
+		
 }
