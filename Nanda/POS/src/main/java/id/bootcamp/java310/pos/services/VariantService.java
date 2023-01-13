@@ -45,7 +45,7 @@ public class VariantService {
 
 	// CREATE
 	public Long insert1(VariantDTO dto) throws Exception {
-		// Validasi		
+		// Validasi
 		Boolean isInitialExists = vr.isInitialExists(dto.getInitial());
 		if (isInitialExists == true) {
 			throw new Exception("11-Inisial sudah terpakai");
@@ -71,7 +71,6 @@ public class VariantService {
 		if (isCategoryExists == false) {
 			throw new Exception("18-Category Tidak Ada");
 		}
-		
 
 		VariantEntity hasil = new VariantEntity();
 		hasil.setCategoryId(dto.getCategory_id());
@@ -89,7 +88,7 @@ public class VariantService {
 
 	// UPDATE
 	public void update(VariantDTO dto) throws Exception {
-		// Validasi		
+		// Validasi
 		Boolean isInitialExists = vr.isInitialExists(dto.getInitial());
 		if (isInitialExists == true) {
 			throw new Exception("11-Inisial sudah terpakai");
@@ -112,15 +111,19 @@ public class VariantService {
 			throw new Exception("15-Create By tidak boleh lebih dari 50 karakter !");
 		}
 		Boolean isCategoryExists = vr.isCategoryExists(dto.getCategory_id());
-		if (isCategoryExists=false) {
+		if (isCategoryExists == false) {
 			throw new Exception("18-Category Tidak Ada");
 		}
-		
+
 		vr.update(dto, new Date());
 	}
 
 	// DELETE
-	public void delete(Long id) {
+	public void delete(Long id) throws Exception {
+		Boolean isVariantExists = vr.isVariantExists(id);
+		if (isVariantExists) {
+			throw new Exception("15-Variant dipakai, tidak dapat dihapus");
+		}
 		// cara 1
 		// cr.deleteById(id);
 

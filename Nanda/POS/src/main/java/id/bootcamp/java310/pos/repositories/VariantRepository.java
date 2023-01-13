@@ -57,5 +57,9 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	@Query(nativeQuery = true, value = "select exists (select id from category where id = :id)")
 	public Boolean isCategoryExists(@Param("id") Long id);
 
+	//Validasi apakah variant id dipakai di product
+	@Query(nativeQuery = true, value = "select exists (select variant_id from product where variant_id = :id)")
+	public Boolean isVariantExists(@Param("id") Long id);
+	
 
 }

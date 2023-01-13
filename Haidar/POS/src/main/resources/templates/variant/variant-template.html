@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Variant</title>
+
+<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+
+<script src="/vendor/jquery/jquery-3.6.3.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/fontawesome/js/all.min.js"></script>
+
+</head>
+<body>
+	<!-- Header -->
+	<header class="container-fluid p-5 bg-dark text-white">
+		<h1>Variant Page</h1>
+	</header>
+
+	<!-- Breadcrumb Navigation -->
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item"><a href="#">Admin</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Variant</li>
+		</ol>
+	</nav>
+
+	<!-- Main Page -->
+	<section class="container">
+		<!-- Searchbar & Add Button -->
+		<div class="row p-3">
+			<div class="input-group col-sm-9">
+				<input class="form-control border-end-0 border rounded-pill"
+					type="text" placeholder="search by name" id="example-search-input">
+				<span class="input-group-append">
+					<button
+						class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3"
+						type="button">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			</div>
+			<div class="col-sm-3 text-right">
+				<button id="content-add-button" class="btn btn-dark" onclick="bukaPopupAdd()">
+					Add Variant</button>
+			</div>
+		</div>
+
+		<!-- Table -->
+		<table class="table">
+			<thead> <!-- Baris Header Tabel -->
+				<tr> <!-- Baris Tabel -->
+					<td><b>Category</b></td> <!-- Kolom Tabel -->
+					<td><b>Initial</td> <!-- Kolom Tabel -->
+					<td><b>Name</b></td>
+					<td><b>Active</b></td>
+					<td><b>Action</b></td>
+				 </tr>
+			</thead>
+			<tbody> <!-- Baris Body Tabel -->
+				<tr>	
+					<td>Main Course</td>		
+					<td>NASGOR</td>		
+					<td>Nasi Goreng</td>		
+					<td><input type="checkbox" disabled checked></td>		
+					<td>
+						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('Main Course','NASGOR','Nasi Goreng',true)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
+						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('Main Course','NASGOR','Nasi Goreng',true)"><i class="fa-solid fa-trash-can" color="white"></i></button>
+					</td>							
+				</tr>
+				<tr>		
+					<td>Main Course</td>		
+					<td>NASUD</td>		
+					<td>Nasi Uduk</td>		
+					<td><input type="checkbox" disabled checked></td>		
+					<td>
+						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('Main Course','NASUD','Nasi Uduk',true)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
+						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('Main Course','NASUD','Nasi Uduk',true)"><i class="fa-solid fa-trash-can" color="white"></i></button>
+					</td>							
+				</tr>
+				<tr>	
+					<td>ICE Cream</td>		
+					<td>ICBan</td>		
+					<td>Ice Cream Banana</td>		
+					<td><input type="checkbox" disabled checked></td>		
+					<td>
+						<button type="button" class="btn btn-warning" onclick="bukaPopupEdit('ICE Cream','ICBan','Ice Cream Banana',true)"><i class="fa-solid fa-pen-to-square" color="white"></i></button>
+						<button type="button" class="btn btn-danger" onclick="bukaPopupDelete('ICE Cream','ICBan','Ice Cream Banana',true)"><i class="fa-solid fa-trash-can" color="white"></i></button>
+					</td>							
+				</tr>
+			</tbody>
+
+		</table>
+
+		<!-- Pagination -->
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-end">
+				<li class="page-item disabled"><a class="page-link" href="#"
+					tabindex="-1">Previous</a></li>
+				<li class="page-item active"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			</ul>
+		</nav>
+
+	</section>
+
+	<footer class="container-fluid bg-dark text-white p-5 text-center">
+		<h6>© 2023 Batch 310 - Java Spring Boot</h6>
+	</footer>
+
+	<!-- Modal -->
+	<div class="modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Me</h5>
+					<button type="button" class="btn-close" data-dismiss="modal"
+						aria-label="Close">
+						<i class="fa fa-close"></i>
+					</button>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		
+		function bukaPopupAdd() {
+			console.log("Add Variant Kepencet!")
+			
+			$(".modal-title").html("Create New");
+			//. untuk class
+			//# untuk id
+			$(".modal").modal("show"); 
+			
+			//Ngisi modal body
+			$(".modal-body").html(
+			`
+			<table class="table table-borderless">
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Category</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<select class="form-control">
+							<option disabled selected hidden>Select Category</option>
+  							<option>Main Course</option>
+  							<option>Sate</option>
+  							<option>ICE Cream</option>
+  							<option>Cake</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Initial</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<input class="form-control">
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Name</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<input class="form-control">
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Active</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<input type="checkbox">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="text-align: left">
+						<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-success">Create</button>
+					</td>
+				</tr>			
+		</table>
+		`
+		);
+		}
+				
+		function bukaPopupEdit(category,initial,name,active) {
+			console.log("Edit Category Kepencet!")	
+			console.log(category + " " + initial + " " + name + " " + active)
+			
+			$(".modal-title").html("Edit");
+			//. untuk class
+			//# untuk id
+			$(".modal").modal("show"); 
+			//Ngisi modal body
+			$(".modal-body").html(
+			`
+			<table class="table table-borderless">
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Category</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<select class="form-control">
+							<option disabled selected hidden>${category}</option>
+  							<option>Main Course</option>
+  							<option>Sate</option>
+  							<option>ICE Cream</option>
+  							<option>Cake</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Initial</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<input class="form-control" value="${initial}">
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Name</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<input class="form-control" value="${name}">
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Active</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<input type="checkbox" style="accent-color: #DBDBDB" ${active == true ? 'checked' : ''}>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="text-align: left">
+						<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-warning">Save Change</button>
+					</td>
+				</tr>			
+		</table>
+		`
+		);
+		}		
+								
+		function bukaPopupDelete(category,initial,name,active) {
+			console.log("Delete Category Kepencet!")
+			console.log(category + " " + initial + " " + name + " " + active)
+			
+			$(".modal-title").html("Delete");
+			//. untuk class
+			//# untuk id
+			$(".modal").modal("show"); 
+			//Ngisi modal body
+			$(".modal-body").html(
+			`
+			<h5>Are you sure you want to delete this?</h5>
+			<table class="table table-borderless">
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Category</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+    					${category}  							
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Initial</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						${initial}
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Name</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						${name}
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right; vertical-align: middle">
+						<b>Active</b>
+					</td>
+					<td style="text-align: left; vertical-align: middle">
+						<input type="checkbox" ${active == true ? 'checked' : ''} disabled>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="text-align: left">
+						<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-danger">Delete</button>
+					</td>
+				</tr>			
+		</table>
+		`
+		);
+		}
+				
+	</script>
+</body>
+</html>

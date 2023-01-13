@@ -110,15 +110,30 @@ public class VariantRestControllers {
 	@DeleteMapping("/delete")
 	public Resp<Long> deleteVariant(@RequestParam("id") Long id) {
 		// Mengemas Response API
-		int code = 200;
-		String message = "Variant berhasil dihapus !";
-		vs.delete(id);
+		try {
+			// Mengemas Response API
+			int code = 200;
+			String message = "Variant berhasil dihapus !";
+			vs.delete(id);
 
-		Resp<Long> response = new Resp<>();
-		response.setCode(code);
-		response.setMessage(message);
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
 
-		return response;
+			return response;
+		} catch (Exception e) {
+			String exceptionMessage = e.getMessage();
+			String[] split = exceptionMessage.split("-");
+			int code = Integer.parseInt(split[0]);
+			String message = split[1];
+
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+
+			return response;
+		}
+		
 
 		// vs.delete(id);
 	}
