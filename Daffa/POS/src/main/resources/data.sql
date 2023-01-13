@@ -5,10 +5,10 @@ INSERT INTO public.category(
 			(true, 'Admin', now(), 'AFH', 'Aksesoris Fashion'),
 			(true, 'Admin', now(), 'ELK', 'Elektronik'),
 			(true, 'Admin', now(), 'PPR', 'Pakaian Pria'),
-			(true, 'Admin', now(), 'SPR', 'Sepatu Pria'),
+			(false, 'Admin', now(), 'SPR', 'Sepatu Pria'),
 			(true, 'Admin', now(), 'HPA', 'Hanphone & Aksesoris'),
 			(true, 'Admin', now(), 'FMM', 'Fashion Muslim'),
-			(true, 'Admin', now(), 'KTT', 'Koper & Tas Travel'),
+			(false, 'Admin', now(), 'KTT', 'Koper & Tas Travel'),
 			(true, 'Admin', now(), 'TWA', 'Tas Wanita'),
 			(true, 'Admin', now(), 'PWA', 'Pakaian Wanita');
 
