@@ -45,8 +45,8 @@
 				</span>
 			</div>
 			<div class="col-sm-3 text-right">
-				<button id="content-add-button" class="btn btn-dark" onclick="bukaPopupAdd()">
-				Add Category</button>
+				<button id="content-add-button" class="btn btn-dark"
+					onclick="bukaPopupAdd()">Add Category</button>
 			</div>
 		</div>
 
@@ -64,16 +64,18 @@
 				</tr>
 			</thead>
 			<!-- Baris Kontennya -->
-			<tbody>
+			<tbody id="content-tbody">
 				<tr>
 					<td>MANCO</td>
 					<td>Main Course</td>
 					<td><input type="checkbox" disabled checked></td>
 					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('MANCO','Main Course',true)">
+						<button class="btn btn-warning"
+							onclick="bukaPopupEdit('MANCO','Main Course',true)">
 							<i class="fa-solid fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('MANCO','Main Course',true)">
+						<button class="btn btn-danger"
+							onclick="bukaPopupDelete('MANCO','Main Course',true)">
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
@@ -83,10 +85,12 @@
 					<td>Sate</td>
 					<td><input type="checkbox" disabled></td>
 					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('SATE','Sate',false)">
+						<button class="btn btn-warning"
+							onclick="bukaPopupEdit('SATE','Sate',false)">
 							<i class="fa-solid fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('SATE','Sate',false)">
+						<button class="btn btn-danger"
+							onclick="bukaPopupDelete('SATE','Sate',false)">
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
@@ -96,10 +100,12 @@
 					<td>ICE Cream</td>
 					<td><input type="checkbox" disabled checked></td>
 					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('IC','ICE Cream',true)">
+						<button class="btn btn-warning"
+							onclick="bukaPopupEdit('IC','ICE Cream',true)">
 							<i class="fa-solid fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('IC','ICE Cream',true)">
+						<button class="btn btn-danger"
+							onclick="bukaPopupDelete('IC','ICE Cream',true)">
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
@@ -109,10 +115,12 @@
 					<td>Cake</td>
 					<td><input type="checkbox" disabled checked></td>
 					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('CKE','Cake',true)">
+						<button class="btn btn-warning"
+							onclick="bukaPopupEdit('CKE','Cake',true)">
 							<i class="fa-solid fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('CKE','Cake',true)">
+						<button class="btn btn-danger"
+							onclick="bukaPopupDelete('CKE','Cake',true)">
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
@@ -154,8 +162,66 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">
+	//Fungsi Ajax -> Untuk koneksi ke API
+	
+	//------------- GET ALL CATEGORIES -------------------------
+	function getAllCategoriesApi(){
+		return $.ajax({
+			url : "/api/category/get",
+			method : "GET",
+			async: false
+		});
+	}
+	
+	var response = getAllCategoriesApi().responseJSON;
+	console.log(response);
+	
+	var list = response.data;
+	
+	$("#content-tbody").html("");
+	for(i = 0; i < list.length; i++){
+		$("#content-tbody").append(		
+		`
+		<tr>
+		<td>${list[i].initial}</td>
+		<td>${list[i].name}</td>
+		<td><input type="checkbox" disabled 
+			${list[i].active == true ? 'checked' : ''}></td>
+		<td>
+			<button class="btn btn-warning" 
+			onclick="bukaPopupEdit(
+					'${list[i].initial}',
+					'${list[i].name}',
+					${list[i].active})">
+				<i class="fa-solid fa-pen-to-square" color="white"></i>
+			</button>
+			<button class="btn btn-danger" 
+			onclick="bukaPopupDelete(
+					'${list[i].initial}',
+					'${list[i].name}',
+					${list[i].active})">
+				<i class="fa-solid fa-trash" color="white"></i>
+			</button>
+		</td>
+		</tr>
+		`
+		)
+	}
+	
+	//------------------------------------------------------
+	//--------------------Insert Categoriy ---------------------
+	
+	function insertCategoryApi(categoryDto){
+		return $.ajax({
+			url : "/api/category/insert",
+			method : "POST",
+			data : categoryDto,
+			contentType : "application/json",
+			async: false
+		});
+	}
 	
 	function bukaPopupAdd(){
 		console.log("Add Category Kepencet!")
@@ -170,36 +236,79 @@
 			<tr>
 				<td>Initial</td>
 				<td>
-					<input class="form-control">
+					<input id="input-initial" class="form-control">
 				</td>
 			</tr>
 			<tr>
 				<td>Name</td>
 				<td>
-					<input class="form-control">
+					<input id="input-name" class="form-control">
 				</td>
 			</tr>
 			<tr>
 				<td>Active</td>
 				<td>
-					<input type="checkbox">
+					<input id="input-active" type="checkbox">
 				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
-					<button class="btn btn-light">Cancel</button>
-					<button class="btn btn-warning">Create</button>
+					<button id="input-cancel" class="btn btn-light">Cancel</button>
+					<button id="input-create" class="btn btn-warning">Create</button>
 				</td>
 			</tr>
 		</table>
 		`
 		);
 		
+		$("#input-cancel").click(function(){
+			$(".modal").modal("hide");
+		});
+		
+		$("#input-create").click(function(){
+			//Ambil Initial
+			var initial = $("#input-initial").val();
+			console.log(initial);
+			
+			//Ambil Name
+			var name = $("#input-name").val();
+			console.log(name);
+			
+			//Ambil Active
+			var active = $("#input-active").prop("checked");
+			console.log(active);
+			
+			//Create By
+			var createBy = "Yuhan";
+			console.log(createBy);
+			
+			//Proses Membuat Json JSON
+			var categoryDto = JSON.stringify({
+				"initial":initial,
+				"name":name,
+				"active":active,
+				"create_by":createBy
+			});
+			
+			//Panggil API Insert
+			var response = insertCategoryApi(categoryDto).responseJSON;
+			if(response.code == 200){
+				alert(response.message);
+				$(".modal").modal("hide");
+			} else{
+				alert(response.message);
+			}
+			
+			
+		});
+		
 		//. class
 		//# id
 		$(".modal").modal("show");
 	}
+	
+	//-------------------------------------------------------------
 	
 	function bukaPopupEdit(initial,name,active){
 		console.log("Edit Category Kepencet!")
