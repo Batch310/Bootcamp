@@ -31,7 +31,7 @@
 
 	<!-- Main Page -->
 	<section class="container">
-		<!-- Searchbar & Add Button -->
+		<!-- Searchbar -->
 		<div class="row p-3">
 			<div class="input-group col-sm-9" style="margin: auto">
 				<input class="form-control border-end-0 border rounded-pill"
@@ -46,17 +46,16 @@
 			</div>
 		</div>
 		
-		<section>
-			<table style="background-color: cornflowerblue; width: 100%;">
-				<tr>
-					<td style=" padding: 10px;">
-						<button id="content-add-button" class="btn btn-light" onclick="bukaPopupAdd()">
-							Create New
-						</button>
-					</td>
-				</tr>
-			</table>
-		</section>
+		<!-- Create New Button -->			
+		<table style="background-color: cornflowerblue; width: 100%;">
+			<tr>
+				<td style=" padding: 10px;">
+					<button id="content-add-button" class="btn btn-light" onclick="bukaPopupAdd()">
+						Create New
+					</button>
+				</td>
+			</tr>
+		</table>
 
 		<!-- Table -->
 		<table class="table" style="border: solid lightgrey; border-width: 0px 1px 1px 1px">
@@ -144,7 +143,7 @@
 	
 	<script type="text/javascript">
 		//Fungsi Ajax -> Untuk koneksi ke API
-		//--------------------------------------------- GET ALL CATEGORIES ---------------------------------------------
+		//============================================= GET ALL CATEGORIES =============================================
 		function getAllCategoriesAPI() {
 			return $.ajax({
 				url : "/api/category/get",
@@ -153,43 +152,48 @@
 			});
 		}
 		
-		var response = getAllCategoriesAPI().responseJSON;
-		console.log(response);
+		function refreshList() {
+			var response = getAllCategoriesAPI().responseJSON;
+			console.log(response);
 		
-		var list = response.data;
+			var list = response.data;
 		
-		$("#content-tbody").html("");
-		for (i = 0; i < list.length; i++) {
-			$("#content-tbody").append(
-			`
-			<tr>
-					<td>${list[i].initial}</td>		
-					<td>${list[i].name}</td>		
-					<td><input type="checkbox" disabled 
-						${list[i].active == true ? 'checked' : ''}></td>		
-					<td>
-						<button type="button" class="btn btn-warning" 
-							onclick="bukaPopupEdit(
-								'${list[i].initial}',
-								'${list[i].name}',
-								${list[i].active})">
-							<i class="fa-solid fa-pen-to-square" color="white"></i>
-						</button>
-						<button type="button" class="btn btn-danger" 
-							onclick="bukaPopupDelete(
-								'${list[i].initial}',
-								'${list[i].name}',
-								${list[i].active})">
-							<i class="fa-solid fa-trash-can" color="white"></i>
-						</button>
-					</td>							
-				</tr>
-			`
-			)
+			$("#content-tbody").html("");
+			for (i = 0; i < list.length; i++) {
+				$("#content-tbody").append(
+				`
+				<tr>
+						<td>${list[i].initial}</td>		
+						<td>${list[i].name}</td>		
+						<td><input type="checkbox" disabled 
+							${list[i].active == true ? 'checked' : ''}></td>		
+						<td>
+							<button type="button" class="btn btn-warning" 
+								onclick="bukaPopupEdit(
+									'${list[i].initial}',
+									'${list[i].name}',
+									${list[i].active},
+									${list[i].id})">
+								<i class="fa-solid fa-pen-to-square" color="white"></i>
+							</button>
+							<button type="button" class="btn btn-danger" 
+								onclick="bukaPopupDelete(
+									'${list[i].initial}',
+									'${list[i].name}',
+									${list[i].active},
+									${list[i].id})">
+								<i class="fa-solid fa-trash-can" color="white"></i>
+							</button>
+						</td>							
+					</tr>
+				`
+				)
+			}			
 		}
 		
-		//--------------------------------------------- GET ALL CATEGORIES ---------------------------------------------
-		//--------------------------------------------- INSERT CATEGORY ---------------------------------------------
+		refreshList();
+		//============================================= GET ALL CATEGORIES =============================================
+		//============================================= INSERT CATEGORY =============================================
 		
 		function insertCategoryAPI(categoryDTO) {
 			return $.ajax({
@@ -279,6 +283,7 @@
 			if(response.code == 200) {
 				alert(response.message);
 				$(".modal").modal("hide");
+				refreshList();
 			} else {
 				alert(response.message);
 			}
@@ -290,12 +295,21 @@
 			$(".modal").modal("show"); 
 		}
 		
-		//--------------------------------------------- INSERT CATEGORY ---------------------------------------------
-		//--------------------------------------------- EDIT CATEGORY ---------------------------------------------
+		//============================================= INSERT CATEGORY =============================================
+		//============================================= EDIT CATEGORY =============================================
+		function editCategoryAPI(categoryDTO) {
+			return $.ajax({
+				url : "/api/category/update",
+				method : "PUT",
+				data : categoryDTO,
+				contentType : "application/json",
+				async : false				
+			});
+		}
 				
-		function bukaPopupEdit(initial,name,active) {
+		function bukaPopupEdit(initial,name,active,id) {
 			console.log("Edit Category Kepencet!")	
-			console.log(initial + " " + name + " " + active)
+			console.log(initial + " " + name + " " + active + " " + id)
 			
 			$(".modal-title").html("Edit");
 			
@@ -330,27 +344,83 @@
 				<tr>
 					<td></td>
 					<td style="text-align: left">
-						<button type="button" id="edit-cancel" class="btn btn-light" data-dismiss="modal">Cancel</button>
-						<button type="button" id="edit-create" class="btn btn-warning">Save Change</button>
+						<button type="button" id="edit-cancel" class="btn btn-light">Cancel</button>
+						<button type="button" id="edit-save" class="btn btn-warning">Save Change</button>
 					</td>
 				</tr>			
 		</table>
 		`
 		);
 		
+		$("#edit-cancel").click(function() {
+			$(".modal").modal("hide");
+		});
+		
+		$("#edit-save").click(function() {
+			//Ambil Initial
+			var initial = $("#edit-initial").val();
+			console.log(initial);
+			
+			//Ambil Name
+			var name = $("#edit-name").val();
+			console.log(name);
+			
+			//Ambil Active
+			var active = $("#edit-active").prop("checked");
+			console.log(active);
+			
+			//Ambil Modify By
+			var modifyBy = "Haidar";
+			console.log(modifyBy);
+			
+			//Proses Ubah JSON
+			var categoryDTO = JSON.stringify({
+				"initial":initial,
+				"name":name,
+				"active":active,
+				"modify_by":modifyBy,
+				"id":id
+			});
+			
+			//Panggil API EDIT
+			var response = editCategoryAPI(categoryDTO).responseJSON;
+			if(response.code == 200) {
+				alert(response.message);
+				$(".modal").modal("hide");
+				refreshList();
+			} else {
+				alert(response.message);
+			}
+			
+		});
+		
+		
 			//. untuk class
 			//# untuk id
 			$(".modal").modal("show"); 
 		}		
-								
-		function bukaPopupDelete(initial,name,active) {
+		//============================================= EDIT CATEGORY =============================================	
+		//============================================= DELETE CATEGORY =============================================
+		function deleteCategoryAPI(categoryId) {
+			var formData = new FormData();
+			formData.append("id",categoryId);
+			
+			return $.ajax({
+				url : "/api/category/delete",
+				method : "DELETE",
+				data : formData,
+				contentType : false,
+				processData : false,
+				mimeType : "multipart/form-data",
+				async : false				
+			});
+		}
+		
+		function bukaPopupDelete(initial,name,active,id) {
 			console.log("Delete Category Kepencet!")
-			console.log(initial + " " + name + " " + active)
+			console.log(initial + " " + name + " " + active + " " + id)
 			
 			$(".modal-title").html("Delete");
-			//. untuk class
-			//# untuk id
-			$(".modal").modal("show"); 
 			//Ngisi modal body
 			$(".modal-body").html(
 			`
@@ -383,14 +453,40 @@
 				<tr>
 					<td></td>
 					<td style="text-align: left">
-						<button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-danger">Delete</button>
+						<button type="button" id="delete-cancel" class="btn btn-light">Cancel</button>
+						<button type="button" id="delete-confirm" class="btn btn-danger">Delete</button>
 					</td>
 				</tr>			
 		</table>
 		`
 		);
-		}
+		
+		$("#delete-cancel").click(function() {
+			$(".modal").modal("hide");
+		});
+		
+		$("#delete-confirm").click(function() {
+			//Ambil responseText
+			var response = deleteCategoryAPI(id).responseText;
+			console.log(response);
+			
+			//Convert to JSON
+			var responseJson = $.parseJSON(response);
+			
+			if(responseJson.code == 200) {
+				alert(responseJson.message);
+				$(".modal").modal("hide");
+				refreshList();
+			} else {
+				alert(responseJson.message);
+			}
+		});
+		
+		//. untuk class
+		//# untuk id
+		$(".modal").modal("show"); 
+	}
+		//============================================= DELETE CATEGORY =============================================
 				
 	</script>
 </body>
