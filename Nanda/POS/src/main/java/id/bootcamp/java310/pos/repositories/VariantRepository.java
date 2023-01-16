@@ -20,7 +20,7 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	// update
 	@Modifying
 	@Transactional
-	@Query(nativeQuery = true, value = "update variant\r\n" + "set category_id = :#{#dto.category_id},"
+	@Query(nativeQuery = true, value = "update variant set category_id = :#{#dto.category_id},"
 			+ "initial = :#{#dto.initial}, " + "name = :#{#dto.name}, " + "active = :#{#dto.active}, "
 			+ "modify_by = :#{#dto.modify_by}, " + "modify_date = :modifyDate\r\n" + "where id = :#{#dto.id}")
 	public void update(@Param("dto") VariantDTO dto, @Param("modifyDate") Date modifyDate);
@@ -46,7 +46,7 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	public Boolean isInitialExists(@Param("initial") String initial, @Param("id") Long id);
 
 	// Validasi apakah Name sudah ada di db dan bukan dari id yang sama
-	@Query(nativeQuery = true, value = "select exists (select name from variant where name = :name AND id = :id)")
+	@Query(nativeQuery = true, value = "select exists (select name from variant where name = :name AND id != :id)")
 	public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
 
 	// Validasi apakah id category dipakai di variant

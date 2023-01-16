@@ -17,9 +17,9 @@
 			});
 		}
 		
-		function bukaPopupEdit(category, initial, name, active) {
-			console.log("Edit Variant Clicked")
-			console.log(category + " " + initial + " " + name + " " + active)
+		function bukaPopupEdit(initial, name, active, id, category_name, category_id) {
+			console.log("Edit Variant Clicked");
+			console.log(id + " " +category_id + " " + category_name +" " +initial+ " "+name+ " " +active)
 			
 			//Ganti title
 			$(".modal-title").html("Edit");
@@ -46,15 +46,15 @@
 			</tr>
 			<tr>
 				<td>Initial</td>
-				<td><input class="form-control" value="${initial}"></td>
+				<td><input id="input-initial" class="form-control" value="${initial}"></td>
 			</tr>
 			<tr>
 				<td>Name</td>
-				<td><input class="form-control" value="${name}"></td>
+				<td><input id="input-name" class="form-control" value="${name}"></td>
 			</tr>
 			<tr>
 				<td>Active</td>
-				<td><input type="checkbox"  ${active == true ? 'checked' : ''}></td>
+				<td><input id="input-active" type="checkbox"  ${active == true ? 'checked' : ''}></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -84,20 +84,21 @@
 				var active = $("#input-active").prop("checked");
 				console.log(active);
 
-				var createBy = "Arnanda";
-				console.log(createBy);
+				var modifyBy = "Arnanda";
+				console.log(modifyBy);
 
 				//proses ubah json
 				var variantDTO = JSON.stringify({
+					"id": id,
 					"category_id": categoryName,
 					"initial": initial,
 					"name": name,
 					"active": active,
-					"create_by": createBy,
+					"modify_by": modifyBy,
 				});
 
 				//Panggil API Insert
-				var response = insertVariantApi(variantDTO).responseJSON;
+				var response = editVariantApi(variantDTO).responseJSON;
 				if (response.code == 200) {
 					alert(response.message);
 					$(".modal").modal("hide");
