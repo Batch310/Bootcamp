@@ -1,7 +1,7 @@
 //--------------------Insert Categoriy ---------------------
-function insertCategoryApi(categoryDto) {
+function insertVariantApi(categoryDto) {
 	return $.ajax({
-		url: "/api/category/insert",
+		url: "/api/variant/insert",
 		method: "POST",
 		data: categoryDto,
 		contentType: "application/json",
@@ -9,8 +9,28 @@ function insertCategoryApi(categoryDto) {
 	});
 }
 
+function getAllCategoriesApi() {
+	return $.ajax({
+		url: "/api/category/get",
+		method: "GET",
+		async: false
+	});
+}
+
 function bukaPopupAdd() {
 	console.log("Add Category Kepencet!")
+
+	//Ambil Isi dari dropdown
+	var catResponse = getAllCategoriesApi().responseJSON.data;
+	console.log(catResponse);
+	var html = "";
+	
+	for (i = 0; i < catResponse.length; i++) {
+		console.log(catResponse[i]);
+		html += `<option value=${catResponse[i].id}>${catResponse[i].name}</option>`
+	}
+
+
 
 	//Ganti Title
 	$(".modal-title").html("Create New");
@@ -19,6 +39,14 @@ function bukaPopupAdd() {
 	$(".modal-body").html(
 		`
 		<table class="table table-borderless">
+			<tr>
+				<td>Category</td>
+				<td>
+					<select id="input-category">
+						${html}
+					</select>
+				</td>
+			</tr>
 			<tr>
 				<td>Initial</td>
 				<td>
@@ -53,6 +81,10 @@ function bukaPopupAdd() {
 	});
 
 	$("#input-create").click(function() {
+		//Ambil Category Id
+		var catId = $("#input-category").val();
+		console.log(catId);
+		
 		//Ambil Initial
 		var initial = $("#input-initial").val();
 		console.log(initial);
@@ -74,11 +106,12 @@ function bukaPopupAdd() {
 			"initial": initial,
 			"name": name,
 			"active": active,
-			"create_by": createBy
+			"create_by": createBy,
+			"category_id":catId
 		});
 
 		//Panggil API Insert
-		var response = insertCategoryApi(categoryDto).responseJSON;
+		var response = insertVariantApi(categoryDto).responseJSON;
 		if (response.code == 200) {
 			alert(response.message);
 			$(".modal").modal("hide");

@@ -1,11 +1,11 @@
 //------------------------------ DELETE --------------------
 //--------------------------------------------------------
-function deleteCategoryApi(categoryId) {
+function deleteVariantApi(categoryId) {
 	var formData = new FormData();
 	formData.append("id", categoryId);
 
 	return $.ajax({
-		url: "/api/category/delete",
+		url: "/api/variant/delete",
 		method: "DELETE",
 		data: formData,
 		contentType: false,
@@ -16,7 +16,7 @@ function deleteCategoryApi(categoryId) {
 }
 
 
-function bukaPopupDelete(initial, name, active, id) {
+function bukaPopupDelete(initial, name, active, id, category_name) {
 	console.log("Delete Category Kepencet!")
 
 	//Ganti Title
@@ -27,6 +27,12 @@ function bukaPopupDelete(initial, name, active, id) {
 		`
 		<h5>Are you sure you want to delete this?</h5>
 		<table class="table table-borderless">
+			<tr>
+				<td>Category</td>
+				<td>
+					${category_name}
+				</td>
+			</tr>
 			<tr>
 				<td>Initial</td>
 				<td>
@@ -62,7 +68,7 @@ function bukaPopupDelete(initial, name, active, id) {
 
 	$("#input-delete").click(function() {
 		//Ambil Response Text
-		var response = deleteCategoryApi(id).responseText;
+		var response = deleteVariantApi(id).responseText;
 		console.log(response);
 
 		//Convert ke Json

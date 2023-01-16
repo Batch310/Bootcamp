@@ -1,8 +1,8 @@
 //-----------------EDIT CATEGORY ------------------------
 
-function editCategoryApi(categoryDto) {
+function editVariantApi(categoryDto) {
 	return $.ajax({
-		url: "/api/category/update",
+		url: "/api/variant/update",
 		method: "PUT",
 		data: categoryDto,
 		contentType: "application/json",
@@ -10,9 +10,29 @@ function editCategoryApi(categoryDto) {
 	});
 }
 
-function bukaPopupEdit(initial, name, active, id) {
+function getAllCategoriesApi() {
+	return $.ajax({
+		url: "/api/category/get",
+		method: "GET",
+		async: false
+	});
+}
+
+function bukaPopupEdit(initial, name, active, id, categoryName, categoryId) {
 	console.log("Edit Category Kepencet!");
-	console.log(initial + " " + name + " " + active + " " + id);
+	console.log(initial + " " + name + " " + active + " " + id + " " + categoryName + " " + categoryId);
+
+
+	//Ambil Isi dari dropdown
+	var catResponse = getAllCategoriesApi().responseJSON.data;
+	console.log(catResponse);
+	var html = "";
+
+	for (i = 0; i < catResponse.length; i++) {
+		console.log(catResponse[i]);
+		html += `<option value="${catResponse[i].id}" ${categoryId == catResponse[i].id ? 'selected' : ''}>
+		${catResponse[i].name}</option>`
+	}
 
 
 	//Ganti Title
@@ -22,6 +42,14 @@ function bukaPopupEdit(initial, name, active, id) {
 	$(".modal-body").html(
 		`
 		<table class="table table-borderless">
+			<tr>
+				<td>Category</td>
+				<td>
+					<select id="input-category">
+						${html}
+					</select>
+				</td>
+			</tr>
 			<tr>
 				<td>Initial</td>
 				<td>
@@ -56,6 +84,10 @@ function bukaPopupEdit(initial, name, active, id) {
 	});
 
 	$("#input-save").click(function() {
+		//Ambil Category Id
+		var catId = $("#input-category").val();
+		console.log(catId);
+
 		//Ambil Initial
 		var initial = $("#input-initial").val();
 		console.log(initial);
@@ -78,11 +110,12 @@ function bukaPopupEdit(initial, name, active, id) {
 			"name": name,
 			"active": active,
 			"modify_by": modifyBy,
-			"id": id
+			"id": id,
+			"category_id": catId
 		});
 
 		//Panggil API Edit
-		var response = editCategoryApi(categoryDto).responseJSON;
+		var response = editVariantApi(categoryDto).responseJSON;
 		if (response.code == 200) {
 			alert(response.message);
 			$(".modal").modal("hide");

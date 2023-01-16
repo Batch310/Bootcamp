@@ -1,14 +1,14 @@
 //------------- GET ALL CATEGORIES -------------------------
-function getAllCategoriesApi() {
+function getAllVariantsApi() {
 	return $.ajax({
-		url: "/api/category/get",
+		url: "/api/variant/get",
 		method: "GET",
 		async: false
 	});
 }
 
 function refreshList() {
-	var response = getAllCategoriesApi().responseJSON;
+	var response = getAllVariantsApi().responseJSON;
 	console.log(response);
 
 	var list = response.data;
@@ -18,6 +18,7 @@ function refreshList() {
 		$("#content-tbody").append(
 			`
 			<tr>
+			<td>${list[i].category_name}</td>
 			<td>${list[i].initial}</td>
 			<td>${list[i].name}</td> 
 			<td><input type="checkbox" disabled 
@@ -28,7 +29,9 @@ function refreshList() {
 						'${list[i].initial}',
 						'${list[i].name}',
 						${list[i].active},
-						${list[i].id})">
+						${list[i].id},
+						'${list[i].category_name}',
+						${list[i].category_id})">
 					<i class="fa-solid fa-pen-to-square" color="white"></i>
 				</button>
 				<button class="btn btn-danger" 
@@ -36,7 +39,8 @@ function refreshList() {
 						'${list[i].initial}',
 						'${list[i].name}',
 						${list[i].active},
-						${list[i].id})">
+						${list[i].id},
+						'${list[i].category_name}')">
 					<i class="fa-solid fa-trash" color="white"></i>
 				</button>
 			</td>
