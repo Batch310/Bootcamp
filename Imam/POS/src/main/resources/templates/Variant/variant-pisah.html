@@ -64,7 +64,7 @@
 					<td>Action</td>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="content-tbody">
 				<!-- Baris Kontennya-->
 
 
@@ -157,154 +157,11 @@
 		</div>
 	</div>
 
-
-	<!--Java Script -->
-	<script type="text/javascript">
-
-		function bukaPopupAdd() {
-			//Ganti title
-			$(".modal-title").html("Add Category")
-
-			//Ngisi Modal body
-			$(".modal-body").html(
-				`
-			<table class="table table-borderless">
-				<tr>
-					<td>Category</td>
-					<td> 
-					<select  class="form-control">
-						<option disable selected hidden>Select Category</option>
-      					<option>Main Course</option>
-      					<option>Ice Cream</option>
-    				</select>
-                    </td>
-				</tr>
-				<tr>
-					<td>Initial</td>
-					<td><input class="form-control"></td>
-				</tr>
-				<tr>
-					<td>Name</td>
-					<td><input class="form-control"></td>	
-				</tr>
-				<tr>
-					<td>Active</td>
-					<td><input type="checkbox"></td>	
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						<button class="btn btn-light">Cancel</button>
-						<button class="btn btn-success">Create</button>
-					</td>
-				</tr>
-			</table>
-			`
-			);
-
-			// . => class
-			// # => id
-
-			$(".modal").modal("show");
-		}
-		
-		
-		
-		function bukaPopupEdit(category, initial, name, active) {
-			console.log(initial + " " + name + " " + active)
-			//Ganti title
-			$(".modal-title").html("Edit")
-
-			//Ngisi Modal body
-			$(".modal-body").html(
-				`
-			<table class="table table-borderless">
-				<tr>
-					<td>Category</td>
-					<td>
-				<select  class="form-control">
-					<option disable selected hidden>${category}</option>
-      					<option>Main Course</option>
-      					<option>Ice Cream</option>
-    				</select>
-						
-					</td>
-				</tr>
-				<tr>
-					<td>Initial</td>
-					<td><input class="form-control" value="${initial}"></td>
-				</tr>
-				<tr>
-					<td>Name</td>
-					<td><input class="form-control" value="${name}"></td>	
-				</tr>
-				<tr>
-					<td>Active</td>
-					<td><input type="checkbox" ${active == true ? 'checked' : ''}></td>
-					
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						<button class="btn btn-light">Cancel</button>
-						<button class="btn btn-warning">Save Change</button>
-					</td>			
-				</tr>
-			</table>
-			`
-			);
-
-			// . => class
-			// # => id
-
-			$(".modal").modal("show");
-		}
+	    <script src="/variant/get-pisah.js" type="text/javascript"></script>
+		<script src="/variant/insert-pisah.js" type="text/javascript"></script>
+		<script src="/variant/update-pisah.js" type="text/javascript"></script>
+		<script src="/variant/delete-pisah.js" type="text/javascript"></script>
 
 
-		function bukaPopupHapus(category, initial, name, active) {
-			console.log(initial + " " + name + " " + active)
-			//Ganti title
-			$(".modal-title").html("Hapus")
-
-			//Ngisi Modal body
-			$(".modal-body").html(
-				`
-			<h5> Are you sure you want to delete this?</h5>
-			<table class="table table-borderless">
-				
-				<tr>
-					<td>Category</td>
-					<td>${category}</td>
-				</tr>
-				<tr>
-					<td>Initial</td>
-					<td>${initial}</td>
-				</tr>
-				<tr>
-					<td>Name</td>
-					<td>${name}</td>	
-				</tr>
-				<tr>
-					<td>Active</td>
-					<td><input type="checkbox" ${active == true ? 'checked' : ''} disabled></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>
-						<button class="btn btn-light">Cancel</button>
-						<button class="btn btn-danger">Delete</button>
-					</td>
-				</tr>
-			</table>
-			`
-			);
-
-			// . => class
-			// # => id
-
-			$(".modal").modal("show");
-		}
-	</script>
 </body>
-
 </html>

@@ -85,10 +85,10 @@
 					<td>Sate </td>
 					<td><input type="checkbox" disabled></td>
 					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('SATE','Sate', false)">
+						<button class="btn btn-warning" onclick="bukaPopupEdit('SATE','Sate', true)">
 							<i class="fa-solid fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger" onclick="bukaPopupHapus('SATE','Sate', false)">
+						<button class="btn btn-danger" onclick="bukaPopupHapus('SATE','Sate', true)">
 							<i class="fa-solid fa-trash"></i>
 						</button>
 					</td>
@@ -174,17 +174,19 @@
 			});
 		}
 
-		var response = getAllCategoriesApi().responseJSON;
-		console.log(response);
+		function refreshList() {
 
-		var list = response.data;
-		$("#content-tbody").html("");
+			var response = getAllCategoriesApi().responseJSON;    //Manggil semua data
+			console.log(response);
 
-		//---------- GET ALL CATEGORIES------------------------------
+			var list = response.data;
+			$("#content-tbody").html("");
 
-		for (i = 0; i < list.length; i++) {
-			$("#content-tbody").append(
-				`
+			//---------- GET ALL CATEGORIES------------------------------
+
+			for (i = 0; i < list.length; i++) {
+				$("#content-tbody").append(
+					`
 				<tr>
 					<td>${list[i].initial}</td> <!-- Kolom -->
 					<td>${list[i].name} </td>
@@ -195,13 +197,15 @@
 						onclick="bukaPopupEdit(
 							'${list[i].initial}',
 							'${list[i].name}', 
-						    ${list[i].active})">
+						    '${list[i].active}',
+						    '${list[i].id}')">                                          
 							<i class="fa-solid fa-pen-to-square" color="white"></i>
 						</button>
 						<button class="btn btn-danger" onclick="bukaPopupHapus(
 							'${list[i].initial}',
 							'${list[i].name}', 
-						    ${list[i].active})">
+						    '${list[i].active}',
+						    '${list[i].id}')">                                          
 							<i class="fa-solid fa-trash"></i>
 						</button>
 					</td>
@@ -209,35 +213,26 @@
 				</tr>
 				
 				`
-			)
+				)
+			}
+
 		}
+
+		refreshList();
 
 
 		//---------- ISERT CATEGORIES------------------------------
 
-		function insertCategoriyApi(categoryDTO) {
+		function insertCategoryApi(categoryDTO) {
 			return $.ajax({
 				url: "/api/category/insert",
 				method: "POST",
-				data : categoryDTO,
-				contentType : "application/json",
+				data: categoryDTO,
+				contentType: "application/json",
 				async: false
 
 			});
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		function bukaPopupAdd() {
 			//Ganti title
@@ -269,62 +264,73 @@
 			</table>
 			`
 			);
-			
-			$("#input-cancel").click(function(){
-				$(".modal").modal("hide");		
+
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
 			})
-			
-				$("#input-create").click(function(){
-				$(".modal").modal("hide");	
+
+			$("#input-create").click(function () {
+				$(".modal").modal("hide");
 				//Ambil initial
 				var initial = $("#input-initial").val();
 				console.log(initial);
-				
+
 				//Ambil name
 				var name = $("#input-name").val();
 				console.log(name);
-				
+
 				//Ambil active	
 				var active = $("#input-active").prop("checked");
 				console.log(active);
-				
+
 				//Ambil create by
 				var createBy = "Imam"
 				console.log(createBy);
-				
+
 				//Proses Membuat Json JSON
 				var categoryDTO = JSON.stringify({
-					"initial":initial,
-					"name":name,
-					"active":active,
-					"create_by":createBy
+					"initial": initial,
+					"name": name,
+					"active": active,
+					"create_by": createBy
 				});
-				
-				
+
+
 				//Panggil API Insert
-				var response = insertCategoriyApi(categoryDTO).responseJSON;
-				if(response.code == 200){
+				var response = insertCategoryApi(categoryDTO).responseJSON;
+				if (response.code == 200) {
 					alert(response.message);
-					$(".modal").modal("hide");
-				}else{
+					$(".modal").modal("hide"); //ditutup
+					refreshList();
+				} else {
 					alert(response.message);
-				}		
+				}
 			});
-			
-			
-			
-			
-			
-			
-			
 
 			// . => class
 			// # => id
 
 			$(".modal").modal("show");
 		}
-		function bukaPopupEdit(initial, name, active) {
-			console.log(initial + " " + name + " " + active)
+
+		//--------------EDIT Category
+
+		function editCategoryApi(categoryDTO) {
+			return $.ajax({
+				url: "/api/category/update",
+				method: "PUT",
+				data: categoryDTO,
+				contentType: "application/json",
+				async: false
+
+			});
+		}
+
+
+
+
+		function bukaPopupEdit(initial, name, active, id) {
+			console.log(initial + " " + name + " " + active + " " + id)
 			//Ganti title
 			$(".modal-title").html("Edit")
 
@@ -334,37 +340,99 @@
 			<table class="table table-borderless">
 				<tr>
 					<td>Initial</td>
-					<td><input class="form-control" value="${initial}"></td>
+					<td><input id="input-initial" class="form-control" value="${initial}"></td>
 				</tr>
 				<tr>
 					<td>Name</td>
-					<td><input class="form-control" value="${name}"></td>	
+					<td><input id="input-name" class="form-control" value="${name}"></td>	
 				</tr>
 				<tr>
 					<td>Active</td>
-					<td><input type="checkbox" ${active == true ? 'checked' : ''}></td>
-					
+					<td><input id="input-active" type="checkbox"  ${active == true ? 'checked' : ''}></td>	
 				</tr>
 				<tr>
 					<td></td>
 					<td>
-						<button class="btn btn-light">Cancel</button>
-						<button class="btn btn-warning">Save Change</button>
+						<button id="input-cancel" class="btn btn-light">Cancel</button>
+						<button id="input-save" class="btn btn-warning">Save Change</button>
 					</td>			
 				</tr>
 			</table>
 			`
 			);
 
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			})
+
+			$("#input-save").click(function () {
+				$(".modal").modal("hide");
+				//Ambil initial
+				var initial = $("#input-initial").val();
+				console.log(initial);
+
+				//Ambil name
+				var name = $("#input-name").val();
+				console.log(name);
+
+				//Ambil active	
+				var active = $("#input-active").prop("checked");
+				console.log(active);
+
+				//Ambil modify by
+				var modifyBy = "Imam"
+				console.log(modifyBy);
+
+				//Proses Membuat Json JSON
+				var categoryDTO = JSON.stringify({
+					"initial": initial,
+					"name": name,
+					"active": active,
+					"modify_by": modifyBy,
+					"id": id
+				});
+
+
+				//Panggil API Insert
+				var response = editCategoryApi(categoryDTO).responseJSON;
+				if (response.code == 200) {
+					alert(response.message);
+					$(".modal").modal("hide"); //ditutup
+					refreshList();
+				} else {
+					alert(response.message);
+				}
+			});
+
 			// . => class
 			// # => id
 
 			$(".modal").modal("show");
+
+
+
 		}
 
+		//---------------------DELETE---------------------------------
 
-		function bukaPopupHapus(initial, name, active) {
-			console.log(initial + " " + name + " " + active)
+		function deleteCategoryApi(categoryId) {
+			var formData = new FormData();
+			formData.append("id", categoryId);
+
+			return $.ajax({
+				url: "/api/category/delete",
+				method: "DELETE",
+				data: formData,
+				contentType: false,
+				processData: false,
+				mimeType: "multipart/form-data",
+				async: false
+
+			});
+		}
+
+		function bukaPopupHapus(initial, name, active, id) {
+			console.log(initial + " " + name + " " + active + " " + id)
 			//Ganti title
 			$(".modal-title").html("Hapus")
 
@@ -389,13 +457,37 @@
 				<tr>
 					<td></td>
 					<td>
-						<button class="btn btn-light">Cancel</button>
-						<button class="btn btn-danger">Delete</button>
+						<button id="input-cancel" class="btn btn-light">Cancel</button>
+						<button id="input-delete" class="btn btn-danger">Delete</button>
 					</td>
 				</tr>
 			</table>
 			`
 			);
+
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			});
+
+			$("#input-delete").click(function () {
+				
+				//Ambil response Text
+				var response = deleteCategoryApi(id).responseText;
+				//Convert ke JSON
+				var responseJson = $.parseJSON(response);
+				console.log(response);
+				
+					if (responseJson.code == 200) {
+					alert(responseJson.message);
+					$(".modal").modal("hide"); //ditutup
+					refreshList();
+				} else {
+					alert(responseJson.message);
+				}
+
+			});
+
+
 
 			// . => class
 			// # => id
