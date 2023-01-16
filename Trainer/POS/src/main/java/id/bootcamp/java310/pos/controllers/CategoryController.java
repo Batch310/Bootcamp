@@ -10,7 +10,8 @@ public class CategoryController {
 	@RequestMapping("/home")
 	public String home() {
 //		return "category/category-template.html";
-		return "category/category-full.html";
+//		return "category/category-full.html";
+		return "category/category-pisah.html";
 	}
 	
 	
