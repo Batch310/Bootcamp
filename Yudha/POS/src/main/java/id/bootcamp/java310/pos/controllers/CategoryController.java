@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CategoryController {
 	@RequestMapping("/home") // Buat mapping URL secara khusus
 	public String home() {
-		return "category/category-full.html";
+		return "category/category-pisah.html";
 	}
 }

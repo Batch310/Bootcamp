@@ -69,6 +69,12 @@ public class VariantService {
 					throw new Exception("12-Name sudah terpakai");
 				}
 				
+				Boolean isCategoryNotExist =vr.isCategoryNotExists(dto.getCategory_id());
+				if(isCategoryNotExist == false) {
+					throw new Exception("18-Category tidak ada!!");
+				}
+				
+				
 				if(dto.getInitial().length() > 10) {
 					throw new Exception("13-Initial tidak boleh lebih dari 10 karakter");
 				}
@@ -99,6 +105,11 @@ public class VariantService {
 					throw new Exception("12-Name sudah terpakai");
 				}
 				
+				Boolean isCategoryNotExist =vr.isCategoryNotExists(dto.getCategory_id());
+				if(isCategoryNotExist == false) {
+					throw new Exception("18-Category tidak ada!!");
+				}
+				
 				if(dto.getInitial().length() > 10) {
 					throw new Exception("13-Initial tidak boleh lebih dari 10 karakter");
 				}
@@ -119,7 +130,7 @@ public class VariantService {
 		
 		Boolean isCategoryUseByVariant = vr.isVariantUseByProduct(id);
 		if(isCategoryUseByVariant==true) {
-			throw new Exception("15-Category dipakai, tidak dapat dihapus");	
+			throw new Exception("15-Variant dipakai, tidak dapat dihapus");	
 		}
 		
 		

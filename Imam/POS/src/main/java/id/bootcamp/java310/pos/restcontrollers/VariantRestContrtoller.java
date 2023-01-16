@@ -31,7 +31,7 @@ public class VariantRestContrtoller {
 		//Mengemas Response API
 				int code = 200;
 				String message = "Sukses";
-				List<VariantDTO> data = vs.getAllku();
+				List<VariantDTO> data = vs.getAll();
 				
 				Resp<List<VariantDTO>> response = new Resp<>();
 				response.setCode(code);
@@ -73,13 +73,7 @@ public class VariantRestContrtoller {
 			return response;
 
 		}
-		
-		
-		
-		
-		
-		
-		
+			
 		
 	}
 	
