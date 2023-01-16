@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/category")
-public class CategoryController {
+@RequestMapping("/variant")
+public class VariantController {
 
 	@RequestMapping("/home")
 	public String home() {
 //		return "category/category-template.html";
 //		return "category/category-full.html";
-		return "category/category-pisah.html";
+		return "variant/variant-pisah.html";
 	}
 	
 	
