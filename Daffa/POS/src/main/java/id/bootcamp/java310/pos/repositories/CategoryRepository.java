@@ -84,6 +84,6 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	public Boolean isNameExists(@Param("id") Long id, @Param("name") String name);
 
 	// Validasi apakah id category dipakai di variant
-	@Query(nativeQuery = true, value = "select exists (select * from variant where category_id = :id")
+	@Query(nativeQuery = true, value = "select exists (select * from variant where category_id = :id)")
 	public Boolean isCategoryIdUsedByVariant(@Param("id") Long id);
 }

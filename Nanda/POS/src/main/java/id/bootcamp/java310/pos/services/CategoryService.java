@@ -158,7 +158,7 @@ public class CategoryService {
 		// cr.deleteById(id);
 
 		// cara 2
-		// cr.delete(id);
+		cr.deleted(id);
 	}
 
 }

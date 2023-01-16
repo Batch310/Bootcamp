@@ -155,7 +155,9 @@
 		});
 	}
 	
-	var response = getAllCategoriesApi().responseJSON;
+	
+	function refreshList(){
+		var response = getAllCategoriesApi().responseJSON;
 	console.log(response);	
 	
 	var list = response.data;
@@ -175,22 +177,28 @@
 				onclick="bukaPopupEdit(
 					'${list[i].initial}', 
 					'${list[i].name}',
-					${list[i].active})">
+					${list[i].active},
+					${list[i].id})">
 					<i class="fa-regular fa-pen-to-square" color="white"></i>
 					</button>
 				<button class="btn btn-danger" 
 				onclick="bukaPopupHapus(
 					'${list[i].initial}',
 					'${list[i].name}',
-					${list[i].active})">
+					${list[i].active},
+					${list[i].id})">
 					<i class="fa-regular fa-trash-can"></i></button>
 				</td>
 			</tr>
 				
 			`
 		)
-		
+		}
 	}
+	
+	
+	refreshList();	
+	
 	
 	
 	//=======================================================	
@@ -210,42 +218,7 @@
 		});
 	}
 	
-	var response = getAllCategoriesApi().responseJSON;
-	console.log(response);	
 	
-	var list = response.data;
-	
-	$("#content-body").html(""); //mengosongkan sebelum menambahkan semua
-	
-	for(i=0; i<list.length; i++){
-		$("tbody").append(
-			`
-			<tr> 
-				<td>${list[i].initial}</td>
-				<td>${list[i].name}</td>
-				<td><input type="checkbox" disabled 
-					${list[i].active == true ? 'checked' : ''}></td>
-				<td>
-				<button class="btn btn-warning" 
-				onclick="bukaPopupEdit(
-					'${list[i].initial}', 
-					'${list[i].name}',
-					${list[i].active})">
-					<i class="fa-regular fa-pen-to-square" color="white"></i>
-					</button>
-				<button class="btn btn-danger" 
-				onclick="bukaPopupHapus(
-					'${list[i].initial}',
-					'${list[i].name}',
-					${list[i].active})">
-					<i class="fa-regular fa-trash-can"></i></button>
-				</td>
-			</tr>
-				
-			`
-		)
-		
-	}	
 		
 	function bukaPopupAdd(){
 		console.log("add category clicked") //menampilkan di console
@@ -326,6 +299,8 @@
 			if(response.code == 200){
 				alert(response.message);
 				$(".modal").modal("hide");
+				refreshList();
+				
 			}else{
 				alert(response.message);
 			}
@@ -339,9 +314,22 @@
 		$(".modal").modal("show");
 	}
 	
-	function bukaPopupEdit(initial,name,active){
+	//========================= EDIT CATEGORY ============================
+	
+	function editCategoryApi(categoryDTO){
+		return $.ajax ({
+			
+			url : "/api/category/update",
+			method : "PUT",
+			data : categoryDTO,
+			contentType : "application/json",
+			async : false  //agar berjalan tidak pararel kemana mana
+		});
+	}
+	
+	function bukaPopupEdit(initial,name,active,id){
 		console.log("edit clicked") //menampilkan di console
-		console.log(initial+" "+name+" "+active)
+		console.log(initial+" "+name+" "+active+" "+id)
 		
 		//Ganti title
 		$(".modal-title").html("Edit")
@@ -353,27 +341,27 @@
 			<tr>
 				<td>Initial</td>
 				<td>
-					<input class = "form-control" value="${initial}">
+					<input id="input-initial" class = "form-control" value="${initial}">
 				</td>
 			</tr>
 			<tr>
 				<td>Name</td>
 				<td>
-					<input class = "form-control" value="${name}">
+					<input id="input-name" class = "form-control" value="${name}">
 				</td>
 			</tr>
 			<tr>
 				<td>Active</td>
 				<td>
-					<input type ="checkbox" ${active == true ? 'checked' : ''}> <!--jika checkbox true dicek, else '' -->
+					<input id="input-active" type ="checkbox" ${active == true ? 'checked' : ''}> <!--jika checkbox true dicek, else '' -->
 				</td>
 			</tr>
 			<tr>
 				<td>
 				</td>
 				<td>
-					<button class="btn btn-light">Cancel</button>
-					<button class="btn btn-warning">Save Changes</button>
+					<button id = "input-cancel" class="btn btn-light">Cancel</button>
+					<button id = "input-save" class="btn btn-warning">Save Changes</button>
 				</td>
 			</tr>
 			
@@ -383,6 +371,51 @@
 		
 		`);
 		
+		$("#input-cancel").click(function(){
+			$(".modal").modal("hide");
+		});
+		
+		$("#input-save").click(function(){
+			//ambil initial
+			var initial = $("#input-initial").val();
+			console.log(initial);
+			
+			//ambil name
+			var name = $("#input-name").val();
+			console.log(name);
+			
+			//ambil active
+			var active = $("#input-active").prop("checked")
+			console.log(active);
+			
+			//create by
+			var modifyBy = "yuhan";
+			console.log(modifyBy);
+			
+			//Proses Ubah JSON
+			var categoryDTO = JSON.stringify({
+				"initial" : initial,
+				"name" : name,
+				"active" : active,
+				"modify_by" : modifyBy,
+				"id" : id
+			});
+			console.log(categoryDTO);
+			//Panggil API Insert
+			
+			var response = editCategoryApi(categoryDTO).responseJSON;
+			if(response.code == 200){
+				alert(response.message);
+				$(".modal").modal("hide");
+				refreshList();
+				
+			}else{
+				alert(response.message);
+			}
+			
+			
+		});
+		
 		
 		
 		//$ adalah pengenal
@@ -391,9 +424,29 @@
 		$(".modal").modal("show");
 	}
 	
-	function bukaPopupHapus(initial,name,active){
-		console.log("edit clicked") //menampilkan di console
+	
+	//==============HAPUS=======
+	
+	function hapusCategoryApi(categoryId){
+		var formData = new FormData();
+		formData.append("id",categoryId);
 		
+		return $.ajax ({
+			
+			url : "/api/category/delete",
+			method : "DELETE",
+			contentType : false,
+			processData : false,
+			mimeType : "multipart/form-data",
+			data : formData,
+			async : false  //agar berjalan tidak pararel kemana mana
+		});
+	}
+	
+	
+	function bukaPopupHapus(initial,name,active,id){
+		console.log("hapus clicked") //menampilkan di console
+		console.log("id"+" "+id)
 		//Ganti title
 		$(".modal-title").html("Edit")
 		
@@ -423,8 +476,8 @@
 				<td>
 				</td>
 				<td>
-					<button class="btn btn-light">Cancel</button>
-					<button class="btn btn-danger">Delete</button>
+					<button id = "input-cancel" class="btn btn-light">Cancel</button>
+					<button id = "input-delete" class="btn btn-danger">Delete</button>
 				</td>
 			</tr>
 			
@@ -434,6 +487,28 @@
 		
 		`);
 		
+		$("#input-cancel").click(function(){
+			$(".modal").modal("hide");
+		});
+		
+		$("#input-delete").click(function(){
+			//ambil responeText
+			var response = hapusCategoryApi(id).responseText;
+			console.log(response);
+			
+			//Convert ke JSON
+			var responseJson = $.parseJSON(response);
+			
+			if(responseJson.code == 200){
+				alert(responseJson.message);
+				$(".modal").modal("hide");
+				refreshList();
+				
+			}else{
+				alert(responseJson.message);
+			}
+			
+		});
 		
 		
 		//$ adalah pengenal
