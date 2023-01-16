@@ -166,52 +166,8 @@
 	<script src="/variant/get-pisah.js" type="text/javascript"></script>
 	<script src="/variant/insert-pisah.js" type="text/javascript"></script>
 	<script src="/variant/update-pisah.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		
-		function bukaPopupDelete(category, initial, name, active) {
-			console.log("Delete Variant Clicked!")
-			console.log(category + " " + initial + " " + name + " " + active)
-
-			//Ganti title
-			$(".modal-title").html("Delete Variant");
-
-			//Ganti Modal Body
-			$(".modal-body").html(
-				`
-				<h5>Are you sure want to delete this?</h5>
-				<table class="table table borderless">
-					<tr>
-						<td>Category</td>
-						<td><input class="form-control" id="disabledInput" type="text" placeholder="${category}"" disabled></td>
-					</tr>
-					<tr>
-						<td>Initial</td>
-						<td><input class="form-control" id="disabledInput" type="text" placeholder="${initial}"" disabled></td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td><input class="form-control" id="disabledInput" type="text" placeholder="${name}" disabled></td>
-					</tr>
-					<tr>
-						<td>Active</td>
-						<td><input type="checkbox" disabled ${active == true ? 'checked' : ''}></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>
-							<button type="button" class="btn btn-light">Cancel</button>
-							<button type="button" class="btn btn-danger">Delete</button>
-						</td>
-					</tr>
-				</table>
-				`
-			)
-
-			//. class
-			//# id
-			$(".modal").modal("show");
-		}
-	</script>
+	<script src="/variant/delete-pisah.js" type="text/javascript"></script>
+	
 </body>
 
 </html>
