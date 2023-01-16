@@ -59,8 +59,8 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	// Delete Cara 2 - Menggunakan Native Query
 	@Modifying
 	@Transactional
-	@Query(nativeQuery = true, value = "delete from category\r\n" + "where id = :id")
-	public void delete(@Param("id") Long id);
+	@Query(nativeQuery = true, value = "delete from category where id = :id")
+	public void deleted(@Param("id") Long id);
 
 	// QUERY UNTUK VALIDASI
 
@@ -82,7 +82,7 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	
 	//Validasi apakah id category dipakai di variant
 	@Query(nativeQuery = true,
-			value = "select exists (select * from variant where category id = :id")
+			value = "select exists (select * from variant where category_id = :id)")
 	
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 	
