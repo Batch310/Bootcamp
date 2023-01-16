@@ -33,7 +33,7 @@
 	<section class="container">
 		<!-- Searchbar & Add Button -->
 		<div class="row p-3">
-			<div class="input-group col-sm-9">
+			<div class="input-group col-sm-9" style="margin: auto">
 				<input class="form-control border-end-0 border rounded-pill"
 					type="text" placeholder="search by name" id="example-search-input">
 				<span class="input-group-append">
@@ -44,14 +44,22 @@
 					</button>
 				</span>
 			</div>
-			<div class="col-sm-3 text-right">
-				<button id="content-add-button" class="btn btn-dark" onclick="bukaPopupAdd()">
-					Add Category</button>
-			</div>
 		</div>
+		
+		<section>
+			<table style="background-color: cornflowerblue; width: 100%;">
+				<tr>
+					<td style=" padding: 10px;">
+						<button id="content-add-button" class="btn btn-light" onclick="bukaPopupAdd()">
+							Create New
+						</button>
+					</td>
+				</tr>
+			</table>
+		</section>
 
 		<!-- Table -->
-		<table class="table">
+		<table class="table" style="border: solid lightgrey; border-width: 0px 1px 1px 1px">
 			<thead> <!-- Baris Header Tabel -->
 				<tr> <!-- Baris Tabel -->
 					<td><b>Initial</b></td> <!-- Kolom Tabel -->

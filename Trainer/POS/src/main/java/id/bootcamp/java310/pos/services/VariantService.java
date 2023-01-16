@@ -66,7 +66,7 @@ public class VariantService {
 
 		Boolean isCategoryExist = vr.isCategoryExists(dto.getCategory_id());
 		if (isCategoryExist == false) {
-			throw new Exception("18-Category tidak ada");
+			throw new Exception("18-Variant tidak ada");
 		}
 
 		// Mapping DTO ke Entity
@@ -109,7 +109,7 @@ public class VariantService {
 
 		Boolean isCategoryExist = vr.isCategoryExists(dto.getCategory_id());
 		if (isCategoryExist == false) {
-			throw new Exception("18-Category tidak ada");
+			throw new Exception("18-Variant tidak ada");
 		}
 
 		vr.updateVariant(dto, new Date());
@@ -118,7 +118,7 @@ public class VariantService {
 	public void delete(Long id) throws Exception {
 		Boolean isVariantUsedByProduct = vr.isVariantUsedByProduct(id);
 		if (isVariantUsedByProduct) {
-			throw new Exception("15-Category dipakai, tidak dapat dihapus");
+			throw new Exception("15-Variant dipakai, tidak dapat dihapus");
 		}
 		
 		vr.deleteById(id);
