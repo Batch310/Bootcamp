@@ -1,4 +1,11 @@
 //-----DELETE-----
+		function getAllCategoriesAPI() {
+			return $.ajax({
+				url: "/api/category/get",
+				method: "GET",
+				async: false
+			});
+		}
 		function deleteVariantAPI(variantId) {
 			var formData = new FormData();
 			formData.append("id", variantId);
@@ -13,9 +20,18 @@
 				async: false
 			});
 		}
-		function bukaPopupDelete(initial, name, active, id) {
+		function bukaPopupDelete(initial, name, active, id, category_name, category_id) {
 			console.log("Delete Variant Clicked!")
 			console.log(initial + " " + name + " " + active + " " + id)
+			
+			var categoryResponse = getAllCategoriesAPI().responseJSON.data;
+			console.log(categoryResponse);
+
+			var html = "";
+
+			for (i = 0; i < categoryResponse.length; i++) {
+				html += `<option value="${categoryResponse[i].id}" ${categoryResponse[i].id == category_id ? 'selected' : ''}>${categoryResponse[i].name}</option>`
+			}
 
 			//Ganti title
 			$(".modal-title").html("Delete Variant");
@@ -25,6 +41,14 @@
 				`
 				<h5>Are you sure want to delete this?</h5>
 				<table class="table table borderless">
+					<tr>
+						<td>Category</td>
+						<td>
+  							<select id="input-category" class="form-control" disabled>
+    							${html}
+  							</select>
+						</td>
+					</tr>
 					<tr>
 						<td>Initial</td>
 						<td><input class="form-control" id="disabledInput" type="text" placeholder="${initial}"" disabled></td>
