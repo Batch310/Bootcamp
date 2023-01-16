@@ -83,7 +83,7 @@ public class VariantService {
 			throw new Exception("16-Modify By tidak boleh lebih dari 50 karakter");
 		}
 		Boolean isCategoryExists = vr.isCategoryExists(dto.getCategory_id());
-		if (isCategoryExists) {
+		if (isCategoryExists == false) {
 			throw new Exception("18-Category tidak ada");
 		}
 		vr.updateVar(dto, new Date());

@@ -84,12 +84,12 @@ public class VariantService {
 			throw new Exception("18-Gagal, category tidak ada!");
 		}
 		
-		Boolean isInitialExists = vr.isInitialExists(dto.getInitial());
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial(), dto.getCategory_id());
 		if (isInitialExists == true) {
 			throw new Exception("11-Gagal, initial sudah ada!");
 		} 
 		
-		Boolean isNameExists = vr.isNameExists(dto.getName());
+		Boolean isNameExists = vr.isNameExists(dto.getName(), dto.getCategory_id());
 		if (isNameExists == true) {
 			throw new Exception("12-Gagal, name sudah ada!");
 		} 
