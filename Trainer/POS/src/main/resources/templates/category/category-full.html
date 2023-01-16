@@ -175,42 +175,48 @@
 		});
 	}
 	
-	var response = getAllCategoriesApi().responseJSON;
-	console.log(response);
-	
-	var list = response.data;
-	
-	$("#content-tbody").html("");
-	for(i = 0; i < list.length; i++){
-		$("#content-tbody").append(		
-		`
-		<tr>
-		<td>${list[i].initial}</td>
-		<td>${list[i].name}</td>
-		<td><input type="checkbox" disabled 
-			${list[i].active == true ? 'checked' : ''}></td>
-		<td>
-			<button class="btn btn-warning" 
-			onclick="bukaPopupEdit(
-					'${list[i].initial}',
-					'${list[i].name}',
-					${list[i].active})">
-				<i class="fa-solid fa-pen-to-square" color="white"></i>
-			</button>
-			<button class="btn btn-danger" 
-			onclick="bukaPopupDelete(
-					'${list[i].initial}',
-					'${list[i].name}',
-					${list[i].active})">
-				<i class="fa-solid fa-trash" color="white"></i>
-			</button>
-		</td>
-		</tr>
-		`
-		)
+	function refreshList(){
+		var response = getAllCategoriesApi().responseJSON;
+		console.log(response);
+		
+		var list = response.data;
+		
+		$("#content-tbody").html("");
+		for(i = 0; i < list.length; i++){
+			$("#content-tbody").append(		
+			`
+			<tr>
+			<td>${list[i].initial}</td>
+			<td>${list[i].name}</td> 
+			<td><input type="checkbox" disabled 
+				${list[i].active == true ? 'checked' : ''}></td>
+			<td>
+				<button class="btn btn-warning" 
+				onclick="bukaPopupEdit(
+						'${list[i].initial}',
+						'${list[i].name}',
+						${list[i].active},
+						${list[i].id})">
+					<i class="fa-solid fa-pen-to-square" color="white"></i>
+				</button>
+				<button class="btn btn-danger" 
+				onclick="bukaPopupDelete(
+						'${list[i].initial}',
+						'${list[i].name}',
+						${list[i].active},
+						${list[i].id})">
+					<i class="fa-solid fa-trash" color="white"></i>
+				</button>
+			</td>
+			</tr>
+			`
+			)
+		}
 	}
 	
-	//------------------------------------------------------
+	refreshList();
+	
+	//----------------------------------------------------------
 	//--------------------Insert Categoriy ---------------------
 	
 	function insertCategoryApi(categoryDto){
@@ -296,11 +302,10 @@
 			if(response.code == 200){
 				alert(response.message);
 				$(".modal").modal("hide");
+				refreshList();
 			} else{
 				alert(response.message);
 			}
-			
-			
 		});
 		
 		//. class
@@ -309,10 +314,21 @@
 	}
 	
 	//-------------------------------------------------------------
+	//0-----------------EDIT CATEGORY -----------------------------
 	
-	function bukaPopupEdit(initial,name,active){
-		console.log("Edit Category Kepencet!")
-		console.log(initial + " " + name + " " + active)
+	function editCategoryApi(categoryDto){
+		return $.ajax({
+			url : "/api/category/update",
+			method : "PUT",
+			data : categoryDto,
+			contentType : "application/json",
+			async: false
+		});
+	}
+	
+	function bukaPopupEdit(initial,name,active,id){
+		console.log("Edit Category Kepencet!");
+		console.log(initial + " " + name + " " + active + " " + id);
 		
 		
 		//Ganti Title
@@ -325,31 +341,72 @@
 			<tr>
 				<td>Initial</td>
 				<td>
-					<input class="form-control" value="${initial}">
+					<input id="input-initial" class="form-control" value="${initial}">
 				</td>
 			</tr>
 			<tr>
 				<td>Name</td>
 				<td>
-					<input class="form-control" value="${name}">
+					<input id="input-name" class="form-control" value="${name}">
 				</td>
 			</tr>
 			<tr>
 				<td>Active</td>
 				<td>
-					<input type="checkbox" ${active == true ? 'checked' : ''}>
+					<input id="input-active" type="checkbox" ${active == true ? 'checked' : ''}>
 				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
-					<button class="btn btn-light">Cancel</button>
-					<button class="btn btn-warning">Save Change</button>
+					<button id="input-cancel" class="btn btn-light">Cancel</button>
+					<button id="input-save" class="btn btn-warning">Save Change</button>
 				</td>
 			</tr>
 		</table>
 		`
 		);
+		
+		$("#input-cancel").click(function(){
+			$(".modal").modal("hide");
+		});
+		
+		$("#input-save").click(function(){
+			//Ambil Initial
+			var initial = $("#input-initial").val();
+			console.log(initial);
+			
+			//Ambil Name
+			var name = $("#input-name").val();
+			console.log(name);
+			
+			//Ambil Active
+			var active = $("#input-active").prop("checked");
+			console.log(active);
+			
+			//Modify By
+			var modifyBy = "Yuhan";
+			console.log(modifyBy);
+			
+			//Proses Membuat Json JSON
+			var categoryDto = JSON.stringify({
+				"initial":initial,
+				"name":name,
+				"active":active,
+				"modify_by":modifyBy,
+				"id":id
+			});
+			
+			//Panggil API Edit
+			var response = editCategoryApi(categoryDto).responseJSON;
+			if(response.code == 200){
+				alert(response.message);
+				$(".modal").modal("hide");
+				refreshList();
+			} else{
+				alert(response.message);
+			}
+		});
 		
 		//. class
 		//# id
@@ -358,7 +415,26 @@
 		
 	}
 	
-	function bukaPopupDelete(initial,name,active){
+	
+	//------------------------------ DELETE --------------------
+	//--------------------------------------------------------
+	function deleteCategoryApi(categoryId){
+		var formData = new FormData();
+		formData.append("id",categoryId);
+		
+		return $.ajax({
+			url : "/api/category/delete",
+			method : "DELETE",
+			data : formData,
+			contentType : false,
+			processData : false,
+			mimeType : "multipart/form-data",
+			async: false
+		});
+	}
+	
+	
+	function bukaPopupDelete(initial,name,active,id){
 		console.log("Delete Category Kepencet!")
 		
 		//Ganti Title
@@ -390,13 +466,37 @@
 			<tr>
 				<td></td>
 				<td>
-					<button class="btn btn-light">Cancel</button>
-					<button class="btn btn-danger">Delete</button>
+					<button id="input-cancel" class="btn btn-light">Cancel</button>
+					<button id="input-delete" class="btn btn-danger">Delete</button>
 				</td>
 			</tr>
 		</table>
 		`
 		);
+		
+		$("#input-cancel").click(function(){
+			$(".modal").modal("hide");
+		});
+		
+		$("#input-delete").click(function(){
+			//Ambil Response Text
+			var response = deleteCategoryApi(id).responseText;
+			console.log(response);
+			
+			//Convert ke Json
+			var responseJson = $.parseJSON(response);
+			
+			if(responseJson.code == 200){
+				alert(responseJson.message);
+				$(".modal").modal("hide");
+				refreshList();
+			} else{
+				alert(responseJson.message);
+			}
+			
+			
+			
+		});
 		
 		//. class
 		//# id
@@ -404,6 +504,8 @@
 		
 		
 	}
+	
+	//---------------------------------------------------------------------
 	
 	</script>
 </body>
