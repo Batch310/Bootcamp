@@ -1,6 +1,7 @@
 package id.bootcamp.java310.pos.repositories;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -31,6 +32,16 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	@Query(nativeQuery = true, value = "delete from variant\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
 
+	// SEARCH
+	@Query(nativeQuery = true, name = "search_variant")
+	public List<VariantDTO> searchVariant(@Param("keyword") String keywordku);
+
+	// PAGINATION
+	@Query(nativeQuery = true, name = "pagination_variant")
+	public List<VariantDTO> paginationVariant(@Param("keyword") String keyword, 
+			@Param("limit") int limit,
+			@Param("offset") int offset);
+
 	// QUERY UNTUK VALIDASI
 
 	// Validasi inisial
@@ -52,14 +63,18 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	// Validasi apakah id category dipakai di variant
 	@Query(nativeQuery = true, value = "select exists (select * from variant where category_id = :id")
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
-	
-	//Validasi apakah category id diisikan oleh category yang tidak ada
+
+	// Validasi apakah category id diisikan oleh category yang tidak ada
 	@Query(nativeQuery = true, value = "select exists (select id from category where id = :id)")
 	public Boolean isCategoryExists(@Param("id") Long id);
 
-	//Validasi apakah variant id dipakai di product
+	// Validasi apakah variant id dipakai di product
 	@Query(nativeQuery = true, value = "select exists (select variant_id from product where variant_id = :id)")
 	public Boolean isVariantExists(@Param("id") Long id);
 	
+	//GET count semua data category
+		@Query(nativeQuery = true, value = "select count(*) from variant where name ilike '%' || :keyword || '%'")
+		public int countTotalData(@Param("keyword") String keyword);
+
 
 }

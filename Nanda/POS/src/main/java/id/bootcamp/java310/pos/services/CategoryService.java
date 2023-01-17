@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
+import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.repositories.CategoryRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 import net.bytebuddy.implementation.bytecode.Throw;
 
 @Service
@@ -159,6 +161,27 @@ public class CategoryService {
 
 		// cara 2
 		cr.deleted(id);
+	}
+	
+	//SEARCH
+	public List<CategoryDTO> search(String keyword) {
+		// return cr.getAll4();
+		return cr.searchCategory(keyword);
+	}
+	
+	//PAGINATION
+	public Pagination<List<CategoryDTO>> pagination(String keyword, int limit, int page) {
+		int totalData = cr.countTotalData(keyword);
+		
+		// return cr.getAll4();
+		int offset = limit * (page-1);
+		List<CategoryDTO> data = cr.paginationCategory(keyword, limit, offset);
+		int itemPerPage = data.size();
+		
+		Pagination<List<CategoryDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
+
+		return pagination;
+		
 	}
 
 }
