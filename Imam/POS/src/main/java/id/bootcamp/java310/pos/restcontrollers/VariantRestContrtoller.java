@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.utills.Pagination;
 import id.bootcamp.java310.pos.utills.Resp;
 
 @RestController
@@ -25,6 +26,7 @@ public class VariantRestContrtoller {
 	private VariantService vs;
 	
 	//READ
+	//cara 4
 	@GetMapping("/get")
 	public Resp<List<VariantDTO>> getAllku(){
 		
@@ -41,6 +43,47 @@ public class VariantRestContrtoller {
 				return response;
 		//return vs.getAll();	
 	}
+	
+	//SEARCH
+	//Cara 4
+	@GetMapping("/search")
+	public Resp<List<VariantDTO>> search(@RequestParam("keyword") String keyword) {
+
+		// Mengemas Response API
+		int code = 200;
+		String message = "Sukses";
+		List<VariantDTO> dataSearch = vs.search(keyword);
+
+		Resp<List<VariantDTO>> responseSearch = new Resp<>();
+		responseSearch.setCode(code);
+		responseSearch.setMessage(message);
+		responseSearch.setData(dataSearch);
+
+		return responseSearch;
+	}
+	
+	//PAGINATION
+	//Cara 4
+	@GetMapping("/pagination")
+	public Resp<Pagination<List<VariantDTO>>> pagination(
+			@RequestParam("keyword") String keyword,
+			@RequestParam("limit") int limit,
+			@RequestParam("page") int page) {
+
+		// Mengemas Response API
+		int code = 200;
+		String message = "Sukses";
+		Pagination<List<VariantDTO>> data = vs.pagination(keyword, limit, page);
+
+		Resp<Pagination<List<VariantDTO>>> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+
+		return response;
+	}
+	
+	
 	
 	//INSERT
 	@PostMapping("/insert")
