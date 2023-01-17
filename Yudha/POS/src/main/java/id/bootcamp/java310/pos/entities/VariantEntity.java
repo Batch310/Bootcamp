@@ -36,7 +36,42 @@ import id.bootcamp.java310.pos.dto.VariantDTO;
 				+ "join category c\r\n"
 				+ "        on v.category_id = c.id",
 		resultSetMapping = "get_variant_cara4_result"
-				)
+				),
+		@NamedNativeQuery(
+				name = "search_variant",
+				query = "select \r\n"
+						+ "        v.id,\r\n"
+						+ "        v.category_id,\r\n"
+						+ "        c.name as category_name,\r\n"
+						+ "        v.initial,\r\n"
+						+ "        v.name,\r\n"
+						+ "        v.active\r\n"
+						+ "from variant v\r\n"
+						+ "join category c\r\n"
+						+ "        on v.category_id = c.id\r\n"
+						+ "		\r\n"
+						+ "where v.name ilike '%'||:keyword||'%'",
+				resultSetMapping = "get_variant_cara4_result"
+						),
+		@NamedNativeQuery(
+				name = "pagination_variant",
+				query = "select \r\n"
+						+ "        v.id,\r\n"
+						+ "        v.category_id,\r\n"
+						+ "        c.name as category_name,\r\n"
+						+ "        v.initial,\r\n"
+						+ "        v.name,\r\n"
+						+ "        v.active\r\n"
+						+ "from variant v\r\n"
+						+ "join category c\r\n"
+						+ "        on v.category_id = c.id\r\n"
+						+ "		\r\n"
+						+ "where v.name ilike '%' || :keyword ||'%'\r\n"
+						+ "limit :limit\r\n"
+						+ "offset :offset",
+				resultSetMapping = "get_variant_cara4_result"
+						)
+		
 })
 @SqlResultSetMappings(value = {
 		@SqlResultSetMapping(
