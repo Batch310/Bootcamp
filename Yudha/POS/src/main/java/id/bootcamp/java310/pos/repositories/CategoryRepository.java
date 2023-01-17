@@ -82,6 +82,16 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 					+ "where id = :id")
 	public void delete(@Param("id") Long id);
 	
+	//Searh
+	@Query(nativeQuery = true, name = "search_category")
+	public List<CategoryDTO> searchCategory(@Param("keyword") String keywordku);
+	
+	//Pagination
+	@Query(nativeQuery = true, name = "pagination_category")
+	public List<CategoryDTO> paginationCategory(@Param("keyword") String keyword,@Param("limit") int limit,@Param("offset") int offset);
+	
+	
+	// QUery untuk Validasi
 	@Query(nativeQuery =true,
 			value="select exists(select initial from category where initial = :initial)")
 	public Boolean isInitialExists(@Param("initial") String initial);
@@ -103,4 +113,9 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Query(nativeQuery =true,
 			value="select exists(select * from variant where category_id = :id)")
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
+	
+	//Get count semua data category
+	@Query(nativeQuery =true,
+			value="select count(*) from category where name ilike '%'||:keyword||'%'")
+	public int countTotalData(@Param("keyword") String keyword);
 }
