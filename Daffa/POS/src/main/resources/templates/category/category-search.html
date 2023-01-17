@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Variant</title>
+	<title>Category</title>
 
 	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
@@ -19,7 +19,7 @@
 <body>
 	<!-- Header -->
 	<header class="container-fluid p-5 bg-dark text-white">
-		<h1>Variant Page</h1>
+		<h1>Category Page</h1>
 	</header>
 
 	<!-- Breadcrumb Navigation -->
@@ -27,7 +27,7 @@
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Home</a></li>
 			<li class="breadcrumb-item"><a href="#">Admin</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Variant</li>
+			<li class="breadcrumb-item active" aria-current="page">Category</li>
 		</ol>
 	</nav>
 
@@ -40,14 +40,14 @@
 					id="example-search-input">
 				<span class="input-group-append">
 					<button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3"
-						type="button">
+						type="button" id="button-search">
 						<i class="fa fa-search"></i>
 					</button>
 				</span>
 			</div>
 			<div class="col-sm-3 text-right">
 				<button id="content-add-button" class="btn btn-dark" onclick="bukaPopupAdd()">Add
-					Variant</button>
+					Category</button>
 			</div>
 		</div>
 
@@ -56,7 +56,6 @@
 			<thead class="thead-dark">
 				<!--Baris Header -->
 				<tr>
-					<td scope="col">Category</td>
 					<td scope="col">Initial</td>
 					<td scope="col">Name</td>
 					<td scope="col">Active</td>
@@ -66,55 +65,47 @@
 			<tbody id="content-tbody">
 				<!--Baris Konten -->
 				<tr>
-					<td>Main Course</a></td>
-					<td>NASGOR</td>
-					<td>Nasi Goreng</td>
-					<td><input type="checkbox" disabled checked></td>
-					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('Main Course','Initial', 'Name', true)">
-							<i class="fa-regular fa-pen-to-square" color="white"></i>
-						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('Main Course','Initial', 'Name', true)">
-							<i class="fa-solid fa-trash" color="white"></i>
-						</button>
-					</td>
-				</tr>
-				<tr>
+					<td>MANCO</td>
 					<td>Main Course</td>
-					<td>NASUD</td>
-					<td>Nasi Uduk</td>
 					<td><input type="checkbox" disabled checked></td>
 					<td>
-						<button class="btn btn-warning"
-							onclick="bukaPopupEdit('Main Course','NASUD', 'Nasi Uduk', false)">
+						<button class="btn btn-warning" onclick="bukaPopupEdit('MANCO','Main Course', true)">
 							<i class="fa-regular fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger"
-							onclick="bukaPopupDelete('Main Course','NASUD', 'Nasi Uduk', false)">
+						<button class="btn btn-danger" onclick="bukaPopupDelete('MANCO','Main Course', true)">
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
 				</tr>
 				<tr>
-					<td>Ice Cream</td>
-					<td>IC Ban</td>
-					<td>Ice Cream Banana</td>
-					<td><input type="checkbox" disabled checked></td>
+					<td>SATE</td>
+					<td>Sate</td>
+					<td><input type="checkbox" disabled></td>
 					<td>
-						<button class="btn btn-warning"
-							onclick="bukaPopupEdit('Ice Cream', 'IC Ban','Ice Cream Banana', true)">
+						<button class="btn btn-warning" onclick="bukaPopupEdit('SATE','Sate', false)">
 							<i class="fa-regular fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger"
-							onclick="bukaPopupDelete('Ice Cream', 'IC Ban','Ice Cream Banana', true)">
+						<button class="btn btn-danger" onclick="bukaPopupDelete('SATE','Sate', false)">
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
 				</tr>
-				<!--<tr>
+				<tr>
+					<td>IC</td>
+					<td>Ice Cream</td>
+					<td><input type="checkbox" disabled checked></td>
+					<td>
+						<button class="btn btn-warning" onclick="bukaPopupEdit('IC','Ice Cream', true)">
+							<i class="fa-regular fa-pen-to-square" color="white"></i>
+						</button>
+						<button class="btn btn-danger" onclick="bukaPopupDelete('IC','Ice Cream', true)">
+							<i class="fa-solid fa-trash" color="white"></i>
+						</button>
+					</td>
+				</tr>
+				<tr>
 					<td>CKE</td>
 					<td>Cake</td>
-					<td></td>
 					<td><input type="checkbox" disabled checked></td>
 					<td>
 						<button class="btn btn-warning" onclick="bukaPopupEdit('CKE','Cake', true)">
@@ -124,7 +115,7 @@
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
-				</tr>-->
+				</tr>
 
 			</tbody>
 
@@ -162,11 +153,12 @@
 		</div>
 	</div>
 
-	<script src="/variant/get-pisah.js" type="text/javascript"></script>
-	<script src="/variant/insert-pisah.js" type="text/javascript"></script>
-	<script src="/variant/update-pisah.js" type="text/javascript"></script>
-	<script src="/variant/delete-pisah.js" type="text/javascript"></script>
-	
+	<script src="/category/get-search.js" type="text/javascript"></script>
+	<script src="/category/insert-pisah.js" type="text/javascript"></script>
+	<script src="/category/update-pisah.js" type="text/javascript"></script>
+	<script src="/category/delete-pisah.js" type="text/javascript"></script>
+	<script src="/category/search.js" type="text/javascript"></script>
+
 </body>
 
 </html>

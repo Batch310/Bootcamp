@@ -26,8 +26,26 @@ import id.bootcamp.java310.pos.dto.VariantDTO;
 				name = "get_all_categories",
 				query = "select v.id, v.category_id, c.name as category_name, v.initial, v.name, v.active "
 						+ "from category c inner join variant v on c.id = v.category_id "
-						+ "order by v.category_id asc;",
+						+ "order by v.initial asc;",
 				resultSetMapping = "get_all_categories_result"
+				),
+		@NamedNativeQuery(
+				name = "search_variant",
+				query = "select v.id, v.category_id, c.name as category_name, v.initial, v.name, v.active "
+						+ "from category c inner join variant v on c.id = v.category_id "
+						+ "where v.name ilike '%'|| :keyword ||'%' "
+						+ "order by v.initial asc;",
+						resultSetMapping = "get_all_categories_result"
+				),
+		@NamedNativeQuery(
+				name = "pagination_variant",
+				query = "select v.id, v.category_id, c.name as category_name, v.initial, v.name, v.active "
+						+ "from category c inner join variant v on c.id = v.category_id "
+						+ "where v.name ilike '%'|| :keyword ||'%' "
+						+ "order by v.initial asc "
+						+ "limit :limit "
+						+ "offset :offset",
+						resultSetMapping = "get_all_categories_result"
 				)
 })@SqlResultSetMappings(value = {
 		@SqlResultSetMapping(
