@@ -1,8 +1,8 @@
 //---------------------------------------------DELETE----------------------------------------------------
 
-		function deleteCategoriesApi(variantId) {
+		function deleteVariantApi(variantId) {
 			var formData = new FormData();
-			formData.append("id", variantIdId);
+			formData.append("id", variantId);
 
 			return $.ajax({
 				url: "/api/variant/delete",
@@ -14,9 +14,27 @@
 				async: false
 			});
 		}
+		
+		function getAllCategoriesAPI() {
+			return $.ajax({
+				url: "/api/category/get",
+				method: "GET",
+				async: false
+			});
+		}
 
-		function bukaPopupDelete(initial, name, active, id) {
+		function bukaPopupDelete(initial, name, active, id, category_name, category_id) {
 			console.log("Delete Variant Clicked")
+
+
+			var categoryResponse = getAllCategoriesAPI().responseJSON.data;
+			console.log(categoryResponse);
+
+			var html = "";
+
+			for (i = 0; i < categoryResponse.length; i++) {
+				html += `<option value="${categoryResponse[i].id}" ${categoryResponse[i].id == category_id ? 'selected' : ''}>${categoryResponse[i].name}</option>`
+			}
 
 			//Ganti title
 			$(".modal-title").html("Delete");
@@ -26,6 +44,16 @@
 				`
 			<h5>Are you sure want to delete this ?</h5>
 			<table class="table table-borderless">
+			<tr>
+						<td>Category</td>
+						<td>
+  							<select id="input-category" class="form-control" disabled>
+							<option value="${category_id}" selected hidden>${category_name}</option>
+
+    							${html}
+  							</select>
+						</td>
+					</tr>
 			<tr>
 				<td>Initial</td>
 				<td>
@@ -40,7 +68,7 @@
 			</tr>
 			<tr>
 				<td>Active</td>
-				<td><input type="checkbox" disabled checked></td>
+				<td><input id="input-active" disabled type="checkbox"  ${active == true ? 'checked' : ''}></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -58,7 +86,7 @@
 			$("#input-delete").click(function () {
 				//ambil response text
 				
-				var response = deleteCategoriesApi(id).responseText;
+				var response = deleteVariantApi(id).responseText;
 				console.log(response);
 				//convert ke json
 				var responseJson = $.parseJSON(response);

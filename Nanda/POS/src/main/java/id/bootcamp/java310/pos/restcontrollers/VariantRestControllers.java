@@ -16,6 +16,7 @@ import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.services.CategoryService;
 import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.utils.Pagination;
 import id.bootcamp.java310.pos.utils.Resp;
 
 @RestController
@@ -137,4 +138,33 @@ public class VariantRestControllers {
 
 		// vs.delete(id);
 	}
+	//SEARCH
+	@GetMapping("/search")
+	public Resp<List<VariantDTO>> search(@RequestParam("keyword") String keyword){
+		int code = 200;
+		String message ="Sukses";
+		List<VariantDTO> dataSearch = vs.search(keyword);
+		Resp<List<VariantDTO>> responseSearch = new Resp<>();
+		responseSearch.setCode(code);
+		responseSearch.setMessage(message);
+		responseSearch.setData(dataSearch);
+		
+		return responseSearch;
+	}
+	
+	//PAGINATION
+		@GetMapping("/pagination")
+		public Resp<Pagination<List<VariantDTO>>> pagination(@RequestParam("keyword") String keyword,
+				@RequestParam("limit") int limit,
+				@RequestParam("page") int page){
+			int code = 200;
+			String message = "Sukses";
+			Pagination<List<VariantDTO>> data = vs.pagination(keyword, limit, page);
+			Resp<Pagination<List<VariantDTO>>> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+			response.setData(data);
+			
+			return response;
+		}
 }

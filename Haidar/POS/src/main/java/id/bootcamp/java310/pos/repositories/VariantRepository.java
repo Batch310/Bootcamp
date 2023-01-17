@@ -48,6 +48,14 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 					+ "WHERE ID = :id returning id")
 	public Long delete(@Param("id") Long id);
 	
+	//SEARCH
+	@Query(nativeQuery = true, name = "search_variant")
+	public List<VariantDTO> searchVariant(@Param("keyword") String keyword); 
+	
+	//PAGINATION
+	@Query(nativeQuery = true, name = "pagination_variant")
+	public List<VariantDTO> paginationVariant(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset); 
+	
 	// Query untuk Validasi
 	// Ketika insert initial yang sudah ada pada database
 	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT initial " 
@@ -70,13 +78,13 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	// Ketika update initial yang sudah ada pada database
 	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT initial " 
 					+ "from variant " 
-					+ "where initial = :initial AND id != :id")
+					+ "where initial = :initial AND id != :id)")
 	public Boolean isInitialExists(@Param("initial") String initial, @Param("id") Long id);
 	
 	// Ketika update name yang sudah ada pada database
 	@Query(nativeQuery = true, value = "SELECT EXISTS (SELECT name " 
 			+ "from variant " 
-			+ "where name = :name AND id != :id")
+			+ "where name = :name AND id != :id)")
 	public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
 	
 	// Ketika delete id yang tidak ada
@@ -84,4 +92,8 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 			+ "from product " 
 			+ "where variant_id = :id)")
 	public Boolean isVariantUsedByProduct(@Param("id") Long id);
+
+	//Get total data pada tabel variant
+	@Query(nativeQuery = true, value = "select count(*) from variant where name ilike '%'|| :keyword ||'%'")
+	public int countTotalData(@Param("keyword") String keyword);
 }

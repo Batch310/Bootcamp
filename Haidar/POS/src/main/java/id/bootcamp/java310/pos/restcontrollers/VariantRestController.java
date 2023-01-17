@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.utils.Pagination;
 import id.bootcamp.java310.pos.utils.Responses;
 
 @RestController
@@ -117,8 +118,33 @@ public class VariantRestController {
 		}
 	}
 	
-//	@GetMapping("/getCat")
-//	public List<VariantDTO> get() {
-//		return vs.getCategory();
-//	}
+	// localhost:8080/api/variant/search
+	@GetMapping("/search")
+	public Responses<List<VariantDTO>> searchVariant(@RequestParam String keyword) {
+		// Mengemas Response API
+		int code = 200;
+		String message = "Success";
+		List<VariantDTO> data = vs.searchVariant(keyword);
+
+		Responses<List<VariantDTO>> resp = new Responses<>();
+		resp.setCode(code);
+		resp.setMessage(message);
+		resp.setData(data);
+		return resp;
+	}
+	
+	// localhost:8080/api/variant/pagination
+	@GetMapping("/pagination")
+	public Responses<Pagination<List<VariantDTO>>> paginationVariant(@RequestParam String keyword, @RequestParam int limit, @RequestParam int page) {
+		// Mengemas Response API
+		int code = 200;
+		String message = "Success";
+		Pagination<List<VariantDTO>> data = vs.paginationVariant(keyword, limit, page);
+		
+		Responses<Pagination<List<VariantDTO>>> resp = new Responses<>();
+		resp.setCode(code);
+		resp.setMessage(message);
+		resp.setData(data);
+		return resp;
+	}
 }

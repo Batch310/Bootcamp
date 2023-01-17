@@ -8,11 +8,13 @@ import java.util.List;
 import javax.persistence.Tuple;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.repositories.CategoryRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 public class CategoryService {
@@ -142,6 +144,22 @@ public class CategoryService {
 //		cr.deleteById(id);
 		// cara 2
 		cr.delete(id);
+	}
+	
+	
+	public List<CategoryDTO> search(String keyword){
+		return cr.searchCategory(keyword);
+		
+	}
+	
+	public Pagination<List<CategoryDTO>> pagination(String keyword,int limit,int page){
+		int totalData = cr.countTotalData(keyword);
+		int offset = limit *(page-1);
+		List<CategoryDTO> data = cr.paginationCategory(keyword, limit, offset);
+		int itemPerPage = data.size();
+		Pagination<List<CategoryDTO>> pagination = new Pagination<>(totalData,page,itemPerPage,data);
+		
+		return pagination;
 	}
 	
 }

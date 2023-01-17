@@ -9,6 +9,6 @@ public class VariantController {
 
 	@RequestMapping("/home")
 	public String home() {
-		return "variant/variant-template.html";
+		return "variant/variant-pagination.html";
 	}
 }

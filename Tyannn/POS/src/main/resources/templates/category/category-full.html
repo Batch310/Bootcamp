@@ -81,7 +81,7 @@
 				<tr>
 					<td>SATE</td><!-- Kolom -->
 					<td>Sate</td>
-					<td><input type="checkbox" ></td>
+					<td><input type="checkbox"></td>
 					<td>
 						<button class="btn btn-warning" onclick="bukaPopupEdit('SATE','Sate', false)">
 							<i class="fa-solid fa-pen-to-square" color="white"></i>
@@ -152,69 +152,80 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-//Fungsi Ajax -> untuk koneksi ke API 
-// -------------------------------------
-// -------------- GET ALL CAteGORY -----
-function getAllCategoriesApi(){
-	return $.ajax({
-		url : "/api/category/get",
-		method : "GET",
-		async : false
+	<script type="text/javascript">
+		//Fungsi Ajax -> untuk koneksi ke API 
+		// -------------------------------------
+		// -------------- GET ALL CAteGORY -----
+		function getAllCategoriesApi() {
+			return $.ajax({
+				url: "/api/category/get",
+				method: "GET",
+				async: false
 
-	});
-}
+			});
+		}
 
-var response = getAllCategoriesApi().responseJSON;
-console.log(response);
 
-var list = response.data;
 
-$("#content-tbody").html("")
-for(i=0; i < list.length; i++){
-	$("#content-tbody").append(
-		`
+		// -------------------------------------------------------------
+		// ----------------------- INSERT CATEGORY----------------------
+
+		function insertCategoryApi(categoryDTO) {
+			return $.ajax({
+				url: "/api/category/insert",
+				method: "POST",
+				data: categoryDTO,
+				contentType: "application/json",
+				async: false
+			});
+		}
+
+		function refreshList() {
+			var response = getAllCategoriesApi().responseJSON;
+			console.log(response);
+
+			var list = response.data;
+
+			$("#content-tbody").html("")
+			for (i = 0; i < list.length; i++) {
+				$("#content-tbody").append(
+					`
 		<tr>
 			<td>${list[i].initial}</td><!-- Kolom -->
 			<td>${list[i].name}</td>
 			<td><input type="checkbox" disabled ${list[i].active == true ? 'checked' : ''}></td>
 				<td>
-					<button class="btn btn-warning" onclick="bukaPopupEdit('${list[i].initial}','${list[i].name}',${list[i].active})">
+					<button class="btn btn-warning" onclick="bukaPopupEdit('${list[i].initial}',
+					'${list[i].name}',
+					${list[i].active},
+					${list[i].id})">
 						<i class="fa-solid fa-pen-to-square" color="white"></i>
 					</button>
-					<button class="btn btn-danger" onclick="bukaPopupDelete('${list[i].initial}','${list[i].name}',${list[i].active})">
+					<button class="btn btn-danger" onclick="bukaPopupDelete('${list[i].initial}',
+					'${list[i].name}',
+					${list[i].active},
+					${list[i].id})">
 						<i class="fa-solid fa-trash" color="white"></i>
 					</button>
 				</td>
 		</tr>
 
 		`
-	)
-}
+				)
+			}
+		}
+		
+		refreshList();
+		function bukaPopupAdd() {
+			console.log("Add Category Kepencet!")
 
-// -------------------------------------------------------------
-// ----------------------- INSERT CATEGORY----------------------
 
-function insertCategoryApi(categoryDTO){
-	return $.ajax({
-		url : "/api/category/insert",
-		method : "POST",
-		data : categoryDTO,
-		contentType : "application/json",
-		async : false
-	});
-}
+			// Ganti title
+			$(".modal-title").html("Add Category");
 
-function bukaPopupAdd(){
-	console.log("Add Category Kepencet!")
-	
-	
-	// Ganti title
-	$(".modal-title").html("Add Category");
-
-	//ngisi Modal Bodynya
-	$(".modal-body").html(
-		`
+			//ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
 			<table class="table table-borderless">
 				<tr>
 					<td>Initial</td>
@@ -244,105 +255,175 @@ function bukaPopupAdd(){
 			</table>
 
 		`
-	);
+			);
 
-	$("#input-cancel").click(function(){
-		$(".modal").modal("hide");
-	})
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			})
 
-	$("#input-create").click(function(){
-		//ambil initial
-		var initial = $("#input-initial").val();
-		console.log(initial);
-		//ambil name
-		var name = $("#input-name").val();
-		console.log(name);
-		//ambil active
-		var active = $("#input-active").prop("checked");
-		console.log(active);
-		//ambil by
-		var createBy = "Tyan";
-		console.log(createBy);
+			$("#input-create").click(function () {
+				//ambil initial
+				var initial = $("#input-initial").val();
+				console.log(initial);
+				//ambil name
+				var name = $("#input-name").val();
+				console.log(name);
+				//ambil active
+				var active = $("#input-active").prop("checked");
+				console.log(active);
+				//ambil by
+				var createBy = "Tyan";
+				console.log(createBy);
 
-		//proses membuat JSON
-		var categoryDTO = JSON.stringify({
-			"initial":initial,
-			"name":name,
-			"active":active,
-			"create_by":createBy
-		});
+				//proses membuat JSON
+				var categoryDTO = JSON.stringify({
+					"initial": initial,
+					"name": name,
+					"active": active,
+					"create_by": createBy
+				});
 
-		// panggil API Insert
-		var response = insertCategoryApi(categoryDTO).responseJSON;
-		if(response.code == 200){
-			alert(response.message);
-			$(".modal").modal("hide");
-		}else{
-			alert(response.message);
+				// panggil API Insert
+				var response = insertCategoryApi(categoryDTO).responseJSON;
+				if (response.code == 200) {
+					alert(response.message);
+					$(".modal").modal("hide");
+					refreshList();
+				} else {
+					alert(response.message);
+				}
+
+			})
+
+			//.class
+			//# id
+			$(".modal").modal("show");
 		}
+//---------------------------------------------------------------------
+//------------------------------EDIT CATEGORY -------------------------
+		
+function editCategoryApi(categoryDTO) {
+			return $.ajax({
+				url: "/api/category/update",
+				method: "PUT",
+				data: categoryDTO,
+				contentType: "application/json",
+				async: false
+			});
+		}
+		function bukaPopupEdit(initial, name, active,id) {
+			console.log("Edit Category Kepencet!")
+			console.log(initial + " " + name + " " + active+" "+id)
 
-	})
-	
-	//.class
-	//# id
-	$(".modal").modal("show");
-}
-function bukaPopupEdit(initial,name,active){
-	console.log("Edit Category Kepencet!")
-	console.log(initial+" "+ name + " "+ active)
-	
-	// Ganti title
-	$(".modal-title").html("Edit");
+			// Ganti title
+			$(".modal-title").html("Edit");
 
-	//ngisi Modal Bodynya
-	$(".modal-body").html(
-		`
+			//ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
 			<table class="table table-borderless">
 				<tr>
 					<td>Initial</td>
 					<td>
-						<input class="form-control" value="${initial}">
+						<input id="input-initial" class="form-control" value="${initial}">
 					</td>
 				</tr>
 				<tr>
 					<td>Name</td>
 					<td>
-						<input class="form-control" value="${name}">
+						<input id="input-name" class="form-control" value="${name}">
 					</td>
 				</tr>
 				<tr>
 					<td>Active</td>
 					<td>
-						<input type="checkbox" ${active == true ? 'checked' : ''}>	
+						<input id="input-active" type="checkbox" ${active == true ? 'checked' : ''}>	
 					</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td>
-						<button class="btn btn-light">Cancel</button>
-						<button class="btn btn-warning">Save Change</button>	
+						<button id="input-cancel" class="btn btn-light">Cancel</button>
+						<button id="input-save" class="btn btn-warning">Save Change</button>	
 					</td>
 				</tr>
 			</table>
 
-		`
-	)
-	
-	//.class
-	//# id
-	$(".modal").modal("show");
-}
+		`);
+		$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			})
 
-function bukaPopupDelete(initial,name,active){
-	console.log("Delete Category Kepencet!")
-	console.log(initial+" "+ name + " "+ active)
-	
-	// Ganti title
-	$(".modal-title").html("Delete");
+			$("#input-save").click(function () {
+				//ambil initial
+				var initial = $("#input-initial").val();
+				console.log(initial);
+				//ambil name
+				var name = $("#input-name").val();
+				console.log(name);
+				//ambil active
+				var active = $("#input-active").prop("checked");
+				console.log(active);
+				//ambil by
+				var modifyBy = "Tyan";
+				console.log(modifyBy);
 
-	//ngisi Modal Bodynya
-	$(".modal-body").html(
-		`
+				//proses membuat JSON
+				var categoryDTO = JSON.stringify({
+					"initial": initial,
+					"name": name,
+					"active": active,
+					"modify_by": modifyBy,
+					"id":id
+
+				});
+
+				// panggil API Edit
+				var response = editCategoryApi(categoryDTO).responseJSON;
+				if (response.code == 200) {
+					alert(response.message);
+					$(".modal").modal("hide");
+					refreshList();
+				} else {
+					alert(response.message);
+				}
+
+			})
+
+			//.class
+			//# id
+			$(".modal").modal("show");
+		}
+
+		// ----------------------------------------------------------------------------
+		//----------------------------------- DELETE ---------------------------------
+		// panggil API Edit
+		function deleteCategoryApi(categoryId){
+			var formData = new FormData();
+			formData.append("id",categoryId);
+			
+			
+				return $.ajax({
+				url: "/api/category/delete",
+				method: "DELETE",
+				data : formData,
+				contentType: false,
+				processData: false,
+				mimeType : "multipart/form-data",
+				async: false
+			});
+		}
+				
+
+		function bukaPopupDelete(initial, name, active, id) {
+			console.log("Delete Category Kepencet!")
+
+			// Ganti title
+			$(".modal-title").html("Delete");
+
+			//ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
 			<table class="table table-borderless">
 				<tr>
 					<td>Initial</td>
@@ -365,20 +446,39 @@ function bukaPopupDelete(initial,name,active){
 				<tr>
 					<td></td>
 					<td>
-						<button class="btn btn-light">Cancel</button>
-						<button class="btn btn-danger">Delete</button>	
+						<button id="input-cancel" class="btn btn-light">Cancel</button>
+						<button id="input-delete" class="btn btn-danger">Delete</button>	
 					</td>
 				</tr>
 			</table>
 
-		`
-	)
-	
-	//.class
-	//# id
-	$(".modal").modal("show");
-}
-</script>
+		`);
+		$("#input-cancel").click(function(){
+			$(".modal").modal("hide");
+		});
+
+		$("#input-delete").click(function(){
+			// ambil response text 
+			var response = deleteCategoryApi(id).responseText;
+
+			//convert ke json
+			var responseJson = $.parseJSON(response);
+
+			if (responseJson.code == 200) {
+					alert(responseJson.message);
+					$(".modal").modal("hide");
+					refreshList();
+				} else {
+					alert(responseJson.message);
+				}
+
+		});
+
+			//.class
+			//# id
+			$(".modal").modal("show");
+		}
+	</script>
 
 </body>
 

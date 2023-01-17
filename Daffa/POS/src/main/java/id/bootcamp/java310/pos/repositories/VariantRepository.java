@@ -1,6 +1,7 @@
 package id.bootcamp.java310.pos.repositories;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.VariantEntity;
 
@@ -33,6 +35,17 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	@Transactional
 	@Query(nativeQuery = true, value = "delete from variant\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
+
+	// SEARCH
+	@Query(nativeQuery = true, name = "search_variant")
+	public List<VariantDTO> searchVariant(@Param("keyword") String keyword);
+	
+	//PAGINATION
+	@Query(nativeQuery = true, name = "pagination_variant")
+	public List<VariantDTO> paginationVariant(@Param("keyword") String keyword, int limit, int offset );
+	
+	@Query(nativeQuery = true, value = "select count(*) from variant where name ilike '%'|| :keyword ||'%'")
+	public int countTotalData(@Param("keyword") String keyword);
 
 	// Validasi apakah initial sudah ada di DB (Huruf Besar/Kecil diperhatikan) -
 	// insert

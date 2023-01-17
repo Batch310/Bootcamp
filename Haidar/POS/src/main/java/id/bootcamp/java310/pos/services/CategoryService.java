@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.repositories.CategoryRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 public class CategoryService {
@@ -74,6 +75,24 @@ public class CategoryService {
 	//Cara 4 - Step 4
 	public List<CategoryDTO> getAll4() {
 		return cr.getAll4();
+	}
+	
+	//Fungsi search - Step 4
+	public List<CategoryDTO> searchCategory(String keyword) {
+		return cr.searchCategory(keyword);
+	}
+	
+	//Fungsi pagination - Step 4
+	public Pagination<List<CategoryDTO>> paginationCategory(String keyword, int limit, int page) {
+		int totalData = cr.countTotalData(keyword);
+		int offset = limit * (page - 1);
+		
+		List<CategoryDTO> data = cr.paginationCategory(keyword, limit, offset);
+		int itemPerPage = data.size();
+		
+		Pagination<List<CategoryDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
+		
+		return pagination;
 	}
 	
 	//Cara 5 - Step 3

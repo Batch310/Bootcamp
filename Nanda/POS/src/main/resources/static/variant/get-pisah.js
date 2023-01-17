@@ -39,7 +39,9 @@
 				'${list[i].initial}',
 				'${list[i].name}',
 				${list[i].active},
-				${list[i].id})">
+				${list[i].id},
+				'${list[i].category_name}',
+				${list[i].category_id})">
 				<i class="fa-solid fa-trash" color="white"></i></button>
 		</td>
 		</tr>

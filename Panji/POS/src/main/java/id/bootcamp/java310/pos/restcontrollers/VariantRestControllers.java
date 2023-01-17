@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.utils.Pagination;
 import id.bootcamp.java310.pos.utils.Resp;
 
 @RestController
@@ -38,6 +39,33 @@ public class VariantRestControllers {
 
 		return response;
 	}
+	@GetMapping("/search")
+	public Resp<List<VariantDTO>> getSearch(@RequestParam("keyword") String keyword){
+		int code = 200;
+		String message = "Sukses";
+		List<VariantDTO> dataSearch = vs.getSearch(keyword);
+		Resp<List<VariantDTO>> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(dataSearch);
+
+		return response;
+	}
+	// Paginatioon
+		@GetMapping("/pagination")
+		public Resp<Pagination<List<VariantDTO>>> getPagination(@RequestParam("keyword") String keyword,@RequestParam("limit") int limit,@RequestParam("page") int page){
+			int code = 200;
+			String message = "Sukses";
+			Pagination<List<VariantDTO>> dataPage = vs.getPagination(keyword, limit, page);
+			Resp<Pagination<List<VariantDTO>>> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+			response.setData(dataPage);
+
+			return response;
+			
+		}
+	
 
 	@PostMapping("/insert")
 	public Resp<Long> insertVariant(@RequestBody VariantDTO dto) {
