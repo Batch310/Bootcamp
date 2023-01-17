@@ -11,7 +11,7 @@ public class CategoryController {
 	@RequestMapping("/home") // membuat mapping url secara khusus
 	public String home() {
 		//return "category/category-template-full.html";
-		return "category/category-pisah.html";
+		return "category/category-pagination.html";
 	}
 
 }
