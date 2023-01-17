@@ -8,11 +8,13 @@ import java.util.List;
 import javax.persistence.Tuple;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.repositories.CategoryRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 public class CategoryService {
@@ -71,6 +73,24 @@ public class CategoryService {
 //	public List<CategoryDTO> getAll5(){
 //		return cr.getAll5();
 //	}
+
+	// Search
+	public List<CategoryDTO> getSearch(String keyword) {
+		return cr.getSearch(keyword);
+	}
+
+	// Pagination
+	public Pagination<List<CategoryDTO>> getPagination(String keyword, int limit, int page) {
+		int totalData = cr.countTotalData(keyword);
+		
+		int offset = limit * (page - 1);
+		List<CategoryDTO> data = cr.getPagination(keyword, limit, offset);
+		int itemPerPage = data.size();
+		
+		Pagination<List<CategoryDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
+				
+		return pagination;
+	}
 
 	// Create
 	// Cara 1 - memakai fungsi bawaan JPARepository
@@ -140,7 +160,7 @@ public class CategoryService {
 	// Delete
 	public void delete(Long id) throws Exception {
 		boolean isCategoryUsedByVariant = cr.isCategoryUsedByVariant(id);
-		if(isCategoryUsedByVariant) {
+		if (isCategoryUsedByVariant) {
 			throw new Exception("15-Category dipakai, tidak dapat dihapus");
 		}
 		// Cara 1

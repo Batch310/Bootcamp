@@ -3,17 +3,79 @@ package id.bootcamp.java310.pos.entities;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ManyToAny;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import id.bootcamp.java310.pos.dto.VariantDTO;
+
+@NamedNativeQueries(value = {
+		@NamedNativeQuery(
+				name = "search_name_variant",
+				query = "select \r\n"
+						+ "        v.id,\r\n"
+						+ "        v.category_id,\r\n"
+						+ "        c.name as category_name,\r\n"
+						+ "        v.initial,\r\n"
+						+ "        v.name,\r\n"
+						+ "        v.active\r\n"
+						+ "from variant v\r\n"
+						+ "join category c\r\n"
+						+ "        on v.category_id = c.id\r\n"
+						+ "where v.name ilike '%' || :keyword || '%'\r\n"
+						+ "order by initial asc",
+				resultSetMapping = "get_variant"),
+		@NamedNativeQuery(
+				name = "pagination_variant",
+				query = "select \r\n"
+						+ "        v.id,\r\n"
+						+ "        v.category_id,\r\n"
+						+ "        c.name as category_name,\r\n"
+						+ "        v.initial,\r\n"
+						+ "        v.name,\r\n"
+						+ "        v.active\r\n"
+						+ "from variant v\r\n"
+						+ "join category c\r\n"
+						+ "        on v.category_id = c.id\r\n"
+						+ "where v.name ilike '%' || :keyword || '%'\r\n"
+						+ "order by id asc\r\n"
+						+ "limit :limit\r\n"
+						+ "offset :offset",
+				resultSetMapping = "get_variant"
+				)
+		})
+
+@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(
+				name = "get_variant",
+				classes = @ConstructorResult(
+						targetClass = VariantDTO.class,
+						columns = {
+								@ColumnResult(name = "id",type = Long.class),
+								@ColumnResult(name = "category_id",type = Long.class),
+								@ColumnResult(name = "category_name",type = String.class),
+								@ColumnResult(name = "initial",type = String.class),
+								@ColumnResult(name = "name",type = String.class),
+								@ColumnResult(name = "active",type = Boolean.class)
+						}))
+})
+
+
+
 
 @Entity
 @Table(name = "variant")
