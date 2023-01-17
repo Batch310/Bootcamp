@@ -23,13 +23,14 @@ import id.bootcamp.java310.pos.dto.VariantDTO;
 @NamedNativeQuery(name = "search_variant", query = "select variant.id, category_id, category.name as category_name, variant.initial, variant.name, variant.active from variant\r\n"
 		+ "join category on variant.category_id = category.id " + "where variant.name ilike '%'|| :keyword ||'%'\r\n"
 		+ "order by id asc", resultSetMapping = "get_variant")
+@NamedNativeQuery(name = "pagination_variant", query = "select variant.id, category_id, category.name as category_name, variant.initial, variant.name, variant.active from variant\r\n"
+		+ "join category on variant.category_id = category.id " + "where variant.name ilike '%'|| :keyword ||'%'\r\n"
+		+ "order by id asc " + "limit :limit " + "offset :offset", resultSetMapping = "get_variant")
 @SqlResultSetMappings(value = {
 		@SqlResultSetMapping(name = "get_variant", classes = @ConstructorResult(targetClass = VariantDTO.class, columns = {
-				@ColumnResult(name = "id", type = Long.class), 
-				@ColumnResult(name = "category_id", type = Long.class),
+				@ColumnResult(name = "id", type = Long.class), @ColumnResult(name = "category_id", type = Long.class),
 				@ColumnResult(name = "category_name", type = String.class),
-				@ColumnResult(name = "initial", type = String.class), 
-				@ColumnResult(name = "name", type = String.class),
+				@ColumnResult(name = "initial", type = String.class), @ColumnResult(name = "name", type = String.class),
 				@ColumnResult(name = "active", type = Boolean.class) })) })
 @Entity
 @Table(name = "variant")

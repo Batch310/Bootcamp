@@ -127,11 +127,12 @@ public class CategoryRestControllers {
 
 			return response;
 		}
-		
+
 	}
-	
+
+	// localhost/api/category/search
 	@GetMapping("/search")
-	public Resp<List<CategoryDTO>> search(@RequestParam("keyword") String keyword){
+	public Resp<List<CategoryDTO>> search(@RequestParam("keyword") String keyword) {
 		int code = 200;
 		String message = "Category berhasil dicari";
 		List<CategoryDTO> dataSearch = cs.searchCategory(keyword.trim());
@@ -139,7 +140,22 @@ public class CategoryRestControllers {
 		responseSearch.setCode(code);
 		responseSearch.setMessage(message);
 		responseSearch.setData(dataSearch);
-		
+
 		return responseSearch;
+	}
+
+	//localhost/api/category/pagination
+	@GetMapping("/pagination")
+	public Resp<List<CategoryDTO>> pagination(@RequestParam("keyword") String keyword, @RequestParam("limit") int limit,
+			@RequestParam("page") int page) {
+		int code = 200;
+		String message = "Berhasil";
+		List<CategoryDTO> pagination = cs.paginationCategory(keyword.trim(), limit, page);
+		Resp<List<CategoryDTO>> responsePage = new Resp<>();
+		responsePage.setCode(code);
+		responsePage.setMessage(message);
+		responsePage.setData(pagination);
+
+		return responsePage;
 	}
 }

@@ -39,6 +39,10 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	// SEARCH
 	@Query(nativeQuery = true, name = "search_variant")
 	public List<VariantDTO> searchVariant(@Param("keyword") String keyword);
+	
+	//PAGINATION
+	@Query(nativeQuery = true, name = "pagination_variant")
+	public List<VariantDTO> paginationVariant(@Param("keyword") String keyword, int limit, int offset );
 
 	// Validasi apakah initial sudah ada di DB (Huruf Besar/Kecil diperhatikan) -
 	// insert

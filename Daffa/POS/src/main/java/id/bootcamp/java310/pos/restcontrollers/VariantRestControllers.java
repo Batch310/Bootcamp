@@ -137,4 +137,18 @@ public class VariantRestControllers {
 
 		return responseSearch;
 	}
+	
+	@GetMapping("/pagination")
+	public Resp<List<VariantDTO>> pagination(@RequestParam("keyword") String keyword, @RequestParam("limit") int limit,
+			@RequestParam("page") int page) {
+		int code = 200;
+		String message = "Berhasil";
+		List<VariantDTO> pagination = vs.paginationVariant(keyword.trim(), limit, page);
+		Resp<List<VariantDTO>> responsePage = new Resp<>();
+		responsePage.setCode(code);
+		responsePage.setMessage(message);
+		responsePage.setData(pagination);
+
+		return responsePage;
+	}
 }

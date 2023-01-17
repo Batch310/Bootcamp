@@ -37,11 +37,17 @@ public class VariantService {
 		}
 		return varList;
 	}
-	
-	//SEARCH
-		public List<VariantDTO> searchVariant(String keyword) {
-			return vr.searchVariant(keyword);
-		}
+
+	// SEARCH
+	public List<VariantDTO> searchVariant(String keyword) {
+		return vr.searchVariant(keyword);
+	}
+
+	// PAGINATION
+	public List<VariantDTO> paginationVariant(String keyword, int limit, int page){
+		int offset = limit * (page - 1);
+		return vr.paginationVariant(keyword, limit, offset);
+	}
 
 	// CREATE
 	public Long insertVar(VariantDTO dto) throws Exception {
