@@ -12,6 +12,7 @@ import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.entities.VariantEntity;
 import id.bootcamp.java310.pos.repositories.VariantRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 public class VariantService {
@@ -111,7 +112,23 @@ public class VariantService {
 		}
 		// Cara 2
 		vr.delete(id);
-
 	}
-
+	// Search
+	public List<VariantDTO> search (String keyword){
+		return vr.searchVariant(keyword);
+	}
+	
+	//PAgination
+	public Pagination<List<VariantDTO>> pagination (String keyword, int limit, int page){
+		int totalData = vr.countTotalData(keyword);
+		
+		int offset = limit * (page-1);
+		List<VariantDTO> data = vr.paginationVariant(keyword, limit, offset);
+		
+		
+		int itemPerPage = data.size();
+		Pagination<List<VariantDTO>> pagination = new Pagination<>(totalData,page,itemPerPage,data);
+		
+		return pagination;
+	}
 }

@@ -30,7 +30,7 @@ public class VariantEntity {
 	
 	
 	@Column(name = "category_id", nullable = false)
-	private Long categroryId;
+	private Long categoryId;
 	
 	@Column(length = 10, nullable = false, unique = true)
 	private String initial;
@@ -72,11 +72,11 @@ public class VariantEntity {
 	}
 
 	public Long getCategroryId() {
-		return categroryId;
+		return categoryId;
 	}
 
 	public void setCategroryId(Long categroryId) {
-		this.categroryId = categroryId;
+		this.categoryId = categroryId;
 	}
 
 	public String getInitial() {

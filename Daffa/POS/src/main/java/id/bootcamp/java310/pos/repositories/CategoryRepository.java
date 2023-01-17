@@ -65,6 +65,19 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Query(nativeQuery = true, value = "delete from category\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
 
+	// SEARCH
+	@Query(nativeQuery = true, name = "search_category")
+	public List<CategoryDTO> searchCategory(@Param("keyword") String keyword);
+
+	// PAGINATION
+	@Query(nativeQuery = true, name = "pagination_category")
+	public List<CategoryDTO> paginationCategory(@Param("keyword") String keyword, @Param("limit") int limit,
+			@Param("offset") int offset);
+
+	// GET COUNT TOTAL DATA CATEGORY
+	@Query(nativeQuery = true, value = "select count(*) from category")
+	public int countTotalData();
+
 	// Validasi apakah initial sudah ada di DB (Huruf Besar/Kecil diperhatikan) -
 	// insert
 	@Query(nativeQuery = true, value = "select exists (select initial from category where initial = :initial)")

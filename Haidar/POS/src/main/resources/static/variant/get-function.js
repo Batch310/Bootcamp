@@ -7,7 +7,6 @@ function getAllVariantsAPI() {
 		async: false
 	});
 }
-
 function refreshList() {
 	var response = getAllVariantsAPI().responseJSON;
 	console.log(response);
