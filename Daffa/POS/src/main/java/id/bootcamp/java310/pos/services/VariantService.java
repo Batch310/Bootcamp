@@ -46,7 +46,7 @@ public class VariantService {
 
 	// PAGINATION
 	public Pagination<List<VariantDTO>> paginationVariant(String keyword, int limit, int page) {
-		int totalData = vr.countTotalData();
+		int totalData = vr.countTotalData(keyword);
 
 		int offset = limit * (page - 1);
 		List<VariantDTO> data = vr.paginationVariant(keyword, limit, offset);

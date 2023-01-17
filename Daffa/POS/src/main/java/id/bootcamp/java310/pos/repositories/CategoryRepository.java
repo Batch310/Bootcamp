@@ -75,8 +75,8 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 			@Param("offset") int offset);
 
 	// GET COUNT TOTAL DATA CATEGORY
-	@Query(nativeQuery = true, value = "select count(*) from category")
-	public int countTotalData();
+	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%'|| :keyword ||'%'")
+	public int countTotalData(@Param("keyword") String keyword);
 
 	// Validasi apakah initial sudah ada di DB (Huruf Besar/Kecil diperhatikan) -
 	// insert
