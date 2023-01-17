@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.services.CategoryService;
+import id.bootcamp.java310.pos.utils.Pagination;
 import id.bootcamp.java310.pos.utils.Responses;
 
 @RestController
@@ -146,5 +147,37 @@ public class CategoryRestController {
 
 			return resp;
 		}
+	}
+	
+	//SEARCH
+	@GetMapping("/search")
+	public Responses<List<CategoryDTO>> searchCategory(@RequestParam("keyword") String keyword) {
+			// Mengemas Response API
+			int code = 200;
+			String message = "Success";
+			List<CategoryDTO> data = cs.searchCategory(keyword.trim()); // Selalu dipanggil walau return void, untuk mengupdate data
+
+			Responses<List<CategoryDTO>> resp = new Responses<>();
+			resp.setCode(code);
+			resp.setMessage(message);
+			resp.setData(data);
+			
+			return resp;
+	}
+	
+	//PAGINATION
+	@GetMapping("/pagination")
+	public Responses<Pagination<List<CategoryDTO>>> paginationCategory(@RequestParam("keyword") String keyword, @RequestParam("limit") int limit, @RequestParam("page") int page) {
+		// Mengemas Response API
+		int code = 200;
+		String message = "Success";
+		Pagination<List<CategoryDTO>> data = cs.paginationCategory(keyword.trim(),limit,page); // Selalu dipanggil walau return void, untuk mengupdate data
+		
+		Responses<Pagination<List<CategoryDTO>>> resp = new Responses<>();
+		resp.setCode(code);
+		resp.setMessage(message);
+		resp.setData(data);
+		
+		return resp;
 	}
 }
