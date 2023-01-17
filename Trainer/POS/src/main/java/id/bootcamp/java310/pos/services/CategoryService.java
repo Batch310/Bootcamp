@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.repositories.CategoryRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 public class CategoryService {
@@ -130,12 +131,12 @@ public class CategoryService {
 	// Cara 1
 	public void update(CategoryDTO dto) throws Exception {
 		// Validasi
-		Boolean isInitialExists = cr.isInitialExists(dto.getInitial(),dto.getId());
+		Boolean isInitialExists = cr.isInitialExists(dto.getInitial(), dto.getId());
 		if (isInitialExists == true) {
 			throw new Exception("11-Initial sudah terpakai!");
 		}
 
-		Boolean isNameExists = cr.isNameExists(dto.getName(),dto.getId());
+		Boolean isNameExists = cr.isNameExists(dto.getName(), dto.getId());
 		if (isNameExists == true) {
 			throw new Exception("12-Name sudah terpakai!");
 		}
@@ -161,12 +162,32 @@ public class CategoryService {
 		if (isCategoryUsedByVariant) {
 			throw new Exception("15-Category dipakai, tidak dapat dihapus");
 		}
-		
+
 		// Cara 1
 		// cr.deleteById(id);
 
 		// Cara 2
 		cr.delete(id);
+	}
+
+	// Search
+	public List<CategoryDTO> search(String keyword) {
+		return cr.searchCategory(keyword);
+	}
+
+	// Pagination
+	public Pagination<List<CategoryDTO>> pagination(String keyword, int limit, int page) {
+		int totalData = cr.countTotalData(keyword);
+		
+		int offset = limit * (page-1);
+		List<CategoryDTO> data = cr.paginationCategory(keyword,limit,offset);
+		int itemPerPage = data.size();
+		
+		
+		Pagination<List<CategoryDTO>> pagination = 
+				new Pagination<>(totalData, page, itemPerPage, data);
+		 
+		return pagination;
 	}
 
 }

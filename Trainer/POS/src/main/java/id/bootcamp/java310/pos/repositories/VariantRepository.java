@@ -1,6 +1,7 @@
 package id.bootcamp.java310.pos.repositories;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -22,7 +23,14 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 			+ "initial = :#{#dto.initial}, " + "name = :#{#dto.name}, " + "active = :#{#dto.active}, "
 			+ "modify_by = :#{#dto.modify_by}, " + "modify_date = :modifyDate\r\n" + "where id = :#{#dto.id}")
 	public void updateVariant(@Param("dto") VariantDTO dto, @Param("modifyDate") Date modifyDate);
+	
+	@Query(nativeQuery = true, value = "select * from variant where category_id = :cat_id")
+	public List<VariantEntity> getVariantsByCategoryId(@Param("cat_id") Long categoryId);
 
+	//Search
+	@Query(nativeQuery = true, value = "select * from variant where name ilike '%'||:keyword||'%' order by name asc")
+	public List<VariantEntity> search(@Param("keyword") String keyword);
+	
 	// QUERY UNTUK VALIDASI
 
 	// Validasi apakah Initial sudah ada di DB

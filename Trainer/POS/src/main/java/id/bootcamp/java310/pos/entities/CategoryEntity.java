@@ -20,32 +20,28 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 
 @NamedNativeQueries(value = {
-		@NamedNativeQuery(
-		name = "get_categories_cara4",
-		query = "select \r\n"
+		@NamedNativeQuery(name = "get_categories_cara4", query = "select \r\n" + "        id,\r\n"
+				+ "        initial,\r\n" + "        name,\r\n" + "        active\r\n" + "from category\r\n"
+				+ "order by initial asc", resultSetMapping = "get_categories_cara4_result"),
+		@NamedNativeQuery(name = "search_category", query = "select \r\n" + "        id,\r\n" + "        initial,\r\n"
+				+ "        name,\r\n" + "        active\r\n" + "from category\r\n"
+				+ "where name ilike '%'|| :keyword ||'%'\r\n"
+				+ "order by initial asc", resultSetMapping = "get_categories_cara4_result"),
+		@NamedNativeQuery(name = "pagination_category", query = "select \r\n"
 				+ "        id,\r\n"
 				+ "        initial,\r\n"
 				+ "        name,\r\n"
 				+ "        active\r\n"
 				+ "from category\r\n"
-				+ "order by initial asc",
-		resultSetMapping = "get_categories_cara4_result"
-		)
-})
+				+ "where name ilike '%' || :keyword ||'%'\r\n"
+				+ "order by id asc\r\n"
+				+ "limit :limit\r\n"
+				+ "offset :offset", resultSetMapping = "get_categories_cara4_result") })
 @SqlResultSetMappings(value = {
-		@SqlResultSetMapping(
-		name = "get_categories_cara4_result",
-		classes = @ConstructorResult(
-				  targetClass = CategoryDTO.class,
-				  columns = {
-				  @ColumnResult(name = "id",type = Long.class),
-				  @ColumnResult(name = "initial",type = String.class),
-				  @ColumnResult(name = "name",type = String.class),
-				  @ColumnResult(name = "active",type = Boolean.class)
-				  }
-				  )
-		)
-})
+		@SqlResultSetMapping(name = "get_categories_cara4_result", classes = @ConstructorResult(targetClass = CategoryDTO.class, columns = {
+				@ColumnResult(name = "id", type = Long.class), @ColumnResult(name = "initial", type = String.class),
+				@ColumnResult(name = "name", type = String.class),
+				@ColumnResult(name = "active", type = Boolean.class) })) })
 @Entity // Menandakan class CategoryEntity itu Entity
 @Table(name = "category") // Menamakan Tabel
 public class CategoryEntity {
@@ -66,15 +62,15 @@ public class CategoryEntity {
 	@Column(name = "create_by", length = 50, nullable = false)
 	private String createBy;
 
-	@Column(nullable = false, name="create_date")
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
+	@Column(nullable = false, name = "create_date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
 	private Date createDate;
 
 	@Column(name = "modify_by", length = 50)
 	private String modifyBy;
 
-	@Column(name="modify_date")
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
+	@Column(name = "modify_date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
 	private Date modifyDate;
 
 	public Long getId() {

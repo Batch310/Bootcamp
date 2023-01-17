@@ -123,4 +123,46 @@ public class VariantService {
 		
 		vr.deleteById(id);
 	}
+	
+	public List<VariantDTO> getVariantsByCategoryId(Long categoryId) {
+		List<VariantEntity> catSumber = vr.getVariantsByCategoryId(categoryId);
+		System.out.println(categoryId);
+
+		List<VariantDTO> catList = new ArrayList<>();
+
+		for (int i = 0; i < catSumber.size(); i++) {
+			VariantDTO cat = new VariantDTO();
+			cat.setId(catSumber.get(i).getId());
+			cat.setCategory_id(catSumber.get(i).getCategoryId());
+			cat.setCategory_name(catSumber.get(i).getCategoryEntity().getName());
+			cat.setInitial(catSumber.get(i).getInitial());
+			cat.setName(catSumber.get(i).getName());
+			cat.setActive(catSumber.get(i).getActive());
+
+			catList.add(cat);
+		}
+
+		return catList;
+
+	}
+	
+	public List<VariantDTO> search(String keyword) {
+		List<VariantEntity> catSumber = vr.search(keyword);
+
+		List<VariantDTO> catList = new ArrayList<>();
+
+		for (int i = 0; i < catSumber.size(); i++) {
+			VariantDTO cat = new VariantDTO();
+			cat.setId(catSumber.get(i).getId());
+			cat.setCategory_id(catSumber.get(i).getCategoryId());
+			cat.setCategory_name(catSumber.get(i).getCategoryEntity().getName());
+			cat.setInitial(catSumber.get(i).getInitial());
+			cat.setName(catSumber.get(i).getName());
+			cat.setActive(catSumber.get(i).getActive());
+
+			catList.add(cat);
+		}
+
+		return catList;
+	}
 }
