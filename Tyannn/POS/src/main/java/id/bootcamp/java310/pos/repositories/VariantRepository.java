@@ -48,6 +48,14 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	@Transactional
 	@Query(nativeQuery = true, value = "delete from variant\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
+	
+	// Validasi search
+	@Query(nativeQuery = true, name = "search_variant")
+	public List<VariantDTO> searchVariant(@Param("keyword")String keywordku);
+	
+	// Validasi pagination
+		@Query(nativeQuery = true, name = "pagination_variant")
+		public List<VariantDTO> paginationVariant(@Param("keyword")String keywordku,@Param("limit")int limit, @Param("offset")int offset);
 
 	// Validasi apakah initial sudah ada di DB
 	@Query(nativeQuery = true, value = "select exists (select initial from variant where initial = :initial)")
@@ -70,7 +78,12 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 	
 	//Ketika insert/update Category id diisikan oleh category yang tidak ada
-//	@Query(nativeQuery = true, value = "select exists (select id from category where id = :id)")
-//	public Boolean isCategoryExists(@Param("id") Long id);
+	@Query(nativeQuery = true, value = "select exists (select id from category where id = :id)")
+	public Long isCategoryExists(@Param("id") Long id);
+	
+	//get count semua daftar kategori
+	//Get count semua data category
+	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword ||'%'")
+	public int countTotalData(@Param("keyword")String keyword);
 
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.Tuple;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.repositories.CategoryRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -156,5 +158,30 @@ public class CategoryService {
 		// Cara 2
 		cr.delete(id);
 	}
+	// Search
+	public List<CategoryDTO> search (String keyword){
+		return cr.searchCategory(keyword);
+		
+	}
+	
+	//Pagination
+	public Pagination<List<CategoryDTO>> pagination (String keyword, int limit, int page){
+		
+		int totalData = cr.countTotalData(keyword);
+		
+		
+		int offset = limit * (page-1);
+		List<CategoryDTO> data = cr.paginationCategory(keyword, limit, offset);
+		
+		int itemPerPage =data.size();
+		Pagination<List<CategoryDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
+				
+		return pagination;
+		
+	}
+	
+	
+	
+
 
 }
