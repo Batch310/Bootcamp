@@ -60,10 +60,11 @@ public class CategoryService {
 	// PAGINATION
 	public Pagination<List<CategoryDTO>> paginationCategory(String keyword, int limit, int page) {
 		int totalData = cr.countTotalData();
-		int itemPerPage = limit;
 
 		int offset = limit * (page - 1);
 		List<CategoryDTO> data = cr.paginationCategory(keyword, limit, offset);
+		int itemPerPage = data.size();
+
 		Pagination<List<CategoryDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
 
 		return pagination;

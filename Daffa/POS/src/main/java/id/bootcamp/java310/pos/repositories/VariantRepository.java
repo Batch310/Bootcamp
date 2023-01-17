@@ -43,6 +43,9 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	//PAGINATION
 	@Query(nativeQuery = true, name = "pagination_variant")
 	public List<VariantDTO> paginationVariant(@Param("keyword") String keyword, int limit, int offset );
+	
+	@Query(nativeQuery = true, value = "select count(*) from variant")
+	public int countTotalData();
 
 	// Validasi apakah initial sudah ada di DB (Huruf Besar/Kecil diperhatikan) -
 	// insert

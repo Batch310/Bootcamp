@@ -11,6 +11,7 @@ import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.VariantEntity;
 import id.bootcamp.java310.pos.repositories.VariantRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 public class VariantService {
@@ -44,9 +45,16 @@ public class VariantService {
 	}
 
 	// PAGINATION
-	public List<VariantDTO> paginationVariant(String keyword, int limit, int page){
+	public Pagination<List<VariantDTO>> paginationVariant(String keyword, int limit, int page) {
+		int totalData = vr.countTotalData();
+
 		int offset = limit * (page - 1);
-		return vr.paginationVariant(keyword, limit, offset);
+		List<VariantDTO> data = vr.paginationVariant(keyword, limit, offset);
+		int itemPerPage = data.size();
+
+		Pagination<List<VariantDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
+
+		return pagination;
 	}
 
 	// CREATE
