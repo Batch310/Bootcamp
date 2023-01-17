@@ -1,4 +1,4 @@
-package id.bootcamp.java310.pos.services;
+ package id.bootcamp.java310.pos.services;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.repositories.CategoryRepository;
+import id.bootcamp.java310.pos.utills.Pagination;
 import net.bytebuddy.asm.Advice.Return;
 
 //Sisi keamanan
@@ -86,6 +87,29 @@ public class CategoryService {
 		return cr.getAll4();
 		//return cr.getAll5();
 	}
+	
+	//cara 4
+	//search
+	public List<CategoryDTO> search(String keyword){
+		return cr.searchCategory(keyword);
+	}
+	
+	//PAGINATION
+		public Pagination<List<CategoryDTO>> pagination(String keyword, int limit, int page){
+			int totalData = cr.countTotalData(keyword);
+			
+			int offset = limit * (page -1 );
+			List<CategoryDTO> data = cr.paginationCategory(keyword,limit,offset);
+			int itemPerPage = data.size();
+			
+			Pagination<List<CategoryDTO>> pagination =
+					new Pagination<>(totalData, page, itemPerPage, data);
+		
+			
+			return pagination;
+		}
+	
+	
 	
 	// CREATE
 	// cara 1 => Memakai fungsi bawaan JPARepository

@@ -1,6 +1,7 @@
 package id.bootcamp.java310.pos.repositories;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -55,8 +56,6 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	public void delete(@Param("id") Long id);
 	
 	
-	
-	
 	//Validasi
 	//select
 	
@@ -93,8 +92,25 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 			)
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 
+	//search
+	@Query(nativeQuery = true,
+			name = "search_variant"
+			)
+	public List<VariantDTO> searchVariant(@Param ("keyword") String keywordku);
 	
 	
+	//pagination
+	@Query(nativeQuery = true,
+			name = "pagination_variant"
+			)
+	public List<VariantDTO> paginationVariant(@Param ("keyword") String keywordku, @Param ("limit") int limit, @Param ("offset")  int page );
+
+	
+	//get count semua data variant
+		@Query(nativeQuery = true,
+				value = "select count(*) from variant where name ilike '%' || :keyword || '%'"
+				)
+		public int countTotalData(@Param ("keyword") String keyword);
 }
 
 

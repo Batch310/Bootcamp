@@ -11,6 +11,7 @@ import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.VariantEntity;
 import id.bootcamp.java310.pos.repositories.VariantRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 public class VariantService {
@@ -89,12 +90,17 @@ public class VariantService {
 	// UPDATE
 	public void update(VariantDTO dto) throws Exception {
 		// Validasi
-		Boolean isInitialExists = vr.isInitialExists(dto.getInitial());
+		Boolean isCategoryExists = vr.isCategoryExists(dto.getCategory_id());
+		if (isCategoryExists == false) {
+			throw new Exception("18-Category Tidak Ada");
+		}
+		
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial(), dto.getCategory_id());
 		if (isInitialExists == true) {
 			throw new Exception("11-Inisial sudah terpakai");
 		}
 
-		Boolean isNameExists = vr.isNameExists(dto.getName());
+		Boolean isNameExists = vr.isNameExists(dto.getName(), dto.getCategory_id());
 		if (isNameExists == true) {
 			throw new Exception("12-Nama sudah terpakai");
 		}
@@ -107,13 +113,10 @@ public class VariantService {
 			throw new Exception("14-Name tidak boleh lebih dari 50 karakter !");
 		}
 
-		if (dto.getCreate_by().length() > 50) {
+		if (dto.getModify_by().length() > 50) {
 			throw new Exception("15-Create By tidak boleh lebih dari 50 karakter !");
 		}
-		Boolean isCategoryExists = vr.isCategoryExists(dto.getCategory_id());
-		if (isCategoryExists == false) {
-			throw new Exception("18-Category Tidak Ada");
-		}
+		
 
 		vr.update(dto, new Date());
 	}
@@ -130,6 +133,26 @@ public class VariantService {
 		// cara 2
 		vr.delete(id);
 	}
+	//SEARCH
+		public List<VariantDTO> search(String keyword) {
+			// return cr.getAll4();
+			return vr.searchVariant(keyword);
+		}
+		
+		//PAGINATION
+		public Pagination<List<VariantDTO>> pagination(String keyword, int limit, int page) {
+			int totalData = vr.countTotalData(keyword);
+			
+			// return cr.getAll4();
+			int offset = limit * (page-1);
+			List<VariantDTO> data = vr.paginationVariant(keyword, limit, offset);
+			int itemPerPage = data.size();
+			
+			Pagination<List<VariantDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
+
+			return pagination;
+			
+		}
 
 	// CREATE
 }

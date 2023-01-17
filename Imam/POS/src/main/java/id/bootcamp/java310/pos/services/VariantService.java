@@ -12,6 +12,7 @@ import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.entities.VariantEntity;
 import id.bootcamp.java310.pos.repositories.VariantRepository;
+import id.bootcamp.java310.pos.utills.Pagination;
 
 @Service
 public class VariantService {
@@ -53,6 +54,29 @@ public class VariantService {
 	}
 	
 	
+	//SEARCH
+	//Cara 4
+	public List<VariantDTO> search(String keyword){
+		return vr.searchVariant(keyword);
+	}
+	
+	//PAGINATION
+		//Cara 4
+		public Pagination<List<VariantDTO>> pagination(String keyword, int limit, int page ){
+			int totalData =vr.countTotalData(keyword);
+			
+			
+			int offset = limit * (page -1 );
+			List<VariantDTO> data= vr.paginationVariant(keyword, limit, offset);
+			int itemPerPage = data.size();
+			
+			Pagination<List<VariantDTO>> pagination =
+					new Pagination<>(totalData, page, itemPerPage, data);
+	
+			return pagination;
+		}
+		
+	
 	
 	//CREATE
 	public Long insertVar(VariantDTO dto) throws Exception {
@@ -68,6 +92,12 @@ public class VariantService {
 				if(isNameExist == true) {
 					throw new Exception("12-Name sudah terpakai");
 				}
+				
+				Boolean isCategoryNotExist =vr.isCategoryNotExists(dto.getCategory_id());
+				if(isCategoryNotExist == false) {
+					throw new Exception("18-Category tidak ada!!");
+				}
+				
 				
 				if(dto.getInitial().length() > 10) {
 					throw new Exception("13-Initial tidak boleh lebih dari 10 karakter");
@@ -99,6 +129,11 @@ public class VariantService {
 					throw new Exception("12-Name sudah terpakai");
 				}
 				
+				Boolean isCategoryNotExist =vr.isCategoryNotExists(dto.getCategory_id());
+				if(isCategoryNotExist == false) {
+					throw new Exception("18-Category tidak ada!!");
+				}
+				
 				if(dto.getInitial().length() > 10) {
 					throw new Exception("13-Initial tidak boleh lebih dari 10 karakter");
 				}
@@ -119,7 +154,7 @@ public class VariantService {
 		
 		Boolean isCategoryUseByVariant = vr.isVariantUseByProduct(id);
 		if(isCategoryUseByVariant==true) {
-			throw new Exception("15-Category dipakai, tidak dapat dihapus");	
+			throw new Exception("15-Variant dipakai, tidak dapat dihapus");	
 		}
 		
 		

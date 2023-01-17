@@ -9,6 +9,6 @@ public class CategoryController {
 
 	@RequestMapping("/home")
 	public String home() {
-		return "category/category-full.html";
+		return "category/category-pagination.html";
 	}
 }

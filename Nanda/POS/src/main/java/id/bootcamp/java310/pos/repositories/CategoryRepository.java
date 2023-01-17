@@ -59,8 +59,17 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	// Delete Cara 2 - Menggunakan Native Query
 	@Modifying
 	@Transactional
-	@Query(nativeQuery = true, value = "delete from category\r\n" + "where id = :id")
-	public void delete(@Param("id") Long id);
+	@Query(nativeQuery = true, value = "delete from category where id = :id")
+	public void deleted(@Param("id") Long id);
+
+	// SEARCH
+	@Query(nativeQuery = true, name = "search_category")
+	public List<CategoryDTO> searchCategory(@Param("keyword") String keywordku);
+
+	// PAGINATION
+	@Query(nativeQuery = true, name = "pagination_category")
+	public List<CategoryDTO> paginationCategory(@Param("keyword") String keyword, @Param("limit") int limit,
+			@Param("offset") int offset);
 
 	// QUERY UNTUK VALIDASI
 
@@ -79,12 +88,13 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	// Validasi apakah Name sudah ada di db dan bukan dari id yang sama
 	@Query(nativeQuery = true, value = "select exists (select name from category where name = :name AND id != :id)")
 	public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
-	
-	//Validasi apakah id category dipakai di variant
-	@Query(nativeQuery = true,
-			value = "select exists (select * from variant where category id = :id")
-	
+
+	// Validasi apakah id category dipakai di variant
+	@Query(nativeQuery = true, value = "select exists (select * from variant where category_id = :id)")
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
-	
+
+	// GET count semua data category
+	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword || '%'")
+	public int countTotalData(@Param("keyword") String keyword);
 
 }

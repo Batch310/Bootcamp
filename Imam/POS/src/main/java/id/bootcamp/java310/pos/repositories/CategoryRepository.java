@@ -39,10 +39,24 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 
 	// Cara 4 => Query lebih lengkap, Didefinikan dulu
 
-	@Query(nativeQuery = true, name = "get_categories_cara4"
-
+	@Query(nativeQuery = true, 
+			name = "get_categories_cara4"
 	)
 	public List<CategoryDTO> getAll4();
+	
+	//cara 4
+	//Fungsi search
+	@Query(nativeQuery = true, 
+			name = "search_category")
+	public List<CategoryDTO> searchCategory(@Param("keyword") String keywordku);
+	
+	//pagination
+	@Query(nativeQuery = true, 
+			name = "pagination_category")
+	public List<CategoryDTO> paginationCategory(
+			@Param("keyword") String keywordku,
+			@Param("limit") int limit,
+			@Param("offset") int offset);
 
 //	//Cara 5 => Java Persitence Query Language (JPQL)
 //	//Querynya Java
@@ -109,5 +123,15 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Query(nativeQuery = true, 
 			value =   "select exists (select * from variant where category_id = :id)")
 	public Boolean isCategoryUseByVariant(@Param("id") Long id);
+	
+	//GET count semua data catgory
+	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%'|| :keyword||'%'")
+	public int countTotalData(@Param("keyword") String keyword);
+	
+	
+	
+	
+	
+	
 
 }

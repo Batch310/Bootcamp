@@ -1,6 +1,7 @@
 package id.bootcamp.java310.pos.repositories;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -20,7 +21,7 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	// update
 	@Modifying
 	@Transactional
-	@Query(nativeQuery = true, value = "update variant\r\n" + "set category_id = :#{#dto.category_id},"
+	@Query(nativeQuery = true, value = "update variant set category_id = :#{#dto.category_id},"
 			+ "initial = :#{#dto.initial}, " + "name = :#{#dto.name}, " + "active = :#{#dto.active}, "
 			+ "modify_by = :#{#dto.modify_by}, " + "modify_date = :modifyDate\r\n" + "where id = :#{#dto.id}")
 	public void update(@Param("dto") VariantDTO dto, @Param("modifyDate") Date modifyDate);
@@ -30,6 +31,16 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	@Transactional
 	@Query(nativeQuery = true, value = "delete from variant\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
+
+	// SEARCH
+	@Query(nativeQuery = true, name = "search_variant")
+	public List<VariantDTO> searchVariant(@Param("keyword") String keywordku);
+
+	// PAGINATION
+	@Query(nativeQuery = true, name = "pagination_variant")
+	public List<VariantDTO> paginationVariant(@Param("keyword") String keyword, 
+			@Param("limit") int limit,
+			@Param("offset") int offset);
 
 	// QUERY UNTUK VALIDASI
 
@@ -46,20 +57,24 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	public Boolean isInitialExists(@Param("initial") String initial, @Param("id") Long id);
 
 	// Validasi apakah Name sudah ada di db dan bukan dari id yang sama
-	@Query(nativeQuery = true, value = "select exists (select name from variant where name = :name AND id = :id)")
+	@Query(nativeQuery = true, value = "select exists (select name from variant where name = :name AND id != :id)")
 	public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
 
 	// Validasi apakah id category dipakai di variant
 	@Query(nativeQuery = true, value = "select exists (select * from variant where category_id = :id")
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
-	
-	//Validasi apakah category id diisikan oleh category yang tidak ada
+
+	// Validasi apakah category id diisikan oleh category yang tidak ada
 	@Query(nativeQuery = true, value = "select exists (select id from category where id = :id)")
 	public Boolean isCategoryExists(@Param("id") Long id);
 
-	//Validasi apakah variant id dipakai di product
+	// Validasi apakah variant id dipakai di product
 	@Query(nativeQuery = true, value = "select exists (select variant_id from product where variant_id = :id)")
 	public Boolean isVariantExists(@Param("id") Long id);
 	
+	//GET count semua data category
+		@Query(nativeQuery = true, value = "select count(*) from variant where name ilike '%' || :keyword || '%'")
+		public int countTotalData(@Param("keyword") String keyword);
+
 
 }

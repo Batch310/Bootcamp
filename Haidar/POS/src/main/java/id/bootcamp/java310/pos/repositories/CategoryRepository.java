@@ -38,6 +38,14 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Query(nativeQuery = true, name = "get_categories_cara4")
 	public List<CategoryDTO> getAll4();
 	
+	//Query fungsi SEARCH - Step 2
+	@Query(nativeQuery = true, name = "search_category")
+	public List<CategoryDTO> searchCategory(@Param("keyword") String keyword);
+	
+	//Query fungsi PAGINATION - Step 2
+	@Query(nativeQuery = true, name = "pagination_category")
+	public List<CategoryDTO> paginationCategory(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
+	
 	//Cara 5 - Menggunakan Java Persistence Query Language (JPQL) - Step 1
 	//Querynya Java
 	//Select new alamat.nama_class(kolom yang ingin di select) from Entity. Catatan: Harus ada Constructor dulu pada DTO terkait 
@@ -111,4 +119,8 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 			+ "from variant " 
 			+ "where category_id = :id)")
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
+	
+	//Get total data pada tabel category
+	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%'|| :keyword ||'%'")
+	public int countTotalData(@Param("keyword") String keyword);
 }

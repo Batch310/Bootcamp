@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.repositories.CategoryRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 public class CategoryService {
@@ -168,10 +169,25 @@ public class CategoryService {
 	}
 	
 	
+	//SEARCH
+	public List<CategoryDTO> search(String keyword){
+		//Cara 4
+		return cr.searchCategory(keyword);
+	
+	}
 	
 	
-	
-	
-	
+	//Pagination
+	public Pagination<List<CategoryDTO>> pagination(String keyword, int limit, int page){ //karena awalnya balikannya belum sama maka dibungkus menggunakan Pagination
+		int totalData = cr.countTotalData(keyword);
+		
+		int offset = limit*(page-1);
+		List<CategoryDTO> data = cr.paginationCategory(keyword,limit,offset);
+		int itemPerPage = data.size();
+		
+		Pagination<List<CategoryDTO>> pagination = new Pagination<List<CategoryDTO>>(totalData, page, itemPerPage, data); // balikan harus sama 
+		
+		return pagination;
+	}
 	
 }

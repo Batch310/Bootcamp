@@ -3,6 +3,7 @@ package id.bootcamp.java310.pos.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.services.CategoryService;
+import id.bootcamp.java310.pos.utils.Pagination;
 import id.bootcamp.java310.pos.utils.Resp;
 import net.bytebuddy.asm.Advice.Return;
 
@@ -28,13 +30,13 @@ public class CategoryRestControllers {
  
 	@JsonInclude(JsonInclude.Include.NON_NULL) 
 	@GetMapping("/get")
-	public Resp<List<CategoryDTO>> getAll(){
+	public Resp<List<CategoryDTO>> getAll(){ //Resp digunakan untuk mengemas pesan untuk code, message
 		//Mengemas respons API
 		int code =200;
 		String message = "Sukses";
 		List<CategoryDTO> data = cs.getAllCategories();
 		
-		Resp<List<CategoryDTO>> response = new Resp<>();
+		Resp<List<CategoryDTO>> response = new Resp<>(); // untuk dilakukan return karena tipe data sudah sama dengan fungsi
 		response.setCode(code);
 		response.setMessage(message);
 		response.setData(data);
@@ -51,7 +53,40 @@ public class CategoryRestControllers {
 		//return cs.getall4();
 	}
 	
-	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	@GetMapping("/search")
+	public Resp<List<CategoryDTO>> search(@RequestParam("keyword") String keyword){ //Resp digunakan untuk mengemas pesan untuk code, message
+		//Mengemas respons API
+		int code =200;
+		String message = "Sukses";
+		List<CategoryDTO> dataSearch = cs.search(keyword);
+		
+		Resp<List<CategoryDTO>> responseSearch = new Resp<>(); // untuk dilakukan return karena tipe data sudah sama dengan fungsi
+		responseSearch.setCode(code);
+		responseSearch.setMessage(message);
+		responseSearch.setData(dataSearch);
+		
+
+		return responseSearch;
+	}
+	
+	//Pagination
+	@GetMapping("/pagination")
+	public Resp<Pagination<List<CategoryDTO>>> pagination(@Param ("keyword") String keyword, @Param ("limit") int limit, @Param ("offset")  int page){ //Resp digunakan untuk mengemas pesan untuk code, message
+		//Mengemas respons API
+		int code =200;
+		String message = "Sukses";
+		Pagination<List<CategoryDTO>> data = cs.pagination(keyword,limit,page);
+		
+		Resp<Pagination<List<CategoryDTO>>> response = new Resp<>(); // untuk dilakukan return karena tipe data sudah sama dengan fungsi
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+		
+
+		return response;
+	}
+	
+	
 	@PostMapping("/insert")
 	public Resp<Long>  inserCategory(@RequestBody CategoryDTO dto) {
 		//try cathc untuk menerima throw dari service
@@ -143,6 +178,8 @@ public class CategoryRestControllers {
 			response.setMessage(message);
 			return response;
 		}
+		
+		
 		
 		
 		

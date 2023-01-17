@@ -164,15 +164,17 @@
 				async: false
 			});
 		}
-		var response = getAllCategoriesAPI().responseJSON;
-		console.log(response);
 
-		var list = response.data;
+		function refreshList() {
+			var response = getAllCategoriesAPI().responseJSON;
+			console.log(response);
 
-		$("#content-tbody").html("");
-		for (i = 0; i < list.length; i++) {
-			$("#content-tbody").append(
-				`
+			var list = response.data;
+
+			$("#content-tbody").html("");
+			for (i = 0; i < list.length; i++) {
+				$("#content-tbody").append(
+					`
 				<tr>
 					<td>${list[i].initial}</td>
 					<td>${list[i].name}</td>
@@ -182,17 +184,25 @@
 						onclick="bukaPopupEdit(
 							'${list[i].initial}',
 							'${list[i].name}',
-							${list[i].active})">
+							${list[i].active},
+							${list[i].id})">
 							<i class="fa-regular fa-pen-to-square" color="white"></i>
 						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('MANCO','Main Course', true)">
+						<button class="btn btn-danger" onclick="bukaPopupDelete(
+							'${list[i].initial}',
+							'${list[i].name}',
+							${list[i].active},
+							${list[i].id})">
 							<i class="fa-solid fa-trash" color="white"></i>
 						</button>
 					</td>
 				</tr>
 				`
-			)
+				)
+			}
 		}
+		refreshList();
+
 
 
 		//-----INSERT CATEGORY-----
@@ -268,22 +278,35 @@
 
 				//Panggil API Insert
 				var response = insertCategoryAPI(categoryDto).responseJSON;
-				if(response.code == 200){
+				if (response.code == 200) {
 					alert(response.message);
 					$(".modal").modal("hide");
+					refreshList();
 				} else {
 					alert(response.message);
 				}
-				
+
 			})
 
 			//. class
 			//# id
 			$(".modal").modal("show");
 		}
-		function bukaPopupEdit(initial, name, active) {
+
+
+		//-----EDIT-----
+		function editCategoryAPI(categoryDto) {
+			return $.ajax({
+				url: "/api/category/update",
+				method: "PUT",
+				data: categoryDto,
+				contentType: "application/json",
+				async: false
+			});
+		}
+		function bukaPopupEdit(initial, name, active, id) {
 			console.log("Edit Category Clicked!")
-			console.log(initial + " " + name + " " + active)
+			console.log(initial + " " + name + " " + active + " " + id)
 			//Ganti title
 			$(".modal-title").html("Edit Category");
 
@@ -293,34 +316,91 @@
 				<table class="table table borderless">
 					<tr>
 						<td>Initial</td>
-						<td><input class="form-control" value="${initial}"></td>
+						<td><input id="input-initial" class="form-control" value="${initial}"></td>
 					</tr>
 					<tr>
 						<td>Name</td>
-						<td><input class="form-control" value="${name}"></td>
+						<td><input id="input-name" class="form-control" value="${name}"></td>
 					</tr>
 					<tr>
 						<td>Active</td>
-						<td><input type="checkbox" ${active == true ? 'checked' : ''}></td>
+						<td><input id="input-active" type="checkbox" ${active == true ? 'checked' : ''}></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td>
-							<button type="button" class="btn btn-light">Cancel</button>
-							<button type="button" class="btn btn-success">Save Change</button>
+							<button id="input-cancel" type="button" class="btn btn-light">Cancel</button>
+							<button id="input-save" type="button" class="btn btn-success">Save Change</button>
 						</td>
 					</tr>
 				</table>
 				`
 			)
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			});
+			$("#input-save").click(function () {
+				//Ambil initial
+				var initial = $("#input-initial").val();
+				console.log(initial);
 
+				//Ambil name
+				var name = $("#input-name").val();
+				console.log(name);
+
+				//Ambil active
+				var active = $("#input-active").prop("checked");
+				console.log(active);
+
+				//Create By
+				var modifyBy = "Jambrong";
+				console.log(modifyBy);
+
+				//Proses Ubah JSON
+				var categoryDto = JSON.stringify({
+					"initial": initial,
+					"name": name,
+					"active": active,
+					"modify_by": modifyBy,
+					"id": id
+				});
+
+				//Panggil API Edit
+				var response = editCategoryAPI(categoryDto).responseJSON;
+				if (response.code == 200) {
+					alert(response.message);
+					$(".modal").modal("hide");
+					refreshList();
+				} else {
+					alert(response.message);
+				}
+			});
 			//. class
 			//# id
 			$(".modal").modal("show");
 		}
-		function bukaPopupDelete(initial, name, active) {
+
+
+
+
+		//-----DELETE-----
+		function deleteCategoryAPI(categoryId) {
+			var formData = new FormData();
+			formData.append("id", categoryId);
+
+			return $.ajax({
+				url: "/api/category/delete",
+				method: "DELETE",
+				data: formData,
+				contentType: false,
+				processData: false,
+				mimeType: "multipart/form-data",
+				async: false
+			});
+		}
+		function bukaPopupDelete(initial, name, active, id) {
 			console.log("Delete Category Clicked!")
-			console.log(initial + " " + name + " " + active)
+			console.log(initial + " " + name + " " + active + " " + id)
 
 			//Ganti title
 			$(".modal-title").html("Delete Category");
@@ -345,13 +425,34 @@
 					<tr>
 						<td></td>
 						<td>
-							<button type="button" class="btn btn-light">Cancel</button>
-							<button type="button" class="btn btn-danger">Delete</button>
+							<button id="input-cancel" type="button" class="btn btn-light">Cancel</button>
+							<button id="input-delete" type="button" class="btn btn-danger">Delete</button>
 						</td>
 					</tr>
 				</table>
 				`
-			)
+			);
+
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			});
+
+			$("#input-delete").click(function () {
+				//Ambil responseText
+				var response = deleteCategoryAPI(id).responseText;
+				console.log(response);
+
+				//Convert ke JSON
+				var responseJson = $.parseJSON(response);
+
+				if (responseJson.code == 200) {
+					alert(responseJson.message);
+					$(".modal").modal("hide");
+					refreshList();
+				} else {
+					alert(responseJson.message);
+				}
+			});
 
 			//. class
 			//# id

@@ -30,6 +30,17 @@ public class VariantDTO {
 		this.create_by = create_by;
 		this.modify_by = modify_by;
 	}
+	
+	public VariantDTO(Long id, Long category_id, String category_name, String initial, String name, Boolean active) {
+		super();
+		this.id = id;
+		this.category_id = category_id;
+		this.category_name = category_name;
+		this.initial = initial;
+		this.name = name;
+		this.active = active;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class VariantController {
 	@RequestMapping("/home") // membuat mapping url secara khusus
 	public String home() {
-		return "variant/variant-template.html";
+		return "variant/variant-pagination.html";
 	}
 }

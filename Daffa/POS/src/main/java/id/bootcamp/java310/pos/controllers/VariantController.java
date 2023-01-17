@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/category/variant")
+@RequestMapping("/variant")
 public class VariantController {
 	
-	@GetMapping("/home")
+	@RequestMapping("/home")
 	public String home() {
-		return "variant/variant-template.html";
+		return "variant/variant-pagination.html";
 	}
 
 }

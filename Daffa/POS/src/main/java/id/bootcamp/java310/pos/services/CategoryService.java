@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.repositories.CategoryRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 import net.bytebuddy.implementation.bytecode.Throw;
 
 @Service
@@ -49,6 +50,24 @@ public class CategoryService {
 		}
 		return catList;
 
+	}
+
+	// SEARCH
+	public List<CategoryDTO> searchCategory(String keyword) {
+		return cr.searchCategory(keyword);
+	}
+
+	// PAGINATION
+	public Pagination<List<CategoryDTO>> paginationCategory(String keyword, int limit, int page) {
+		int totalData = cr.countTotalData(keyword);
+
+		int offset = limit * (page - 1);
+		List<CategoryDTO> data = cr.paginationCategory(keyword, limit, offset);
+		int itemPerPage = data.size();
+
+		Pagination<List<CategoryDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
+
+		return pagination;
 	}
 
 	// Cara3
@@ -145,7 +164,9 @@ public class CategoryService {
 //		cr.deleteById(id);
 
 		// Cara 2
-		cr.delete(id);
+		else {
+			cr.delete(id);
+		}
 	}
 
 }
