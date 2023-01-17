@@ -65,6 +65,15 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Transactional
 	@Query(nativeQuery = true, value = "delete from category\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
+	
+	// Search
+	@Query(nativeQuery = true, name = "search_category")
+	public List<CategoryDTO> searchCategory(@Param ("keyword") String keywordku);
+	
+	//pagination
+	@Query(nativeQuery = true, name = "pagination_category")
+	public List<CategoryDTO> paginationCategory(@Param ("keyword") String keywordku,@Param("limit")int limit,@Param("offset")int offset);
+	
 
 	// QUERY UNTUK VALIDASI
 
@@ -87,5 +96,9 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	// validasi apakah id category dipakai di variant
 	@Query(nativeQuery = true, value = "select exists (select * from variant where category_id = :id)")
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
+	
+	//Get count semua data category
+	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword ||'%'")
+	public int countTotalData(@Param("keyword")String keyword);
 
 }
