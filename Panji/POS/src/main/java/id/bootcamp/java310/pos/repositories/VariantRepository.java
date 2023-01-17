@@ -1,15 +1,18 @@
 package id.bootcamp.java310.pos.repositories;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.annotations.Parent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.VariantEntity;
 
@@ -30,6 +33,16 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long>{
 					)
 	public Long insert2(@Param("dto") VariantDTO dto,
 						@Param("createDate") Date createDate);
+	
+	// Search
+	@Query(nativeQuery = true, name = "search_name_variant")
+	public List<VariantDTO> getSearch(@Param("keyword") String keyword);
+	
+	// Pagination
+	@Query(nativeQuery = true,
+			name = "pagination_variant")
+	public List<VariantDTO> getPagination(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
+	
 	
 	// Update
 	@Modifying
@@ -78,4 +91,8 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long>{
 	// Validasi apakah category_id yang diisikan tidak ada di category
 	@Query(nativeQuery = true, value = "select exists(select id from category where id = :category_id)")
 	public boolean isBentarTakCobaDulu(@Param("category_id") Long id);
+	
+	// Hitung total data
+	@Query(nativeQuery = true, value = "select count(*) from variant where name ilike '%' || :keyword ||'%'")
+	public int countTotalData(@Param("keyword") String keyword);
 }

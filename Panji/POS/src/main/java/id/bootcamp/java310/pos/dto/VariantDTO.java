@@ -14,6 +14,19 @@ public class VariantDTO {
 	private String create_by;
 	private String modify_by;
 	
+	public VariantDTO() {
+		
+	}
+	public VariantDTO(Long id, Long category_id, String category_name, String initial, String name, boolean active) {
+		super();
+		this.id = id;
+		this.category_id = category_id;
+		this.category_name = category_name;
+		this.initial = initial;
+		this.name = name;
+		this.active = active;
+	}
+	
 	
 	public Long getId() {
 		return id;

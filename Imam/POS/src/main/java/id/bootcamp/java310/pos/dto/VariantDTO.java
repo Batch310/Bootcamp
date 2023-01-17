@@ -26,7 +26,7 @@ public class VariantDTO {
 	public VariantDTO() {
 		
 	}
-
+	
 	public VariantDTO(Long id, Long category_id, String category_name, String initial, String name, Boolean active) {
 		super();
 		this.id = id;
@@ -37,16 +37,7 @@ public class VariantDTO {
 		this.active = active;
 	}
 
-
-	public VariantDTO(Long id, Long category_id, String initial, String name, Boolean active) {
-		super();
-		this.id = id;
-		this.category_id = category_id;
-		this.initial = initial;
-		this.name = name;
-		this.active = active;
-	}
-
+	
 	public Long getId() {
 		return id;
 	}

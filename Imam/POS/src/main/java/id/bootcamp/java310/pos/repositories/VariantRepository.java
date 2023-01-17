@@ -18,10 +18,26 @@ import id.bootcamp.java310.pos.entities.VariantEntity;
 public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 
 	//READ
+	//cara 4
 	@Query(nativeQuery = true,
 			name = "get_variant"
 			)
 	public List<VariantDTO> getAllku();
+	
+	//SEARCH
+	@Query(nativeQuery = true,
+			name ="search_variant"
+			)
+	public List<VariantDTO> searchVariant(@Param("keyword") String keywordku);
+	
+	//PAGINATION
+	@Query(nativeQuery = true,
+				name ="pagination_variant"
+				)
+     public List<VariantDTO> paginationVariant(
+    		 @Param("keyword") String keywordku,
+    		 @Param("limit") int limit,
+    		 @Param("offset") int offset);
 	
 	
 	
@@ -103,7 +119,9 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 		public Boolean isVariantUseByProduct(@Param("var_id") Long id);
 
 		
-		
+		//GET count semua data Variant
+		@Query(nativeQuery = true, value = "select count(*) from variant where name ilike '%'|| :keyword||'%'")
+		public int countTotalData(@Param("keyword") String keyword);
 		
 	
 	

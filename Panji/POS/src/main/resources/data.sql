@@ -18,7 +18,7 @@ INSERT INTO public.variant(
 	(true, 1, 'Admin', now(), 'MSK', 'Masker'),
 	(true, 1, 'Admin', now(), 'VIT', 'Vitamin'),
 	(true, 2, 'Admin', now(), 'MUW', 'Make Up Wajah'),
-	(true, 2, 'Admin', now(), 'MUT', 'Mak Up Tools'),
+	(true, 2, 'Admin', now(), 'MUT', 'Make Up Tools'),
 	(true, 3, 'Admin', now(), 'AKM', 'Aksesoris Mobil'),
 	(true, 3, 'Admin', now(), 'PKK', 'Perkakas Kendaraan'),
 	(true, 4, 'Admin', now(), 'KMK', 'Komik'),
