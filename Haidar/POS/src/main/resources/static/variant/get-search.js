@@ -7,8 +7,22 @@ function getAllVariantsAPI() {
 		async: false
 	});
 }
-function refreshList() {
-	var response = getAllVariantsAPI().responseJSON;
+
+function searchVariantAPI(keyword) {
+	console.log(keyword);
+	return $.ajax({
+		url: "/api/variant/search?keyword=" + keyword,
+		method: "GET",
+		async: false
+	});
+}
+
+function refreshList(keyword) {
+	if (keyword == null) {
+		keyword = "";
+	}
+	
+	var response = searchVariantAPI(keyword).responseJSON;
 	console.log(response);
 
 	var list = response.data;

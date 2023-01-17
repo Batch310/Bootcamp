@@ -28,7 +28,7 @@ function bukaPopupEdit(initial, name, active, category_name, category_id, id) {
 	
 	for (i = 0; i < catList.length; i++) {
 		//console.log(catList[i]);
-		htmlOption += `<option value="${catList[i].id}">${catList[i].name}</option>`;
+		htmlOption += `<option value="${catList[i].id}" ${category_id == catList[i].id ? 'selected' : ''}>${catList[i].name}</option>`;
 	}
 	
 	
@@ -48,7 +48,7 @@ function bukaPopupEdit(initial, name, active, category_name, category_id, id) {
 					</td>
 					<td style="text-align: left; vertical-align: middle">
 						<select id="edit-categoryId" class="form-control">
-							<option value="${category_id}" selected hidden>${category_name}</option>
+							<!--option value="${category_id}" selected hidden-->${category_name}<!--/option-->
   							${htmlOption}
 						</select>
 					</td>
