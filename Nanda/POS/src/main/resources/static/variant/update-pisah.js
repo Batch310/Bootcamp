@@ -41,6 +41,7 @@
 				<td>Category </td>
 				<td>
 					<select id="input-category">
+					<option value="${category_id}" selected hidden>${category_name}</option>
 					${html}
 				</td>
 			</tr>
