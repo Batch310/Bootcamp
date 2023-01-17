@@ -129,4 +129,17 @@ public class CategoryRestControllers {
 		}
 		
 	}
+	
+	@GetMapping("/search")
+	public Resp<List<CategoryDTO>> search(@RequestParam("keyword") String keyword){
+		int code = 200;
+		String message = "Category berhasil dicari";
+		List<CategoryDTO> dataSearch = cs.searchCategory(keyword.trim());
+		Resp<List<CategoryDTO>> responseSearch = new Resp<>();
+		responseSearch.setCode(code);
+		responseSearch.setMessage(message);
+		responseSearch.setData(dataSearch);
+		
+		return responseSearch;
+	}
 }

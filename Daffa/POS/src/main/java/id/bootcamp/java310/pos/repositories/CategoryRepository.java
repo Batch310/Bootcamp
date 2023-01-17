@@ -65,6 +65,10 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Query(nativeQuery = true, value = "delete from category\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
 
+	// SEARCH
+	@Query(nativeQuery = true, name = "search_category")
+	public List<CategoryDTO> searchCategory(@Param("keyword") String keyword);
+
 	// Validasi apakah initial sudah ada di DB (Huruf Besar/Kecil diperhatikan) -
 	// insert
 	@Query(nativeQuery = true, value = "select exists (select initial from category where initial = :initial)")

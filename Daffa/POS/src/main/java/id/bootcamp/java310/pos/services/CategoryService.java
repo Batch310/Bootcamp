@@ -50,6 +50,10 @@ public class CategoryService {
 		return catList;
 
 	}
+	//SEARCH
+	public List<CategoryDTO> searchCategory(String keyword) {
+		return cr.searchCategory(keyword);
+	}
 
 	// Cara3
 //	public List<CategoryDTO> getAllCategories3() {

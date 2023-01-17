@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.VariantEntity;
 import id.bootcamp.java310.pos.repositories.VariantRepository;
@@ -36,6 +37,11 @@ public class VariantService {
 		}
 		return varList;
 	}
+	
+	//SEARCH
+		public List<VariantDTO> searchVariant(String keyword) {
+			return vr.searchVariant(keyword);
+		}
 
 	// CREATE
 	public Long insertVar(VariantDTO dto) throws Exception {
