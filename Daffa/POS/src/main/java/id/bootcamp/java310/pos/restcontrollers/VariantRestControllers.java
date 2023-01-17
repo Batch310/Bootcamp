@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.utils.Pagination;
 import id.bootcamp.java310.pos.utils.Resp;
 
 @RestController
@@ -65,7 +67,7 @@ public class VariantRestControllers {
 
 			return response;
 		}
-		
+
 	}
 
 	// localhost/api/variant/update
@@ -93,8 +95,6 @@ public class VariantRestControllers {
 
 			return response;
 		}
-
-		
 
 	}
 
@@ -124,7 +124,32 @@ public class VariantRestControllers {
 			return response;
 		}
 
-		
+	}
 
+	@GetMapping("/search")
+	public Resp<List<VariantDTO>> search(@RequestParam("keyword") String keyword) {
+		int code = 200;
+		String message = "Variant berhasil dicari";
+		List<VariantDTO> dataSearch = vs.searchVariant(keyword.trim());
+		Resp<List<VariantDTO>> responseSearch = new Resp<>();
+		responseSearch.setCode(code);
+		responseSearch.setMessage(message);
+		responseSearch.setData(dataSearch);
+
+		return responseSearch;
+	}
+	
+	@GetMapping("/pagination")
+	public Resp<Pagination<List<VariantDTO>>> pagination(@RequestParam("keyword") String keyword, @RequestParam("limit") int limit,
+			@RequestParam("page") int page) {
+		int code = 200;
+		String message = "Berhasil";
+		Pagination<List<VariantDTO>> pagination = vs.paginationVariant(keyword.trim(), limit, page);
+		Resp<Pagination<List<VariantDTO>>> responsePage = new Resp<>();
+		responsePage.setCode(code);
+		responsePage.setMessage(message);
+		responsePage.setData(pagination);
+
+		return responsePage;
 	}
 }
