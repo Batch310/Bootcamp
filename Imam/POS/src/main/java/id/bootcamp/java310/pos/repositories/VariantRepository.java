@@ -79,6 +79,9 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 		@Query(nativeQuery = true, value = "select exists (select name from variant " + "where name = :name)")
 		public Boolean isNameExists(@Param("name") String name);
 	
+		// Validasi Category tidak ada
+		@Query(nativeQuery = true, value = "select exists (select * from category " + "where id = :id)")
+		public Boolean isCategoryNotExists(@Param("id") Long id);
 		
 		// VALIDASI UPDATE
 		// Validasi apakah initial sudah sama dan bukan dari id yg sama
