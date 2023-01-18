@@ -55,8 +55,7 @@ import id.bootcamp.java310.pos.dto.VariantDTO;
 				+ "where v.name ilike '%'|| :keyword ||'%'\r\n"
 				+ "order by id asc\r\n"
 				+ "limit :limit\r\n"
-				+ "offset :offset\r\n"
-				+ "",
+				+ "offset :offset\r\n",
 		resultSetMapping = "get_variant_cara4_result"
 		)
 })

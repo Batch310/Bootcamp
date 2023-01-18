@@ -39,6 +39,21 @@ public class VariantRestController {
 		return resp;
 	}
 	
+	@GetMapping("/getByCategoryId")
+	public Responses<List<VariantDTO>> getVariantsByCategoryId(@RequestParam("category_id") Long categoryId) {
+		// Mengemas Response API
+		int code = 200;
+		String message = "Success";
+		List<VariantDTO> data = vs.getVariantsByCategoryId(categoryId);
+
+		Responses<List<VariantDTO>> response = new Responses<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+
+		return response;
+	}
+	
 	@PostMapping("/insert")
 	public Responses<Long> insert(@RequestBody VariantDTO dto) {
 		try {

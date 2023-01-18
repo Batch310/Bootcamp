@@ -129,7 +129,7 @@ public class CategoryService {
 			throw new Exception("11-Initial sudah terpakai");
 		}
 
-		Boolean isNameExists = cr.isNameExists(dto.getName());
+		Boolean isNameExists = cr.isNameExists(dto.getName(),dto.getId());
 		if (isNameExists == true) {
 			throw new Exception("12-Name sudah terpakai");
 		}

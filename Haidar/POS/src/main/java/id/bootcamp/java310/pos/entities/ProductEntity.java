@@ -13,29 +13,28 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity //Anotasi. Menandakan bahwa class VariantEntity merupakan Entity
-@Table(name = "product")
+@Entity // Menandakan class CategoryEntity itu Entity
+@Table(name = "product") // Menamakan Tabel
 public class ProductEntity {
-	
-	@Id
-	@Column(nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id // Primary Key
+	@Column(nullable = false) // Kolom gk boleh null
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment
 	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="variant_id", insertable = false, updatable = false)
-	private VariantEntity variant;
+	private VariantEntity variantEntity;
 	
 	@Column(name = "variant_id", nullable = false)
 	private Long variantId;
-	
+
 	@Column(length = 10, nullable = false, unique = true)
 	private String initial;
-	
+
 	@Column(length = 50, nullable = false, unique = true)
 	private String name;
 	
-	@Column(length = 100)
+	@Column(length = 500, nullable = true)
 	private String description;
 	
 	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
@@ -43,22 +42,43 @@ public class ProductEntity {
 	
 	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
 	private Double stock;
-	
+
 	@Column(nullable = false)
 	private Boolean active;
-	
-	@Column(length = 50, nullable = false)
+
+	@Column(name = "create_by", length = 50, nullable = false)
 	private String createBy;
-	
-	@Column(nullable = false)
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "Asia/Jakarta")
+
+	@Column(nullable = false, name="create_date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date createDate;
-	
-	@Column(length = 50)
+
+	@Column(name = "modify_by", length = 50)
 	private String modifyBy;
-	
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "Asia/Jakarta")
+
+	@Column(name="modify_date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date modifyDate;
+	
+	public ProductEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ProductEntity(Long id, Long variantId, String initial, String name, String description, Double price,
+			Double stock, Boolean active, String createBy, Date createDate) {
+		super();
+		this.id = id;
+		this.variantId = variantId;
+		this.initial = initial;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.stock = stock;
+		this.active = active;
+		this.createBy = createBy;
+		this.createDate = createDate;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -68,12 +88,12 @@ public class ProductEntity {
 		this.id = id;
 	}
 
-	public VariantEntity getVariant() {
-		return variant;
+	public VariantEntity getVariantEntity() {
+		return variantEntity;
 	}
 
-	public void setVariant(VariantEntity variant) {
-		this.variant = variant;
+	public void setVariantEntity(VariantEntity variantEntity) {
+		this.variantEntity = variantEntity;
 	}
 
 	public Long getVariantId() {
@@ -163,6 +183,4 @@ public class ProductEntity {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	
-	
 }
