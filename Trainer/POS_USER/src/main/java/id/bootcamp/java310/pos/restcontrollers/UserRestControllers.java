@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import id.bootcamp.java310.pos.dto.MenuDTO;
 import id.bootcamp.java310.pos.dto.UserDTO;
+import id.bootcamp.java310.pos.services.MenuService;
 import id.bootcamp.java310.pos.services.UserService;
 import id.bootcamp.java310.pos.utils.Resp;
 
@@ -37,6 +39,23 @@ public class UserRestControllers {
 		response.setMessage(message);
 		response.setData(dataUser);
 
+		return response;
+	}
+	
+	@Autowired
+	private MenuService ms;
+	
+	@GetMapping("/menu")
+	public Resp<List<MenuDTO>> menu(@RequestParam("role_code") String role_code){
+		int code = 200;
+		String message = "Menu Showed";
+		List<MenuDTO> dataMenu = ms.menu(role_code);
+		
+		Resp<List<MenuDTO>> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(dataMenu);
+		
 		return response;
 	}
 
