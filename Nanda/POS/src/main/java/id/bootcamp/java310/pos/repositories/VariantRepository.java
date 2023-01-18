@@ -38,8 +38,7 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 
 	// PAGINATION
 	@Query(nativeQuery = true, name = "pagination_variant")
-	public List<VariantDTO> paginationVariant(@Param("keyword") String keyword, 
-			@Param("limit") int limit,
+	public List<VariantDTO> paginationVariant(@Param("keyword") String keyword, @Param("limit") int limit,
 			@Param("offset") int offset);
 
 	// QUERY UNTUK VALIDASI
@@ -71,10 +70,12 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	// Validasi apakah variant id dipakai di product
 	@Query(nativeQuery = true, value = "select exists (select variant_id from product where variant_id = :id)")
 	public Boolean isVariantExists(@Param("id") Long id);
-	
-	//GET count semua data category
-		@Query(nativeQuery = true, value = "select count(*) from variant where name ilike '%' || :keyword || '%'")
-		public int countTotalData(@Param("keyword") String keyword);
 
+	// GET count semua data category
+	@Query(nativeQuery = true, value = "select count(*) from variant where name ilike '%' || :keyword || '%'")
+	public int countTotalData(@Param("keyword") String keyword);
+
+	@Query(nativeQuery = true, value = "select * from variant where category_id = :cat_id")
+	public List<VariantEntity> getVariantsByCategoryId(@Param("cat_id") Long categoryId);
 
 }

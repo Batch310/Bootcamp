@@ -32,7 +32,7 @@ function getAllCategoriesPaginationApi(keyword, limit, page) {
 
 function refreshList(keyword,page) {
 	
-	var limit = 5;
+	var limit = 3;
 	
 	if (keyword == null) {
 		keyword = $("#example-search-input").val();
@@ -107,6 +107,7 @@ function refreshList(keyword,page) {
 		onclick="refreshList(null,${page + 1})"
 		>Next</a></li>
 		`)
+
 }
 
 refreshList();

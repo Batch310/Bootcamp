@@ -1,5 +1,6 @@
 package id.bootcamp.java310.pos.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
+import id.bootcamp.java310.pos.entities.VariantEntity;
 import id.bootcamp.java310.pos.repositories.VariantRepository;
 import id.bootcamp.java310.pos.utils.Pagination;
 
@@ -58,9 +60,31 @@ public class VariantService {
 		return vr.searchVariant(keyword);
 	}
 	
-	//Cara 4
+	//READ Cara 4 
 	public List<VariantDTO> getAllVariants() {
 		return vr.getAllVariants();
+	}
+	
+	public List<VariantDTO> getVariantsByCategoryId(Long categoryId) {
+		List<VariantEntity> catSumber = vr.getVariantsByCategoryId(categoryId);
+		System.out.println(categoryId);
+
+		List<VariantDTO> catList = new ArrayList<>();
+
+		for (int i = 0; i < catSumber.size(); i++) {
+			VariantDTO cat = new VariantDTO();
+			cat.setId(catSumber.get(i).getId());
+			cat.setCategory_id(catSumber.get(i).getCategoryId());
+			cat.setCategory_name(catSumber.get(i).getCategory().getName());
+			cat.setInitial(catSumber.get(i).getInitial());
+			cat.setName(catSumber.get(i).getName());
+			cat.setActive(catSumber.get(i).getActive());
+
+			catList.add(cat);
+		}
+
+		return catList;
+
 	}
 	
 	//CREATE
