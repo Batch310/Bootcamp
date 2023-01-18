@@ -14,34 +14,26 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity // Menandakan class CategoryEntity itu Entity
-@Table(name = "product") // Menamakan Tabel
-public class ProductEntity {
+@Table(name = "variant") // Menamakan Tabel
+public class VariantEntityMasYuhanTrainer {
+
 	@Id // Primary Key
 	@Column(nullable = false) // Kolom gk boleh null
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="variant_id", insertable = false, updatable = false)
-	private VariantEntity variantEntity;
+	@JoinColumn(name="category_id", insertable = false, updatable = false)
+	private CategoryEntity category;
 	
-	@Column(name = "variant_id", nullable = false)
-	private Long variantId;
+	@Column(name = "category_id", nullable = false)
+	private Long categoryId;
 
 	@Column(length = 10, nullable = false, unique = true)
 	private String initial;
 
 	@Column(length = 50, nullable = false, unique = true)
 	private String name;
-	
-	@Column(length = 500, nullable = true)
-	private String description;
-	
-	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
-	private Double price;
-	
-	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
-	private Double stock;
 
 	@Column(nullable = false)
 	private Boolean active;
@@ -59,26 +51,6 @@ public class ProductEntity {
 	@Column(name="modify_date")
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date modifyDate;
-	
-	public ProductEntity() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public ProductEntity(Long id, Long variantId, String initial, String name, String description, Double price,
-			Double stock, Boolean active, String createBy, Date createDate) {
-		super();
-		this.id = id;
-		this.variantId = variantId;
-		this.initial = initial;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.stock = stock;
-		this.active = active;
-		this.createBy = createBy;
-		this.createDate = createDate;
-	}
-
 
 	public Long getId() {
 		return id;
@@ -88,20 +60,20 @@ public class ProductEntity {
 		this.id = id;
 	}
 
-	public VariantEntity getVariantEntity() {
-		return variantEntity;
+	public CategoryEntity getCategoryEntity() {
+		return category;
 	}
 
-	public void setVariantEntity(VariantEntity variantEntity) {
-		this.variantEntity = variantEntity;
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
 	}
 
-	public Long getVariantId() {
-		return variantId;
+	public Long getCategoryId() {
+		return categoryId;
 	}
 
-	public void setVariantId(Long variantId) {
-		this.variantId = variantId;
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public String getInitial() {
@@ -118,30 +90,6 @@ public class ProductEntity {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public Double getStock() {
-		return stock;
-	}
-
-	public void setStock(Double stock) {
-		this.stock = stock;
 	}
 
 	public Boolean getActive() {

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import id.bootcamp.java310.pos.dto.ProductDTO;
-import id.bootcamp.java310.pos.entities.ProductEntityBackup;
+import id.bootcamp.java310.pos.entities.ProductEntity;
 import id.bootcamp.java310.pos.repositories.ProductRepository;
 
 @Service
@@ -18,11 +18,11 @@ public class ProductService {
 	private ProductRepository pr;
 
 	public List<ProductDTO> getAll() {
-		List<ProductEntityBackup> listSumber = pr.findAll();
+		List<ProductEntity> listSumber = pr.findAll();
 		List<ProductDTO> listHasil = new ArrayList<>();
 
-		for (ProductEntityBackup pSumber : listSumber) {
-			ProductDTO pHasil = new ProductDTO(pSumber.getVariantEntity().getCategory().getName(),
+		for (ProductEntity pSumber : listSumber) {
+			ProductDTO pHasil = new ProductDTO(pSumber.getVariantEntity().getCategoryEntity().getName(),
 					pSumber.getVariantEntity().getName(), pSumber.getInitial(), pSumber.getName(),
 					pSumber.getDescription(), pSumber.getPrice(), pSumber.getStock(), pSumber.getActive(),
 					pSumber.getVariantEntity().getCategoryId(), pSumber.getVariantId(), pSumber.getId());
@@ -61,10 +61,10 @@ public class ProductService {
 			throw new Exception("18-Variant tidak ada");
 		}
 
-		ProductEntityBackup pEntity = new ProductEntityBackup(dto.getId(), dto.getVariant_id(), dto.getInitial(), dto.getName(),
+		ProductEntity pEntity = new ProductEntity(dto.getId(), dto.getVariant_id(), dto.getInitial(), dto.getName(),
 				dto.getDescription(), dto.getPrice(), dto.getStock(), dto.getActive(), dto.getCreate_by(), new Date());
 
-		ProductEntityBackup hasil = pr.save(pEntity);
+		ProductEntity hasil = pr.save(pEntity);
 		return hasil.getId();
 	}
 
@@ -109,11 +109,11 @@ public class ProductService {
 	}
 
 	public List<ProductDTO> searchProduct(String keyword) {
-		List<ProductEntityBackup> listSumber = pr.searchProducts(keyword);
+		List<ProductEntity> listSumber = pr.searchProducts(keyword);
 		List<ProductDTO> listHasil = new ArrayList<>();
 
-		for (ProductEntityBackup pSumber : listSumber) {
-			ProductDTO pHasil = new ProductDTO(pSumber.getVariantEntity().getCategory().getName(),
+		for (ProductEntity pSumber : listSumber) {
+			ProductDTO pHasil = new ProductDTO(pSumber.getVariantEntity().getCategoryEntity().getName(),
 					pSumber.getVariantEntity().getName(), pSumber.getInitial(), pSumber.getName(),
 					pSumber.getDescription(), pSumber.getPrice(), pSumber.getStock(), pSumber.getActive(),
 					pSumber.getVariantEntity().getCategoryId(), pSumber.getVariantId(), pSumber.getId());

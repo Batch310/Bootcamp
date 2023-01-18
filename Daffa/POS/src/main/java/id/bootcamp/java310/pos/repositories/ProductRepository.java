@@ -12,9 +12,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import id.bootcamp.java310.pos.dto.ProductDTO;
-import id.bootcamp.java310.pos.entities.ProductEntityBackup;
+import id.bootcamp.java310.pos.entities.ProductEntity;
 
-public interface ProductRepository extends JpaRepository<ProductEntityBackup, Long> {
+@Repository
+public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
 	@Modifying
 	@Transactional
@@ -33,7 +34,7 @@ public interface ProductRepository extends JpaRepository<ProductEntityBackup, Lo
 	
 	@Query(nativeQuery = true, 
 			value = "select * from product where initial ilike '%'|| :keyword ||'%' OR name ilike '%'|| :keyword ||'%' OR description ilike '%'|| :keyword ||'%' limit 3")
-	public List<ProductEntityBackup> searchProducts(@Param("keyword") String keyword);
+	public List<ProductEntity> searchProducts(@Param("keyword") String keyword);
 	
 	// QUERY UNTUK VALIDASI
 	// Validasi apakah Initial sudah ada di DB
