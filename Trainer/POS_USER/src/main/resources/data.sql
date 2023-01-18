@@ -47,15 +47,15 @@ INSERT INTO public.menu(
 
 --Add Menu By Role
 INSERT INTO public.menu_role(
-	created_by, created_on, menu_id, role_id)
+	created_by, created_on, role_id, menu_id)
 	VALUES 
+	(1, now(), 1, 1),
 	(1, now(), 1, 2),
 	(1, now(), 1, 3),
+	(1, now(), 1, 4),
+	(1, now(), 2, 1),
 	(1, now(), 2, 2),
 	(1, now(), 2, 3),
-	(1, now(), 3, 2),
-	(1, now(), 3, 3),
-	(1, now(), 3, 2),
 	(1, now(), 3, 4);
 
 --Insert Category
