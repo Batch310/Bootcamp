@@ -7,13 +7,13 @@ public class UserDTO {
 	private Long user_id;
 	private String name;
 	private String profile_picture;
-	private Long role_code;
+	private String role_code;
 	
 	public UserDTO() {
 		
 	}
 
-	public UserDTO(String email, Long user_id, String name, String profile_picture, Long role_code) {
+	public UserDTO(String email, Long user_id, String name, String profile_picture, String role_code) {
 		super();
 		this.email = email;
 		this.user_id = user_id;
@@ -62,11 +62,14 @@ public class UserDTO {
 		this.profile_picture = profile_picture;
 	}
 
-	public Long getRole_code() {
+	public String getRole_code() {
 		return role_code;
 	}
 
-	public void setRole_code(Long role_code) {
+	public void setRole_code(String role_code) {
 		this.role_code = role_code;
-	}	
-}
+	}
+
+	
+	
+	}

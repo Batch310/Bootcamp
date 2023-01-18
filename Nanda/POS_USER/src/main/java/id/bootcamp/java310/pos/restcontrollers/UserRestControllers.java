@@ -29,6 +29,7 @@ public class UserRestControllers {
 		String message = "Login sukses";
 		UserDTO dataUser = us.login(email, password);
 		
+		//Validasi jika user tidak ditemukan / gagal login
 		if(dataUser == null) {
 			code = 11;
 			message = "Email atau Password salah !";

@@ -23,7 +23,7 @@ import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.UserDTO;
 
 @NamedNativeQueries(value = {
-		@NamedNativeQuery(name = "login_query", query = "select \r\n" 
+		@NamedNativeQuery(name = "login_query", query = "select\r\n" 
 		        + "u.email,\r\n"
 		        + "u.id as user_id,\r\n"
 		        + "b.fullname as name,\r\n"
@@ -34,7 +34,7 @@ import id.bootcamp.java310.pos.dto.UserDTO;
 		        + "on u.biodata_id = b.id \r\n"
 		+ "join role r \r\n"
 		        + "on u.role_id = r.id \r\n"
-		+ "where u.email = 'admin@batch310.com' AND password = '123456'",
+		+ "where u.email = :email AND password = :password",
 		resultSetMapping = "login_result") })
 @SqlResultSetMappings(value = {
 		@SqlResultSetMapping(name = "login_result", classes =
@@ -43,7 +43,7 @@ import id.bootcamp.java310.pos.dto.UserDTO;
 				@ColumnResult(name = "user_id", type = Long.class),
 				@ColumnResult(name = "name", type = String.class),
 				@ColumnResult(name = "profile_picture", type = String.class),
-				@ColumnResult(name = "role_code", type = Long.class) })) })
+				@ColumnResult(name = "role_code", type = String.class) })) })
 
 @Entity
 @Table(name = "m_user")
