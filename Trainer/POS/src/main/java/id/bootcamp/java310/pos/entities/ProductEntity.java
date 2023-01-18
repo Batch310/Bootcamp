@@ -79,7 +79,6 @@ public class ProductEntity {
 		this.createDate = createDate;
 	}
 
-
 	public Long getId() {
 		return id;
 	}

@@ -61,8 +61,17 @@ public class ProductService {
 			throw new Exception("18-Variant tidak ada");
 		}
 
-		ProductEntity pEntity = new ProductEntity(dto.getId(), dto.getVariant_id(), dto.getInitial(), dto.getName(),
-				dto.getDescription(), dto.getPrice(), dto.getStock(), dto.getActive(), dto.getCreate_by(), new Date());
+		ProductEntity pEntity = new ProductEntity(
+				dto.getId(), 
+				dto.getVariant_id(), 
+				dto.getInitial(),
+				dto.getName(),
+				dto.getDescription(),
+				dto.getPrice(), 
+				dto.getStock(),
+				dto.getActive(),
+				dto.getCreate_by(), 
+				new Date());
 
 		ProductEntity hasil = pr.save(pEntity);
 		return hasil.getId();

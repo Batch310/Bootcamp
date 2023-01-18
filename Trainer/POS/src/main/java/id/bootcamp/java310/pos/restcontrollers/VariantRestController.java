@@ -127,7 +127,8 @@ public class VariantRestController {
 	}
 
 	@GetMapping("/getByCategoryId")
-	public Resp<List<VariantDTO>> getVariantsByCategoryId(@RequestParam("category_id") Long categoryId) {
+	public Resp<List<VariantDTO>> getVariantsByCategoryId(
+			@RequestParam("category_id") Long categoryId) {
 		// Mengemas Response API
 		int code = 200;
 		String message = "Sukses";

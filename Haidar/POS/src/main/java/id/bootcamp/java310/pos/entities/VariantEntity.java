@@ -87,16 +87,17 @@ public class VariantEntity {
 	@Column(nullable = false)
 	private Boolean active;
 	
-	@Column(length = 50, nullable = false)
+	@Column(name = "create_by", length = 50, nullable = false)
 	private String createBy;
 	
-	@Column(nullable = false)
+	@Column(name = "create_date", nullable = false)
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "Asia/Jakarta")
 	private Date createDate;
 	
-	@Column(length = 50)
+	@Column(name = "modify_by", length = 50)
 	private String modifyBy;
 	
+	@Column(name = "modify_date")
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "Asia/Jakarta")
 	private Date modifyDate;
 

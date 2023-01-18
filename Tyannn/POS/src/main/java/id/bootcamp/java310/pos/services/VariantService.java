@@ -131,4 +131,32 @@ public class VariantService {
 		
 		return pagination;
 	}
+	
+	public List<VariantDTO> getVariantsByCategoryId(Long categoryId) {
+		List<VariantEntity> catSumber = vr.getVariantsByCategoryId(categoryId);
+		System.out.println(categoryId);
+
+		List<VariantDTO> catList = new ArrayList<>();
+
+		for (int i = 0; i < catSumber.size(); i++) {
+			VariantDTO cat = new VariantDTO();
+			cat.setId(catSumber.get(i).getId());
+			cat.setCategory_id(catSumber.get(i).getCategoryId());
+			cat.setCategory_name(catSumber.get(i).getCategory().getName());
+			cat.setInitial(catSumber.get(i).getInitial());
+			cat.setName(catSumber.get(i).getName());
+			cat.setActive(catSumber.get(i).getActive());
+
+			catList.add(cat);
+		}
+
+		return catList;
+
+	}
+	
+	
+	
+	
+	
+	
 }

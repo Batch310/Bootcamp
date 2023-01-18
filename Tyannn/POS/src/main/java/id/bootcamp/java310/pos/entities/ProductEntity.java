@@ -60,6 +60,31 @@ public class ProductEntity {
 	@Column(name = "modify_date")
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
 	private Date modifyDate;
+	
+	public ProductEntity() {
+		
+	}
+	
+
+
+
+	public ProductEntity(Long id, Long variantId, String initial, String name, String description, double price,
+			double stock, boolean active, String createBy, Date createDate) {
+		super();
+		this.id = id;
+		this.variantId = variantId;
+		this.initial = initial;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.stock = stock;
+		this.active = active;
+		this.createBy = createBy;
+		this.createDate = createDate;
+	}
+
+
+
 
 	public Long getId() {
 		return id;
