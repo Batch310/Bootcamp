@@ -77,6 +77,10 @@ public class VariantEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public CategoryEntity getCategoryEntity() {
+		return category;
+	}
 
 	public Long getCategoryId() {
 		return categoryId;

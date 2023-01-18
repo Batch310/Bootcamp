@@ -9,24 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Entity // Menandakan ProductEntity sebagai Entity
-@Table(name = "product") // Menamakan Table
+@Entity // Menandakan class CategoryEntity itu Entity
+@Table(name = "product") // Menamakan Tabel
 public class ProductEntity {
-
 	@Id // Primary Key
-	@Column(nullable = false) // Kolom tidak boleh null
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto increment
+	@Column(nullable = false) // Kolom gk boleh null
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment
 	private Long id;
-
+	
 	@ManyToOne
-	@JoinColumn(name = "variant_id", insertable = false, updatable = false)
-	private VariantEntity variant;
-
+	@JoinColumn(name="variant_id", insertable = false, updatable = false)
+	private VariantEntity variantEntity;
+	
 	@Column(name = "variant_id", nullable = false)
 	private Long variantId;
 
@@ -35,13 +33,13 @@ public class ProductEntity {
 
 	@Column(length = 50, nullable = false, unique = true)
 	private String name;
-
-	@Column(length = 500)
+	
+	@Column(length = 500, nullable = true)
 	private String description;
-
+	
 	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
 	private Double price;
-
+	
 	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
 	private Double stock;
 
@@ -51,16 +49,36 @@ public class ProductEntity {
 	@Column(name = "create_by", length = 50, nullable = false)
 	private String createBy;
 
-	@Column(nullable = false)
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(nullable = false, name="create_date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date createDate;
 
-	@Column(name = "modify_by", length = 50, nullable = true)
+	@Column(name = "modify_by", length = 50)
 	private String modifyBy;
 
-	@Column(nullable = true)
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
+	@Column(name="modify_date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date modifyDate;
+	
+	public ProductEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ProductEntity(Long id, Long variantId, String initial, String name, String description, Double price,
+			Double stock, Boolean active, String createBy, Date createDate) {
+		super();
+		this.id = id;
+		this.variantId = variantId;
+		this.initial = initial;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.stock = stock;
+		this.active = active;
+		this.createBy = createBy;
+		this.createDate = createDate;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -68,6 +86,22 @@ public class ProductEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public VariantEntity getVariantEntity() {
+		return variantEntity;
+	}
+
+	public void setVariantEntity(VariantEntity variantEntity) {
+		this.variantEntity = variantEntity;
+	}
+
+	public Long getVariantId() {
+		return variantId;
+	}
+
+	public void setVariantId(Long variantId) {
+		this.variantId = variantId;
 	}
 
 	public String getInitial() {
@@ -84,6 +118,30 @@ public class ProductEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Double getStock() {
+		return stock;
+	}
+
+	public void setStock(Double stock) {
+		this.stock = stock;
 	}
 
 	public Boolean getActive() {
@@ -118,38 +176,6 @@ public class ProductEntity {
 		this.modifyBy = modifyBy;
 	}
 
-	public Date getMmodifyDate() {
-		return modifyDate;
-	}
-
-	public void setMmodifyDate(Date mmodifyDate) {
-		this.modifyDate = mmodifyDate;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public Double getStock() {
-		return stock;
-	}
-
-	public void setStock(Double stock) {
-		this.stock = stock;
-	}
-
 	public Date getModifyDate() {
 		return modifyDate;
 	}
@@ -157,21 +183,4 @@ public class ProductEntity {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-
-	public VariantEntity getVariant() {
-		return variant;
-	}
-
-	public void setVariant(VariantEntity variant) {
-		this.variant = variant;
-	}
-
-	public Long getVariantId() {
-		return variantId;
-	}
-
-	public void setVariantId(Long variantId) {
-		this.variantId = variantId;
-	}
-
 }
