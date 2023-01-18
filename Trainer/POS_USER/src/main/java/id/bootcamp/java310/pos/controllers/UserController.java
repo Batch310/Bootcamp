@@ -3,6 +3,7 @@ package id.bootcamp.java310.pos.controllers;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
@@ -24,11 +25,21 @@ public class UserController {
 	}
 
 	@RequestMapping("/user/home")
-	public String showUserHome(HttpServletRequest request) {
+	public String showUserHome(HttpServletRequest request, Model model) {
 		String email = (String) request.getSession().getAttribute("email");
 
+		// Ambil data dari session
+		String name = (String) request.getSession().getAttribute("name");
+		String roleCode = (String) request.getSession().getAttribute("role_code");
+		String profilePicture = (String) request.getSession().getAttribute("profile_picture");
+
+		// Ngoper ke file htmlnya
+		model.addAttribute("name", name);
+		model.addAttribute("role_code", roleCode);
+		model.addAttribute("profile_picture", profilePicture);
+
 		if (email != null) {
-			return "user/home-template.html";
+			return "user/home.html";
 		} else {
 			return "redirect:/login";
 		}
@@ -43,5 +54,12 @@ public class UserController {
 		request.getSession().setAttribute("profile_picture", dto.getProfile_picture());
 		request.getSession().setAttribute("role_code", dto.getRole_code());
 		return "/user/home";
+	}
+
+	@RequestMapping("/user/deleteLoginData")
+	@ResponseBody
+	public String deleteLoginData(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "/login";
 	}
 }

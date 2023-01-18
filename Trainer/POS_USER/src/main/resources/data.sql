@@ -20,7 +20,7 @@ VALUES
 INSERT INTO public.biodata(
 	created_by, created_on, fullname)
 	VALUES 
-	(2, now(), 'Nama Admin'),
+	(2, now(), 'Jambrong'),
 	(3, now(), 'Nama Warehouse'),
 	(4, now(), 'Nama Cashier');
 
