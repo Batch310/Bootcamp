@@ -13,40 +13,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import id.bootcamp.java310.pos.dto.CategoryDTO;
+import id.bootcamp.java310.pos.dto.ProductDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
-import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.services.ProductService;
 import id.bootcamp.java310.pos.utils.Resp;
 
 @RestController
-@RequestMapping("/api/variant")
-public class VariantRestController {
-
+@RequestMapping("/api/product")
+public class ProductRestController {
+	
 	@Autowired
-	private VariantService vs;
-
-	@GetMapping("/get")
-	public Resp<List<VariantDTO>> getAll() {
-		// Mengemas Response API
+	private ProductService ps;
+	
+	@GetMapping("get")
+	public Resp<List<ProductDTO>> getAll(){
 		int code = 200;
 		String message = "Sukses";
-		List<VariantDTO> data = vs.getAll();
-
-		Resp<List<VariantDTO>> response = new Resp<>();
+		List<ProductDTO> data = ps.getAll();
+		
+		Resp<List<ProductDTO>> response = new Resp<>();
 		response.setCode(code);
 		response.setMessage(message);
 		response.setData(data);
-
+		
 		return response;
 	}
-
+	
 	@PostMapping("/insert")
-	public Resp<Long> insert(@RequestBody VariantDTO dto) {
+	public Resp<Long> insert(@RequestBody ProductDTO dto) {
 		try {
 			// Mengemas Response API
 			int code = 200;
-			String message = "Variant berhasil ditambah!";
-			Long data = vs.insert(dto);
+			String message = "Product berhasil ditambah!";
+			Long data = ps.insertItem(dto);
 
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
@@ -68,14 +67,14 @@ public class VariantRestController {
 		}
 
 	}
-
+	
 	@PutMapping("/update")
-	public Resp<Long> update(@RequestBody VariantDTO dto) {
+	public Resp<Long> update(@RequestBody ProductDTO dto) {
 		try {
 			// Mengemas Response API
 			int code = 200;
-			String message = "Variant berhasil diubah!";
-			vs.update(dto);
+			String message = "Product berhasil diubah!";
+			ps.updateItem(dto);
 
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
@@ -97,14 +96,14 @@ public class VariantRestController {
 		}
 
 	}
-
+	
 	@DeleteMapping("/delete")
 	public Resp<Long> delete(@RequestParam("id") Long id) {
 		try {
 			// Mengemas Response API
 			int code = 200;
-			String message = "Variant berhasil dihapus!";
-			vs.delete(id);
+			String message = "Product berhasil dihapus!";
+			ps.delete(id);
 
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
@@ -124,36 +123,21 @@ public class VariantRestController {
 			response.setMessage(message);
 			return response;
 		}
+		
 	}
-
-	@GetMapping("/getByCategoryId")
-	public Resp<List<VariantDTO>> getVariantsByCategoryId(
-			@RequestParam("category_id") Long categoryId) {
-		// Mengemas Response API
+	
+	@GetMapping("search")
+	public Resp<List<ProductDTO>> searchProduct(@Param("keyword") String keyword){
 		int code = 200;
 		String message = "Sukses";
-		List<VariantDTO> data = vs.getVariantsByCategoryId(categoryId);
-
-		Resp<List<VariantDTO>> response = new Resp<>();
+		List<ProductDTO> data = ps.searchProduct(keyword);
+		
+		Resp<List<ProductDTO>> response = new Resp<>();
 		response.setCode(code);
 		response.setMessage(message);
 		response.setData(data);
-
+		
 		return response;
 	}
-
-	@GetMapping("/search")
-	public Resp<List<VariantDTO>> search(@RequestParam("keyword") String keyword) {
-		// Mengemas Response API
-		int code = 200;
-		String message = "Sukses";
-		List<VariantDTO> data = vs.search(keyword);
-
-		Resp<List<VariantDTO>> response = new Resp<>();
-		response.setCode(code);
-		response.setMessage(message);
-		response.setData(data);
-
-		return response;
-	}
+	
 }
