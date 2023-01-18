@@ -16,37 +16,41 @@ public class UserController {
 	@RequestMapping("/login")
 	public String showLoginPage(HttpServletRequest request) {
 		String email = (String) request.getSession().getAttribute("email");
+
 		if (email != null) {
-			return "redirect:/user/home";
+			return "redirect:/user/home-baru";
 		} else {
 			return "user/login.html";
 		}
+
 	}
 
 	@RequestMapping("/user/home")
 	public String showUserHome(HttpServletRequest request, Model model) {
-		String email = (String) request.getSession().getAttribute("email");
 
-		// ambil data dari session
+		String email = (String) request.getSession().getAttribute("email");
 		String name = (String) request.getSession().getAttribute("name");
 		String roleCode = (String) request.getSession().getAttribute("role_code");
 		String profilePicture = (String) request.getSession().getAttribute("profile_picture");
-
-		// ngoper ke file htmlnya
-		model.addAttribute("name", name);
-		model.addAttribute("role_code", roleCode);
-		model.addAttribute("profile_picture", profilePicture);
-
+		
+		//ngoper ke file htmlnya
+		model.addAttribute("name",name);
+		model.addAttribute("role_code",roleCode);
+		model.addAttribute("profile_picture",profilePicture);
+		
+		
 		if (email != null) {
-			return "user/home.html";
+			return "user/home-baru.html";
 		} else {
-			return "redirect:login";
+			return "redirect:/login.html";
 		}
+
 	}
 
 	@RequestMapping("/user/saveLoginData")
-	@ResponseBody // mengembalikan sesuai return.
+	@ResponseBody // mengembalikan sesuai return kita, bukan template html
 	public String saveLoginData(UserDTO dto, HttpServletRequest request) {
+		// menyimpan session data sementara yang login
 		request.getSession().setAttribute("email", dto.getEmail());
 		request.getSession().setAttribute("user_id", dto.getUser_id());
 		request.getSession().setAttribute("name", dto.getName());
@@ -54,14 +58,12 @@ public class UserController {
 		request.getSession().setAttribute("role_code", dto.getRole_code());
 		return "/user/home";
 	}
-
+	
+	//Logout
 	@RequestMapping("/user/deleteLoginData")
 	@ResponseBody
 	public String deleteLoginData(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "/login";
 	}
-	
-	
-	
 }

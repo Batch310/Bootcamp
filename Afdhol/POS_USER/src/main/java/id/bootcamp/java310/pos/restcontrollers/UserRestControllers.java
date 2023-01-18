@@ -21,20 +21,21 @@ public class UserRestControllers {
 	
 	@Autowired
 	private UserService us;
+	@Autowired
+	private MenuService ms;
 	
 	@PostMapping("/login")
 	public Resp<UserDTO> login(
-			@RequestParam("email") String email,
+			@RequestParam ("email") String email,
 			@RequestParam ("password") String password){
-				
+		
 		int code = 200;
-		String message = "Login sukses";
+		String message = "Login Sukses";
 		UserDTO dataUser = us.login(email, password);
 		
-		//Validasi jika user tidak ditemukan / gagal login
-		if(dataUser == null) {
-			code = 11;
-			message = "Email atau Password salah !";
+		if(dataUser==null) {
+			code=11;
+			message="Email atau password salah";
 		}
 		
 		Resp<UserDTO> response = new Resp<>();
@@ -43,18 +44,17 @@ public class UserRestControllers {
 		response.setData(dataUser);
 		
 		return response;
-			}
+	}
 	
-	@Autowired
-	private MenuService ms;
-	
+	//menu
 	@GetMapping("/menu")
-	public Resp<List<MenuDTO>> menu(
-			@RequestParam("role_code") String roleCode){
-				
+	public Resp<List<MenuDTO>> menuBar(
+			@RequestParam ("role_code") String role_code){
+		
 		int code = 200;
-		String message = "sukses";
-		List<MenuDTO> menuBar = ms.menuBar(roleCode);
+		String message = "Login Sukses";
+		List<MenuDTO> menuBar = ms.getMenu(role_code);
+	
 		
 		Resp<List<MenuDTO>> response = new Resp<>();
 		response.setCode(code);
@@ -62,6 +62,6 @@ public class UserRestControllers {
 		response.setData(menuBar);
 		
 		return response;
-			}
+	}
 	
 }
