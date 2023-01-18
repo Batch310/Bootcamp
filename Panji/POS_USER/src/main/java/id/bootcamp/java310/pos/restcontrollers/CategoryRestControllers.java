@@ -13,84 +13,48 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
-import id.bootcamp.java310.pos.dto.VariantDTO;
-import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.services.CategoryService;
 import id.bootcamp.java310.pos.utils.Pagination;
 import id.bootcamp.java310.pos.utils.Resp;
 
 @RestController
-@RequestMapping("/api/variant")
-public class VariantRestControllers {
+@RequestMapping("/api/category") // Mapping URL secara umum
+public class CategoryRestControllers {
 
 	@Autowired
-	private VariantService vs;
+	private CategoryService cs;
 
+	// localhost/api/category/get
 	@GetMapping("/get")
-	public Resp<List<VariantDTO>> getAll() {
+	public Resp<List<CategoryDTO>> getAll() {
 		// Mengemas Response API
 		int code = 200;
 		String message = "Sukses";
-		List<VariantDTO> data = vs.getAllVariant();
+		List<CategoryDTO> data = cs.getAllCategories();
 
-		Resp<List<VariantDTO>> response = new Resp<>();
+		Resp<List<CategoryDTO>> response = new Resp<>();
 		response.setCode(code);
 		response.setMessage(message);
 		response.setData(data);
 
 		return response;
+		// Cara 1, 2
+
+		// Cara 3
+		// return cs.getAll3();
+
+		// Cara 4, 5
+		// return cs.getAll45();
 	}
 
-	@GetMapping("/search")
-	public Resp<List<VariantDTO>> getSearch(@RequestParam("keyword") String keyword) {
-		int code = 200;
-		String message = "Sukses";
-		List<VariantDTO> dataSearch = vs.getSearch(keyword);
-		Resp<List<VariantDTO>> response = new Resp<>();
-		response.setCode(code);
-		response.setMessage(message);
-		response.setData(dataSearch);
-
-		return response;
-	}
-
-	// Paginatioon
-	@GetMapping("/pagination")
-	public Resp<Pagination<List<VariantDTO>>> getPagination(@RequestParam("keyword") String keyword,
-			@RequestParam("limit") int limit, @RequestParam("page") int page) {
-		int code = 200;
-		String message = "Sukses";
-		Pagination<List<VariantDTO>> dataPage = vs.getPagination(keyword, limit, page);
-		Resp<Pagination<List<VariantDTO>>> response = new Resp<>();
-		response.setCode(code);
-		response.setMessage(message);
-		response.setData(dataPage);
-
-		return response;
-
-	}
-
-	@GetMapping("/getByCategoryId")
-	public Resp<List<VariantDTO>> getVariantsByCategoryId(@RequestParam("category_id") Long categoryId) {
-		// Mengemas Response API
-		int code = 200;
-		String message = "Sukses";
-		List<VariantDTO> data = vs.getVariantsByCategoryId(categoryId);
-
-		Resp<List<VariantDTO>> response = new Resp<>();
-		response.setCode(code);
-		response.setMessage(message);
-		response.setData(data);
-
-		return response;
-	}
-
+	// localhost/api/category/insert
 	@PostMapping("/insert")
-	public Resp<Long> insertVariant(@RequestBody VariantDTO dto) {
+	public Resp<Long> insertCategory(@RequestBody CategoryDTO dto) {
 		try {
 			// Mengemas Response API
 			int code = 200;
-			String message = "Variant berhasil ditambahkan !";
-			Long data = vs.insert2(dto);
+			String message = "Category berhasil ditambahkan!";
+			Long data = cs.insert1(dto);
 
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
@@ -99,8 +63,7 @@ public class VariantRestControllers {
 
 			return response;
 		} catch (Exception e) {
-			String exceptionMessage = e.getMessage();
-
+			String exceptionMessage = e.getMessage(); // "11-Blablabla"
 			String[] split = exceptionMessage.split("-");
 
 			int code = Integer.parseInt(split[0]);
@@ -109,28 +72,31 @@ public class VariantRestControllers {
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
 			response.setMessage(message);
-
 			return response;
 		}
-
 	}
 
+	// localhost/api/category/update
 	@PutMapping("/update")
-	public Resp<Long> updateVariant(@RequestBody VariantDTO dto) {
+	public Resp<Long> updateCategory(@RequestBody CategoryDTO dto) {
 		try {
 			// Mengemas Response API
 			int code = 200;
-			String message = "Variant berhasil diubah !";
-			vs.update(dto);
+			String message = "Category berhasil diubah!";
+
+			// Jangan lupa dipanggil!!
+			cs.update(dto);
 
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
 			response.setMessage(message);
 
 			return response;
-		} catch (Exception e) {
-			String exceptionMessage = e.getMessage();
 
+//			cs.update(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			String exceptionMessage = e.getMessage(); // "11-Blablabla"
 			String[] split = exceptionMessage.split("-");
 
 			int code = Integer.parseInt(split[0]);
@@ -139,19 +105,21 @@ public class VariantRestControllers {
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
 			response.setMessage(message);
-
 			return response;
 		}
 
 	}
 
+	// localhost/api/category/delete
 	@DeleteMapping("/delete")
-	public Resp<Long> deleteVariant(@RequestParam("id") Long id) {
+	public Resp<Long> deleteCategory(@RequestParam("id") Long id) {
 		try {
 			// Mengemas Response API
 			int code = 200;
-			String message = "Variant berhasil dihapus !";
-			vs.delete(id);
+			String message = "Category berhasil dihapus!";
+
+			// Jangan lupa dipanggil!!
+			cs.delete(id);
 
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
@@ -159,8 +127,7 @@ public class VariantRestControllers {
 
 			return response;
 		} catch (Exception e) {
-			String exceptionMessage = e.getMessage();
-
+			String exceptionMessage = e.getMessage(); // "11-Blablabla"
 			String[] split = exceptionMessage.split("-");
 
 			int code = Integer.parseInt(split[0]);
@@ -169,9 +136,38 @@ public class VariantRestControllers {
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
 			response.setMessage(message);
-
 			return response;
 		}
+	}
+
+	@GetMapping("/search")
+	public Resp<List<CategoryDTO>> search(@RequestParam("keyword") String keyword) {
+		int code = 200;
+		String message = "sukses";
+		List<CategoryDTO> dataSearch = cs.search(keyword.trim()); // trim " k e " -> "k e"
+		Resp<List<CategoryDTO>> responseSearch = new Resp<>();
+		responseSearch.setCode(code);
+		responseSearch.setMessage(message);
+		responseSearch.setData(dataSearch);
+
+		return responseSearch;
+
+	}
+
+	@GetMapping("/pagination")
+	public Resp<Pagination<List<CategoryDTO>>> pagination(@RequestParam("keyword") String keyword, 
+			@RequestParam("limit") int limit,
+			@RequestParam("page") int page) {
+
+		int code = 200;
+		String message = "sukses";
+		Pagination<List<CategoryDTO>> data = cs.pagination(keyword.trim(),limit,page); // trim " k e " -> "k e"
+		Resp<Pagination<List<CategoryDTO>>> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+
+		return response;
 
 	}
 }

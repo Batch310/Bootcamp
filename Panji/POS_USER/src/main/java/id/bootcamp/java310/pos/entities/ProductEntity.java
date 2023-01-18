@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity // Menandakan class CategoryEntity itu Entity
 @Table(name = "product") // Menamakan Tabel
-public class ProductEntity {
+public class ProductEntity extends BaseProperties {
 	@Id // Primary Key
 	@Column(nullable = false) // Kolom gk boleh null
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment
@@ -45,27 +45,13 @@ public class ProductEntity {
 
 	@Column(nullable = false)
 	private Boolean active;
-
-	@Column(name = "create_by", length = 50, nullable = false)
-	private String createBy;
-
-	@Column(nullable = false, name="create_date")
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
-	private Date createDate;
-
-	@Column(name = "modify_by", length = 50)
-	private String modifyBy;
-
-	@Column(name="modify_date")
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
-	private Date modifyDate;
 	
 	public ProductEntity() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public ProductEntity(Long id, Long variantId, String initial, String name, String description, Double price,
-			Double stock, Boolean active, String createBy, Date createDate) {
+			Double stock, Boolean active) {
 		super();
 		this.id = id;
 		this.variantId = variantId;
@@ -75,8 +61,6 @@ public class ProductEntity {
 		this.price = price;
 		this.stock = stock;
 		this.active = active;
-		this.createBy = createBy;
-		this.createDate = createDate;
 	}
 
 
@@ -150,37 +134,5 @@ public class ProductEntity {
 
 	public void setActive(Boolean active) {
 		this.active = active;
-	}
-
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public String getModifyBy() {
-		return modifyBy;
-	}
-
-	public void setModifyBy(String modifyBy) {
-		this.modifyBy = modifyBy;
-	}
-
-	public Date getModifyDate() {
-		return modifyDate;
-	}
-
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
 	}
 }
