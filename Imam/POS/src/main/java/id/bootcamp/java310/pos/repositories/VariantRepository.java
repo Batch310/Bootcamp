@@ -24,6 +24,18 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 			)
 	public List<VariantDTO> getAllku();
 	
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, value = "update variant\r\n" + "set category_id = :#{#dto.category_id}, "
+			+ "initial = :#{#dto.initial}, " + "name = :#{#dto.name}, " + "active = :#{#dto.active}, "
+			+ "modify_by = :#{#dto.modify_by}, " + "modify_date = :modifyDate\r\n" + "where id = :#{#dto.id}")
+	public void updateVariant(@Param("dto") VariantDTO dto, @Param("modifyDate") Date modifyDate);
+	
+	@Query(nativeQuery = true, value = "select * from variant where category_id = :cat_id")
+	public List<VariantEntity> getVariantsByCategoryId(@Param("cat_id") Long categoryId);
+	
+	
+	
 	//SEARCH
 	@Query(nativeQuery = true,
 			name ="search_variant"
