@@ -9,44 +9,42 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "Product")
-public class ProductEntity {
-
+@Table(name = "order_detail")
+public class OrderDetailEntity {
+	
 	@Id
-	@Column(nullable = false) // kolom != null
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
 	@ManyToOne
-	@JoinColumn(name = "variant_id", insertable = false, updatable = false)
-	private VariantEntity variant;
+	@JoinColumn(name = "header_id", insertable = false, updatable = false)
+	private OrderHeaderEntity orderHeader;
 
-	@Column(name = "variant_id", nullable = false)
-	private Long variantId;
+	@Column(name = "header_id", nullable = false)
+	private Long headerId;
+	
+	@OneToOne
+	@JoinColumn(name = "product_id", insertable = false, updatable = false)
+	private ProductEntity product;
 
-	@Column(length = 10, nullable = false, unique = true)
-	private String initial;
-
-	@Column(length = 50, nullable = false, unique = true)
-	private String name;
-
-	@Column(length = 500)
-	private String description;
-
-	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
+	@Column(name = "product_id", nullable = false)
+	private Long productId;
+	
+	@Column(nullable = false)
+	private Double quantity;
+	
+	@Column(nullable = false)
 	private Double price;
-
-	@Column(columnDefinition = "Decimal(18,2)", nullable = false)
-	private Double stock;
-
+	
 	@Column(nullable = false)
 	private Boolean active;
-
+	
 	@Column(name = "create_by", length = 50, nullable = false)
 	private String createBy;
 
@@ -61,25 +59,6 @@ public class ProductEntity {
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm", timezone = "Asia/Jakarta")
 	private Date modifyDate;
 
-	public ProductEntity() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public ProductEntity(Long id, Long variantId, String initial, String name, String description, Double price,
-			Double stock, Boolean active, String createBy, Date createDate) {
-		super();
-		this.id = id;
-		this.variantId = variantId;
-		this.initial = initial;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.stock = stock;
-		this.active = active;
-		this.createBy = createBy;
-		this.createDate = createDate;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -88,44 +67,44 @@ public class ProductEntity {
 		this.id = id;
 	}
 
-	public VariantEntity getVariant() {
-		return variant;
+	public OrderHeaderEntity getOrderHeader() {
+		return orderHeader;
 	}
 
-	public void setVariant(VariantEntity variant) {
-		this.variant = variant;
+	public void setOrderHeader(OrderHeaderEntity orderHeader) {
+		this.orderHeader = orderHeader;
 	}
 
-	public Long getVariantId() {
-		return variantId;
+	public Long getHeaderId() {
+		return headerId;
 	}
 
-	public void setVariantId(Long variantId) {
-		this.variantId = variantId;
+	public void setHeaderId(Long headerId) {
+		this.headerId = headerId;
 	}
 
-	public String getInitial() {
-		return initial;
+	public ProductEntity getProduct() {
+		return product;
 	}
 
-	public void setInitial(String initial) {
-		this.initial = initial;
+	public void setProduct(ProductEntity product) {
+		this.product = product;
 	}
 
-	public String getName() {
-		return name;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
-	public String getDescription() {
-		return description;
+	public Double getQuantity() {
+		return quantity;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setQuantity(Double quantity) {
+		this.quantity = quantity;
 	}
 
 	public Double getPrice() {
@@ -134,14 +113,6 @@ public class ProductEntity {
 
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-
-	public Double getStock() {
-		return stock;
-	}
-
-	public void setStock(Double stock) {
-		this.stock = stock;
 	}
 
 	public Boolean getActive() {
@@ -183,5 +154,6 @@ public class ProductEntity {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-
+	
+	
 }
