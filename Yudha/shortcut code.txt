@@ -1,0 +1,3 @@
+nambahin baris CTRL + ALT + PgDn
+
+CTRL + Space 
