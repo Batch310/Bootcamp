@@ -27,8 +27,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 			+ "price = :#{#dto.price},\r\n"
 			+ "stock = :#{#dto.stock},\r\n"
 			+ "active = :#{#dto.active},\r\n"
-			+ "modify_by = :#{#dto.create_by},\r\n"
-			+ "create_by = :modifyDate\r\n"
+			+ "modified_by = CAST(:#{#dto.modify_by} AS INT),\r\n"
+			+ "modified_on = :modifyDate\r\n"
 			+ "where id = :#{#dto.id}")
 	public void updateItem(@Param("dto") ProductDTO dto, @Param("modifyDate") Date modifyDate);
 	
@@ -46,11 +46,11 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 	public Boolean isNameExists(@Param("name") String name);
 
 	// Validasi apakah initial sudah sama dan bukan dari id yg sama
-	@Query(nativeQuery = true, value = "select exists(select * from product where initial = :initial AND id != :id)")
+	@Query(nativeQuery = true, value = "select exists(select * from product where initial = :initial AND id = :id)")
 	public Boolean isInitialExists(@Param("initial") String initial, @Param("id") Long id);
 
 	// Validasi apakah name sudah ada di DB dan bukan dari id yang sama
-	@Query(nativeQuery = true, value = "select exists(select * from product where name = :name AND id != :id)")
+	@Query(nativeQuery = true, value = "select exists(select * from product where name = :name AND id = :id)")
 	public Boolean isNameExists(@Param("name") String name, @Param("id") Long id);
 
 	// Validasi apakah id product dipakai di order_detail
@@ -58,7 +58,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 	public Boolean isProductUsedByOrderDetail(@Param("id") Long id);
 
 	// Validasi apakah category yang mau diinsert ada
-	@Query(nativeQuery = true, value = "select exists(select * from variant where id = :id)")
+	@Query(nativeQuery = true, value = "select exists(select * from variant where id = 1)")
 	public Boolean isVariantExists(@Param("id") Long id);
 
 }

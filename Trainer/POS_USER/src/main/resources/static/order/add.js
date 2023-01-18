@@ -55,6 +55,10 @@ function bukaPopupOrder() {
 							</button>
 						</span>
 					</div>
+					<div class="col-sm-3 text-right">
+						<button id="content-add-button" class="btn btn-dark"
+							onclick="bukaPopupAdd()">Add Category</button>
+					</div>
 				</div>
 				<table class="table">
 					<thead>
