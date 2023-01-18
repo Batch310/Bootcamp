@@ -18,7 +18,7 @@ public class UserController {
 		String email = (String) request.getSession().getAttribute("email");
 
 		if (email != null) {
-			return "redirect:/user/home";
+			return "redirect:/user/home-baru";
 		} else {
 			return "user/login.html";
 		}
@@ -40,7 +40,7 @@ public class UserController {
 		
 		
 		if (email != null) {
-			return "user/home.html";
+			return "user/home-baru.html";
 		} else {
 			return "redirect:/login.html";
 		}
