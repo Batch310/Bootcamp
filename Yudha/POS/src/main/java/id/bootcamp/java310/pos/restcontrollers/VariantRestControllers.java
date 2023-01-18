@@ -125,6 +125,22 @@ public class VariantRestControllers {
 		
 		
 	}
+	
+	@GetMapping("/getByCategoryId")
+	public Resp<List<VariantDTO>> getVariantsByCategoryId(@RequestParam("category_id") Long categoryId) {
+		// Mengemas Response API
+		int code = 200;
+		String message = "Sukses";
+		List<VariantDTO> data = vs.getVariantsByCategoryId(categoryId);
+
+		Resp<List<VariantDTO>> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+
+		return response;
+	}
+	
 	@GetMapping("/search")
 	public Resp<List<VariantDTO>> search(@RequestParam("keyword") String keyword){
 		// Mengemas Response API
