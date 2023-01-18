@@ -41,7 +41,10 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 					+ "WHERE ID = :#{#dto.id} returning id")
 	public Long update(@Param("dto") VariantDTO dto,
 						  @Param("modifyDate") Date modifyDate);
-	
+
+	@Query(nativeQuery = true, value = "select * from variant where category_id = :cat_id")
+	public List<VariantEntity> getVariantsByCategoryId(@Param("cat_id") Long categoryId);
+
 	//DELETE
 	@Query(nativeQuery = true,
 			value = "DELETE FROM PUBLIC.VARIANT\r\n"

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity // Menandakan class CategoryEntity itu Entity
 @Table(name = "product") // Menamakan Tabel
-public class ProductEntity {
+public class ProductEntityBackup {
 	@Id // Primary Key
 	@Column(nullable = false) // Kolom gk boleh null
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Auto Increment
@@ -60,11 +60,11 @@ public class ProductEntity {
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",timezone = "Asia/Jakarta")
 	private Date modifyDate;
 	
-	public ProductEntity() {
+	public ProductEntityBackup() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductEntity(Long id, Long variantId, String initial, String name, String description, Double price,
+	public ProductEntityBackup(Long id, Long variantId, String initial, String name, String description, Double price,
 			Double stock, Boolean active, String createBy, Date createDate) {
 		super();
 		this.id = id;
