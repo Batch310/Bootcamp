@@ -43,6 +43,9 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 
 	// Delete
 	// Cara 2 - menggunakan native query
+	
+	@Query(nativeQuery = true, value = "select * from variant where category_id = :cat_id")
+	public List<VariantEntity> getVariantsByCategoryId(@Param("cat_id") Long categoryId);
 
 	@Modifying
 	@Transactional
