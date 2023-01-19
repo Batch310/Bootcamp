@@ -12,7 +12,7 @@ VALUES
 --Super Admin Create Dummy User
 INSERT INTO public.m_user(created_by, created_on, email, password, role_id)
 VALUES 
-(1, now(), 'admin@batch310.com', 123456, 1),
+(1, now(), 'jambrong@batch310.com', 123456, 1),
 (1, now(), 'warehouse@batch310.com', 123456, 2),
 (1, now(), 'cashier@batch310.com', 123456, 3);
 
@@ -20,7 +20,7 @@ VALUES
 INSERT INTO public.biodata(
 	created_by, created_on, fullname)
 	VALUES 
-	(2, now(), 'Nama Admin'),
+	(2, now(), 'Jambrong'),
 	(3, now(), 'Nama Warehouse'),
 	(4, now(), 'Nama Cashier');
 
@@ -39,23 +39,23 @@ UPDATE public.m_user
 INSERT INTO public.menu(
 	created_by, created_on, name, url)
 	VALUES 
-	(1, now(), 'Category', '/api/category/home'),
-	(1, now(), 'Variant', '/api/variant/home'),
-	(1, now(), 'Product', '/api/product/home'),
-	(1, now(), 'Order', '/api/order/home')
+	(1, now(), 'Category', '/category/home'),
+	(1, now(), 'Variant', '/variant/home'),
+	(1, now(), 'Product', '/product/home'),
+	(1, now(), 'Order', '/order/home')
 	;
 
 --Add Menu By Role
 INSERT INTO public.menu_role(
-	created_by, created_on, menu_id, role_id)
+	created_by, created_on, role_id, menu_id)
 	VALUES 
+	(1, now(), 1, 1),
 	(1, now(), 1, 2),
 	(1, now(), 1, 3),
+	(1, now(), 1, 4),
+	(1, now(), 2, 1),
 	(1, now(), 2, 2),
 	(1, now(), 2, 3),
-	(1, now(), 3, 2),
-	(1, now(), 3, 3),
-	(1, now(), 3, 2),
 	(1, now(), 3, 4);
 
 --Insert Category
