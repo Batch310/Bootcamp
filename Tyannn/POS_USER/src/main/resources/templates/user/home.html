@@ -33,41 +33,47 @@
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<h5 id="nav-username" class="dropdown-item">Welcome, [[${name}]]!</h5>
+						<a class="dropdown-item" href="/user/profile" )>Profile</a>
 						<a class="dropdown-item" href="#" onclick="logOut()" )>Log Out</a>
 					</div>
 				</li>
 			</ul>
 		</div>
 	</nav>
-	<div class="card w-100">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Button</a>
-		</div>
-	</div>
 
-	<div class="card w-100">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Button</a>
-		</div>
-	</div>
+	<!-- Tag bantu untuk diappend nanti -->
 
-	<div class="card w-100">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Button</a>
+	<div id="tBody">
+		<div class="card w-100">
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+				<a onclick="location.href='/category/home'" class="btn btn-primary">Category</a>
+			</div>
 		</div>
-	</div>
 
-	<div class="card w-100">
-		<div class="card-body">
-			<h5 class="card-title">Card title</h5>
-			<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			<a href="#" class="btn btn-primary">Button</a>
+		<div class="card w-100">
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+				<a onclick="location.href='/variant/home'" class="btn btn-primary">Variant</a>
+			</div>
+		</div>
+
+		<div class="card w-100">
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+				<a onclick="location.href='/product/home'" class="btn btn-primary">Product</a>
+			</div>
+		</div>
+
+		<div class="card w-100">
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+				<a onclick="location.href='/order/home'" class="btn btn-primary">Order</a>
+			</div>
 		</div>
 	</div>
 
@@ -113,14 +119,42 @@
 		console.log(roleCode);
 		console.log(profilePicture);
 
-		function role() {
+		// --------------------------
+		// AJAX GET MENU
+		// membuat fungsi
+		function getMenuApi(roleCode) {
 			return $.ajax({
-				url: "/user/menu?role_code",
+				url: "/api/user/menu?role_code=" + roleCode,
 				method: "GET",
 				async: false
 			});
 		}
-		console.log(role);
+
+		//Manggil fungsi
+		var response = getMenuApi(roleCode).responseJSON;
+		console.log(response);
+
+		var listData = response.data;
+
+		//kosongan
+		$("#tBody").html("");
+		//melakukan perulangan untuk memasukan html	taiap menu
+		for (i = 0; i < listData.length; i++) {
+			$("#tBody").append(`
+			<div class="card w-100">
+			<div class="card-body">
+				<h5 class="card-title">${listData[i].name}</h5>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+				<a onclick="location.href='${listData[i].url}'" class="btn btn-primary">${listData[i].name}</a>
+			</div>
+		</div>
+			`)
+		}
+
+
+		//----------------------------
+	
+		function getUserProfile()
 
 	</script>
 </body>
