@@ -58,7 +58,7 @@ public class UserController {
 		model.addAttribute("user_id",userId);
 		
 		if(email != null) {
-			return "user/profile-template.html";
+			return "user/profile.html";
 		}else {
 			return "redirect:/login";
 		}
