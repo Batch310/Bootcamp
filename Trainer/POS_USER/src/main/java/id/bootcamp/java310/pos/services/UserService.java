@@ -16,5 +16,4 @@ public class UserService {
 		UserDTO dataUser = ur.login(email, password);
 		return dataUser;
 	}
-
 }

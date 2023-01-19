@@ -136,11 +136,11 @@ public class CategoryService {
 	public void update(CategoryDTO dto) throws Exception {
 		// Validasi
 
-		boolean isInitialExists = cr.isInitialExists(dto.getInitial());
+		boolean isInitialExists = cr.isInitialExists(dto.getInitial(),dto.getId());
 		if (isInitialExists == true) {
 			throw new Exception("11-Initial sudah terpakai");
 		}
-		boolean isNameExists = cr.isNameExists(dto.getName());
+		boolean isNameExists = cr.isNameExists(dto.getName(),dto.getId());
 		if (isNameExists == true) {
 			throw new Exception("12-Name sudah terpakai");
 		}

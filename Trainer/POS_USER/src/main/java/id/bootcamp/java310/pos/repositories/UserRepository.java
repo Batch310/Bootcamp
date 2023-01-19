@@ -10,7 +10,6 @@ import id.bootcamp.java310.pos.entities.UserEntity;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
-
 	@Query(nativeQuery = true, name = "login_query")
 	public UserDTO login(@Param("email") String email, @Param("password") String password);
 }

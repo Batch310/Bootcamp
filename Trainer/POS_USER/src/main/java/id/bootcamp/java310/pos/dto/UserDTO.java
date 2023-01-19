@@ -8,9 +8,12 @@ public class UserDTO {
 	private String profile_picture;
 	private String role_code;
 
+	
 	public UserDTO() {
-		super();
+		// TODO Auto-generated constructor stub
 	}
+	
+
 
 	public UserDTO(String email, Long user_id, String name, String profile_picture, String role_code) {
 		super();

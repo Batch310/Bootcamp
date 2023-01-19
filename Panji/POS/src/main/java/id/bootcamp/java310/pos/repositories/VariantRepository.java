@@ -95,4 +95,8 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long>{
 	// Hitung total data
 	@Query(nativeQuery = true, value = "select count(*) from variant where name ilike '%' || :keyword ||'%'")
 	public int countTotalData(@Param("keyword") String keyword);
+	
+	//
+	@Query(nativeQuery = true, value = "select * from variant where category_id = :cat_id")
+	public List<VariantEntity> getVariantsByCategoryId(@Param("cat_id") Long categoryId);
 }
