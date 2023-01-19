@@ -46,6 +46,24 @@ public class UserController {
 			return "redirect:/login";
 		}
 	}
+	
+	@RequestMapping("/user/profile")
+	public String showProfile(HttpServletRequest request, Model model) {
+		String email = (String) request.getSession().getAttribute("email");
+		//Ambil data dari session
+		
+		Long userId = (Long) request.getSession().getAttribute("user_id");
+		
+		// Ngoper ke file htmlnya
+		model.addAttribute("user_id",userId);
+		
+		if(email != null) {
+			return "user/profile-template.html";
+		}else {
+			return "redirect:/login";
+		}
+	}
+	
 	@RequestMapping("/user/saveLoginData")
 	@ResponseBody // mengembalikan sesuai return kita, bukan tampilan html
 	public String saveLoginData(UserDTO dto, HttpServletRequest request) {
@@ -63,4 +81,7 @@ public class UserController {
 		request.getSession().invalidate();
 		return "/login";
 	}
+	
+	
+	
 }

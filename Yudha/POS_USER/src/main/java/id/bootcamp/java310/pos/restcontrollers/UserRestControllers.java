@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.MenuDTO;
+import id.bootcamp.java310.pos.dto.ProfileDTO;
 import id.bootcamp.java310.pos.dto.UserDTO;
+import id.bootcamp.java310.pos.services.BiodataService;
 import id.bootcamp.java310.pos.services.MenuService;
 import id.bootcamp.java310.pos.services.UserService;
 import id.bootcamp.java310.pos.utils.Resp;
@@ -25,6 +27,9 @@ public class UserRestControllers {
 	
 	@Autowired
 	private MenuService ms;
+	
+	@Autowired
+	private BiodataService bs;
 	
 	@RequestMapping("login")
 	public Resp<UserDTO> login(
@@ -62,5 +67,17 @@ public class UserRestControllers {
 		return response;
 	}
 						
-	
+	@GetMapping("/profile")
+	public Resp<ProfileDTO> profile(@RequestParam("user_id") Long user_id){
+		// Mengemas Response API
+		int code = 200;
+		String message = "Sukses";
+		ProfileDTO data = bs.profile(user_id);	
+		Resp<ProfileDTO> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+		
+		return response;
+	}
 }
