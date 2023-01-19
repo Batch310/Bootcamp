@@ -246,6 +246,47 @@ body {
 				});
 			});
 			
+			//------GET PROFILE------------
+			var user_id = "[[${user_id}]]"
+			console.log(user_id)
+			
+			function getProfileApi(user_id){
+			return $.ajax({
+				url: "/api/user/profile?user_id=" +user_id,
+				method: "GET",
+				async: false
+			})
+		}
+		
+		var response = getProfileApi(user_id).responseJSON;
+		console.log(response);
+		
+		if(response.code == 200){
+			//highlight-fullname
+			$("#highlight-fullname").html(response.data.fullname);	
+					
+			//imgProfile
+			$("#imgProfile").prop('src', response.data.picture);	
+
+			//input-fullname
+			$("#input-fullname").val(response.data.fullname);	
+			
+			//input-phone
+			$("#input-phone").val(response.data.phone);	
+			
+			//input-email
+			$("#input-email").val(response.data.email);	
+			
+			//input-password
+			$("#input-password").val(response.data.password);	
+
+			//input-role
+			$("#input-role").html(response.data.role);	
+			
+		}else{
+			alert(response.message);
+		}
+			
 		</script>
 </body>
 
