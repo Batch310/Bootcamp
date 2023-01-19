@@ -33,29 +33,23 @@
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<h5 id="nav-username" class="dropdown-item">Welcome, [[${name}]]!</h5>
+						<a class="dropdown-item" href="/user/profile"  )>Profile</a>
 						<a class="dropdown-item" href="#" onclick="logOut()" )>Log Out</a>
+						
 					</div>
 				</li>
 			</ul>
 		</div>
 	</nav>
 
-	<button id="content-add-button" class="btn btn-primary" onclick="bukaPopupAdd()">
-		Tombol 1</button>
-	<tr></tr>
-	<button id="content-add-button" class="btn btn-primary" onclick="bukaPopupAdd()">
-		Tombol 2</button>
-	<tr></tr>
-	<button id="content-add-button" class="btn btn-primary" onclick="bukaPopupAdd()">
-		Tombol 3</button>
-	<tr></tr>
-	<button id="content-add-button" class="btn btn-primary" onclick="bukaPopupAdd()">
-		Tombol 4</button>
-	<tr></tr>
-
-	<!--
-		
-		-->
+	<!-- Membuat tag untuk diappend-->
+	<div id="body-main">
+	
+	
+	</div>
+	
+	
+	
 
 
 	<footer class="container-fluid bg-dark text-white p-5 text-center">
@@ -95,13 +89,52 @@
 			$(location).attr('href', redirectURL);
 		}
 
+		// membuat variabel untuk dipanggil
 		var name = "[[${name}]]";
 		var roleCode = "[[${role_code}]]";
 		var profilePicture = "[[${profile_picture}]]";
+		var userID = "[[${user_id}]]";
 
 		console.log(name);
 		console.log(roleCode);
 		console.log(profilePicture);
+		
+		function getMenuRole(roleCode){
+			return $.ajax({
+				url: "/api/user/menu?role_code="+roleCode,
+				method: "GET",
+				async: false
+			});
+		}
+		
+		
+		var response = getMenuRole(roleCode).responseJSON;
+		console.log(response);
+		
+		//variabel menmapung lList menu
+		var data = response.data;
+		
+		
+		$("#data").html("");
+		//melakukan perulangan untuk memasukkan tag HTML tiap menu
+		for(i=0; i<data.length ; i++){
+			$("#body-main").append(`
+			<button id="content-add-button" class="btn btn-primary" onclick="location.href = '${data[i].url}'; ">
+		${data[i].name}</button>
+			`)
+		}
+
+		function getprofile(userID){
+			return $.ajax({
+				url: "/api/user/profile?user_id="+userID,
+				method: "GET",
+				async: false
+			});
+		}
+		
+		getprofile(userID);
+		console.log(getprofile(userID));
+
 
 	</script>
 </body>

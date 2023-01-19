@@ -24,6 +24,24 @@ public class UserController {
 		}
 
 	}
+	
+	@RequestMapping("/user/profile")
+	public String showProfile(HttpServletRequest request, Model model) {
+		
+		String email = (String) request.getSession().getAttribute("email");
+		
+		//ambil data dari session
+		Long userId = (Long) request.getSession().getAttribute("user_id");
+		
+		//oper data
+		model.addAttribute("user_id", userId);
+		
+		if (email != null) {
+			return "user/profile.html";
+		} else {
+			return "redirect:/login";
+		}
+	}
 
 	@RequestMapping("/user/home")
 	public String showUserHome(HttpServletRequest request, Model model) {
