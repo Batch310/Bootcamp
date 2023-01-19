@@ -39,10 +39,10 @@ UPDATE public.m_user
 INSERT INTO public.menu(
 	created_by, created_on, name, url)
 	VALUES 
-	(1, now(), 'Category', '/api/category/home'),
-	(1, now(), 'Variant', '/api/variant/home'),
-	(1, now(), 'Product', '/api/product/home'),
-	(1, now(), 'Order', '/api/order/home')
+	(1, now(), 'Category', '/category/home'),
+	(1, now(), 'Variant', '/variant/home'),
+	(1, now(), 'Product', '/product/home'),
+	(1, now(), 'Order', '/order/home')
 	;
 
 --Add Menu By Role
@@ -55,7 +55,7 @@ INSERT INTO public.menu_role(
 	(1, now(), 1, 4),
 	(1, now(), 2, 1),
 	(1, now(), 2, 2),
-	(1, now(), 3, 3),
+	(1, now(), 2, 3),
 	(1, now(), 3, 4);
 
 --Insert Category
