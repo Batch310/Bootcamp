@@ -14,7 +14,7 @@ public class MenuService {
 	@Autowired
 	private MenuRepository mr;
 	
-	public List<MenuDTO> menu(String role_code) {
+	public List<MenuDTO> getMenu(String role_code) {
 		List<MenuDTO> dataMenu = mr.menu(role_code);
 		return dataMenu;
 	}
