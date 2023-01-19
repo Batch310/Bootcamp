@@ -28,16 +28,16 @@ public class UserController {
 	@RequestMapping("/user/home")
 	public String showUserHome(HttpServletRequest request, Model model) {
 		String email = (String) request.getSession().getAttribute("email");
-		
-		//Ambil data dari session
+
+		// Ambil data dari session
 		String name = (String) request.getSession().getAttribute("name");
 		String roleCode = (String) request.getSession().getAttribute("role_code");
 		String profilePicture = (String) request.getSession().getAttribute("profile_picture");
-		
-		//Ngoper ke file htmlnya
-		model.addAttribute("name",name);
-		model.addAttribute("role_code",roleCode);
-		model.addAttribute("profile_picture",profilePicture);
+
+		// Ngoper ke file htmlnya
+		model.addAttribute("name", name);
+		model.addAttribute("role_code", roleCode);
+		model.addAttribute("profile_picture", profilePicture);
 
 		if (email != null) {
 			return "user/home.html";
@@ -46,6 +46,24 @@ public class UserController {
 		}
 
 	}
+	
+	@RequestMapping("/user/profile")
+	public String showProfile(HttpServletRequest request, Model model) {
+		String email = (String) request.getSession().getAttribute("email");
+
+		// Ambil data dari session
+		Long userId = (Long) request.getSession().getAttribute("user_id");
+		
+		// Ngoper userId file htmlnya
+		model.addAttribute(";aipuwhfpioaw", userId);
+
+		if (email != null) {
+			return "user/profile-template.html";
+		} else {
+			return "redirect:/login";
+		}
+	}
+	
 
 	@RequestMapping("login/saveLoginData")
 	@ResponseBody // Mengembalikan sesuai return kita, bukan template.html
@@ -63,4 +81,5 @@ public class UserController {
 	public String deleteLoginData(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "/login";
+	}
 }
