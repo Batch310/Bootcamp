@@ -12,7 +12,7 @@ VALUES
 --Super Admin Create Dummy User
 INSERT INTO public.m_user(created_by, created_on, email, password, role_id)
 VALUES 
-(1, now(), 'admin@batch310.com', 123456, 1),
+(1, now(), 'jambrong@batch310.com', 123456, 1),
 (1, now(), 'warehouse@batch310.com', 123456, 2),
 (1, now(), 'cashier@batch310.com', 123456, 3);
 
