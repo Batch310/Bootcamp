@@ -84,15 +84,6 @@
 	console.log(name);
 	console.log(roleCode);
 	console.log(profilePicture);
-	
-	function role(roleCode){
-		console.log(roleCode);
-		return $.ajax({
-				url: "localhost/api/user/menu?role_code=" + roleCode,
-				method: "GET",
-				async: false
-			});
-	}
 	</script>
 </body>
 
