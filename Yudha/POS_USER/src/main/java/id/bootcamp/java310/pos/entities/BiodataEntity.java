@@ -15,7 +15,7 @@ import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
 import id.bootcamp.java310.pos.dto.ProfileDTO;
-import id.bootcamp.java310.pos.dto.UserDTO;
+
 
 @NamedNativeQueries(value = {
 		@NamedNativeQuery(name = "profile_query", query = 

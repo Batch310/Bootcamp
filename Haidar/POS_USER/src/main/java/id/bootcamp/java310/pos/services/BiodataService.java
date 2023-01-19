@@ -13,41 +13,43 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import id.bootcamp.java310.pos.dto.ProfileDTO;
-
 import id.bootcamp.java310.pos.repositories.BiodataRepository;
-
-
 @Service
 public class BiodataService {
 
 	@Autowired
-	private BiodataRepository pr;
+	private BiodataRepository br;
 	
-	public ProfileDTO profile(Long user_id) {
-		ProfileDTO dataProfile = pr.getProfile(user_id);
-		return dataProfile;
+	public ProfileDTO getProfile(Long userId) {
+		ProfileDTO dataUser = br.getProfile(userId);
+		return dataUser;
 	}
 	
-	public String upload(MultipartFile file, Long userId) {
-		String absolutePath =  new FileSystemResource("").getFile().getAbsolutePath();
+	public String uploadPicture(MultipartFile image, Long userId) {
+		String absolutePath = new FileSystemResource("").getFile().getAbsolutePath();
 		absolutePath += "\\uploads\\";
 		
-		String fileName = userId + ".jpg";
-		
+		String fileName = "userId_" + userId + ".jpg";
+				
 		Path path = Paths.get(absolutePath + fileName);
 		
 		try {
-			Files.copy(file.getInputStream(),path, StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(image.getInputStream(), 
+					path, StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		String hasilUpload = ServletUriComponentsBuilder.fromCurrentContextPath().path("/images/").path(fileName).toUriString();
+		String hasilUpload = ServletUriComponentsBuilder
+				.fromCurrentContextPath()
+				.path("/images/")
+				.path(fileName)
+				.toUriString();
 		
-		Long biodataId = pr.getBiodataIdFromUserId(userId);
+		Long biodataId = br.getBiodataIdByUserId(userId);
 		
-		pr.upload(hasilUpload, biodataId);
+		br.uploadPicture(hasilUpload, biodataId);
 		
 		return hasilUpload;
 	}
