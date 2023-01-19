@@ -40,79 +40,13 @@
 		</div>
 	</nav>
 
-	<!-- Main Page -->
-	<section class="container">
-		<!-- Table -->
-		<table class="table">
-			<thead>
-				<!-- Baris Header -->
-				<tr>
-					<!-- baris -->
-					<td>Initial</td>
-					<!-- Kolom -->
-					<td>Name</td>
-					<td>Active</td>
-					<td>Action</td>
-				</tr>
-			</thead>
-			<!-- Baris Kontennya -->
-			<tbody id="content-tbody">
-				<tr>
-					<td>MANCO</td>
-					<td>Main Course</td>
-					<td><input type="checkbox" disabled checked></td>
-					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('MANCO','Main Course',true)">
-							<i class="fa-solid fa-pen-to-square" color="white"></i>
-						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('MANCO','Main Course',true)">
-							<i class="fa-solid fa-trash" color="white"></i>
-						</button>
-					</td>
-				</tr>
-				<tr>
-					<td>SATE</td>
-					<td>Sate</td>
-					<td><input type="checkbox" disabled></td>
-					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('SATE','Sate',false)">
-							<i class="fa-solid fa-pen-to-square" color="white"></i>
-						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('SATE','Sate',false)">
-							<i class="fa-solid fa-trash" color="white"></i>
-						</button>
-					</td>
-				</tr>
-				<tr>
-					<td>IC</td>
-					<td>ICE Cream</td>
-					<td><input type="checkbox" disabled checked></td>
-					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('IC','ICE Cream',true)">
-							<i class="fa-solid fa-pen-to-square" color="white"></i>
-						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('IC','ICE Cream',true)">
-							<i class="fa-solid fa-trash" color="white"></i>
-						</button>
-					</td>
-				</tr>
-				<tr>
-					<td>CKE</td>
-					<td>Cake</td>
-					<td><input type="checkbox" disabled checked></td>
-					<td>
-						<button class="btn btn-warning" onclick="bukaPopupEdit('CKE','Cake',true)">
-							<i class="fa-solid fa-pen-to-square" color="white"></i>
-						</button>
-						<button class="btn btn-danger" onclick="bukaPopupDelete('CKE','Cake',true)">
-							<i class="fa-solid fa-trash" color="white"></i>
-						</button>
-					</td>
-				</tr>
-			</tbody>
-
-		</table>
-
+	<!--tag bantu untuk append nantinyanya -->
+	<div id="body-nanda">
+		<button>Category</button>
+		<button>Variant</button>
+		<button>Product</button>
+		<button>Order</button>
+	</div>
 
 		<footer class="container-fluid bg-dark text-white p-5 text-center">
 			<h6>© 2023 Batch 310 - Java Spring Boot</h6>
