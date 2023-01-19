@@ -33,25 +33,26 @@ import id.bootcamp.java310.pos.dto.UserDTO;
 				@ConstructorResult(targetClass = MenuDTO.class, columns = {
 				@ColumnResult(name = "name", type = String.class), 
 				@ColumnResult(name = "url", type = String.class)})) })
+
 @Entity
 @Table(name = "menu")
-public class MenuEntity extends BaseProperties{
+public class MenuEntity extends BaseProperties {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
 	private Long id;
-	
+
 	@Column(length = 20)
 	private String name;
-	
+
 	@Column(length = 50)
 	private String url;
-	
+
 	private Long parent_id;
-	
+
 	@Column(length = 100)
 	private String big_icon;
-	
+
 	@Column(length = 100)
 	private String small_icon;
 
@@ -102,6 +103,5 @@ public class MenuEntity extends BaseProperties{
 	public void setSmall_icon(String small_icon) {
 		this.small_icon = small_icon;
 	}
-	
-	
+
 }

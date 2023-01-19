@@ -39,8 +39,9 @@ public class VariantRestControllers {
 
 		return response;
 	}
+
 	@GetMapping("/search")
-	public Resp<List<VariantDTO>> getSearch(@RequestParam("keyword") String keyword){
+	public Resp<List<VariantDTO>> getSearch(@RequestParam("keyword") String keyword) {
 		int code = 200;
 		String message = "Sukses";
 		List<VariantDTO> dataSearch = vs.getSearch(keyword);
@@ -51,21 +52,37 @@ public class VariantRestControllers {
 
 		return response;
 	}
-	// Paginatioon
-		@GetMapping("/pagination")
-		public Resp<Pagination<List<VariantDTO>>> getPagination(@RequestParam("keyword") String keyword,@RequestParam("limit") int limit,@RequestParam("page") int page){
-			int code = 200;
-			String message = "Sukses";
-			Pagination<List<VariantDTO>> dataPage = vs.getPagination(keyword, limit, page);
-			Resp<Pagination<List<VariantDTO>>> response = new Resp<>();
-			response.setCode(code);
-			response.setMessage(message);
-			response.setData(dataPage);
 
-			return response;
-			
-		}
-	
+	// Paginatioon
+	@GetMapping("/pagination")
+	public Resp<Pagination<List<VariantDTO>>> getPagination(@RequestParam("keyword") String keyword,
+			@RequestParam("limit") int limit, @RequestParam("page") int page) {
+		int code = 200;
+		String message = "Sukses";
+		Pagination<List<VariantDTO>> dataPage = vs.getPagination(keyword, limit, page);
+		Resp<Pagination<List<VariantDTO>>> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(dataPage);
+
+		return response;
+
+	}
+
+	@GetMapping("/getByCategoryId")
+	public Resp<List<VariantDTO>> getVariantsByCategoryId(@RequestParam("category_id") Long categoryId) {
+		// Mengemas Response API
+		int code = 200;
+		String message = "Sukses";
+		List<VariantDTO> data = vs.getVariantsByCategoryId(categoryId);
+
+		Resp<List<VariantDTO>> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+
+		return response;
+	}
 
 	@PostMapping("/insert")
 	public Resp<Long> insertVariant(@RequestBody VariantDTO dto) {

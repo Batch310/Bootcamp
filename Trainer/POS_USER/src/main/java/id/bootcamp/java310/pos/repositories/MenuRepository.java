@@ -4,14 +4,15 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 import id.bootcamp.java310.pos.dto.MenuDTO;
 import id.bootcamp.java310.pos.entities.MenuEntity;
 
-public interface MenuRepository extends JpaRepository<MenuEntity, Long> {
-
+@Repository
+public interface MenuRepository extends JpaRepository<MenuEntity, Long>{
+	
 	@Query(nativeQuery = true, name = "menu_query")
-	public List<MenuDTO> getMenu(@Param("role_code")String roleCode);
+	public List<MenuDTO> menu(@RequestParam("role_code") String role_code);
 
 }

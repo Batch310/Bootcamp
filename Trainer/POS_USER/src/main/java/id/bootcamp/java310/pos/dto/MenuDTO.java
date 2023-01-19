@@ -1,10 +1,11 @@
 package id.bootcamp.java310.pos.dto;
 
 public class MenuDTO {
-	
+
 	private String name;
 	private String url;
 	
+
 	public MenuDTO(String name, String url) {
 		super();
 		this.name = name;
@@ -22,7 +23,5 @@ public class MenuDTO {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	
-	
+
 }

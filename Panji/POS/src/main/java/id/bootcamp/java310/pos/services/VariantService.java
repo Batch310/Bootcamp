@@ -86,17 +86,17 @@ public class VariantService {
 
 	// Update
 	public void update(VariantDTO dto) throws Exception {
-		boolean isInitialExists = vr.isInitialExists(dto.getInitial());
-		if (isInitialExists == true) {
-			throw new Exception("11-Initial sudah terpakai");
-		}
-		boolean isNameExists = vr.isNameExists(dto.getName());
-		if (isNameExists == true) {
-			throw new Exception("12-Name sudah terpakai");
-		}
 		boolean isBentarTakCobaDulu = vr.isBentarTakCobaDulu(dto.getCategory_id());
 		if (isBentarTakCobaDulu == false) {
 			throw new Exception("18-Category tidak ada !");
+		}
+		boolean isInitialExists = vr.isInitialExists(dto.getInitial(), dto.getCategory_id());
+		if (isInitialExists == true) {
+			throw new Exception("11-Initial sudah terpakai");
+		}
+		boolean isNameExists = vr.isNameExists(dto.getName(), dto.getCategory_id());
+		if (isNameExists == true) {
+			throw new Exception("12-Name sudah terpakai");
 		}
 		if (dto.getInitial().length() > 10) {
 			throw new Exception("13-Initial tidak boleh lebih dari 10 karakter");
@@ -119,6 +119,29 @@ public class VariantService {
 		}
 		
 		vr.delete(id);
+	}
+
+	// 
+	public List<VariantDTO> getVariantsByCategoryId(Long categoryId) {
+		List<VariantEntity> catSumber = vr.getVariantsByCategoryId(categoryId);
+		System.out.println(categoryId);
+
+		List<VariantDTO> catList = new ArrayList<>();
+
+		for (int i = 0; i < catSumber.size(); i++) {
+			VariantDTO cat = new VariantDTO();
+			cat.setId(catSumber.get(i).getId());
+			cat.setCategory_id(catSumber.get(i).getCategroryId());
+			cat.setCategory_name(catSumber.get(i).getCategory().getName());
+			cat.setInitial(catSumber.get(i).getInitial());
+			cat.setName(catSumber.get(i).getName());
+			cat.setActive(catSumber.get(i).isActive());
+
+			catList.add(cat);
+		}
+
+		return catList;
+
 	}
 
 }

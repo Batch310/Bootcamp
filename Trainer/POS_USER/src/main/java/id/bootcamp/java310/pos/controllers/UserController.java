@@ -15,8 +15,9 @@ public class UserController {
 
 	@RequestMapping("/login")
 	public String showLoginPage(HttpServletRequest request) {
-		
+
 		String email = (String) request.getSession().getAttribute("email");
+
 		if (email != null) {
 			return "redirect:/user/home";
 		} else {
@@ -37,36 +38,29 @@ public class UserController {
 		model.addAttribute("name",name);
 		model.addAttribute("role_code",roleCode);
 		model.addAttribute("profile_picture",profilePicture);
-		
+
 		if (email != null) {
 			return "user/home.html";
 		} else {
 			return "redirect:/login";
 		}
+
 	}
 
-	@RequestMapping("/user/saveLoginData")
-	@ResponseBody // Mengembalikan sesuai return kita, bukan template html
+	@RequestMapping("login/saveLoginData")
+	@ResponseBody // Mengembalikan sesuai return kita, bukan template.html
 	public String saveLoginData(UserDTO dto, HttpServletRequest request) {
 		request.getSession().setAttribute("email", dto.getEmail());
 		request.getSession().setAttribute("user_id", dto.getUser_id());
 		request.getSession().setAttribute("name", dto.getName());
 		request.getSession().setAttribute("profile_picture", dto.getProfile_picture());
 		request.getSession().setAttribute("role_code", dto.getRole_code());
-
 		return "/user/home";
 	}
-	
+
 	@RequestMapping("/user/deleteLoginData")
 	@ResponseBody
 	public String deleteLoginData(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "/login";
-	}
-	
-	
-	
-	
-	
-	
 }

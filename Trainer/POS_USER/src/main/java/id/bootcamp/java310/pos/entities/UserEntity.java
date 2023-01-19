@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.UserDTO;
 
-
 @NamedNativeQueries(value = {
 		@NamedNativeQuery(name = "login_query", 
 				query = "select \r\n"
@@ -46,6 +45,7 @@ import id.bootcamp.java310.pos.dto.UserDTO;
 				@ColumnResult(name = "name", type = String.class),
 				@ColumnResult(name = "profile_picture", type = String.class),
 				@ColumnResult(name = "role_code", type = String.class)})) })
+
 @Entity
 @Table(name = "m_user")
 public class UserEntity extends BaseProperties {

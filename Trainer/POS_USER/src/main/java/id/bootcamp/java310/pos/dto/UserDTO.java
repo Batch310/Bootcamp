@@ -7,12 +7,13 @@ public class UserDTO {
 	private String name;
 	private String profile_picture;
 	private String role_code;
+
 	
 	public UserDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+
 
 	public UserDTO(String email, Long user_id, String name, String profile_picture, String role_code) {
 		super();
@@ -22,8 +23,6 @@ public class UserDTO {
 		this.profile_picture = profile_picture;
 		this.role_code = role_code;
 	}
-
-
 
 	public String getEmail() {
 		return email;
@@ -72,8 +71,5 @@ public class UserDTO {
 	public void setRole_code(String role_code) {
 		this.role_code = role_code;
 	}
-	
-	
-	
-	
-}	
+
+}

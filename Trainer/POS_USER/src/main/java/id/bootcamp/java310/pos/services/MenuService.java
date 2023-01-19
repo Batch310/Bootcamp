@@ -10,11 +10,12 @@ import id.bootcamp.java310.pos.repositories.MenuRepository;
 
 @Service
 public class MenuService {
-	
+
 	@Autowired
 	private MenuRepository mr;
 	
-	public List<MenuDTO> getMenu(String roleCode){
-		return mr.getMenu(roleCode);
+	public List<MenuDTO> menu(String role_code) {
+		List<MenuDTO> dataMenu = mr.menu(role_code);
+		return dataMenu;
 	}
 }
