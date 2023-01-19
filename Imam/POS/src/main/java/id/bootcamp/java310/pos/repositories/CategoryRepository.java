@@ -39,6 +39,7 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 
 	// Cara 4 => Query lebih lengkap, Didefinikan dulu
 
+	//Karena bentuk balikan lebih dari 1, maka pakai list
 	@Query(nativeQuery = true, 
 			name = "get_categories_cara4"
 	)
