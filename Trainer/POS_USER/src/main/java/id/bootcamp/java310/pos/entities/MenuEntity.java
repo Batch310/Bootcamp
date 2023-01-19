@@ -1,12 +1,38 @@
 package id.bootcamp.java310.pos.entities;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
+import id.bootcamp.java310.pos.dto.MenuDTO;
+import id.bootcamp.java310.pos.dto.UserDTO;
+
+@NamedNativeQueries(value = {
+		@NamedNativeQuery(name = "menu_query", 
+				query = "select \r\n"
+						+ "        m.name,\r\n"
+						+ "                m.url\r\n"
+						+ "from menu m \r\n"
+						+ "join menu_role mr\r\n"
+						+ "        on m.id = mr.menu_id\r\n"
+						+ "join role r\r\n"
+						+ "        on mr.role_id = r.id\r\n"
+						+ "where r.code = :role_code", 
+				resultSetMapping = "menu_result") })
+@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(name = "menu_result", classes = 
+				@ConstructorResult(targetClass = MenuDTO.class, columns = {
+				@ColumnResult(name = "name", type = String.class), 
+				@ColumnResult(name = "url", type = String.class)})) })
 @Entity
 @Table(name = "menu")
 public class MenuEntity extends BaseProperties{

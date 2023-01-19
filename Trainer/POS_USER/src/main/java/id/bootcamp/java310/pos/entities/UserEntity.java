@@ -19,6 +19,33 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import id.bootcamp.java310.pos.dto.CategoryDTO;
+import id.bootcamp.java310.pos.dto.UserDTO;
+
+
+@NamedNativeQueries(value = {
+		@NamedNativeQuery(name = "login_query", 
+				query = "select \r\n"
+				+ "        u.email,\r\n"
+				+ "        u.id as user_id,\r\n"
+				+ "        b.fullname as name,\r\n"
+				+ "        b.image_path as profile_picture,\r\n"
+				+ "        r.code as role_code\r\n"
+				+ "from m_user u \r\n"
+				+ "join biodata b\r\n"
+				+ "        on u.biodata_id = b.id\r\n"
+				+ "join role r\r\n"
+				+ "        on u.role_id = r.id\r\n"
+				+ "where u.email = :email AND password = :password", 
+				resultSetMapping = "login_result") })
+@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(name = "login_result", classes = 
+				@ConstructorResult(targetClass = UserDTO.class, columns = {
+				@ColumnResult(name = "email", type = String.class), 
+				@ColumnResult(name = "user_id", type = Long.class),
+				@ColumnResult(name = "name", type = String.class),
+				@ColumnResult(name = "profile_picture", type = String.class),
+				@ColumnResult(name = "role_code", type = String.class)})) })
 @Entity
 @Table(name = "m_user")
 public class UserEntity extends BaseProperties {
