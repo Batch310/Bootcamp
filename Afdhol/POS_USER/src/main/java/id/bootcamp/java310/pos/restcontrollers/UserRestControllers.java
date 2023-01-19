@@ -52,13 +52,10 @@ public class UserRestControllers {
 			@RequestParam ("role_code") String role_code){
 		
 		int code = 200;
-		String message = "Login Sukses";
 		List<MenuDTO> menuBar = ms.getMenu(role_code);
-	
 		
 		Resp<List<MenuDTO>> response = new Resp<>();
 		response.setCode(code);
-		response.setMessage(message);
 		response.setData(menuBar);
 		
 		return response;

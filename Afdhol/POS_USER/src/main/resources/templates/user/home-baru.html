@@ -40,22 +40,14 @@
 		</div>
 	</nav>
 
-	<button id="content-add-button" class="btn btn-primary" onclick="bukaPopupAdd()">
-		Tombol 1</button>
-	<tr></tr>
-	<button id="content-add-button" class="btn btn-primary" onclick="bukaPopupAdd()">
-		Tombol 2</button>
-	<tr></tr>
-	<button id="content-add-button" class="btn btn-primary" onclick="bukaPopupAdd()">
-		Tombol 3</button>
-	<tr></tr>
-	<button id="content-add-button" class="btn btn-primary" onclick="bukaPopupAdd()">
-		Tombol 4</button>
-	<tr></tr>
-
-	<!--
-		
-		-->
+	<!-- Membuat tag untuk diappend-->
+	<div id="body-main">
+	
+	
+	</div>
+	
+	
+	
 
 
 	<footer class="container-fluid bg-dark text-white p-5 text-center">
@@ -103,7 +95,30 @@
 		console.log(roleCode);
 		console.log(profilePicture);
 		
-		function 
+		function getMenuRole(roleCode){
+			return $.ajax({
+				url: "/api/user/menu?role_code="+roleCode,
+				method: "GET",
+				async: false
+			});
+		}
+		
+		
+		var response = getMenuRole(roleCode).responseJSON;
+		console.log(response);
+		
+		//variabel menmapung lList menu
+		var data = response.data;
+		
+		
+		$("#data").html("");
+		//melakukan perulangan untuk memasukkan tag HTML tiap menu
+		for(i=0; i<data.length ; i++){
+			$("#body-main").append(`
+			<button id="content-add-button" class="btn btn-primary" onclick="location.href = '${data[i].url}'; ">
+		${data[i].name}</button>
+			`)
+		}
 
 	</script>
 </body>
