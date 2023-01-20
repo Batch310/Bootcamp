@@ -2,46 +2,62 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
 
-<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
 
-<script src="/vendor/jquery/jquery-3.6.3.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/vendor/fontawesome/js/all.min.js"></script>
+	<script src="/vendor/jquery/jquery-3.6.3.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/fontawesome/js/all.min.js"></script>
 
 </head>
 
 <body>
 	<!-- Header -->
-	<nav class="navbar navbar-dark bg-dark navbar-expand-sm">
-		<a class="navbar-brand" href="#"> POS Batch 310 </a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbar-list-4" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbar-list-4">
-			<ul class="navbar-nav">
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#"
-					id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false"> <img
-						id="nav-profile-picture" src="/image/icon_profile_picture.png"
-						width="40" height="40" class="rounded-circle">
-				</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<h5 id="nav-username" class="dropdown-item">Welcome, [[${name}]]!</h5>
-						<a class="dropdown-item" href="#" onclick="logOut()" )>Log Out</a>
-					</div></li>
-			</ul>
-		</div>
-	</nav>
+	<header>
+		<nav class="navbar navbar-light bg-light navbar-expand-sm">
+			<a class="navbar-brand" href="#"> POS Batch 310 </a>
+			<!--Button Profil-->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
+			<div class="collapse navbar-collapse" id="navbar-list-4">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <img id="nav-profile-picture" src="/image/icon_profile_picture.png"
+								width="40" height="40" class="rounded-circle">
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<h5 id="nav-username" class="dropdown-item">Welcome, [[${name}]]!</h5>
+							<a class="dropdown-item" href="/user/profile" )>Profile</a>
+							<a class="dropdown-item" href="#" onclick="logOut()" )>Log Out</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div id="body-menu">
+				<button onclick="location.href = '/category/home'" class="btn btn-outline-light">Category</button>
+				<button onclick="location.href = '/variant/home'" class="btn btn-outline-dark">Variant</button>
+				<button onclick="location.href = '/product/home'" class="btn btn-outline-dark">Product</button>
+				<button onclick="location.href = '/order/home'" class="btn btn-outline-dark">Order</button>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div class="text-center">
+			<div class="spinner-border m-5" role="status">
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+		
+	</main>
 
 	<footer class="container-fluid bg-dark text-white p-5 text-center">
 		<h6>© 2023 Batch 310 - Java Spring Boot</h6>
@@ -53,8 +69,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Add Abcabc</h5>
-					<button type="button" class="btn-close" data-dismiss="modal"
-						aria-label="Close">
+					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
 						<i class="fa fa-close"></i>
 					</button>
 				</div>
@@ -64,35 +79,53 @@
 	</div>
 
 	<script type="text/javascript">
-	function deleteSessionData(){
-		return $.ajax({
+		function deleteSessionData() {
+			return $.ajax({
 				url: "/user/deleteLoginData",
 				method: "GET",
 				async: false
 			});
-	}
-	
-	function logOut(){
-		var redirectURL = deleteSessionData().responseText;
-		$(location).attr('href',redirectURL);
-	}
-	
-	var name = "[[${name}]]";
-	var roleCode = "[[${role_code}]]";
-	var profilePicture = "[[${profile_picture}]]";
-	
-	console.log(name);
-	console.log(roleCode);
-	console.log(profilePicture);
-	
-	function role(roleCode){
+		}
+
+		// Buat fungsi logOut
+		function logOut() {
+			var redirectURL = deleteSessionData().responseText;
+			$(location).attr('href', redirectURL);
+		}
+
+		var name = "[[${name}]]";
+		var roleCode = "[[${role_code}]]";
+		var profilePicture = "[[${profile_picture}]]";
+
+		console.log(name);
 		console.log(roleCode);
-		return $.ajax({
-				url: "localhost/api/user/menu?role_code=" + roleCode,
+		console.log(profilePicture);
+
+		// Buat fungsi roleMenu
+		function roleMenu(roleCode) {
+			console.log(roleCode);
+			return $.ajax({
+				url: "/api/user/menu?role_code=" + roleCode,
 				method: "GET",
 				async: false
 			});
-	}
+		}
+
+		// variabel menu
+		var cekData = roleMenu(roleCode).responseJSON;
+		console.log(cekData);
+
+		// Menampilkan perulangan untuk memasukkan html per menu
+		var listData = cekData.data;
+
+		$("#body-menu").html("");
+
+
+		for (i = 0; i < listData.length; i++) {
+			$("#body-menu").append(`
+			<button onclick="location.href = '${listData[i].url}';" class="btn btn-outline-dark">${listData[i].name}</button>
+		`)
+		}
 	</script>
 </body>
 

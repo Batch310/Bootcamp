@@ -10,6 +10,8 @@ function editCategoryApi(categoryDto) {
 	});
 }
 
+
+
 function bukaPopupEdit(initial, name, active, id) {
 	console.log("Edit Category Kepencet!");
 	console.log(initial + " " + name + " " + active + " " + id);
@@ -69,7 +71,7 @@ function bukaPopupEdit(initial, name, active, id) {
 		console.log(active);
 
 		//Modify By
-		var modifyBy = "Yuhan";
+		var modifyBy = user;
 		console.log(modifyBy);
 
 		//Proses Membuat Json JSON

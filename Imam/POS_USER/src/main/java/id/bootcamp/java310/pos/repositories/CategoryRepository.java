@@ -64,6 +64,13 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Transactional
 	@Query(nativeQuery = true, value = "delete from category\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
+	
+	// DELETE UPDATE
+		@Modifying
+		@Transactional
+		@Query(nativeQuery = true, value = "update category\r\n"
+				+ "set  deleted_by = CAST(:#{#dto.deleted_by}  AS INT), deleted_on = :deleteDate,is_delete = true where id = :#{#dto.id}")
+		public void deleteUpdate(@Param("dto") CategoryDTO dto, @Param("deleteDate") Date deleteDate);
 
 	// SEARCH
 	@Query(nativeQuery = true, name = "search_category")
@@ -101,7 +108,7 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 
 	// Get count semua data category
-	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword || '%'")
+	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword || '%' and is_delete = false")
 	public int countTotalData(@Param("keyword") String keyword);
 
 }

@@ -202,6 +202,10 @@ body {
 
 		<script type="text/javascript">
 			//Script Bawaan ------------------------------------------------------------------------------
+			
+			var userID = "[[${userID}]]";
+			var picture = "[[${profilePicture}]]";
+	
 			$(document).ready(function() {
 				$imgSrc = $('#imgProfile').attr('src');
 				function readURL(input) {
@@ -245,8 +249,6 @@ body {
 					// }
 				});
 			});
-			
-			var userID = "[[${userID}]]";
 			
 			//============================================== GET PROFILE ==============================================
 			//Fungsi Ajax API
@@ -292,7 +294,8 @@ body {
 				$("#input-password").val(list.password);	
 				
 				//input-role
-				$("#input_role").html(list.role_name);
+				$("#input-role").html(list.role_name);
+				//console.log(list.role_name);
 				
 			} else {
 				alert(response.message);
@@ -301,9 +304,11 @@ body {
 		
 		//============================================== GET PROFILE ==============================================
 		//============================================== UPLOAD PROFILE PICTURE ==============================================
-		function uploadPicture(imagePath, userID) {
-			form.append("file", fileInput.files[0], imagePath);
-			form.append("user_id", userID);
+		
+		function uploadImageAPI(files, userID) {
+			var formData = new FormData();
+			formData.append("file", files[0]);
+			formData.append("user_id", userID);
 			
 			return $.ajax ({
 				url: "/api/user/upload",
@@ -311,10 +316,113 @@ body {
   				processData: false,
   				mimeType: "multipart/form-data",
   				contentType: false,
-  				data: form
+  				data: formData,
+  				async: false
 			})
 		}
+		
+		function uploadImage() {
+			
+			var files = $("#profilePicture")[0].files;
+			//console.log(files);
+			//uploadImageAPI(picture, userID);
+			
+			var response = uploadImageAPI(files, userID).responseText;
+			//console.log(uploadImageAPI(picture, userID));
+			
+			var responseJson = $.parseJSON(response);
+			console.log(responseJson);
+			
+			if (responseJson.code == 200) {
+				alert(responseJson.message);
+				location.reload();
+			} else {
+				alert(responseJson.message);
+			}
+		}
 		//============================================== UPLOAD PROFILE PICTURE ==============================================
+		
+		//============================================== SAVE USER BIODATA ==============================================
+		function saveUserBiodataAPI(ProfileDTO) {
+			return $.ajax ({
+				url: "/api/user/saveBiodata",
+  				method: "PUT",
+    			contentType: "application/json",
+  				data: ProfileDTO,
+  				async: false
+			})
+		}
+		
+		function updateBasicInfo() {
+			console.log("Save Changes Kepencet!");
+			console.log(userID + " " + $("#input-fullname").val() + " " + $("#input-phone").val() + " " + $("#input-email").val() + " " + $("#input-password").val());
+			
+				//Ambil fullname
+				var fullname = $("#input-fullname").val();
+				console.log(fullname);
+
+				//Ambil phone
+				var phone = $("#input-phone").val();
+				console.log(phone);
+
+				//Ambil email
+				var email = $("#input-email").val();
+				console.log(email);
+
+				//Ambil password
+				var password = $("#input-password").val();
+				console.log(password);
+
+				//Proses Membuat Json JSON
+				var ProfileDTO = JSON.stringify({
+					"user_id": userID,
+					"fullname": fullname,
+					"phone": phone,
+					"email": email,
+					"password": password
+				});
+				
+				//Panggil API saveUserBiodataAPI
+				var response = saveUserBiodataAPI(ProfileDTO).responseJSON;
+				if (response.code == 200) {
+					//highlight-fullname
+					//$("#highlight-fullname").html(fullname);
+					location.reload();
+					alert(response.message);
+				} else {
+					alert(response.message);
+				}			
+		}
+		
+		//Pake Enter
+		$("#input-fullname").keypress(function(e) {
+			console.log('Enter Save Kepencet!')
+			if (e.which == 13) {
+				updateBasicInfo();
+			}
+		});
+		
+		$("#input-phone").keypress(function(e) {
+			console.log('Enter Save Kepencet!')
+			if (e.which == 13) {
+				updateBasicInfo();
+			}
+		});
+		
+		$("#input-email").keypress(function(e) {
+			console.log('Enter Save Kepencet!')
+			if (e.which == 13) {
+				updateBasicInfo();
+			}
+		});
+		
+		$("#input-password").keypress(function(e) {
+			console.log('Enter Save Kepencet!')
+			if (e.which == 13) {
+				updateBasicInfo();
+			}
+		});
+		//============================================== SAVE USER BIODATA ==============================================
 		</script>
 </body>
 

@@ -16,6 +16,10 @@ import id.bootcamp.java310.pos.entities.VariantEntity;
 
 @Repository
 public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
+	
+	//GET VARIANTS
+	@Query(nativeQuery = true, name = "get_variants")
+	public List<VariantDTO> getAllVariants();
 
 	@Modifying
 	@Transactional
@@ -30,6 +34,16 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	//Search
 	@Query(nativeQuery = true, value = "select * from variant where name ilike '%'||:keyword||'%' order by name asc")
 	public List<VariantEntity> search(@Param("keyword") String keyword);
+	
+	//DELETE variant dengan mengubah is_delete menjadi true
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, value = "update variant\r\n" 
+			+ "set deleted_by = CAST(:user_id AS INT), "
+			+ "deleted_on = :deleteDate,\r\n"
+			+ "is_delete = true " 
+			+ "where id = :variant_id")
+	public void deleteVariantByIsDelete(@Param("user_id") Long user_id, @Param("variant_id") Long id, @Param("deleteDate") Date deleteDate);
 	
 	// QUERY UNTUK VALIDASI
 

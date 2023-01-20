@@ -12,7 +12,24 @@ public class VariantDTO {
 	private Boolean active;
 	private String create_by;
 	private String modify_by;
+	private String deleted_by;
+	private Boolean is_delete;
 	
+	
+	public VariantDTO() {
+		
+	}
+	
+	
+	public VariantDTO(Long id, Long category_id, String category_name, String initial, String name, Boolean active) {
+		super();
+		this.id = id;
+		this.category_id = category_id;
+		this.category_name = category_name;
+		this.initial = initial;
+		this.name = name;
+		this.active = active;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -61,4 +78,17 @@ public class VariantDTO {
 	public void setModify_by(String modify_by) {
 		this.modify_by = modify_by;
 	}
+	public String getDeleted_by() {
+		return deleted_by;
+	}
+	public void setDeleted_by(String deleted_by) {
+		this.deleted_by = deleted_by;
+	}
+	public Boolean getIs_delete() {
+		return is_delete;
+	}
+	public void setIs_delete(Boolean is_delete) {
+		this.is_delete = is_delete;
+	}
+	
 }

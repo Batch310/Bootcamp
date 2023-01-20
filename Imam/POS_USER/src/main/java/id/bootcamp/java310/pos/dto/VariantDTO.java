@@ -12,7 +12,23 @@ public class VariantDTO {
 	private Boolean active;
 	private String create_by;
 	private String modify_by;
+	private String deleted_by;
+	private Boolean is_deleted;
 	
+	
+	
+	public String getDeleted_by() {
+		return deleted_by;
+	}
+	public void setDeleted_by(String deleted_by) {
+		this.deleted_by = deleted_by;
+	}
+	public Boolean getIs_deleted() {
+		return is_deleted;
+	}
+	public void setIs_deleted(Boolean is_deleted) {
+		this.is_deleted = is_deleted;
+	}
 	public Long getId() {
 		return id;
 	}

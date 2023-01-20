@@ -22,6 +22,7 @@ public class CategoryDTO {
 		
 	}
 
+	//yg dibutuhkan back end
 	public CategoryDTO(Long id, String initial, String name, Boolean active) {
 		super();
 		this.id = id;
