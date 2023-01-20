@@ -27,12 +27,12 @@ public class UserController {
 	@RequestMapping("/user/home")
 	public String showUserHome(HttpServletRequest request, Model model) {
 		String email = (String) request.getSession().getAttribute("email");
-		
+
 		// Ambil data dari session
 		String name = (String) request.getSession().getAttribute("name");
 		String roleCode = (String) request.getSession().getAttribute("role_code");
 		String profilePicture = (String) request.getSession().getAttribute("profile_picture");
-		
+
 		// Ngoper ke file html
 		model.addAttribute("name", name);
 		model.addAttribute("role_code", roleCode);
@@ -45,7 +45,7 @@ public class UserController {
 	}
 
 	@RequestMapping("/user/saveLoginData")
-	@ResponseBody // Mengembalikan seuai return
+	@ResponseBody // Mengembalikan sesuai return
 	public String saveLoginData(UserDTO dto, HttpServletRequest request) {
 
 		request.getSession().setAttribute("email", dto.getEmail());
@@ -55,11 +55,28 @@ public class UserController {
 		request.getSession().setAttribute("role_code", dto.getRole_code());
 		return "/user/home";
 	}
-	
+
 	@RequestMapping("/user/deleteLoginData")
 	@ResponseBody
 	public String deleteLoginData(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "/login";
+	}
+
+	@RequestMapping("/user/profile")
+	public String profile(HttpServletRequest request, Model model) {
+		String email = (String) request.getSession().getAttribute("email");
+
+		// Ambil data dari session
+		Long userId = (Long) request.getSession().getAttribute("user_id");
+
+		// Ngoper ke file html
+		model.addAttribute("user", userId);
+		
+		if (email != null) {
+			return "user/profile.html";
+		} else {
+			return "redirect:/login";
+		}
 	}
 }

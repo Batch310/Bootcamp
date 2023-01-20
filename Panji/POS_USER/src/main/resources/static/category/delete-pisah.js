@@ -14,6 +14,15 @@ function deleteCategoryApi(categoryId) {
 		async: false
 	});
 }
+function updateDeleteApi(categoryDto){
+	return $.ajax({
+		url: "/api/category/updateDelete",
+		method: "PUT",
+		data: categoryDto,
+		contentType: "application/json",
+		async: false
+	});
+}
 
 
 function bukaPopupDelete(initial, name, active, id) {
@@ -61,10 +70,21 @@ function bukaPopupDelete(initial, name, active, id) {
 	});
 
 	$("#input-delete").click(function() {
+		
+		//Deleted By
+		var deleted_by = user;
+		console.log(deleted_by);
+		var categoryDto = JSON.stringify({
+			"id": id,
+			"deleted_by" : deleted_by
+		});
+		
+		
+		
 		//Ambil Response Text
-		var response = deleteCategoryApi(id).responseText;
+		var response = updateDeleteApi(categoryDto).responseText;
 		console.log(response);
-
+		
 		//Convert ke Json
 		var responseJson = $.parseJSON(response);
 
@@ -75,8 +95,7 @@ function bukaPopupDelete(initial, name, active, id) {
 		} else {
 			alert(responseJson.message);
 		}
-
-
+		
 
 	});
 
@@ -85,5 +104,5 @@ function bukaPopupDelete(initial, name, active, id) {
 	$(".modal").modal("show");
 
 
-}
+} 
 //---------------------------------------------------------------------

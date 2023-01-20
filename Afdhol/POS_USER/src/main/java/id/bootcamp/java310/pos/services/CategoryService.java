@@ -42,6 +42,8 @@ public class CategoryService {
 			cat.setInitial(catSumber.get(i).getInitial());
 			cat.setName(catSumber.get(i).getName());
 			cat.setActive(catSumber.get(i).getActive());
+			cat.setIs_delete(catSumber.get(i).getIs_delete());
+		//	cat.setDeleted_by(null);
 
 			// Menambahkan data cat ke list
 			catList.add(cat);
@@ -156,19 +158,37 @@ public class CategoryService {
 		cr.update(dto, new Date());
 	}
 
-	// DELETE
-	public void delete(Long id) throws Exception {
-		Boolean isCategoryUsedByVariant = cr.isCategoryUsedByVariant(id);
-		if (isCategoryUsedByVariant) {
-			throw new Exception("15-Category dipakai, tidak dapat dihapus");
-		}
-
-		// Cara 1
-		// cr.deleteById(id);
-
-		// Cara 2
-		cr.delete(id);
+	// DELETE UPDATE
+	public void deleteUpdate(CategoryDTO dto) throws Exception {
+		
+		cr.deleteUpdate(dto, new Date());
 	}
+	
+	
+	
+//public void deleteUpdate(CategoryDTO dto) throws Exception {
+//		
+//		Boolean isInitialExists = cr.isInitialExists(dto.getInitial(),dto.getId());
+//		if (isInitialExists==true) {
+//			throw new Exception("11-initial sudah dipakai"); //
+//		}
+//		
+//		Boolean isNameExists = cr.isNameExists(dto.getName(),dto.getId());
+//		if (isNameExists==true) {
+//			throw new Exception("12-nama sudah dipakai"); //
+//		}
+//		if (dto.getInitial().length()>10) {
+//			throw new Exception("13-Initial tidak boleh lebih dari 10 karakter!"); //
+//		}
+//		if (dto.getName().length()>50) {
+//			throw new Exception("14-Nama tidak boleh lebih dari 50 karakter!"); //
+//		}
+//		if (dto.getModify_by().length()>50) {
+//			throw new Exception("17-Create_by tidak boleh lebih dari 50 karakter!"); //
+//		}
+//		
+//		cr.deleteUpdate(dto, new Date());
+//	}
 
 	// Search
 	public List<CategoryDTO> search(String keyword) {

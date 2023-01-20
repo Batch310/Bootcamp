@@ -13,6 +13,8 @@ public class CategoryController {
 		//return "category/category-template.html";	
 		//return "category/category-pisah.html";
 		//return "category/category-search.html";
+		
+		
 		return "category/category-pagination.html";
 	}
 	

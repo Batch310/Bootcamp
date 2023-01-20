@@ -109,17 +109,51 @@ public class CategoryRestControllers {
 		}
 
 	}
+	
+	//update delete
+	@PutMapping("/updatedelete")
+	public Resp<Long> updateDelete(@RequestBody CategoryDTO dto) {
+		try {
+			// Mengemas Response API
+			int code = 200;
+			String message = "berhasil dihapus";
+
+			// Jangan lupa dipanggil!!
+			cs.deleteUpdate(dto);
+
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+
+			return response;
+
+//			cs.update(dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			String exceptionMessage = e.getMessage(); // "11-Blablabla"
+			String[] split = exceptionMessage.split("-");
+
+			int code = Integer.parseInt(split[0]);
+			String message = split[1];
+
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+			return response;
+		}
+
+	}
 
 	// localhost/api/category/delete
 	@DeleteMapping("/delete")
-	public Resp<Long> deleteCategory(@RequestParam("id") Long id) {
+	public Resp<Long> deleteUpdateCategory(@RequestParam("id") Long id) {
 		try {
 			// Mengemas Response API
 			int code = 200;
 			String message = "Category berhasil dihapus!";
 
 			// Jangan lupa dipanggil!!
-			cs.delete(id);
+			//cs.delete(id);
 
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);

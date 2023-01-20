@@ -169,6 +169,20 @@ public class CategoryService {
 		// Cara 2
 		cr.delete(id);
 	}
+	
+	// DELETE BY is_delete
+	public void deleteByIsDelete(Long user_id, Long id) throws Exception {
+		Boolean isCategoryUsedByVariant = cr.isCategoryUsedByVariant(id);
+		if (isCategoryUsedByVariant) {
+			throw new Exception("15-Category dipakai, tidak dapat dihapus");
+		}
+		
+		// Cara 1
+		// cr.deleteById(id);
+		
+		// Cara 2
+		cr.deleteByIsDelete(user_id, id, new Date());
+	}
 
 	// Search
 	public List<CategoryDTO> search(String keyword) {

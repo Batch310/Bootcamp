@@ -15,6 +15,16 @@ function deleteCategoryApi(categoryId) {
 	});
 }
 
+function editDeleteCategoryApi(categoryDto) {
+	return $.ajax({
+		url: "/api/category/updateDelete",
+		method: "PUT",
+		data: categoryDto,
+		contentType: "application/json",
+		async: false
+	});
+}
+
 
 function bukaPopupDelete(initial, name, active, id) {
 	console.log("Delete Category Kepencet!")
@@ -61,8 +71,20 @@ function bukaPopupDelete(initial, name, active, id) {
 	});
 
 	$("#input-delete").click(function() {
+
+		//Delete By
+		var deletedBy = user;
+		console.log(deletedBy);
+
+		var categoryDto = JSON.stringify({
+			"id": id,
+			"deleted_by": deletedBy
+		});
+
+
+
 		//Ambil Response Text
-		var response = deleteCategoryApi(id).responseText;
+		var response = editDeleteCategoryApi(categoryDto).responseText;
 		console.log(response);
 
 		//Convert ke Json

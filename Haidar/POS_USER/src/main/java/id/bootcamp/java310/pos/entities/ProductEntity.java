@@ -3,15 +3,61 @@ package id.bootcamp.java310.pos.entities;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import id.bootcamp.java310.pos.dto.ProductDTO;
+import id.bootcamp.java310.pos.dto.VariantDTO;
+
+@NamedNativeQueries(value = {
+		@NamedNativeQuery(name = "get_products", query = "SELECT V.CATEGORY_ID,\r\n"
+				+ "	P.VARIANT_ID,\r\n"
+				+ "	P.ID,\r\n"
+				+ "	C.NAME AS CATEGORY_NAME,\r\n"
+				+ "	V.NAME AS VARIANT_NAME,\r\n"
+				+ "	P.INITIAL,\r\n"
+				+ "	P.NAME,\r\n"
+				+ "	P.ACTIVE,\r\n"
+				+ "	P.DESCRIPTION,\r\n"
+				+ "	P.PRICE,\r\n"
+				+ "	P.STOCK\r\n"
+				+ "FROM VARIANT V\r\n"
+				+ "INNER JOIN CATEGORY C\r\n"
+				+ "	ON C.ID = V.CATEGORY_ID\r\n"
+				+ "INNER JOIN PRODUCT P\r\n"
+				+ "	ON V.ID = P.VARIANT_ID\r\n"
+				+ "WHERE P.IS_DELETE = FALSE\r\n"
+				+ "ORDER BY ID ASC", resultSetMapping = "get_products_result")
+})
+@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(name = "get_products_result", classes = @ConstructorResult(targetClass = ProductDTO.class, columns = {
+				@ColumnResult(name = "category_id", type = Long.class), 
+				@ColumnResult(name = "variant_id", type = Long.class), 
+				@ColumnResult(name = "id", type = Long.class), 
+				@ColumnResult(name = "category_name", type = String.class), 
+				@ColumnResult(name = "variant_name", type = String.class), 
+				@ColumnResult(name = "initial", type = String.class),
+				@ColumnResult(name = "name", type = String.class),
+				@ColumnResult(name = "active", type = Boolean.class),
+				@ColumnResult(name = "description", type = String.class),
+				@ColumnResult(name = "price", type = Double.class),
+				@ColumnResult(name = "stock", type = Double.class)
+				
+		})) 
+})
 
 @Entity // Menandakan class CategoryEntity itu Entity
 @Table(name = "product") // Menamakan Tabel
