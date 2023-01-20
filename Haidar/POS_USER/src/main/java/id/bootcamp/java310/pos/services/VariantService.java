@@ -39,6 +39,11 @@ public class VariantService {
 		return catList;
 
 	}
+	
+	public List<VariantDTO> getAllVariants() {
+		
+		return vr.getAllVariants();
+	}
 
 	public Long insert(VariantDTO dto) throws Exception {
 		// Validasi
@@ -122,6 +127,16 @@ public class VariantService {
 		}
 		
 		vr.deleteById(id);
+	}
+
+	//DELETE variant dengan mengubah is_delete menjadi true
+	public void deleteVariantByIsDelete(Long user_id, Long id) throws Exception {
+		Boolean isVariantUsedByProduct = vr.isVariantUsedByProduct(id);
+		if (isVariantUsedByProduct) {
+			throw new Exception("15-Variant dipakai, tidak dapat dihapus");
+		}
+		
+		vr.deleteVariantByIsDelete(user_id, id, new Date());
 	}
 	
 	public List<VariantDTO> getVariantsByCategoryId(Long categoryId) {

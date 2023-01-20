@@ -139,6 +139,35 @@ public class CategoryRestControllers {
 			return response;
 		}
 	}
+	// localhost/api/category/deleted
+	@PutMapping("/deleted")
+	public Resp<Long> deleteCategoryByIsDelete(@RequestParam("user_id") Long user_id, @RequestParam("id") Long id) {
+		try {
+			// Mengemas Response API
+			int code = 200;
+			String message = "Category berhasil dihapus!";
+			
+			// Jangan lupa dipanggil!!
+			cs.deleteByIsDelete(user_id, id);
+			
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+			
+			return response;
+		} catch (Exception e) {
+			String exceptionMessage = e.getMessage(); // "11-Blablabla"
+			String[] split = exceptionMessage.split("-");
+			
+			int code = Integer.parseInt(split[0]);
+			String message = split[1];
+			
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+			return response;
+		}
+	}
 
 	@GetMapping("/search")
 	public Resp<List<CategoryDTO>> search(@RequestParam("keyword") String keyword) {
