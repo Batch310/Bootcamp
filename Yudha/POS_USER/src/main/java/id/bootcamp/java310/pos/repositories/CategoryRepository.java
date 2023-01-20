@@ -53,8 +53,9 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Modifying
 	@Transactional
 	@Query(nativeQuery = true, value = "update category\r\n" + "set initial = :#{#dto.initial}, "
-			+ "name = :#{#dto.name}, " + "active = :#{#dto.active}, " + "modified_by = CAST(:#{#dto.modify_by} AS INT), "
-			+ "modified_on = :modifyDate\r\n" + "where id = :#{#dto.id}")
+			+ "name = :#{#dto.name}, " + "active = :#{#dto.active}, "
+			+ "modified_by = CAST(:#{#dto.modify_by} AS INT), " + "modified_on = :modifyDate\r\n"
+			+ "where id = :#{#dto.id}")
 	public void update(@Param("dto") CategoryDTO dto, @Param("modifyDate") Date modifyDate);
 
 	// DELETE
@@ -64,6 +65,15 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Transactional
 	@Query(nativeQuery = true, value = "delete from category\r\n" + "where id = :id")
 	public void delete(@Param("id") Long id);
+	
+	// Delete by is delete
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, value = "update category\r\n"
+			+ "set deleted_by = CAST(:deleted_by AS INT), deleted_on = :delete_on, is_delete = true\r\n"
+			+ "where id = :id")
+	public void delete2(@Param("id") Long id,@Param("deleted_by") String deleted_by, @Param("delete_on") Date delete_on);
+	
 
 	// SEARCH
 	@Query(nativeQuery = true, name = "search_category")
@@ -72,6 +82,11 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	// Pagination
 	@Query(nativeQuery = true, name = "pagination_category")
 	public List<CategoryDTO> paginationCategory(@Param("keyword") String keyword, @Param("limit") int limit,
+			@Param("offset") int offset);
+
+	// Pagination
+	@Query(nativeQuery = true, name = "get_pagination_category")
+	public List<CategoryDTO> getPaginationCategory(@Param("keyword") String keyword, @Param("limit") int limit,
 			@Param("offset") int offset);
 
 	// QUERY UNTUK VALIDASI

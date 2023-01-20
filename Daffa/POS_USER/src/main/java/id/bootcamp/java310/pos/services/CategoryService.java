@@ -31,17 +31,21 @@ public class CategoryService {
 		// Cara 2
 		List<CategoryEntity> catSumber = cr.getAllNameAsc();
 
+		List<CategoryEntity> catSumberBaru = cr.getAllNameAscIsDeleteFalse();
+
 		// Bikin List kosong CategoryDTO
 		List<CategoryDTO> catList = new ArrayList<>();
 
 		// Mapping dari CategoryEntity -> CategoryDTO
 		// Melakukan perulangan sebanyak ukuran catSumber
-		for (int i = 0; i < catSumber.size(); i++) {
+		for (int i = 0; i < catSumberBaru.size(); i++) {
 			CategoryDTO cat = new CategoryDTO();
-			cat.setId(catSumber.get(i).getId());
-			cat.setInitial(catSumber.get(i).getInitial());
-			cat.setName(catSumber.get(i).getName());
-			cat.setActive(catSumber.get(i).getActive());
+			cat.setId(catSumberBaru.get(i).getId());
+			cat.setInitial(catSumberBaru.get(i).getInitial());
+			cat.setName(catSumberBaru.get(i).getName());
+			cat.setActive(catSumberBaru.get(i).getActive());
+			cat.setDeleted_by(catSumberBaru.get(i).getDeleted_by());
+			cat.setIs_delete(catSumber.get(i).getIs_delete());
 
 			// Menambahkan data cat ke list
 			catList.add(cat);
@@ -170,6 +174,17 @@ public class CategoryService {
 		cr.delete(id);
 	}
 
+	// DELETE BARU
+	public void deleteTapiGakDelete(CategoryDTO dto) throws Exception {
+		// Validasi
+		Boolean isCategoryUsedByVariant = cr.isCategoryUsedByVariant(dto.getId());
+		if (isCategoryUsedByVariant) {
+			throw new Exception("15-Category dipakai, tidak dapat dihapus");
+		}
+
+		cr.deleteTapiGakDelete(dto, new Date());
+	}
+
 	// Search
 	public List<CategoryDTO> search(String keyword) {
 		return cr.searchCategory(keyword);
@@ -178,15 +193,13 @@ public class CategoryService {
 	// Pagination
 	public Pagination<List<CategoryDTO>> pagination(String keyword, int limit, int page) {
 		int totalData = cr.countTotalData(keyword);
-		
-		int offset = limit * (page-1);
-		List<CategoryDTO> data = cr.paginationCategory(keyword,limit,offset);
+
+		int offset = limit * (page - 1);
+		List<CategoryDTO> data = cr.paginationCategory(keyword, limit, offset);
 		int itemPerPage = data.size();
-		
-		
-		Pagination<List<CategoryDTO>> pagination = 
-				new Pagination<>(totalData, page, itemPerPage, data);
-		 
+
+		Pagination<List<CategoryDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
+
 		return pagination;
 	}
 

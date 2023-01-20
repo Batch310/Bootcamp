@@ -285,6 +285,80 @@ body {
 				alert(response.message);
 			}
 			
+			//---------SAVE PROFIL---------
+			function saveProfile(saveBiodataUser){
+				return $.ajax({
+  					"url": "/api/user/saveBiodata",
+  					"method": "PUT",
+ 					"headers": {
+    				"Content-Type": "application/json"
+  },
+  					data: saveBiodataUser,
+  					async: false
+				});
+			}
+			function updateBasicInfo(){
+				//input-fullname
+				var fullname = $("#input-fullname").val();
+				
+				//input-phone
+				var phone = $("#input-phone").val();
+				
+				//input-email
+				var email = $("#input-email").val();
+				
+				//input-password
+				var password = $("#input-password").val();
+				
+				var json = JSON.stringify({
+   				 	"fullname": fullname,
+    				"phone": phone,
+    				"email": email,
+    				"password": password,
+    				"user_id": user_idBaru
+    				})
+    			
+    			var response = saveProfile(json).responseJSON;
+    			console.log(response);
+    			
+    			if(response.code == 200){
+					alert(response.message);
+					location.reload();
+				}else{
+					alert(response.message);
+				}
+			}
+			
+			//-------Upload Picture------
+			function uploadImageApi(fileInput,userId){
+				var form = new FormData();
+				form.append("file", fileInput[0]);
+				form.append("user_id", userId);
+				
+				return $.ajax({
+					"url": "/api/user/upload",
+  					"method": "PUT",
+  					"processData": false,
+  					"mimeType": "multipart/form-data",
+  					"contentType": false,
+ 					"data": form,
+ 					async : false
+				})
+			}
+			function uploadImage(){
+				
+				var files = $("#profilePicture")[0].files;
+				var responseText = uploadImageApi(files, user_idBaru).responseText;
+				
+				var response = $.parseJSON(responseText);
+				
+				if(response.code == 200){
+					alert(response.message);
+					location.reload();
+				}else{
+					alert(response.message);
+				}
+			}
 			
 		</script>
 </body>

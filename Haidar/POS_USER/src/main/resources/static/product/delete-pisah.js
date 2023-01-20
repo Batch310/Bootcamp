@@ -15,6 +15,22 @@ function deleteProductApi(categoryId) {
 	});
 }
 
+function deleteProductByIsDeleteApi(productId) {
+	var form = new FormData();
+	form.append("user_id", userID);
+	form.append("id", productId);
+	
+	return $.ajax({
+		url: "/api/product/deleted",
+		method: "PUT",
+		data: form,
+		contentType: false,
+		processData: false,
+		mimeType: "multipart/form-data",
+		async: false
+	});
+}
+
 
 function bukaPopupDelete(initial, name, active, id, category_name, variant_name, description, price, stock) {
 	console.log("Delete Category Kepencet!")
@@ -86,7 +102,7 @@ function bukaPopupDelete(initial, name, active, id, category_name, variant_name,
 
 	$("#input-delete").click(function() {
 		//Ambil Response Text
-		var response = deleteProductApi(id).responseText;
+		var response = deleteProductByIsDeleteApi(id).responseText;
 		console.log(response);
 
 		//Convert ke Json

@@ -1,0 +1,9 @@
+--SAVE UPDATE DATA---
+
+1.bikin gerbang(ke json) =>$ajax
+  *"parameter fungsi" =>Apa yg dikirim user
+  *Lihat code di posmant
+2.bikin/ambil fungsi onclicktombol save
+  * masukin/save value => kalo val() =>get(mengambil)
+                   kalo val(berisi) =>set(mengisi)
+3. ubah ke json stringify, lalu tampung di variable response

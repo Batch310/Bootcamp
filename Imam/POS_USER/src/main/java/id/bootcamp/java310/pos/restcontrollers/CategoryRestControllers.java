@@ -109,6 +109,24 @@ public class CategoryRestControllers {
 		}
 
 	}
+	
+	// localhost/api/category/deleteUpdate
+	@PutMapping("/updateDelete")
+	public Resp<Long> updateDeleteCategory(@RequestBody CategoryDTO dto) {
+	
+		int code = 200;
+		String message = "Category berhasil dihapus!";
+
+		// Jangan lupa dipanggil!!
+		cs.deleteUpdate(dto);
+
+		Resp<Long> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+
+		return response;
+	
+	}
 
 	// localhost/api/category/delete
 	@DeleteMapping("/delete")

@@ -26,6 +26,9 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Query(nativeQuery = true, value = "select * from category order by name asc")
 	public List<CategoryEntity> getAllNameAsc();
 
+	@Query(nativeQuery = true, value = "select * from category where is_delete = false order by id asc")
+	public List<CategoryEntity> getAllNameAscIsDeleteFalse();
+
 	// Cara 3 - Query Lebih Lengkap
 	@Query(nativeQuery = true, value = "select \r\n" + "        id,\r\n" + "        initial,\r\n" + "        name,\r\n"
 			+ "        active\r\n" + "from category\r\n" + "order by initial asc")
@@ -53,9 +56,18 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	@Modifying
 	@Transactional
 	@Query(nativeQuery = true, value = "update category\r\n" + "set initial = :#{#dto.initial}, "
-			+ "name = :#{#dto.name}, " + "active = :#{#dto.active}, " + "modified_by = CAST(:#{#dto.modify_by} AS INT), "
-			+ "modified_on = :modifyDate\r\n" + "where id = :#{#dto.id}")
+			+ "name = :#{#dto.name}, " + "active = :#{#dto.active}, "
+			+ "modified_by = CAST(:#{#dto.modify_by} AS INT), " + "modified_on = :modifyDate\r\n"
+			+ "where id = :#{#dto.id}")
 	public void update(@Param("dto") CategoryDTO dto, @Param("modifyDate") Date modifyDate);
+
+	// DELETE BARU
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, value = "update category\r\n" + "set is_delete = true, "
+			+ "deleted_by = CAST(:#{#dto.deleted_by} AS INT), " + "deleted_on = :deletedDate\r\n"
+			+ "where id = :#{#dto.id}")
+	public void deleteTapiGakDelete(@Param("dto") CategoryDTO dto, @Param("deletedDate") Date deletedDate);
 
 	// DELETE
 	// Cara 2 - Delete menggunakan Native Query
@@ -97,11 +109,10 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 
 	// Validasi apakah id category dipakai di variant
 	@Query(nativeQuery = true, value = "select exists (select * from variant where category_id = :id)")
-
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 
 	// Get count semua data category
-	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword || '%'")
+	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword || '%' AND is_delete = false")
 	public int countTotalData(@Param("keyword") String keyword);
 
 }

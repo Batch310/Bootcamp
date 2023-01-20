@@ -23,7 +23,7 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	// 1. Querynya gk boleh join
 	// 2. select harus *
 	// 3. tabelnya harus sesuai repository
-	@Query(nativeQuery = true, value = "select * from category order by name asc")
+	@Query(nativeQuery = true, value = "select * from category where is_delete = false order by name asc")
 	public List<CategoryEntity> getAllNameAsc();
 
 	// Cara 3 - Query Lebih Lengkap
@@ -62,9 +62,23 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 
 	@Modifying
 	@Transactional
-	@Query(nativeQuery = true, value = "delete from category\r\n" + "where id = :id")
+	@Query(nativeQuery = true, value = "delete from category where id = :id")
 	public void delete(@Param("id") Long id);
+	
+	// DELETE UPDATE
 
+		@Modifying
+		@Transactional
+		@Query(nativeQuery = true, 
+		value = "update category\r\n" 
+				+ "set deleted_on = :deleted_on, "
+				+ "is_delete = true, " 
+				+ "deleted_by = CAST(:#{#dto.deleted_by} AS INT) "
+				+ "where id = :#{#dto.id}")
+		
+		public void deleteUpdate( 
+				@Param ("dto") CategoryDTO dto,	
+				@Param ("deleted_on") Date deleted_on);
 	// SEARCH
 	@Query(nativeQuery = true, name = "search_category")
 	public List<CategoryDTO> searchCategory(@Param("keyword") String keywordku);
@@ -101,7 +115,7 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 
 	// Get count semua data category
-	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword || '%'")
+	@Query(nativeQuery = true, value = "select count(*) from category where is_delete = false and name ilike '%' || :keyword || '%'")
 	public int countTotalData(@Param("keyword") String keyword);
 
 }

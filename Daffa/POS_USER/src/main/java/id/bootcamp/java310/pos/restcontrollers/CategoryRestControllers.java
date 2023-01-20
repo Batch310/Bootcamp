@@ -25,8 +25,30 @@ public class CategoryRestControllers {
 	private CategoryService cs;
 
 	// localhost/api/category/get
+//	@GetMapping("/get")
+//	public Resp<List<CategoryDTO>> getAll() {
+//		// Mengemas Response API
+//		int code = 200;
+//		String message = "Sukses";
+//		List<CategoryDTO> data = cs.getAllCategories();
+//
+//		Resp<List<CategoryDTO>> response = new Resp<>();
+//		response.setCode(code);
+//		response.setMessage(message);
+//		response.setData(data);
+//
+//		return response;
+//		// Cara 1, 2
+//
+//		// Cara 3
+//		// return cs.getAll3();
+//
+//		// Cara 4, 5
+//		// return cs.getAll45();
+//	}
+	
 	@GetMapping("/get")
-	public Resp<List<CategoryDTO>> getAll() {
+	public Resp<List<CategoryDTO>> getAllisDeleteFalse() {
 		// Mengemas Response API
 		int code = 200;
 		String message = "Sukses";
@@ -38,13 +60,6 @@ public class CategoryRestControllers {
 		response.setData(data);
 
 		return response;
-		// Cara 1, 2
-
-		// Cara 3
-		// return cs.getAll3();
-
-		// Cara 4, 5
-		// return cs.getAll45();
 	}
 
 	// localhost/api/category/insert
@@ -112,14 +127,14 @@ public class CategoryRestControllers {
 
 	// localhost/api/category/delete
 	@DeleteMapping("/delete")
-	public Resp<Long> deleteCategory(@RequestParam("id") Long id) {
+	public Resp<Long> deleteCategory(@RequestBody CategoryDTO dto) {
 		try {
 			// Mengemas Response API
 			int code = 200;
 			String message = "Category berhasil dihapus!";
 
 			// Jangan lupa dipanggil!!
-			cs.delete(id);
+			cs.deleteTapiGakDelete(dto);
 
 			Resp<Long> response = new Resp<>();
 			response.setCode(code);
