@@ -169,6 +169,12 @@ public class CategoryService {
 		// Cara 2
 		cr.delete(id);
 	}
+	
+	//DELETE UPDATE
+	public void deleteUpdate(CategoryDTO dto) {
+		cr.deleteUpdate(dto, new Date());
+		
+	}
 
 	// Search
 	public List<CategoryDTO> search(String keyword) {

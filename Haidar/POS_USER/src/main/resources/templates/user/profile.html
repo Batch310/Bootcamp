@@ -305,9 +305,9 @@ body {
 		//============================================== GET PROFILE ==============================================
 		//============================================== UPLOAD PROFILE PICTURE ==============================================
 		
-		function uploadImageAPI(picture, userID) {
+		function uploadImageAPI(files, userID) {
 			var formData = new FormData();
-			formData.append("file", input.files[0], picture);
+			formData.append("file", files[0]);
 			formData.append("user_id", userID);
 			
 			return $.ajax ({
@@ -322,7 +322,23 @@ body {
 		}
 		
 		function uploadImage() {
-			uploadImageAPI(picture, userID);
+			
+			var files = $("#profilePicture")[0].files;
+			//console.log(files);
+			//uploadImageAPI(picture, userID);
+			
+			var response = uploadImageAPI(files, userID).responseText;
+			//console.log(uploadImageAPI(picture, userID));
+			
+			var responseJson = $.parseJSON(response);
+			console.log(responseJson);
+			
+			if (responseJson.code == 200) {
+				alert(responseJson.message);
+				location.reload();
+			} else {
+				alert(responseJson.message);
+			}
 		}
 		//============================================== UPLOAD PROFILE PICTURE ==============================================
 		
@@ -370,7 +386,8 @@ body {
 				var response = saveUserBiodataAPI(ProfileDTO).responseJSON;
 				if (response.code == 200) {
 					//highlight-fullname
-					$("#highlight-fullname").html(fullname);
+					//$("#highlight-fullname").html(fullname);
+					location.reload();
 					alert(response.message);
 				} else {
 					alert(response.message);

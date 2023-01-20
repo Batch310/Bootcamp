@@ -33,15 +33,18 @@ import id.bootcamp.java310.pos.dto.CategoryDTO;
 				+ "        name,\r\n"
 				+ "        active\r\n"
 				+ "from category\r\n"
-				+ "where name ilike '%' || :keyword ||'%'\r\n"
+				+ "where is_delete = false and name ilike '%' || :keyword ||'%'\r\n"
 				+ "order by id asc\r\n"
 				+ "limit :limit\r\n"
 				+ "offset :offset", resultSetMapping = "get_categories_cara4_result") })
 @SqlResultSetMappings(value = {
 		@SqlResultSetMapping(name = "get_categories_cara4_result", classes = @ConstructorResult(targetClass = CategoryDTO.class, columns = {
-				@ColumnResult(name = "id", type = Long.class), @ColumnResult(name = "initial", type = String.class),
+				@ColumnResult(name = "id", type = Long.class), 
+				@ColumnResult(name = "initial", type = String.class),
 				@ColumnResult(name = "name", type = String.class),
-				@ColumnResult(name = "active", type = Boolean.class) })) })
+				@ColumnResult(name = "active", type = Boolean.class)
+				
+		})) })
 @Entity // Menandakan class CategoryEntity itu Entity
 @Table(name = "category") // Menamakan Tabel
 public class CategoryEntity extends BaseProperties {

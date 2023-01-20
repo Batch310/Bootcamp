@@ -4,39 +4,45 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductDTO {
+	private Long category_id;
+	private Long variant_id;
+	private Long id;
 	private String category_name;
 	private String variant_name;
 	private String initial;
 	private String name;
+	private Boolean active;
 	private String description;
 	private Double price;
 	private Double stock;
-	private Boolean active;
-	private Long category_id;
-	private Long variant_id;
-	private Long id;
 	private String create_by;
 	private String modify_by;
+	private String delete_by;
+	private Boolean is_delete;
 	
 	public ProductDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ProductDTO(String category_name, String variant_name, String initial, String name, String description,
-			Double price, Double stock, Boolean active, Long category_id, Long variant_id, Long id) {
+	
+
+	public ProductDTO(Long category_id, Long variant_id, Long id, String category_name, String variant_name,
+			String initial, String name, Boolean active, String description, Double price, Double stock) {
 		super();
+		this.category_id = category_id;
+		this.variant_id = variant_id;
+		this.id = id;
 		this.category_name = category_name;
 		this.variant_name = variant_name;
 		this.initial = initial;
 		this.name = name;
+		this.active = active;
 		this.description = description;
 		this.price = price;
 		this.stock = stock;
-		this.active = active;
-		this.category_id = category_id;
-		this.variant_id = variant_id;
-		this.id = id;
 	}
+
+
 
 	public String getCategory_name() {
 		return category_name;
@@ -140,6 +146,22 @@ public class ProductDTO {
 
 	public void setModify_by(String modify_by) {
 		this.modify_by = modify_by;
+	}
+
+	public String getDelete_by() {
+		return delete_by;
+	}
+
+	public void setDelete_by(String delete_by) {
+		this.delete_by = delete_by;
+	}
+
+	public Boolean getIs_delete() {
+		return is_delete;
+	}
+
+	public void setIs_delete(Boolean is_delete) {
+		this.is_delete = is_delete;
 	}
 	
 	

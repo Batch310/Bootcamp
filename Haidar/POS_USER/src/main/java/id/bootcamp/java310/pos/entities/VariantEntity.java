@@ -3,15 +3,49 @@ package id.bootcamp.java310.pos.entities;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import id.bootcamp.java310.pos.dto.CategoryDTO;
+import id.bootcamp.java310.pos.dto.VariantDTO;
+
+@NamedNativeQueries(value = {
+		@NamedNativeQuery(name = "get_variants", query = "SELECT V.ID,\r\n"
+				+ "	V.CATEGORY_ID,\r\n"
+				+ "	C.NAME AS CATEGORY_NAME,\r\n"
+				+ "	V.INITIAL,\r\n"
+				+ "	V.NAME,\r\n"
+				+ "	V.ACTIVE\r\n"
+				+ "FROM VARIANT V\r\n"
+				+ "INNER JOIN CATEGORY C\r\n"
+				+ "	ON C.ID = V.CATEGORY_ID\r\n"
+				+ "WHERE V.IS_DELETE = FALSE\r\n"
+				+ "ORDER BY ID ASC", resultSetMapping = "get_variants_result")
+})
+@SqlResultSetMappings(value = {
+		@SqlResultSetMapping(name = "get_variants_result", classes = @ConstructorResult(targetClass = VariantDTO.class, columns = {
+				@ColumnResult(name = "id", type = Long.class), 
+				@ColumnResult(name = "category_id", type = Long.class), 
+				@ColumnResult(name = "category_name", type = String.class), 
+				@ColumnResult(name = "initial", type = String.class),
+				@ColumnResult(name = "name", type = String.class),
+				@ColumnResult(name = "active", type = Boolean.class)
+				
+		})) 
+})
 
 @Entity // Menandakan class CategoryEntity itu Entity
 @Table(name = "variant") // Menamakan Tabel
