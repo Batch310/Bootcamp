@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -98,10 +99,22 @@ public class UserRestControllers {
 		
 		Resp<String> response = new Resp<>();
 		response.setCode(200);
-		response.setMessage("belumjadi");
+		response.setMessage("sukses");
 		
 		String imagePath = bs.upload(file, userId);
 		response.setData(imagePath);
+		
+		return response;
+	}
+	
+	@PutMapping("/saveBiodata")
+	public Resp<String> userData(@RequestBody ProfileDTO dto){
+		
+		Resp<String> response = new Resp<>();
+		response.setCode(200);
+		response.setMessage("sukses");
+		
+		us.userBio(dto);
 		
 		return response;
 	}

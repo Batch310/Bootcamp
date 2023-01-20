@@ -10,6 +10,8 @@ public class CategoryDTO {
 	private Boolean active;
 	private String create_by;
 	private String modify_by;
+	private String delete_by;
+	private Boolean is_delete;
 	
 	public CategoryDTO() {
 		// TODO Auto-generated constructor stub
@@ -58,4 +60,21 @@ public class CategoryDTO {
 	public void setModify_by(String modify_by) {
 		this.modify_by = modify_by;
 	}
+
+	public String getDelete_by() {
+		return delete_by;
+	}
+
+	public void setDelete_by(String delete_by) {
+		this.delete_by = delete_by;
+	}
+
+	public Boolean getIs_delete() {
+		return is_delete;
+	}
+
+	public void setIs_delete(Boolean is_delete) {
+		this.is_delete = is_delete;
+	}
+
 }

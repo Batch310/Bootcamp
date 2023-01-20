@@ -170,4 +170,21 @@ public class CategoryRestControllers {
 		return response;
 
 	}
+	// Update delete
+	@PutMapping("/updateDelete")
+	public Resp<CategoryDTO> updateDelete(@RequestBody CategoryDTO dto){
+		
+			int code = 200;
+			String message = "sukses";
+			cs.updateDel(dto);
+			
+			Resp<CategoryDTO> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+			
+			return response;
+		
+		
+		
+	}
 }

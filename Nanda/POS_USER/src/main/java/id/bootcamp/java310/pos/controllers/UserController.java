@@ -52,16 +52,14 @@ public class UserController {
 		Long userId = (Long) request.getSession().getAttribute("user_id");
 				
 		// ngoper ke file htmlnya
-		model.addAttribute(";user_id", userId);
+		model.addAttribute("user_id", userId);
 
 		if (email != null) {
-			return "user/profile-template.html";
+			return "user/profile.html";
 		} else {
 			return "redirect:/login";
 		}
 	}
-	
-	
 
 	@RequestMapping("/user/saveLoginData")
 	@ResponseBody // mengembalikan sesuai return.

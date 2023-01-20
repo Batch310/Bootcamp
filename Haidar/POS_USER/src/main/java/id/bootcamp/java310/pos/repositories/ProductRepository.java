@@ -17,6 +17,9 @@ import id.bootcamp.java310.pos.entities.ProductEntity;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
+	@Query(nativeQuery = true, name = "get_products")
+	public List<ProductDTO> getAllProducts();
+	
 	@Modifying
 	@Transactional
 	@Query(nativeQuery = true, value = "update product\r\n"
@@ -35,6 +38,16 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 	@Query(nativeQuery = true, 
 			value = "select * from product where initial ilike '%'|| :keyword ||'%' OR name ilike '%'|| :keyword ||'%' OR description ilike '%'|| :keyword ||'%' limit 3")
 	public List<ProductEntity> searchProducts(@Param("keyword") String keyword);
+	
+	//DELETE product dengan mengubah is_delete menjadi true
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, value = "UPDATE PRODUCT\r\n"
+			+ "SET DELETED_BY = CAST(:user_id AS INT),\r\n"
+			+ "	DELETED_ON = :deleteDate,\r\n"
+			+ "	IS_DELETE = TRUE\r\n"
+			+ "WHERE ID = :product_id")
+	public void deleteProductByIsDelete(@Param("user_id") Long userId, @Param("product_id") Long id, @Param("deleteDate") Date deleteDate);
 	
 	// QUERY UNTUK VALIDASI
 	// Validasi apakah Initial sudah ada di DB
@@ -58,7 +71,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 	public Boolean isProductUsedByOrderDetail(@Param("id") Long id);
 
 	// Validasi apakah category yang mau diinsert ada
-	@Query(nativeQuery = true, value = "select exists(select * from variant where id = 1)")
+	@Query(nativeQuery = true, value = "select exists(select * from variant where id != :id)")
 	public Boolean isVariantExists(@Param("id") Long id);
 
 }

@@ -43,7 +43,7 @@ public class BiodataService {
 			
 			String hasilUpload = ServletUriComponentsBuilder
 					.fromCurrentContextPath()
-					.path("/images")
+					.path("/images/")
 					.path(fileName)
 					.toUriString();
 			

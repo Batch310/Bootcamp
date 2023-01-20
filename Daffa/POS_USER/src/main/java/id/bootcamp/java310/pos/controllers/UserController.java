@@ -55,10 +55,10 @@ public class UserController {
 		Long userId = (Long) request.getSession().getAttribute("user_id");
 		
 		// Ngoper userId file htmlnya
-		model.addAttribute(";aipuwhfpioaw", userId);
+		model.addAttribute("AHLANWASAHLAN", userId);
 
 		if (email != null) {
-			return "user/profile-template.html";
+			return "user/profile.html";
 		} else {
 			return "redirect:/login";
 		}

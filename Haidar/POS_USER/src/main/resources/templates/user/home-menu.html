@@ -36,27 +36,33 @@
 				</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<h5 id="nav-username" class="dropdown-item">Welcome, [[${name}]]!</h5>
-						<a class="dropdown-item" href="#" onclick="logOut()" )>Log Out</a>
+						<a class="dropdown-item" href="/user/profile")>Profile</a>
+						<a class="dropdown-item" href="#" onclick="logOut()")>Log Out</a>
 					</div></li>
 			</ul>
 		</div>
 	</nav>
 	
 	<!-- Main Page -->
-	<section class="container">
 		<!-- User Menu -->
-		<div class="row p-3">
-			<div class="row"><h5>Category</h5></div>		
-			<div class="row"><button type="button" class="btn btn-primary">Tombol</button></div>
-		</div>
-		<div class="row p-3">
-			<div class="col"><h5>Variant</h5></div>
-		</div>
-		<div class="row p-3">
-			<div class="col"><h5>Product</h5></div>
-		</div>
-		<div class="row p-3">
-			<div class="col"><h5>Order</h5></div>
+		<div class="row p-4" id="menu">
+			<table class="table table-borderless">
+				<tbody id="user-menu-body">
+					<tr>
+						<td>MANCO</td>
+						<td>Main Course</td>
+						<td><input type="checkbox" disabled checked></td>
+						<td>
+							<button class="btn btn-warning" onclick="bukaPopupEdit('MANCO','Main Course',true)">
+								<i class="fa-solid fa-pen-to-square" color="white"></i>
+							</button>
+							<button class="btn btn-danger" onclick="bukaPopupDelete('MANCO','Main Course',true)">
+								<i class="fa-solid fa-trash" color="white"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 	<footer class="container-fluid bg-dark text-white p-5 text-center">
@@ -81,17 +87,42 @@
 
 	<script type="text/javascript">
 		
-		function deleteSessionData() {
+		function userMenuAPI(roleCode) {
 			return $.ajax({
-				url: "/user/deleteLoginData",
+				url: "/api/user/menu?role_code="+roleCode,
 				method: "GET",
 				async: false
 			});
 		}
 		
-		function userMenu(roleCode) {
+		function getUserMenus(roleCode) {
+			var response = userMenuAPI(roleCode).responseJSON;
+			console.log(response);
+			
+			var list = response.data;
+			console.log(list);
+			
+			$("#user-menu-body").html("");
+			for (i = 0; i < list.length; i++) {
+				$("#user-menu-body").append(`
+				<tr>
+					<td class="rounded" style="background-color: #3F3C3B">
+						<h4 style="color: white"><em>${list[i].name}</em></h4>
+						<button type="button" class="btn btn-primary" onclick="location.href='${list[i].url}'">
+							Open
+						</button>
+					</td> 
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+				`)
+			}
+		}
+		
+		function deleteSessionData() {
 			return $.ajax({
-				url: "api/user/menu?role_code="+roleCode,
+				url: "/user/deleteLoginData",
 				method: "GET",
 				async: false
 			});
@@ -109,6 +140,8 @@
 		console.log(name);
 		console.log(roleCode);
 		console.log(profilePicture);
+		
+		getUserMenus(roleCode);
 		
 	</script>
 </body>

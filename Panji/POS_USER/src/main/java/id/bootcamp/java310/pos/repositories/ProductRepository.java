@@ -58,7 +58,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 	public Boolean isProductUsedByOrderDetail(@Param("id") Long id);
 
 	// Validasi apakah category yang mau diinsert ada
-	@Query(nativeQuery = true, value = "select exists(select * from variant where id = 1)")
+	@Query(nativeQuery = true, value = "select exists(select * from variant where id = :id)")
 	public Boolean isVariantExists(@Param("id") Long id);
 
 }

@@ -39,10 +39,10 @@ UPDATE public.m_user
 INSERT INTO public.menu(
 	created_by, created_on, name, url)
 	VALUES 
-	(1, now(), 'Category', '/api/category/home'),
-	(1, now(), 'Variant', '/api/variant/home'),
-	(1, now(), 'Product', '/api/product/home'),
-	(1, now(), 'Order', '/api/order/home')
+	(1, now(), 'Category', '/category/home'),
+	(1, now(), 'Variant', '/variant/home'),
+	(1, now(), 'Product', '/product/home'),
+	(1, now(), 'Order', '/order/home')
 	;
 
 --Add Menu By Role
@@ -60,48 +60,48 @@ INSERT INTO public.menu_role(
 
 --Insert Category
 INSERT INTO public.category
-	(active, created_by, created_on, initial, name)
+	(active, created_by, created_on, initial, name, is_delete)
 VALUES 
-	(true, 3, now(), 'KSH', 'Kesehatan'),
-	(true, 3, now(), 'AFH', 'Aksesoris Fashion'),
-	(true, 3, now(), 'ELK', 'Elektronik'),
-	(true, 3, now(), 'PPR', 'Pakaian Pria'),
-	(true, 3, now(), 'SPR', 'Sepatu Pria'),
-	(true, 3, now(), 'HPA', 'Hanphone & Aksesoris'),
-	(true, 3, now(), 'FMM', 'Fashion Muslim'),
-	(true, 3, now(), 'KTT', 'Koper & Tas Travel'),
-	(true, 3, now(), 'TWA', 'Tas Wanita'),
-	(true, 3, now(), 'PWA', 'Pakaian Wanita')
+	(true, 3, now(), 'KSH', 'Kesehatan', false),
+	(true, 3, now(), 'AFH', 'Aksesoris Fashion', false),
+	(true, 3, now(), 'ELK', 'Elektronik', false),
+	(true, 3, now(), 'PPR', 'Pakaian Pria', false),
+	(true, 3, now(), 'SPR', 'Sepatu Pria', false),
+	(true, 3, now(), 'HPA', 'Hanphone & Aksesoris', false),
+	(true, 3, now(), 'FMM', 'Fashion Muslim', false),
+	(true, 3, now(), 'KTT', 'Koper & Tas Travel', false),
+	(true, 3, now(), 'TWA', 'Tas Wanita', false),
+	(true, 3, now(), 'PWA', 'Pakaian Wanita', false)
 ;
 
 --Insert Variant
 INSERT INTO public.variant
-	(active, category_id, created_by, created_on, initial, name)
+	(active, category_id, created_by, created_on, initial, name, is_delete)
 VALUES 
-	(true, 1, 3, now(), 'HSZ', 'Hand Sanitizer'),
-	(true, 1, 3, now(), 'PRM', 'Perawatan Mata'),
-	(true, 2, 3, now(), 'CCN', 'Cincin'),
-	(true, 2, 3, now(), 'ATG', 'Anting'),
-	(true, 3, 3, now(), 'SKS', 'Stop Kontak & Sambungan Kabel'),
-	(true, 3, 3, now(), 'SKR', 'Saklar'),
-	(true, 4, 3, now(), 'CPJ', 'Celana Panjang Jeans'),
-	(true, 4, 3, now(), 'HST', 'Hoodie & Sweatshirt'),
-	(true, 5, 3, now(), 'BOT', 'Boot'),
-	(true, 5, 3, now(), 'SND', 'Sandal')
+	(true, 1, 3, now(), 'HSZ', 'Hand Sanitizer', false),
+	(true, 1, 3, now(), 'PRM', 'Perawatan Mata', false),
+	(true, 2, 3, now(), 'CCN', 'Cincin', false),
+	(true, 2, 3, now(), 'ATG', 'Anting', false),
+	(true, 3, 3, now(), 'SKS', 'Stop Kontak & Sambungan Kabel', false),
+	(true, 3, 3, now(), 'SKR', 'Saklar', false),
+	(true, 4, 3, now(), 'CPJ', 'Celana Panjang Jeans', false),
+	(true, 4, 3, now(), 'HST', 'Hoodie & Sweatshirt', false),
+	(true, 5, 3, now(), 'BOT', 'Boot', false),
+	(true, 5, 3, now(), 'SND', 'Sandal', false)
 ;
 
 --Insert Product
 INSERT INTO public.product
-	(active, created_by, created_on, description, initial, name, price, stock, variant_id)
+	(active, created_by, created_on, description, initial, name, price, stock, variant_id, is_delete)
 VALUES 
-	(true, 3, now(), 'A', 'ANT', 'Antis Hand Sanitizer Liquid', 42000, 100, 1),
-	(true, 3, now(), 'B', 'DTL', 'Dettol Hand Sanitizer Bottle', 62000, 100, 1),
-	(true, 3, now(), 'C', 'MMC', 'Masker Mata Collagen Crystal', 1500, 100, 2),
-	(true, 3, now(), 'D', 'SCM', 'Skintific Crystal Massage', 156000, 100, 2),
-	(true, 3, now(), 'E', 'CTF', 'Cincin Tungsten Figu Ring', 429000, 100, 3),
-	(true, 3, now(), 'F', 'CBE', 'Cincin Berlian Eropa Solitare', 8725000, 100, 3),
-	(true, 3, now(), 'G', 'AJP', 'Anting Jepit Pria Tanpa Tindik', 8500, 100, 4),
-	(true, 3, now(), 'H', 'ARE', 'Anting Ring Emas Muda', 130000, 100, 4),
-	(true, 3, now(), 'I', 'SK4', 'Stop Kontak 4 Lubang', 40000, 100, 5),
-	(true, 3, now(), 'J', 'USK', 'Uticon Stop Kontak Kabel', 175000, 100, 5)
+	(true, 3, now(), 'A', 'ANT', 'Antis Hand Sanitizer Liquid', 42000, 100, 1, false),
+	(true, 3, now(), 'B', 'DTL', 'Dettol Hand Sanitizer Bottle', 62000, 100, 1, false),
+	(true, 3, now(), 'C', 'MMC', 'Masker Mata Collagen Crystal', 1500, 100, 2, false),
+	(true, 3, now(), 'D', 'SCM', 'Skintific Crystal Massage', 156000, 100, 2, false),
+	(true, 3, now(), 'E', 'CTF', 'Cincin Tungsten Figu Ring', 429000, 100, 3, false),
+	(true, 3, now(), 'F', 'CBE', 'Cincin Berlian Eropa Solitare', 8725000, 100, 3, false),
+	(true, 3, now(), 'G', 'AJP', 'Anting Jepit Pria Tanpa Tindik', 8500, 100, 4, false),
+	(true, 3, now(), 'H', 'ARE', 'Anting Ring Emas Muda', 130000, 100, 4, false),
+	(true, 3, now(), 'I', 'SK4', 'Stop Kontak 4 Lubang', 40000, 100, 5, false),
+	(true, 3, now(), 'J', 'USK', 'Uticon Stop Kontak Kabel', 175000, 100, 5, false)
 ;
