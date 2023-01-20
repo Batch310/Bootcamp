@@ -23,23 +23,22 @@ public class UserController {
 
 			return "user/login.html";
 		}
-	} 
+	}
 
 	@RequestMapping("/user/home")
 	public String showUserHome(HttpServletRequest request, Model model) {
 		String email = (String) request.getSession().getAttribute("email");
 
-		//ambil data dari session
-		String name = (String) request.getSession().getAttribute("name");		
-		String roleCode = (String) request.getSession().getAttribute("role_code");		
+		// ambil data dari session
+		String name = (String) request.getSession().getAttribute("name");
+		String roleCode = (String) request.getSession().getAttribute("role_code");
 		String profilePicture = (String) request.getSession().getAttribute("profile_picture");
-		
-		//Ngoper ke file htmlnya
-		model.addAttribute("name",name);
-		model.addAttribute("role_code",roleCode);
-		model.addAttribute("profile_picture",profilePicture);
-		
-		
+
+		// Ngoper ke file htmlnya
+		model.addAttribute("name", name);
+		model.addAttribute("role_code", roleCode);
+		model.addAttribute("profile_picture", profilePicture);
+
 		if (email != null) {
 			return "user/home.html";
 		} else {
@@ -60,16 +59,30 @@ public class UserController {
 
 		return "/user/home";
 	}
-	
+
 	@RequestMapping("/user/deleteLoginData")
 	@ResponseBody
 	public String deleteLoginData(HttpServletRequest request) {
-		request.getSession().invalidate();	
+		request.getSession().invalidate();
 		return "/login";
 	}
-	
-	
-	
-	
-	
+
+	@RequestMapping("/user/profile")
+	public String showProfile(HttpServletRequest request, Model model) {
+		String email = (String) request.getSession().getAttribute("email");
+		
+		//Ambil data dari session
+		Long userId = (Long) request.getSession().getAttribute("user_id");
+		
+		// Ngoper userId file htmlnya
+		model.addAttribute("user_id", userId);
+
+		if (email != null) {
+			return "user/profile.html";
+		} else {
+
+			return "redirect:/login.html";
+		}
+	}
+
 }
