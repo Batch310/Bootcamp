@@ -17,6 +17,33 @@ import id.bootcamp.java310.pos.entities.VariantEntity;
 @Repository
 public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 
+	// Create
+		@Query(nativeQuery = true,
+				value = "INSERT INTO public.variant(\r\n"
+						+ "	        active, category_id, create_by, create_date, initial, name)\r\n"
+						+ "	        VALUES ("
+						+ ":#{#dto.active},"
+						+ ":#{#dto.category_id},"
+						+ ":#{#dto.create_by},"
+						+ ":createDate,"
+						+ ":#{#dto.initial},"
+						+ ":#{#dto.name}) returning id"
+						)
+		public Long insert2(@Param("dto") VariantDTO dto,
+							@Param("createDate") Date createDate);
+		
+	// Pagination
+	@Query(nativeQuery = true,
+			name = "pagination_variant")
+	public List<VariantDTO> getPagination(@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
+		
+	// Update Delete Variant
+	
+	
+	
+	
+	
+	
 	@Modifying
 	@Transactional
 	@Query(nativeQuery = true, value = "update variant\r\n" + "set category_id = :#{#dto.category_id}, "

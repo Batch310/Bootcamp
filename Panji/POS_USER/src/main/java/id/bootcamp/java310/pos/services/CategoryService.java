@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.persistence.Tuple;
 
@@ -189,5 +190,12 @@ public class CategoryService {
 		 
 		return pagination;
 	}
-
+	
+	// Update Delete
+	public void updateDel(CategoryDTO dto) {
+		Date waktu = new Date();
+		cr.updateKhusus(dto, waktu);
+		
+		
+	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Tuple;
 import javax.transaction.Transactional;
 
+import org.hibernate.annotations.Parent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -57,6 +58,17 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 			+ "modified_on = :modifyDate\r\n" + "where id = :#{#dto.id}")
 	public void update(@Param("dto") CategoryDTO dto, @Param("modifyDate") Date modifyDate);
 
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, value = "update category \r\n"
+			+ "set deleted_by = CAST(:#{#dto.deleted_by} as int),\r\n"
+			+ "deleted_on = :deletedDate,\r\n"
+			+ "is_delete = true\r\n"
+			+ "where id = :#{#dto.id}")
+	public void updateKhusus(
+			@Param("dto") CategoryDTO dto, 
+			@Param("deletedDate") Date deletedDate);
+	
 	// DELETE
 	// Cara 2 - Delete menggunakan Native Query
 
@@ -101,7 +113,7 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	public Boolean isCategoryUsedByVariant(@Param("id") Long id);
 
 	// Get count semua data category
-	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword || '%'")
+	@Query(nativeQuery = true, value = "select count(*) from category where is_delete = false and name ilike '%' || :keyword || '%'")
 	public int countTotalData(@Param("keyword") String keyword);
 
 }
