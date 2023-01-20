@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Category</title>
+	<title>Profile</title>
 
 	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
@@ -224,7 +224,7 @@
 						$('#profilePicture').click();
 					} else {
 						// change
-						uploadImage();
+						saveImage();
 					}
 				});
 
@@ -265,27 +265,105 @@
 			if (response.code == 200) {
 				//highlight-fullname
 				$("#highlight-fullname").html(response.data.fullname)
-				
+
 				//imgProfile
 				$("#imgProfile").prop('src', response.data.picture)
-				
+
 				//input-fullname
 				$("#input-fullname").val(response.data.fullname)
-				
+
 				//input-phone
 				$("#input-phone").val(response.data.phone)
-				
+
 				//input-email
 				$("#input-email").val(response.data.email)
-				
+
 				//input-password
 				$("#input-password").val(response.data.password)
-				
+
 				//input-role
 				$("#input-role").html(response.data.role_name)
 			} else {
 				alert(response.message);
 			}
+
+			function saveProfileAPI(dto) {
+				return $.ajax({
+					"url": "/api/user/updateBiodata",
+					"method": "PUT",
+					"timeout": 0,
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"data": dto,
+					async: false
+				})
+			}
+
+			function updateBasicInfo() {
+				//input-fullname
+				var saveName = $("#input-fullname").val()
+
+				//input-phone
+				var savePhone = $("#input-phone").val()
+
+				//input-email
+				var saveEmail = $("#input-email").val()
+
+				//input-password
+				var savePassword = $("#input-password").val()
+
+
+				var simpan = JSON.stringify({
+					"user_id": user_id,
+					"fullname": saveName,
+					"phone": savePhone,
+					"email": saveEmail,
+					"password": savePassword
+				})
+
+				var response = saveProfileAPI(simpan).responseJSON;
+				console.log(response);
+				if (response.code == 200) {
+					alert(response.message);
+					location.reload();
+				} else {
+					alert(response.message);
+				}
+			}
+
+			//-----UPLOAD PICTURE-----
+			function saveImageAPI(fileGambar, user_id) {
+				var form = new FormData();
+				form.append("file", fileGambar[0]);
+				form.append("user_id", user_id);
+
+				return $.ajax({
+					"url": "/api/user/upload",
+					"method": "PUT",
+					"processData": false,
+					"mimeType": "multipart/form-data",
+					"contentType": false,
+					"data": form,
+					async: false
+				})
+			}
+			
+			function saveImage(){
+				var files = $("#profilePicture")[0].files;
+				
+				var responseText = saveImageAPI(files, user_id).responseText;
+				var response = $.parseJSON(responseText);
+				if (response.code == 200) {
+					alert(response.message);
+					location.reload();
+				} else {
+					alert(response.message);
+				}
+			}
+
+
+
 		</script>
 </body>
 

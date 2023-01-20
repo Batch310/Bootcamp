@@ -60,18 +60,18 @@ INSERT INTO public.menu_role(
 
 --Insert Category
 INSERT INTO public.category
-	(active, created_by, created_on, initial, name)
+	(active, created_by, created_on, initial, name, is_delete)
 VALUES 
-	(true, 3, now(), 'KSH', 'Kesehatan'),
-	(true, 3, now(), 'AFH', 'Aksesoris Fashion'),
-	(true, 3, now(), 'ELK', 'Elektronik'),
-	(true, 3, now(), 'PPR', 'Pakaian Pria'),
-	(true, 3, now(), 'SPR', 'Sepatu Pria'),
-	(true, 3, now(), 'HPA', 'Hanphone & Aksesoris'),
-	(true, 3, now(), 'FMM', 'Fashion Muslim'),
-	(true, 3, now(), 'KTT', 'Koper & Tas Travel'),
-	(true, 3, now(), 'TWA', 'Tas Wanita'),
-	(true, 3, now(), 'PWA', 'Pakaian Wanita')
+	(true, 3, now(), 'KSH', 'Kesehatan', false),
+	(true, 3, now(), 'AFH', 'Aksesoris Fashion', false),
+	(true, 3, now(), 'ELK', 'Elektronik', false),
+	(true, 3, now(), 'PPR', 'Pakaian Pria', false),
+	(true, 3, now(), 'SPR', 'Sepatu Pria', false),
+	(true, 3, now(), 'HPA', 'Hanphone & Aksesoris', false),
+	(true, 3, now(), 'FMM', 'Fashion Muslim', false),
+	(true, 3, now(), 'KTT', 'Koper & Tas Travel', false),
+	(true, 3, now(), 'TWA', 'Tas Wanita', false),
+	(true, 3, now(), 'PWA', 'Pakaian Wanita', false)
 ;
 
 --Insert Variant
