@@ -71,9 +71,10 @@ public class UserController {
 		
 		//Ambil data dari session
 		Long userId = (Long) request.getSession().getAttribute("user_id");
-		
+		String profilePicture = (String) request.getSession().getAttribute("profile_picture");
 		//Ngoper ke file htmlnya
 		model.addAttribute("userID", userId);
+		model.addAttribute("profilePicture", profilePicture);
 		
 		if (email != null) {
 			return "user/profile.html";

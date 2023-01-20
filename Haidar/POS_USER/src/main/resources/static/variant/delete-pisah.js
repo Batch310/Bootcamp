@@ -15,6 +15,21 @@ function deleteVariantApi(categoryId) {
 	});
 }
 
+function deleteVariantByIsDeleteApi(variantId) {
+	var form = new FormData();
+	form.append("user_id", userID);
+	form.append("id", variantId);
+	
+	return $.ajax({
+		"url": "/api/variant/deleted",
+		"method": "PUT",
+		"processData": false,
+		"mimeType": "multipart/form-data",
+		"contentType": false,
+		"data": form,
+		"async": false
+	})
+}
 
 function bukaPopupDelete(initial, name, active, id, category_name) {
 	console.log("Delete Category Kepencet!")
@@ -68,7 +83,7 @@ function bukaPopupDelete(initial, name, active, id, category_name) {
 
 	$("#input-delete").click(function() {
 		//Ambil Response Text
-		var response = deleteVariantApi(id).responseText;
+		var response = deleteVariantByIsDeleteApi(id).responseText;
 		console.log(response);
 
 		//Convert ke Json

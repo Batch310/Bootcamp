@@ -22,15 +22,27 @@ public class ProductService {
 		List<ProductDTO> listHasil = new ArrayList<>();
 
 		for (ProductEntity pSumber : listSumber) {
-			ProductDTO pHasil = new ProductDTO(pSumber.getVariantEntity().getCategoryEntity().getName(),
-					pSumber.getVariantEntity().getName(), pSumber.getInitial(), pSumber.getName(),
-					pSumber.getDescription(), pSumber.getPrice(), pSumber.getStock(), pSumber.getActive(),
-					pSumber.getVariantEntity().getCategoryId(), pSumber.getVariantId(), pSumber.getId());
+			ProductDTO pHasil = new ProductDTO(pSumber.getVariantEntity().getCategoryId(),
+					pSumber.getVariantId(),
+					pSumber.getId(),
+					pSumber.getVariantEntity().getCategoryEntity().getName(),
+					pSumber.getVariantEntity().getName(), 
+					pSumber.getInitial(), 
+					pSumber.getName(), 
+					pSumber.getActive(),
+					pSumber.getDescription(), 
+					pSumber.getPrice(), 
+					pSumber.getStock());
 
 			listHasil.add(pHasil);
 		}
 
 		return listHasil;
+	}
+	
+	public List<ProductDTO> getAllProducts() {
+		
+		return pr.getAllProducts();
 	}
 
 	public Long insertItem(ProductDTO dto) throws Exception {
@@ -109,16 +121,32 @@ public class ProductService {
 
 		pr.deleteById(id);
 	}
+	
+	public void deleteProductByIsDelete(Long userId, Long id) throws Exception {
+		Boolean isProductUsedByOrderDetail = pr.isProductUsedByOrderDetail(id);
+		if (isProductUsedByOrderDetail) {
+			throw new Exception("15-Product dipakai, tidak dapat dihapus");
+		}
+
+		pr.deleteProductByIsDelete(userId, id, new Date());
+	}
 
 	public List<ProductDTO> searchProduct(String keyword) {
 		List<ProductEntity> listSumber = pr.searchProducts(keyword);
 		List<ProductDTO> listHasil = new ArrayList<>();
 
 		for (ProductEntity pSumber : listSumber) {
-			ProductDTO pHasil = new ProductDTO(pSumber.getVariantEntity().getCategoryEntity().getName(),
-					pSumber.getVariantEntity().getName(), pSumber.getInitial(), pSumber.getName(),
-					pSumber.getDescription(), pSumber.getPrice(), pSumber.getStock(), pSumber.getActive(),
-					pSumber.getVariantEntity().getCategoryId(), pSumber.getVariantId(), pSumber.getId());
+			ProductDTO pHasil = new ProductDTO(pSumber.getVariantEntity().getCategoryId(),
+					pSumber.getVariantId(),
+					pSumber.getId(),
+					pSumber.getVariantEntity().getCategoryEntity().getName(),
+					pSumber.getVariantEntity().getName(), 
+					pSumber.getInitial(), 
+					pSumber.getName(), 
+					pSumber.getActive(),
+					pSumber.getDescription(), 
+					pSumber.getPrice(), 
+					pSumber.getStock());
 
 			listHasil.add(pHasil);
 		}

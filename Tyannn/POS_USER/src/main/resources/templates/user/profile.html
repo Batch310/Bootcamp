@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>User Profile</title>
+<title>Category</title>
 
 <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
@@ -118,7 +118,7 @@ body {
 												<label style="font-weight: bold;">Mobile Phone</label>
 											</div>
 											<div class="col-md-8 col-6">
-												<input id="input-phone" value="085799261521" type="tel"
+												<input id="input-phone" value="085799261521" type="number"
 													class="control-form">
 											</div>
 										</div>
@@ -202,10 +202,6 @@ body {
 
 		<script type="text/javascript">
 			//Script Bawaan ------------------------------------------------------------------------------
-			
-			var userID = "[[${userID}]]";
-			var picture = "[[${profilePicture}]]";
-	
 			$(document).ready(function() {
 				$imgSrc = $('#imgProfile').attr('src');
 				function readURL(input) {
@@ -250,179 +246,48 @@ body {
 				});
 			});
 			
-			//============================================== GET PROFILE ==============================================
-			//Fungsi Ajax API
-			function getUserProfileAPI(userID) {
-				return $.ajax({
-					url: "/api/user/profile?user_id=" + userID,
-  					method: "GET",
-  					async: false,
-				})
-			}
 			
-			var response = getUserProfileAPI(userID).responseJSON;
-			console.log(response);
+			//------ GET PROFILE
+			// Fungsi ajax dengan parameter user_id
+			var user_id = "[[${user_id}]]";
+			console.log(user_id)
 			
-			if (response.code == 200) {			
-				var list = response.data;
-				console.log(list);
-			
-				if (list.phone == null) {
-					list.phone = "0";
-				}
-				
-				if (list.picture == null) {
-					list.picture = "/image/icon_profile_picture.png";
-				}
-				
-				//highlight-fullname
-				$("#highlight-fullname").html(list.fullname);
-				
-				//imgProfile
-				$("#imgProfile").prop('src',list.picture);
-				
-				//input-fullname
-				$("#input-fullname").val(list.fullname);
-				
-				//input-phone
-				$("#input-phone").val(list.phone);
-				
-				//input-email
-				$("#input-email").val(list.email);
-				
-				//input-password
-				$("#input-password").val(list.password);	
-				
-				//input-role
-				$("#input-role").html(list.role_name);
-				//console.log(list.role_name);
-				
-			} else {
-				alert(response.message);
-			}
-			
-		
-		//============================================== GET PROFILE ==============================================
-		//============================================== UPLOAD PROFILE PICTURE ==============================================
-		
-		function uploadImageAPI(files, userID) {
-			var formData = new FormData();
-			formData.append("file", files[0]);
-			formData.append("user_id", userID);
-			
-			return $.ajax ({
-				url: "/api/user/upload",
-  				method: "PUT",
-  				processData: false,
-  				mimeType: "multipart/form-data",
-  				contentType: false,
-  				data: formData,
-  				async: false
-			})
+			function getProfilApi(user_id) {
+			return $.ajax({
+				url: "/api/user/profile?user_id=" + user_id,
+				method: "GET",
+				async: false
+			});
 		}
+		var response = getProfilApi(user_id).responseJSON;
+		console.log(response);
 		
-		function uploadImage() {
+		if (response.code == 200){
+			//highlight-fullname
+			$("#highlight-fullname").html(response.data.fullname);
 			
-			var files = $("#profilePicture")[0].files;
-			//console.log(files);
-			//uploadImageAPI(picture, userID);
+			//imgProfile
+			$("#imgProfile").prop('src',response.data.picture);
 			
-			var response = uploadImageAPI(files, userID).responseText;
-			//console.log(uploadImageAPI(picture, userID));
+			//input-fullname
+			$("#input-fullname").val(response.data.fullname);
+
+			//input-phone
+			$("#input-phone").val(response.data.phone);
+
+			//input-email
+			$("#input-email").val(response.data.email);
+
+			//input-password
+			$("#input-password").val(response.data.password);
 			
-			var responseJson = $.parseJSON(response);
-			console.log(responseJson);
+			//input-role
+			$("#input-role").val(response.data.role_name);
 			
-			if (responseJson.code == 200) {
-				alert(responseJson.message);
-				location.reload();
-			} else {
-				alert(responseJson.message);
-			}
+		}else{
+			alert(response.message);
 		}
-		//============================================== UPLOAD PROFILE PICTURE ==============================================
-		
-		//============================================== SAVE USER BIODATA ==============================================
-		function saveUserBiodataAPI(ProfileDTO) {
-			return $.ajax ({
-				url: "/api/user/saveBiodata",
-  				method: "PUT",
-    			contentType: "application/json",
-  				data: ProfileDTO,
-  				async: false
-			})
-		}
-		
-		function updateBasicInfo() {
-			console.log("Save Changes Kepencet!");
-			console.log(userID + " " + $("#input-fullname").val() + " " + $("#input-phone").val() + " " + $("#input-email").val() + " " + $("#input-password").val());
 			
-				//Ambil fullname
-				var fullname = $("#input-fullname").val();
-				console.log(fullname);
-
-				//Ambil phone
-				var phone = $("#input-phone").val();
-				console.log(phone);
-
-				//Ambil email
-				var email = $("#input-email").val();
-				console.log(email);
-
-				//Ambil password
-				var password = $("#input-password").val();
-				console.log(password);
-
-				//Proses Membuat Json JSON
-				var ProfileDTO = JSON.stringify({
-					"user_id": userID,
-					"fullname": fullname,
-					"phone": phone,
-					"email": email,
-					"password": password
-				});
-				
-				//Panggil API saveUserBiodataAPI
-				var response = saveUserBiodataAPI(ProfileDTO).responseJSON;
-				if (response.code == 200) {
-					//highlight-fullname
-					//$("#highlight-fullname").html(fullname);
-					location.reload();
-					alert(response.message);
-				} else {
-					alert(response.message);
-				}			
-		}
-		
-		//Pake Enter
-		$("#input-fullname").keypress(function(e) {
-			console.log('Enter Save Kepencet!')
-			if (e.which == 13) {
-				updateBasicInfo();
-			}
-		});
-		
-		$("#input-phone").keypress(function(e) {
-			console.log('Enter Save Kepencet!')
-			if (e.which == 13) {
-				updateBasicInfo();
-			}
-		});
-		
-		$("#input-email").keypress(function(e) {
-			console.log('Enter Save Kepencet!')
-			if (e.which == 13) {
-				updateBasicInfo();
-			}
-		});
-		
-		$("#input-password").keypress(function(e) {
-			console.log('Enter Save Kepencet!')
-			if (e.which == 13) {
-				updateBasicInfo();
-			}
-		});
-		//============================================== SAVE USER BIODATA ==============================================
 		</script>
 </body>
 
