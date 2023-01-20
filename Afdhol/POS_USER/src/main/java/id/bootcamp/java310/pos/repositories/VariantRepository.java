@@ -24,11 +24,11 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 			+ "modified_by = CAST(:#{#dto.modify_by} AS INT), " + "modified_on = :modifyDate\r\n" + "where id = :#{#dto.id}")
 	public void updateVariant(@Param("dto") VariantDTO dto, @Param("modifyDate") Date modifyDate);
 	
-	@Query(nativeQuery = true, value = "select * from variant where category_id = :cat_id")
+	@Query(nativeQuery = true, value = "select * from variant where is_delete = false and category_id = :cat_id")
 	public List<VariantEntity> getVariantsByCategoryId(@Param("cat_id") Long categoryId);
 
 	//Search
-	@Query(nativeQuery = true, value = "select * from variant where name ilike '%'||:keyword||'%' order by name asc")
+	@Query(nativeQuery = true, value = "select * from variant where is_delete = false and name ilike '%'||:keyword||'%' order by name asc")
 	public List<VariantEntity> search(@Param("keyword") String keyword);
 	
 	// QUERY UNTUK VALIDASI

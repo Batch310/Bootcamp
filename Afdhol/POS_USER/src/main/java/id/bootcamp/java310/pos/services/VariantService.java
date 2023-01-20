@@ -32,6 +32,7 @@ public class VariantService {
 			cat.setInitial(catSumber.get(i).getInitial());
 			cat.setName(catSumber.get(i).getName());
 			cat.setActive(catSumber.get(i).getActive());
+			cat.setIs_delete(catSumber.get(i).getIs_delete());
 
 			catList.add(cat);
 		}
@@ -138,7 +139,7 @@ public class VariantService {
 			cat.setInitial(catSumber.get(i).getInitial());
 			cat.setName(catSumber.get(i).getName());
 			cat.setActive(catSumber.get(i).getActive());
-
+			
 			catList.add(cat);
 		}
 
@@ -159,7 +160,9 @@ public class VariantService {
 			cat.setInitial(catSumber.get(i).getInitial());
 			cat.setName(catSumber.get(i).getName());
 			cat.setActive(catSumber.get(i).getActive());
+			cat.setIs_delete(catSumber.get(i).getIs_delete());
 
+			
 			catList.add(cat);
 		}
 

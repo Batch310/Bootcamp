@@ -66,7 +66,7 @@ function bukaPopupAdd() {
 		console.log(active);
 
 		//Create By
-		var createBy = "Yuhan";
+		var createBy = user_id; //user_id berasal dari category-pagination
 		console.log(createBy);
 
 		//Proses Membuat Json JSON
