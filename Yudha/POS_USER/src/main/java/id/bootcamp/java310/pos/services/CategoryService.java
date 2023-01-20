@@ -72,12 +72,19 @@ public class CategoryService {
 //	}
 
 	// Cara 4 & 5
-//	public List<CategoryDTO> getAll45(){
+//	public List<CategoryDTO> getAll4(){
 //		//Cara 4
 ////		return cr.getAll4();
 //		
 //		//Cara 5
 //		return cr.getAll5();
+//	}
+	
+	//get with is delete
+	
+//	public List<CategoryDTO> getAll(){
+////		//Cara 4
+//		return cr.getAll4();
 //	}
 
 	// CREATE
@@ -169,7 +176,22 @@ public class CategoryService {
 		// Cara 2
 		cr.delete(id);
 	}
+	
+	// DELETE 2
+	
+	public void delete2(Long id, String deleted_by) throws Exception {
+		Boolean isCategoryUsedByVariant = cr.isCategoryUsedByVariant(id);
+		if (isCategoryUsedByVariant) {
+			throw new Exception("15-Category dipakai, tidak dapat dihapus");
+		}
 
+		// Cara 1
+		// cr.deleteById(id);
+
+		// Cara 2
+		cr.delete2(id,deleted_by, new Date());
+	}
+	
 	// Search
 	public List<CategoryDTO> search(String keyword) {
 		return cr.searchCategory(keyword);
@@ -180,7 +202,7 @@ public class CategoryService {
 		int totalData = cr.countTotalData(keyword);
 		
 		int offset = limit * (page-1);
-		List<CategoryDTO> data = cr.paginationCategory(keyword,limit,offset);
+		List<CategoryDTO> data = cr.getPaginationCategory(keyword,limit,offset);
 		int itemPerPage = data.size();
 		
 		
