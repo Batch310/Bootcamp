@@ -117,6 +117,15 @@ public class VariantService {
 
 		vr.updateVariant(dto, new Date());
 	}
+	public void deleteBoongan(VariantDTO dto) throws Exception {
+		// Validasi
+		Boolean isVariantUsedByProduct = vr.isVariantUsedByProduct(dto.getId());
+		if (isVariantUsedByProduct) {
+			throw new Exception("15-Variant dipakai, tidak dapat dihapus");
+		}
+
+		vr.deleteBoonganEuy(dto, new Date());
+	}
 
 	public void delete(Long id) throws Exception {
 		Boolean isVariantUsedByProduct = vr.isVariantUsedByProduct(id);

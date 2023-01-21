@@ -24,6 +24,15 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 			+ "modified_by = CAST(:#{#dto.modify_by} AS INT), " + "modified_on = :modifyDate\r\n" + "where id = :#{#dto.id}")
 	public void updateVariant(@Param("dto") VariantDTO dto, @Param("modifyDate") Date modifyDate);
 	
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, value = "update category "
+			+ "set is_delete = true, "
+			+ "deleted_by = CAST(:#{#dto.deleted_by} AS INT), "
+			+ "deleted_on = :deletedDate "
+			+ "where id = :#{#dto.id}")
+	public void deleteBoonganEuy(@Param("dto") VariantDTO dto, @Param("modifyDate") Date modifyDate);
+	
 	@Query(nativeQuery = true, value = "select * from variant where category_id = :cat_id")
 	public List<VariantEntity> getVariantsByCategoryId(@Param("cat_id") Long categoryId);
 
