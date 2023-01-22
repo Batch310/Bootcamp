@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import id.bootcamp.java310.pos.dto.CategoryDTO;
@@ -12,6 +13,7 @@ import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.CategoryEntity;
 import id.bootcamp.java310.pos.entities.VariantEntity;
 import id.bootcamp.java310.pos.repositories.VariantRepository;
+import id.bootcamp.java310.pos.utils.Pagination;
 
 @Service
 public class VariantService {
@@ -39,7 +41,50 @@ public class VariantService {
 		return catList;
 
 	}
+	public List<VariantDTO> getAllVariant(){
+		return vr.getAllVariant();
+	}
 
+	// Update Delete
+	public void updateDel(VariantDTO dto) {
+		Date waktu = new Date();
+		vr.updateKhususVariant(dto, waktu);
+	}
+	
+	// Search
+	public List<VariantDTO> search(String keyword) {
+		List<VariantEntity> catSumber = vr.search(keyword);
+
+		List<VariantDTO> catList = new ArrayList<>();
+
+		for (int i = 0; i < catSumber.size(); i++) {
+			VariantDTO cat = new VariantDTO();
+			cat.setId(catSumber.get(i).getId());
+			cat.setCategory_id(catSumber.get(i).getCategoryId());
+			cat.setCategory_name(catSumber.get(i).getCategoryEntity().getName());
+			cat.setInitial(catSumber.get(i).getInitial());
+			cat.setName(catSumber.get(i).getName());
+			cat.setActive(catSumber.get(i).getActive());
+
+			catList.add(cat);
+		}
+
+		return catList;
+	}
+
+	// Pagination
+	public Pagination<List<VariantDTO>> getPagination(String keyword, int limit, int page) {
+		int totalData = vr.countTotalData(keyword);
+
+		int offset = limit * (page - 1);
+		List<VariantDTO> data = vr.getPagination(keyword, limit, offset);
+		int itemPerPage = data.size();
+
+		Pagination<List<VariantDTO>> pagination = new Pagination<>(totalData, page, itemPerPage, data);
+		return pagination;
+	}
+
+	// Create
 	public Long insert(VariantDTO dto) throws Exception {
 		// Validasi
 		Boolean isInitialExists = vr.isInitialExists(dto.getInitial());
@@ -83,14 +128,15 @@ public class VariantService {
 		return done.getId();
 	}
 
+	// Update
 	public void update(VariantDTO dto) throws Exception {
 		// Validasi
-		Boolean isInitialExists = vr.isInitialExists(dto.getInitial(),dto.getId());
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial(), dto.getId());
 		if (isInitialExists == true) {
 			throw new Exception("11-Initial sudah terpakai!");
 		}
 
-		Boolean isNameExists = vr.isNameExists(dto.getName(),dto.getId());
+		Boolean isNameExists = vr.isNameExists(dto.getName(), dto.getId());
 		if (isNameExists == true) {
 			throw new Exception("12-Name sudah terpakai!");
 		}
@@ -115,39 +161,19 @@ public class VariantService {
 		vr.updateVariant(dto, new Date());
 	}
 
+	// Delete
 	public void delete(Long id) throws Exception {
 		Boolean isVariantUsedByProduct = vr.isVariantUsedByProduct(id);
 		if (isVariantUsedByProduct) {
 			throw new Exception("15-Variant dipakai, tidak dapat dihapus");
 		}
-		
+
 		vr.deleteById(id);
 	}
-	
+
 	public List<VariantDTO> getVariantsByCategoryId(Long categoryId) {
 		List<VariantEntity> catSumber = vr.getVariantsByCategoryId(categoryId);
 		System.out.println(categoryId);
-
-		List<VariantDTO> catList = new ArrayList<>();
-
-		for (int i = 0; i < catSumber.size(); i++) {
-			VariantDTO cat = new VariantDTO();
-			cat.setId(catSumber.get(i).getId());
-			cat.setCategory_id(catSumber.get(i).getCategoryId());
-			cat.setCategory_name(catSumber.get(i).getCategoryEntity().getName());
-			cat.setInitial(catSumber.get(i).getInitial());
-			cat.setName(catSumber.get(i).getName());
-			cat.setActive(catSumber.get(i).getActive());
-
-			catList.add(cat);
-		}
-
-		return catList;
-
-	}
-	
-	public List<VariantDTO> search(String keyword) {
-		List<VariantEntity> catSumber = vr.search(keyword);
 
 		List<VariantDTO> catList = new ArrayList<>();
 
