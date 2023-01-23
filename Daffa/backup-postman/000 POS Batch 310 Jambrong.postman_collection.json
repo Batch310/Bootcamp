@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "c9f0c00e-6a9a-4810-877b-73303584d33c",
+		"name": "000 POS Batch 310 Jambrong",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"initial\": \"MTR\",\r\n        \"name\": \"Motor\",\r\n        \"active\": true,\r\n        \"create_by\": \"Admin\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/category/insert",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 2,\r\n        \"initial\": \"AFHP\",\r\n        \"name\": \"Aksesoris Fashion Pria\",\r\n        \"active\": false,\r\n        \"modify_by\": \"Jambrong\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/category/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/category/delete",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/category/search?keyword=kes",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "kes"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Category",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Variant",
+			"item": [
+				{
+					"name": "Get All Variant",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Variant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/variant/insert",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Variant",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/variant/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Variant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/variant/delete",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Variant",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Variant",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
