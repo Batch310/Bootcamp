@@ -6,6 +6,13 @@ function getAllVariantsApi() {
 		async: false
 	});
 }
+function searchVariantApi(keyword) {
+	return $.ajax({
+		url: "/api/variant/search?keyword=" + keyword,
+		method: "GET",
+		async: false
+	});
+}
 
 function refreshList() {
 	var response = getAllVariantsApi().responseJSON;

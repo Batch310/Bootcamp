@@ -25,15 +25,18 @@ public class VariantService {
 		List<VariantDTO> catList = new ArrayList<>();
 
 		for (int i = 0; i < catSumber.size(); i++) {
-			VariantDTO cat = new VariantDTO();
-			cat.setId(catSumber.get(i).getId());
-			cat.setCategory_id(catSumber.get(i).getCategoryId());
-			cat.setCategory_name(catSumber.get(i).getCategoryEntity().getName());
-			cat.setInitial(catSumber.get(i).getInitial());
-			cat.setName(catSumber.get(i).getName());
-			cat.setActive(catSumber.get(i).getActive());
+			VariantDTO cat = new VariantDTO();			
+			if (catSumber.get(i).getIs_delete() == false) {
+				cat.setId(catSumber.get(i).getId());
+				cat.setCategory_id(catSumber.get(i).getCategoryId());
+				cat.setCategory_name(catSumber.get(i).getCategoryEntity().getName());
+				cat.setInitial(catSumber.get(i).getInitial());
+				cat.setName(catSumber.get(i).getName());
+				cat.setActive(catSumber.get(i).getActive());
+				catList.add(cat);
+			}
 
-			catList.add(cat);
+			
 		}
 
 		return catList;
@@ -113,6 +116,15 @@ public class VariantService {
 		}
 
 		vr.updateVariant(dto, new Date());
+	}
+	public void deleteBoongan(VariantDTO dto) throws Exception {
+		// Validasi
+		Boolean isVariantUsedByProduct = vr.isVariantUsedByProduct(dto.getId());
+		if (isVariantUsedByProduct) {
+			throw new Exception("15-Variant dipakai, tidak dapat dihapus");
+		}
+
+		vr.deleteBoonganEuy(dto, new Date());
 	}
 
 	public void delete(Long id) throws Exception {

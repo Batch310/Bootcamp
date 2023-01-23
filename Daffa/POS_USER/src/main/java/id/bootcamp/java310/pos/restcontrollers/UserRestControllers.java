@@ -89,7 +89,7 @@ public class UserRestControllers {
 
 		Resp<String> response = new Resp<>();
 		response.setCode(200);
-		response.setMessage("in progress");
+		response.setMessage("Sukses");
 
 		String imagePath = bs.upload(file, userId);
 		response.setData(imagePath);

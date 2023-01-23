@@ -1,16 +1,14 @@
 //------------------------------ DELETE --------------------
 //--------------------------------------------------------
-function deleteCategoryApi(categoryId) {
-	var formData = new FormData();
-	formData.append("id", categoryId);
+function deleteCategoryApi(categoryDto) {
+	//var formData = new FormData();
+	//formData.append("id", categoryId);
 
 	return $.ajax({
 		url: "/api/category/delete",
 		method: "DELETE",
-		data: formData,
-		contentType: false,
-		processData: false,
-		mimeType: "multipart/form-data",
+		data: categoryDto,
+		contentType: "application/json",
 		async: false
 	});
 }
@@ -62,8 +60,15 @@ function bukaPopupDelete(initial, name, active, id) {
 
 	$("#input-delete").click(function() {
 		//Ambil Response Text
-		var response = deleteCategoryApi(id).responseText;
+		var categoryDto = JSON.stringify({
+			"id": id,
+			"deleted_by": user
+		});
+		
+		var response = deleteCategoryApi(categoryDto).responseText;
 		console.log(response);
+
+
 
 		//Convert ke Json
 		var responseJson = $.parseJSON(response);

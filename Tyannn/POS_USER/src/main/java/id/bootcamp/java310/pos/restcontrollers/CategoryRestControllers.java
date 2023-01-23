@@ -111,6 +111,36 @@ public class CategoryRestControllers {
 	}
 
 	// localhost/api/category/delete
+	@PutMapping("/deleteNew")
+	public Resp<Long> deleteNew(@RequestParam("id") Long id, @RequestParam("deleted_by")String deletedBy) {
+		try {
+			// Mengemas Response API
+			int code = 200;
+			String message = "Category berhasil dihapus!";
+
+			// Jangan lupa dipanggil!!
+			cs.deleteNew(id,deletedBy);
+
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+
+			return response;
+		} catch (Exception e) {
+			String exceptionMessage = e.getMessage(); // "11-Blablabla"
+			String[] split = exceptionMessage.split("-");
+
+			int code = Integer.parseInt(split[0]);
+			String message = split[1];
+
+			Resp<Long> response = new Resp<>();
+			response.setCode(code);
+			response.setMessage(message);
+			return response;
+		}
+	}
+
+	// localhost/api/category/delete
 	@DeleteMapping("/delete")
 	public Resp<Long> deleteCategory(@RequestParam("id") Long id) {
 		try {
@@ -155,13 +185,12 @@ public class CategoryRestControllers {
 	}
 
 	@GetMapping("/pagination")
-	public Resp<Pagination<List<CategoryDTO>>> pagination(@RequestParam("keyword") String keyword, 
-			@RequestParam("limit") int limit,
-			@RequestParam("page") int page) {
+	public Resp<Pagination<List<CategoryDTO>>> pagination(@RequestParam("keyword") String keyword,
+			@RequestParam("limit") int limit, @RequestParam("page") int page) {
 
 		int code = 200;
 		String message = "sukses";
-		Pagination<List<CategoryDTO>> data = cs.pagination(keyword.trim(),limit,page); // trim " k e " -> "k e"
+		Pagination<List<CategoryDTO>> data = cs.pagination(keyword.trim(), limit, page); // trim " k e " -> "k e"
 		Resp<Pagination<List<CategoryDTO>>> response = new Resp<>();
 		response.setCode(code);
 		response.setMessage(message);

@@ -21,24 +21,24 @@ import id.bootcamp.java310.pos.utils.Resp;
 @RestController
 @RequestMapping("/api/product")
 public class ProductRestController {
-	
+
 	@Autowired
 	private ProductService ps;
-	
+
 	@GetMapping("get")
-	public Resp<List<ProductDTO>> getAll(){
+	public Resp<List<ProductDTO>> getAll() {
 		int code = 200;
 		String message = "Sukses";
 		List<ProductDTO> data = ps.getAll();
-		
+
 		Resp<List<ProductDTO>> response = new Resp<>();
 		response.setCode(code);
 		response.setMessage(message);
 		response.setData(data);
-		
+
 		return response;
 	}
-	
+
 	@PostMapping("/insert")
 	public Resp<Long> insert(@RequestBody ProductDTO dto) {
 		try {
@@ -67,7 +67,7 @@ public class ProductRestController {
 		}
 
 	}
-	
+
 	@PutMapping("/update")
 	public Resp<Long> update(@RequestBody ProductDTO dto) {
 		try {
@@ -96,7 +96,7 @@ public class ProductRestController {
 		}
 
 	}
-	
+
 	@DeleteMapping("/delete")
 	public Resp<Long> delete(@RequestParam("id") Long id) {
 		try {
@@ -123,21 +123,21 @@ public class ProductRestController {
 			response.setMessage(message);
 			return response;
 		}
-		
+
 	}
-	
+
 	@GetMapping("search")
-	public Resp<List<ProductDTO>> searchProduct(@Param("keyword") String keyword){
+	public Resp<List<ProductDTO>> searchProduct(@Param("keyword") String keyword) {
 		int code = 200;
 		String message = "Sukses";
 		List<ProductDTO> data = ps.searchProduct(keyword);
-		
+
 		Resp<List<ProductDTO>> response = new Resp<>();
 		response.setCode(code);
 		response.setMessage(message);
 		response.setData(data);
-		
+
 		return response;
 	}
-	
+
 }

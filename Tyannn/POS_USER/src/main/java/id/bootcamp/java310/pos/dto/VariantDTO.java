@@ -12,6 +12,7 @@ public class VariantDTO {
 	private Boolean active;
 	private String create_by;
 	private String modify_by;
+	private Boolean isDelete;
 	
 	public Long getId() {
 		return id;
@@ -61,4 +62,12 @@ public class VariantDTO {
 	public void setModify_by(String modify_by) {
 		this.modify_by = modify_by;
 	}
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
+	}
+	
+	
 }

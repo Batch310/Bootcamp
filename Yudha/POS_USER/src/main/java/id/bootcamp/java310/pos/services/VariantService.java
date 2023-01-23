@@ -32,8 +32,10 @@ public class VariantService {
 			cat.setInitial(catSumber.get(i).getInitial());
 			cat.setName(catSumber.get(i).getName());
 			cat.setActive(catSumber.get(i).getActive());
-
 			catList.add(cat);
+			if (catSumber.get(i).getIs_delete() == false) {
+
+			}
 		}
 
 		return catList;
@@ -85,12 +87,12 @@ public class VariantService {
 
 	public void update(VariantDTO dto) throws Exception {
 		// Validasi
-		Boolean isInitialExists = vr.isInitialExists(dto.getInitial(),dto.getId());
+		Boolean isInitialExists = vr.isInitialExists(dto.getInitial(), dto.getId());
 		if (isInitialExists == true) {
 			throw new Exception("11-Initial sudah terpakai!");
 		}
 
-		Boolean isNameExists = vr.isNameExists(dto.getName(),dto.getId());
+		Boolean isNameExists = vr.isNameExists(dto.getName(), dto.getId());
 		if (isNameExists == true) {
 			throw new Exception("12-Name sudah terpakai!");
 		}
@@ -120,10 +122,10 @@ public class VariantService {
 		if (isVariantUsedByProduct) {
 			throw new Exception("15-Variant dipakai, tidak dapat dihapus");
 		}
-		
+
 		vr.deleteById(id);
 	}
-	
+
 	public List<VariantDTO> getVariantsByCategoryId(Long categoryId) {
 		List<VariantEntity> catSumber = vr.getVariantsByCategoryId(categoryId);
 		System.out.println(categoryId);
@@ -145,7 +147,7 @@ public class VariantService {
 		return catList;
 
 	}
-	
+
 	public List<VariantDTO> search(String keyword) {
 		List<VariantEntity> catSumber = vr.search(keyword);
 

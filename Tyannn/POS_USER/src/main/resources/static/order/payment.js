@@ -80,7 +80,7 @@ function bukaPopupPayment() {
 
 		var orderHeaderDto = JSON.stringify({
 			"amount": amount,
-			"create_by": 'Yuhan',
+			"create_by": userId,
 			"listOrderDetail": []
 		});
 

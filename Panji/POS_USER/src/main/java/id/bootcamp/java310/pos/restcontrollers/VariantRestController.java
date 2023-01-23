@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import id.bootcamp.java310.pos.dto.CategoryDTO;
 import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.services.VariantService;
+import id.bootcamp.java310.pos.utils.Pagination;
 import id.bootcamp.java310.pos.utils.Resp;
 
 @RestController
@@ -26,11 +27,11 @@ public class VariantRestController {
 	private VariantService vs;
 
 	@GetMapping("/get")
-	public Resp<List<VariantDTO>> getAll() {
+	public Resp<List<VariantDTO>> getAllVariant() {
 		// Mengemas Response API
 		int code = 200;
 		String message = "Sukses";
-		List<VariantDTO> data = vs.getAll();
+		List<VariantDTO> data = vs.getAllVariant();
 
 		Resp<List<VariantDTO>> response = new Resp<>();
 		response.setCode(code);
@@ -153,6 +154,35 @@ public class VariantRestController {
 		response.setMessage(message);
 		response.setData(data);
 
+		return response;
+	}
+
+	// Paginatioon
+	@GetMapping("/pagination")
+	public Resp<Pagination<List<VariantDTO>>> getPagination(@RequestParam("keyword") String keyword,
+			@RequestParam("limit") int limit, @RequestParam("page") int page) {
+		int code = 200;
+		String message = "Sukses";
+		Pagination<List<VariantDTO>> dataPage = vs.getPagination(keyword, limit, page);
+		Resp<Pagination<List<VariantDTO>>> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(dataPage);
+
+		return response;
+
+	}
+	
+	// Update Delete buat Variant
+	@PutMapping("/updateDelete")
+	public Resp<VariantDTO> updateDelete(@RequestBody VariantDTO dto){
+		int code = 200;
+		String message = "Sukses";
+		vs.updateDel(dto);
+		
+		Resp<VariantDTO> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
 		return response;
 	}
 }

@@ -34,7 +34,7 @@ public class UserController {
 		Long userId = (Long) request.getSession().getAttribute("user_id");
 		
 		//oper data
-		model.addAttribute("user_id", userId);
+		model.addAttribute("user_id", userId); 
 		
 		if (email != null) {
 			return "user/profile.html";

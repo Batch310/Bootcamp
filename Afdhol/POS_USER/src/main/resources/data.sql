@@ -60,34 +60,34 @@ INSERT INTO public.menu_role(
 
 --Insert Category
 INSERT INTO public.category
-	(active, created_by, created_on, initial, name)
+	(active, created_by, created_on, initial, name, is_delete)
 VALUES 
-	(true, 3, now(), 'KSH', 'Kesehatan'),
-	(true, 3, now(), 'AFH', 'Aksesoris Fashion'),
-	(true, 3, now(), 'ELK', 'Elektronik'),
-	(true, 3, now(), 'PPR', 'Pakaian Pria'),
-	(true, 3, now(), 'SPR', 'Sepatu Pria'),
-	(true, 3, now(), 'HPA', 'Hanphone & Aksesoris'),
-	(true, 3, now(), 'FMM', 'Fashion Muslim'),
-	(true, 3, now(), 'KTT', 'Koper & Tas Travel'),
-	(true, 3, now(), 'TWA', 'Tas Wanita'),
-	(true, 3, now(), 'PWA', 'Pakaian Wanita')
+	(true, 3, now(), 'KSH', 'Kesehatan',false),
+	(true, 3, now(), 'AFH', 'Aksesoris Fashion',true),
+	(true, 3, now(), 'ELK', 'Elektronik',false),
+	(true, 3, now(), 'PPR', 'Pakaian Pria',false),
+	(true, 3, now(), 'SPR', 'Sepatu Pria',false),
+	(true, 3, now(), 'HPA', 'Hanphone & Aksesoris',false),
+	(true, 3, now(), 'FMM', 'Fashion Muslim',false),
+	(true, 3, now(), 'KTT', 'Koper & Tas Travel',false),
+	(true, 3, now(), 'TWA', 'Tas Wanita',false),
+	(true, 3, now(), 'PWA', 'Pakaian Wanita',false)
 ;
-
+	
 --Insert Variant
 INSERT INTO public.variant
-	(active, category_id, created_by, created_on, initial, name)
+	(active, category_id, created_by, created_on, initial, name, is_delete)
 VALUES 
-	(true, 1, 3, now(), 'HSZ', 'Hand Sanitizer'),
-	(true, 1, 3, now(), 'PRM', 'Perawatan Mata'),
-	(true, 2, 3, now(), 'CCN', 'Cincin'),
-	(true, 2, 3, now(), 'ATG', 'Anting'),
-	(true, 3, 3, now(), 'SKS', 'Stop Kontak & Sambungan Kabel'),
-	(true, 3, 3, now(), 'SKR', 'Saklar'),
-	(true, 4, 3, now(), 'CPJ', 'Celana Panjang Jeans'),
-	(true, 4, 3, now(), 'HST', 'Hoodie & Sweatshirt'),
-	(true, 5, 3, now(), 'BOT', 'Boot'),
-	(true, 5, 3, now(), 'SND', 'Sandal')
+	(true, 1, 3, now(), 'HSZ', 'Hand Sanitizer', true),
+	(true, 1, 3, now(), 'PRM', 'Perawatan Mata', true),
+	(true, 2, 3, now(), 'CCN', 'Cincin', false),
+	(true, 2, 3, now(), 'ATG', 'Anting', false),
+	(true, 3, 3, now(), 'SKS', 'Stop Kontak & Sambungan Kabel', false),
+	(true, 3, 3, now(), 'SKR', 'Saklar', false),
+	(true, 4, 3, now(), 'CPJ', 'Celana Panjang Jeans', false),
+	(true, 4, 3, now(), 'HST', 'Hoodie & Sweatshirt', false),
+	(true, 5, 3, now(), 'BOT', 'Boot', false),
+	(true, 5, 3, now(), 'SND', 'Sandal', false)
 ;
 
 --Insert Product
