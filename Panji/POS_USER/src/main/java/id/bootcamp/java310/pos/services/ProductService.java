@@ -33,6 +33,7 @@ public class ProductService {
 		return listHasil;
 	}
 
+	// Create
 	public Long insertItem(ProductDTO dto) throws Exception {
 		Boolean isInitialExists = pr.isInitialExists(dto.getInitial());
 		if (isInitialExists == true) {
@@ -70,6 +71,7 @@ public class ProductService {
 		return hasil.getId();
 	}
 
+	// Update
 	public void updateItem(ProductDTO dto) throws Exception {
 		Boolean isInitialExists = pr.isInitialExists(dto.getInitial(), dto.getId());
 		if (isInitialExists == true) {
@@ -101,6 +103,7 @@ public class ProductService {
 		pr.updateItem(dto, new Date());
 	}
 
+	// Delete
 	public void delete(Long id) throws Exception {
 		Boolean isProductUsedByOrderDetail = pr.isProductUsedByOrderDetail(id);
 		if (isProductUsedByOrderDetail) {
@@ -110,6 +113,7 @@ public class ProductService {
 		pr.deleteById(id);
 	}
 
+	// Search
 	public List<ProductDTO> searchProduct(String keyword) {
 		List<ProductEntity> listSumber = pr.searchProducts(keyword);
 		List<ProductDTO> listHasil = new ArrayList<>();

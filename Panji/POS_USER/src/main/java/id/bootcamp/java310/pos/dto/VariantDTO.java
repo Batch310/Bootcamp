@@ -14,6 +14,9 @@ public class VariantDTO {
 	private String modify_by;
 	private String deleted_by;
 	private Boolean is_delete;
+	private Long user_id;
+	private Long variant_id;
+	
 	
 	
 	public VariantDTO() {
@@ -29,6 +32,23 @@ public class VariantDTO {
 		this.initial = initial;
 		this.name = name;
 		this.active = active;
+	}
+	
+	public Long getVariant_id() {
+		return variant_id;
+	}
+
+
+	public void setVariant_id(Long variant_id) {
+		this.variant_id = variant_id;
+	}
+
+
+	public Long getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
 	}
 	public Long getId() {
 		return id;

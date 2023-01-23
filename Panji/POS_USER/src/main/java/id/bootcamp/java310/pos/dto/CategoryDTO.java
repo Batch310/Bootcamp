@@ -12,11 +12,11 @@ public class CategoryDTO {
 	private String modify_by;
 	private String deleted_by;
 	private Boolean is_delete;
-	
+
 	public CategoryDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public CategoryDTO(Long id, String initial, String name, Boolean active) {
 		super();
 		this.id = id;
@@ -24,8 +24,6 @@ public class CategoryDTO {
 		this.name = name;
 		this.active = active;
 	}
-	
-	
 
 	public Boolean getIs_delete() {
 		return is_delete;
@@ -46,36 +44,47 @@ public class CategoryDTO {
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getInitial() {
 		return initial;
 	}
+
 	public void setInitial(String initial) {
 		this.initial = initial;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public Boolean getActive() {
 		return active;
 	}
+
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+
 	public String getCreate_by() {
 		return create_by;
 	}
+
 	public void setCreate_by(String create_by) {
 		this.create_by = create_by;
 	}
+
 	public String getModify_by() {
 		return modify_by;
 	}
+
 	public void setModify_by(String modify_by) {
 		this.modify_by = modify_by;
 	}

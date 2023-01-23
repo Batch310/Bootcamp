@@ -1,0 +1,31 @@
+#Menentukan data yang boleh ditampilkan
+type Category{
+	id: Long!
+	initial: String!
+	name: String!
+	active: Boolean!
+}
+
+#Query Get GraphQL
+type Query{
+	findAllCategories: [Category]!
+}
+
+#Query untuk modifying 
+type Mutation{
+	createCategory(
+	initial: String!, 
+	name: String!, 
+	active: Boolean!, 
+	create_by: String!):Long
+	
+	updateCategory(
+	id: Long!, 
+	initial: String!, 
+	name: String!, 
+	active: Boolean!, 
+	modify_by: String):Boolean
+	
+	deleteCategory(
+	id: Long!):Boolean
+}

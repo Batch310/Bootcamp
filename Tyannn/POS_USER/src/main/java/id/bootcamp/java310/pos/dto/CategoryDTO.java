@@ -1,5 +1,7 @@
 package id.bootcamp.java310.pos.dto;
 
+import java.sql.Date;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -10,6 +12,9 @@ public class CategoryDTO {
 	private Boolean active;
 	private String create_by;
 	private String modify_by;
+	private String delete_by;
+	private Date delete_on;
+	private Boolean isDelete;
 	
 	public CategoryDTO() {
 		// TODO Auto-generated constructor stub
@@ -58,4 +63,30 @@ public class CategoryDTO {
 	public void setModify_by(String modify_by) {
 		this.modify_by = modify_by;
 	}
+
+	public String getDelete_by() {
+		return delete_by;
+	}
+
+	public void setDelete_by(String delete_by) {
+		this.delete_by = delete_by;
+	}
+
+	public Boolean getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Boolean isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public Date getDelete_on() {
+		return delete_on;
+	}
+
+	public void setDelete_on(Date delete_on) {
+		this.delete_on = delete_on;
+	}
+	
+	
 }

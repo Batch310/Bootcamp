@@ -23,20 +23,19 @@ import id.bootcamp.java310.pos.dto.VariantDTO;
 
 @NamedNativeQueries(value = {
 		@NamedNativeQuery(
-				name = "search_name_variant",
-				query = "select \r\n"
-						+ "        v.id,\r\n"
-						+ "        v.category_id,\r\n"
-						+ "        c.name as category_name,\r\n"
-						+ "        v.initial,\r\n"
-						+ "        v.name,\r\n"
-						+ "        v.active\r\n"
-						+ "from variant v\r\n"
-						+ "join category c\r\n"
-						+ "        on v.category_id = c.id\r\n"
-						+ "where v.name ilike '%' || :keyword || '%'\r\n"
-						+ "order by initial asc",
-				resultSetMapping = "get_variant"),
+				name = "get_variant",
+				query = "SELECT V.ID,\r\n"
+						+ "	V.CATEGORY_ID,\r\n"
+						+ "	C.NAME AS CATEGORY_NAME,\r\n"
+						+ "	V.INITIAL,\r\n"
+						+ "	V.NAME,\r\n"
+						+ "	V.ACTIVE\r\n"
+						+ "FROM VARIANT V\r\n"
+						+ "INNER JOIN CATEGORY C\r\n"
+						+ "	ON C.ID = V.CATEGORY_ID\r\n"
+						+ "WHERE V.IS_DELETE = FALSE\r\n"
+						+ "ORDER BY ID ASC",
+				resultSetMapping = "get_variant_result"),
 		@NamedNativeQuery(
 				name = "pagination_variant",
 				query = "select \r\n"
@@ -49,17 +48,17 @@ import id.bootcamp.java310.pos.dto.VariantDTO;
 						+ "from variant v\r\n"
 						+ "join category c\r\n"
 						+ "        on v.category_id = c.id\r\n"
-						+ "where is_delete = false and v.name ilike '%' || :keyword || '%'\r\n"
+						+ "where v.is_delete = false and v.name ilike '%' || :keyword || '%'\r\n"
 						+ "order by id asc\r\n"
 						+ "limit :limit\r\n"
 						+ "offset :offset",
-				resultSetMapping = "get_variant"
+				resultSetMapping = "get_variant_result"
 				)
 		})
 
 @SqlResultSetMappings(value = {
 		@SqlResultSetMapping(
-				name = "get_variant",
+				name = "get_variant_result",
 				classes = @ConstructorResult(
 						targetClass = VariantDTO.class,
 						columns = {
@@ -145,4 +144,5 @@ public class VariantEntity extends BaseProperties {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+	
 }

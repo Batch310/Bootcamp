@@ -31,6 +31,7 @@ public class CategoryRestControllers {
 		int code = 200;
 		String message = "Sukses";
 		List<CategoryDTO> data = cs.getAllCategories();
+//		List<CategoryDTO> data = cs.getAll();
 
 		Resp<List<CategoryDTO>> response = new Resp<>();
 		response.setCode(code);
@@ -111,34 +112,65 @@ public class CategoryRestControllers {
 	}
 
 	// localhost/api/category/delete
-	@DeleteMapping("/delete")
-	public Resp<Long> deleteCategory(@RequestParam("id") Long id) {
-		try {
-			// Mengemas Response API
-			int code = 200;
-			String message = "Category berhasil dihapus!";
+//	@DeleteMapping("/delete")
+//	public Resp<Long> deleteCategory(@RequestParam("id") Long id) {
+//		try {
+//			// Mengemas Response API
+//			int code = 200;
+//			String message = "Category berhasil dihapus!";
+//
+//			// Jangan lupa dipanggil!!
+//			cs.delete(id);
+//
+//			Resp<Long> response = new Resp<>();
+//			response.setCode(code);
+//			response.setMessage(message);
+//
+//			return response;
+//		} catch (Exception e) {
+//			String exceptionMessage = e.getMessage(); // "11-Blablabla"
+//			String[] split = exceptionMessage.split("-");
+//
+//			int code = Integer.parseInt(split[0]);
+//			String message = split[1];
+//
+//			Resp<Long> response = new Resp<>();
+//			response.setCode(code);
+//			response.setMessage(message);
+//			return response;
+//		}
+//	}
+	
+	// localhost/api/category/delete
+		@DeleteMapping("/delete")
+		public Resp<Long> deleteCategory2(@RequestParam("id") Long id, @RequestParam("deleted_by") String deleted_by) {
+			try {
+				// Mengemas Response API
+				int code = 200;
+				String message = "Category berhasil dihapus!";
 
-			// Jangan lupa dipanggil!!
-			cs.delete(id);
+				// Jangan lupa dipanggil!!
+				cs.delete2(id, deleted_by);
 
-			Resp<Long> response = new Resp<>();
-			response.setCode(code);
-			response.setMessage(message);
+				Resp<Long> response = new Resp<>();
+				response.setCode(code);
+				response.setMessage(message);
 
-			return response;
-		} catch (Exception e) {
-			String exceptionMessage = e.getMessage(); // "11-Blablabla"
-			String[] split = exceptionMessage.split("-");
+				return response;
+			} catch (Exception e) {
+				String exceptionMessage = e.getMessage(); // "11-Blablabla"
+				String[] split = exceptionMessage.split("-");
 
-			int code = Integer.parseInt(split[0]);
-			String message = split[1];
+				int code = Integer.parseInt(split[0]);
+				String message = split[1];
 
-			Resp<Long> response = new Resp<>();
-			response.setCode(code);
-			response.setMessage(message);
-			return response;
+				Resp<Long> response = new Resp<>();
+				response.setCode(code);
+				response.setMessage(message);
+				return response;
+			}
 		}
-	}
+
 
 	@GetMapping("/search")
 	public Resp<List<CategoryDTO>> search(@RequestParam("keyword") String keyword) {

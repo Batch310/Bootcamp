@@ -23,6 +23,16 @@ import id.bootcamp.java310.pos.dto.CategoryDTO;
 		@NamedNativeQuery(name = "get_categories_cara4", query = "select \r\n" + "        id,\r\n"
 				+ "        initial,\r\n" + "        name,\r\n" + "        active\r\n" + "from category\r\n"
 				+ "order by initial asc", resultSetMapping = "get_categories_cara4_result"),
+		@NamedNativeQuery(name = "get_pagination_category", query = "select \r\n"
+				+ "        id,\r\n"
+				+ "        initial,\r\n"
+				+ "        name,\r\n"
+				+ "        active\r\n"
+				+ "from category\r\n"
+				+ "where is_delete = false and name ilike '%' || :keyword ||'%'\r\n"
+				+ "order by id asc\r\n"
+				+ "limit :limit\r\n"
+				+ "offset :offset", resultSetMapping = "get_categories_cara4_result"),
 		@NamedNativeQuery(name = "search_category", query = "select \r\n" + "        id,\r\n" + "        initial,\r\n"
 				+ "        name,\r\n" + "        active\r\n" + "from category\r\n"
 				+ "where name ilike '%'|| :keyword ||'%'\r\n"

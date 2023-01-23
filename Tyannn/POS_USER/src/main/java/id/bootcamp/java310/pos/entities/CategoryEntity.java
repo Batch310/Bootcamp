@@ -33,7 +33,7 @@ import id.bootcamp.java310.pos.dto.CategoryDTO;
 				+ "        name,\r\n"
 				+ "        active\r\n"
 				+ "from category\r\n"
-				+ "where name ilike '%' || :keyword ||'%'\r\n"
+				+ "where is_delete = false AND name ilike '%' || :keyword ||'%'\r\n"
 				+ "order by id asc\r\n"
 				+ "limit :limit\r\n"
 				+ "offset :offset", resultSetMapping = "get_categories_cara4_result") })

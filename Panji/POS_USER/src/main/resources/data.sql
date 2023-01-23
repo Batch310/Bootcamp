@@ -64,12 +64,12 @@ INSERT INTO public.category
 VALUES 
 	(true, 3, now(), 'KSH', 'Kesehatan', true),
 	(true, 3, now(), 'AFH', 'Aksesoris Fashion', false),
-	(true, 3, now(), 'ELK', 'Elektronik', true),
+	(true, 3, now(), 'ELK', 'Elektronik', false),
 	(true, 3, now(), 'PPR', 'Pakaian Pria',false),
-	(true, 3, now(), 'SPR', 'Sepatu Pria', true),
+	(true, 3, now(), 'SPR', 'Sepatu Pria', false),
 	(true, 3, now(), 'HPA', 'Hanphone & Aksesoris', false),
 	(true, 3, now(), 'FMM', 'Fashion Muslim', false),
-	(true, 3, now(), 'KTT', 'Koper & Tas Travel', true),
+	(true, 3, now(), 'KTT', 'Koper & Tas Travel', false),
 	(true, 3, now(), 'TWA', 'Tas Wanita', true),
 	(true, 3, now(), 'PWA', 'Pakaian Wanita', false)
 ;
