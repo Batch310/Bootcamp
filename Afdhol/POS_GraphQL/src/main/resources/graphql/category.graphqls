@@ -1,0 +1,34 @@
+#Tentukan data yang boleh ditentukan
+# ! artinya not null
+type Category{
+	id: Long!
+	initial: String!
+	name: String!
+	active: Boolean!
+
+}
+
+#Query Get GraphQL
+type Query{
+	findAllCategories: [Category]!
+}
+
+#Query untuk modifying
+type Mutation{
+	createCategory(
+	initial: String!, 
+	name: String!, 
+	active: Boolean!, 
+	create_by: String!):Long #balikan
+	
+	updateCategory(
+	id: Long!,
+	initial: String!, 
+	name: String!, 
+	active: Boolean!,
+	modify_by : String):Boolean #balikan
+	
+	deleteCategory(
+	id: Long!
+	) : Boolean  #balikan
+}
