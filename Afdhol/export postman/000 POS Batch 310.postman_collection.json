@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "140016cf-0f7f-4938-b1a9-beee9ed98fa0",
+		"name": "000 POS Batch 310",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25189851"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get All Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"select \r\n        initial,\r\n        name,\r\n        active\r\nfrom category\r\norder by initial asc\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/category/get",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"initial\": \"AAFHS\",\r\n        \"name\": \"Fesyen\",\r\n        \"active\": true,\r\n        \"create_by\": \"Ngad\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/category/insert",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 2,\r\n        \"initial\": \"KSHi\",\r\n        \"name\": \"Kesehatannn\",\r\n        \"active\": true,\r\n        \"modify_by\": \"Saya\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/category/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/category/delete",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Category",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Category",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Variant",
+			"item": [
+				{
+					"name": "Get All Variant",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"select \r\n        v.category_id,\r\n        c.name as category_name,\r\n        v.initial,\r\n        v.name,\r\n        v.active\r\nfrom variant v\r\njoin category c\r\n        on v.category_id = c.id;\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/variant/get",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Variant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"category_id\": 9,\r\n        \"initial\": \"OOsafsaG\",\r\n        \"name\": \"Obat Maghma\",\r\n         \"active\": true,\r\n        \"create_by\": \"ngAdmin\"\r\n        \r\n        \r\n        \r\n        \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/variant/insert",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Variant",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 11,\r\n        \"category_id\" : 9,\r\n        \"initial\": \"$####\",\r\n        \"name\": \"####\",\r\n        \"active\": true,\r\n        \"modify_by\": \"Admen\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/variant/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Variant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/variant/delete?id=11",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Variant",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Variant",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

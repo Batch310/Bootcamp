@@ -1,0 +1,41 @@
+#lihat DTO Variant
+
+type Variant{
+	id: Long!
+	initial: String!
+	name: String!
+	active: Boolean!
+	category_id : Long!
+	category_name : String!
+
+}
+
+#type hanya boleh satu, jika menambah query lagi, tambah dengan extend
+
+extend type Query{
+	findAllVariant: [Variant]!
+	findVariantsByCategoryId(category_id:Long!): [Variant]!
+}
+
+extend type Mutation{
+
+	createVariant(
+	initial: String!,
+	name: String!,
+	active: Boolean!,
+	create_by: String!,
+	category_id : Long!) :Long
+	
+	updateVariant(
+	id: Long!,
+	initial: String!,
+	name: String!,
+	active: Boolean!,
+	modify_by : String,
+	category_id : Long!) :Boolean
+	
+	deleteVariant(
+	id: Long!
+	) : Boolean 
+
+}
