@@ -21,7 +21,7 @@ public class UserController {
 			return "redirect:/user/home";
 		} else {
 
-			return "user/login-new.html";
+			return "user/login.html";
 		}
 	}
 
@@ -43,7 +43,7 @@ public class UserController {
 			return "user/home.html";
 		} else {
 
-			return "redirect:/login-new.html";
+			return "redirect:/login.html";
 		}
 	}
 
@@ -81,7 +81,7 @@ public class UserController {
 			return "user/profile.html";
 		} else {
 
-			return "redirect:/login-new.html";
+			return "redirect:/login.html";
 		}
 	}
 

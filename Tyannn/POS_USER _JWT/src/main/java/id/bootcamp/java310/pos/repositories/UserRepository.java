@@ -24,10 +24,15 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 			+ "set email = :email, password = :password\r\n"
 			+ "where id = :user_id")
 	public void updateUser(@Param("email")String email,@Param("password")String password,@Param("user_id")Long userId);
+
+	@Query(nativeQuery = true, value = "select * from m_user where email = :email")
+	public UserEntity getUserByEmail(@Param ("email")String mail);
 	
-	
-	@Query(nativeQuery = true, value = "select exists (select email from m_user where email = :email)")
-	public Boolean checkEmailExists(@Param("email")String mail);
-	
-	
+	@Query(nativeQuery = true, value = "select\r\n"
+			+ "	r.code\r\n"
+			+ "from m_user u\r\n"
+			+ "join role r\r\n"
+			+ "	on u.role_id = r.id\r\n"
+			+ "where u.email = :email ")	
+	public String geRoleCodeByEmail(@Param("email")String mail);
 }
