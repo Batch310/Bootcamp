@@ -46,9 +46,28 @@
 				placeholder="Enter password" name="pswd">
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="button" class="btn btn-primary" onclick="bukaPopUpRegister()">Register</button>
+
 	</form>
+	
+	<!-- Modal -->
+	<div class="modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Abcabc</h5>
+					<button type="button" class="btn-close" data-dismiss="modal"
+						aria-label="Close">
+						<i class="fa fa-close"></i>
+					</button>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
 
 	<script type="text/javascript">
+		
 		function loginApi(email, password) {
 			var formData = new FormData();
 			formData.append("email", email);
@@ -91,6 +110,138 @@
 			}
 		}
 
+		function bukaPopUpRegister(){
+			console.log("Register terpencet")
+			
+			//Ganti Title
+			$(".modal-title").html("Masukkan Email");
+			
+			//Ngisi Modal Body
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td>Email</td>
+						<td>
+							<input id="input-email" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button id="input-ok" class="btn btn-primary">OK</button>
+						</td>
+					</tr>
+				</table>
+				`						
+			);
+			
+			$("#input-ok").click(function(){
+				var email = $("#input-email").val();
+				bukaPopUpRegister1(email);
+				console.log("ok terpencet")
+
+			});
+			$(".modal").modal("show");
+		}
+		
+		function bukaPopUpRegister1(email){
+			
+			//Ganti Title
+			$(".modal-title").html("Masukkan OTP");
+			
+			//Ngisi Modal Body
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td>OTP</td>
+						<td>
+							<input id="input-otp" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button id="input-ok" class="btn btn-primary">OK</button>
+						</td>
+					</tr>
+				</table>
+				`						
+			);
+			$("#input-ok").click(function(){
+				var otp = $("#input-otp").val();
+				bukaPopUpRegister2(email, otp);
+				console.log("ok terpencet")
+
+			});
+			$(".modal").modal("show");
+		}
+		
+		function bukaPopUpRegister2(email, otp){
+			
+			//Ganti Title
+			$(".modal-title").html("Masukkan Data Register");
+			
+			//Ngisi Modal Body
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td>Email</td>
+						<td>
+							<input id="input-email" class="form-control" value="${email}" disabled>
+						</td>
+					</tr>
+					<tr>
+						<td>Password</td>
+						<td>
+							<input id="input-password" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>Nama</td>
+						<td>
+							<input id="input-name" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>Role</td>
+						<td>
+							<select id="input-role" class="form-control">
+								<option value="1">Admin</option>
+								<option value="2">Warehouse</option>
+								<option value="3">Cashier</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button id="input-ok" class="btn btn-primary">OK</button>
+						</td>
+					</tr>
+				</table>
+				`						
+			);
+			$("#input-ok").click(function(){
+				
+				console.log(email);
+				
+				console.log(otp);
+				
+				var password = $("#input-password").val();
+				console.log(password);
+				
+				var name = $("#input-name").val();
+				console.log(name);
+				
+				var roleCode = $("#input-role").val();
+				console.log(roleCode);
+				
+				$(".modal").modal("hide");
+
+			});
+			$(".modal").modal("show");
+		}
+		
 
 	</script>
 </body>

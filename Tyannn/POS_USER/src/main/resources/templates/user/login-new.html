@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+
+	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+
+	<script src="/vendor/jquery/jquery-3.6.3.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/fontawesome/js/all.min.js"></script>
+
+	<style type="text/css">
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+		}
+
+		body {
+			display: flex;
+		}
+
+		form,
+		h2 {
+			margin: auto;
+			/* nice thing of auto margin if display:flex; it center both horizontal and vertical :) */
+		}
+	</style>
+</head>
+
+<body>
+	<form action="javascript:login()">
+		<h2 class="m-5">Login form</h2>
+		<div class="form-group">
+			<label for="email">Email:</label> <input type="email" class="form-control" id="email"
+				placeholder="Enter email" name="email">
+		</div>
+		<div class="form-group">
+			<label for="pwd">Password:</label> <input type="password" class="form-control" id="pwd"
+				placeholder="Enter password" name="pswd">
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+		
+		<!-- button rigester -->
+		<div>
+			<br>
+			<button type="button" class="btn btn-outline-dark" onclick="popupRegister1()">Register</button>
+		</div>
+	</form>
+	
+	<!-- Modal -->
+	<div class="modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"></h5>
+					<button type="button" class="btn-close" data-dismiss="modal"
+						aria-label="Close">
+						<i class="fa fa-close"></i>
+					</button>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+</body>
+	<script type="text/javascript">
+		function loginApi(email, password) {
+			var formData = new FormData();
+			formData.append("email", email);
+			formData.append("password", password);
+
+
+			return $.ajax({
+				url: "/api/user/login",
+				method: "POST",
+				data: formData,
+				contentType: false,
+				processData: false,
+				MimeType: "multipart/form-data",
+				async: false
+			});
+		}
+
+		function saveLoginData(userDTO) {
+
+			return $.ajax({
+				url: "/user/saveLoginData",
+				method: "GET",
+				data: userDTO,
+				async: false
+			});
+		}
+
+		function login() {
+			var email = $("#email").val();
+			var password = $("#pwd").val();
+
+			var responseText = loginApi(email, password).responseText;
+			var response = $.parseJSON(responseText);
+
+			if (response.code == 200) {
+				alert(response.message);
+				var redirectUrl = saveLoginData(response.data).responseText;
+				$(location).attr('href', redirectUrl);
+				// menyimpan data login ke session
+			} else {
+				alert(response.message);
+			}
+
+
+		}
+		
+		function popupRegister1() {
+			$(".modal-title").html("Masukkan Email");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td>Email</td>
+					</tr>
+					<tr>
+						<td>
+							<input id="input-email" class="form-control">
+						</td>
+					</tr>
+					<tr>
+					<td>
+						<button id="btn-oke" class="btn btn-primary">oke</button>
+					</td>
+					</tr>
+				</table>
+				`
+			);
+
+			$("#btn-oke").click(function () {
+				var email = $("#input-email").val();
+				popupRegister2(email);
+			});
+
+			$(".modal").modal("show");
+		}
+		
+		function popupRegister2(email){
+			$(".modal-title").html("OTP");
+			
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td>Masukan OTP</td>
+					</tr>
+					<tr>
+						<td>
+							<input id="input-otp" class="form-control">
+						</td>
+					</tr>
+					<tr>
+					<td>
+						<button id="btn-oke" class="btn btn-primary">oke</button>
+					</td>
+					</tr>
+				</table>
+				`
+			);
+			
+			$("#btn-oke").click(function () {
+				var otp = $("#input-otp").val();
+				popupRegister3(email,otp);
+			});
+
+			$(".modal").modal("show");
+		}
+		
+		function popupRegister3(email,otp){
+			$(".modal-title").html("Lengkapi Akun Anda")
+			
+			// Modal-body
+			$(".modal-body").html(
+				`
+				<table class="table table-bordless">
+					<tr>
+						<td>
+							<p>Email</p>
+							<input id="input-email" value="${email}" class="form-control" disabled>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>Password</p>
+							<input id="input-password" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>Name</p>
+							<input id="input-name" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>Role</p>
+							<select id="input-role" class="form-control">
+								<option value="1">ADMIN</option>
+								<option value="2">CASHIER</option>
+								<option value="3">WAREHOUSE</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button id="btn-oke" class="btn btn-primary">oke</button>
+						</td>
+					</tr>
+				</table>
+				`
+			);
+				$("#btn-oke").click(function(){
+				//data
+				console.log(email);
+				console.log(otp);
+				
+				var password = $("#input-password").val();
+				console.log(password);
+				
+				var name = $("#input-name").val();
+				console.log(name);
+				
+				var roleCode = $("#input-role").val();
+				console.log(roleCode);
+				
+				$(".modal").modal("hide");
+			});
+			
+			$(".modal").modal("show");
+		}
+	
+	</script>
+
+</html>
