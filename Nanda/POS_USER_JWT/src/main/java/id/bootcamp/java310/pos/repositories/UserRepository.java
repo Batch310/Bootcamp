@@ -31,6 +31,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	public UserEntity getUserByEmail(@Param ("email") String email);
 	
 	@Query(nativeQuery = true,
-			value = "select r.code from m_user u join role r on u.role_id = r.id where u.email :email")
+			value = "select r.code from m_user u join role r on u.role_id = r.id where u.email = :email")
 	public String getRoleCodeByEmail(@Param ("email") String email);
 }
