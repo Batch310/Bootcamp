@@ -30,23 +30,15 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 			@Param ("email") String email,
 			@Param ("password") String password,
 			@Param ("user_id") Long userId);
-
-	
-	@Query(nativeQuery = true,
-			value = "select exists (select email from m_user where email = :email)"
-			)
-	public Boolean checkEmailIfExist(@Param("email") String mail);
 	
 	
 	@Query(nativeQuery = true,
-			value = "insert into m_user\r\n"
-					+ "(email, password, role_id, biodata_id, created_by, created_on)\r\n"
-					+ "values\r\n"
-					+ "(:email, :pwd, :role_id, :biodata_id, 1, now())"
+			value = "select * from m_user where email = :email"
 			)
-	public Long saveUserRegister(@Param ("email") String email,
-			@Param ("pwd") String password,
-			@Param ("role_id") String role_id,
-			@Param ("biodata_id") String biodata_id);
+	public UserEntity getUserByEmail(@Param ("email") String mail );
 	
+	@Query(nativeQuery = true,
+			value = "select r.code from m_user u join role r on u.role_id = r.id where u.email = :email"
+			)
+	public String getRoleCOdeByEmail(@Param ("email") String email);
 }
