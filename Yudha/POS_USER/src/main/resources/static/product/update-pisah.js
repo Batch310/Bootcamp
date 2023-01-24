@@ -167,7 +167,7 @@ function bukaPopupEdit(initial, name, active, id, categoryName, categoryId, vari
 		console.log(active);
 
 		//Modify By
-		var modifyBy = "Yuhan";
+		var modifyBy = userId;
 		console.log(modifyBy);
 
 		//Proses Membuat Json JSON

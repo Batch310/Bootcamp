@@ -98,7 +98,7 @@ function bukaPopupAdd() {
 		console.log(active);
 
 		//Create By
-		var createBy = "Yuhan";
+		var createBy = user;
 		console.log(createBy);
 
 		//Proses Membuat Json JSON

@@ -1,0 +1,53 @@
+Langkah Buat Back End API Sampai Implementasi Front End :
+
+1. buat analisis kebutuhan, request(front ende) & response(Back end), 
+   lalu buat query di PGadmin
+    *buat query response berdasarakan request(id)
+2. cara 4 => definisikan query di entity
+   *dan filtering
+3. trs ke repository
+  *bikin nama fungsi(f.search)  
+  *balikin list DTO yg sudah dibuat(return value) 
+  * yang dibaca query adalah yang @param (:keyword)
+  * trs di run dulu, cek query bener blm
+
+  -public => bisa diakses drmn aja
+  -prvate => hanya di class itu
+
+4. lalu ke service
+  *bikin fungsi search
+  * return value nya apa
+  * dan parameternya
+
+5. ke restController
+   *bikin  fungsi yang balikannya list DTO
+    *lalu bikin FUNGSI Resp(response) => untuk mengemas
+
+
+- Utills = Class bantuan buat pembungkusan
+- trim() => fungsi buat cut wide space 
+-error 400 => bad request = blm ada parameter/blm ada respon
+
+-404 = url salah
+
+-not allowed = method salah(get,post,put,delete)
+
+
+FRONT END
+
+Pengeditan bila dinamis di .js nya
+ misal = get-pagination.js
+
+*kalo di dalam bektik $/javasecript pake { }. kalo diluar pake ( )
+
+* Balikann di repo adalh data di postman
+
+
+*ReqParam = selain get pake form data
+*reqBody = pake body-raw-json
+
+*Request dari front end harus sama di variabel konstruktor DTO 
+
+
+
+
