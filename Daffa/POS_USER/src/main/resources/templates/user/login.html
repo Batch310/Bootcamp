@@ -1,97 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
 
-<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
 
-<script src="/vendor/jquery/jquery-3.6.3.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/vendor/fontawesome/js/all.min.js"></script>
+	<script src="/vendor/jquery/jquery-3.6.3.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/fontawesome/js/all.min.js"></script>
 
-<style type="text/css">
-html, body {
-	height: 100%;
-	width: 100%;
-	margin: 0;
-}
+	<style type="text/css">
+		html,
+		body {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+		}
 
-body {
-	display: flex;
-}
+		body {
+			display: flex;
+		}
 
-form, h2 {
-	margin: auto;
-	/* nice thing of auto margin if display:flex; it center both horizontal and vertical :) */
-}
-</style>
+		form,
+		h2 {
+			margin: auto;
+			/* nice thing of auto margin if display:flex; it center both horizontal and vertical :) */
+		}
+	</style>
 </head>
+
 <body>
 	<form action="javascript:login()">
 		<h2 class="m-5">Login form</h2>
 		<div class="form-group">
-			<label for="email">Email:</label> <input type="email"
-				class="form-control" id="email" placeholder="Enter email"
-				name="email">
+			<label for="email">Email:</label> <input type="email" class="form-control" id="email"
+				placeholder="Enter email" name="email">
 		</div>
 		<div class="form-group">
-			<label for="pwd">Password:</label> <input type="password"
-				class="form-control" id="pwd" placeholder="Enter password"
-				name="pswd">
+			<label for="pwd">Password:</label> <input type="password" class="form-control" id="pwd"
+				placeholder="Enter password" name="pswd">
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="button" class="btn btn-secondary" onclick="popupRegister()">Register</button>
 	</form>
 
+	<!-- Modal -->
+	<div class="modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Modal Huehehe</h5>
+					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+						<i class="fa fa-close"></i>
+					</button>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+
+
 	<script type="text/javascript">
+
 		function loginApi(email, password) {
 			var formData = new FormData();
 			formData.append("email", email);
-			formData.append("password",password);
+			formData.append("password", password);
 
 			return $.ajax({
-				url : "/api/user/login",
-				method : "POST",
-				data : formData,
-				contentType : false,
-				processData : false,
-				mimeType : "multipart/form-data",
-				async : false
+				url: "/api/user/login",
+				method: "POST",
+				data: formData,
+				contentType: false,
+				processData: false,
+				mimeType: "multipart/form-data",
+				async: false
 			});
 		}
-		
+
 		function saveLoginData(userDto) {
 			return $.ajax({
-				url : "/login/saveLoginData",
-				method : "GET",
-				data : userDto,
-				async : false
+				url: "/login/saveLoginData",
+				method: "GET",
+				data: userDto,
+				async: false
 			});
 		}
-		
-		function login(){
+
+		function login() {
 			var email = $("#email").val();
 			var password = $("#pwd").val();
-			
-			var responseText = loginApi(email,password).responseText;
+
+			var responseText = loginApi(email, password).responseText;
 			var response = $.parseJSON(responseText);
 			console.log(response);
-			
-			if(response.code == 200){
+
+			if (response.code == 200) {
 				console.log("Login Sukses");
 				alert(response.message);
 				//Menyimpan data login ke session
 				var redirectUrl = saveLoginData(response.data).responseText;
-				$(location).attr('href',redirectUrl);
-			} else{
+				$(location).attr('href', redirectUrl);
+			} else {
 				alert(response.message);
 			}
-			
-			
+
+
+		}
+		
+		//----- REGISTER -----
+		function popupRegister() {
+			console.log("Register Kepencet!")
+
+			//Ganti Title
+			$(".modal-title").html("Register");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+		<table class="table table-borderless">
+			<tr>
+				<td>Email</td>
+				<td>
+					<input id="input-email" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button id="input-cancel" class="btn btn-light">Cancel</button>
+					<button id="input-register" class="btn btn-primary">Register</button>
+				</td>
+			</tr>
+		</table>
+		`
+			);
+
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			});
+
+			$("#input-register").click(function () {
+				var email = $("#input-email").val();
+				popupOTP(email);
+			});
+
+			//. class
+			//# id
+			$(".modal").modal("show");
+		}
+
+		function popupOTP(email) {
+			console.log("OTP Kepencet!")
+
+			//Ganti Title
+			$(".modal-title").html("SendOTP");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+		<table class="table table-borderless">
+			<tr>
+				<td>OTP</td>
+				<td>
+					<input id="input-otp" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button id="input-cancel" class="btn btn-light">Cancel</button>
+					<button id="input-send-otp" class="btn btn-primary">Send OTP</button>
+				</td>
+			</tr>
+		</table>
+		`
+			);
+
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			});
+
+			$("#input-send-otp").click(function () {
+				var otp = $("#input-otp").val();
+				popupBiodata(email, otp);
+			});
+
+			//. class
+			//# id
+			$(".modal").modal("show");
+		}
+		function popupBiodata(email, otp) {
+			console.log("Biodata Kepencet!")
+
+			//Ganti Title
+			$(".modal-title").html("Biodata Register");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+		<table class="table table-borderless">
+			<tr>
+				<td>Email</td>
+				<td>
+					<input id="input-email" class="form-control" value="${email}" disabled>
+				</td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td>
+					<input id="input-password" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td>
+					<input id="input-name" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td>Role</td>
+				<td>
+					<select id="input-role" class="form-control">
+						<option value="1">ADMIN</option>
+						<option value="2">WAREHOUSE</option>
+						<option value="3">CASHIER</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button id="input-cancel" class="btn btn-light">Cancel</button>
+					<button id="input-biodata-register" class="btn btn-primary">Register</button>
+				</td>
+			</tr>
+		</table>
+		`
+			);
+
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			});
+
+			$("#input-biodata-register").click(function () {
+				console.log("email " + email);
+				console.log("otp " + otp);
+				
+				var password = $("#input-password").val();
+				console.log("password " + password);
+				
+				var name = $("#input-name").val();
+				console.log("name " + name);
+				
+				var roleCode = $("#input-role").val();
+				console.log("role " + roleCode);
+				
+				$(".modal").modal("hide");
+			});
+
+			//. class
+			//# id
+			$(".modal").modal("show");
 		}
 	</script>
 </body>
+
 </html>

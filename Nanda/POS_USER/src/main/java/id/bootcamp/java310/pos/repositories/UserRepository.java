@@ -23,4 +23,15 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	@Transactional
 	@Query(nativeQuery = true, value = "update m_user set email = :email, password = :password where id = :user_id")
 	public void userData(@Param("email") String email, @Param("password") String password, @Param("user_id") Long userId);
+	
+	@Query(nativeQuery = true, value = "select exists (select email from m_user where email = :email")
+	public Boolean checkEmailExists(@Param("email") String email);
+	
+	@Query(nativeQuery = true, value = "insert into m_user\r\n"
+			+ "(email, password, role_id, biodata_id, created_by, created_on)\r\n"
+			+ "values\r\n"
+			+ "(:email, :password, :role_id, :biodata_id, 1, now())")
+	public Long saveUserRegist(@Param("email") String email, 
+			@Param("password") String password, @Param("role_id") String role, @Param("biodata_id") String bio);
+	
 }

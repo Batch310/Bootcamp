@@ -1,0 +1,13 @@
+1. klik register = blm ada action back end
+2. saat klik oke email =
+    *ada email duplicate ga? validasi email
+    *kirim otp ke email
+    *insert otp ke tabel
+    *set expired otp
+    *max otp per email
+
+3.klik oke otp
+    *bandingkan otp tabel dengan otp inputan
+4. klik save
+    *get role list
+    *insert 3 tabel(email,nama,pass, role)

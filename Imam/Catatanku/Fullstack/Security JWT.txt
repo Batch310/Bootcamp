@@ -1,0 +1,5 @@
+SECURITY SPRING JWT
+
+*Type Auth = bearer token
+*Memiliki token untuk bisa login
+*ada expired tokennya
