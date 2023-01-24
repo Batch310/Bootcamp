@@ -61,8 +61,6 @@ public class SecurityConfig {
 		roleList.add(cashier);
 		
 		return new InMemoryUserDetailsManager(roleList);
-		
-		
 	}
 	
 }

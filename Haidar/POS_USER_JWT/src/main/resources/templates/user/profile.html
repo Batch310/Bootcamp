@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile</title>
+
+<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+
+<script src="/vendor/jquery/jquery-3.6.3.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/fontawesome/js/all.min.js"></script>
+
+<style type="text/css">
+body {
+	padding-top: 68px;
+	padding-bottom: 50px;
+}
+
+.image-container {
+	position: relative;
+}
+
+.image {
+	opacity: 1;
+	display: block;
+	width: 100%;
+	height: auto;
+	transition: .5s ease;
+	backface-visibility: hidden;
+}
+
+.middle {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.image-container:hover .image {
+	opacity: 0.3;
+}
+
+.image-container:hover .middle {
+	opacity: 1;
+}
+</style>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title mb-4">
+							<div class="d-flex justify-content-start">
+								<div class="image-container">
+									<img src="/image/icon_profile_picture.png" id="imgProfile"
+										style="width: 150px; height: 150px" class="img-thumbnail" />
+									<div class="middle">
+										<input type="button" class="btn btn-secondary"
+											id="btnChangePicture" value="Change" /> <input type="file"
+											style="display: none;" id="profilePicture" name="file" />
+									</div>
+								</div>
+								<div class="userData ml-3">
+									<h2 id="highlight-fullname" class="d-block"
+										style="font-size: 1.5rem; font-weight: bold">Nama Biodata
+									</h2>
+								</div>
+								<div class="ml-auto">
+									<input type="button" class="btn btn-primary d-none"
+										id="btnDiscard" value="Discard Changes" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-12">
+								<ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+									<li class="nav-item"><a class="nav-link active"
+										id="basicInfo-tab" data-toggle="tab" href="#basicInfo"
+										role="tab" aria-controls="basicInfo" aria-selected="true">Basic
+											Info</a></li>
+									<li class="nav-item"><a class="nav-link"
+										id="connectedServices-tab" data-toggle="tab"
+										href="#connectedServices" role="tab"
+										aria-controls="connectedServices" aria-selected="false">Another
+											Info</a></li>
+								</ul>
+								<div class="tab-content ml-1" id="myTabContent">
+									<div class="tab-pane fade show active" id="basicInfo"
+										role="tabpanel" aria-labelledby="basicInfo-tab">
+
+
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Full Name</label>
+											</div>
+											<div class="col-md-8 col-6">
+												<input id="input-fullname" value="Jamshaid Kamran"
+													class="control-form">
+											</div>
+										</div>
+										<hr />
+
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Mobile Phone</label>
+											</div>
+											<div class="col-md-8 col-6">
+												<input id="input-phone" value="085799261521" type="tel"
+													class="control-form">
+											</div>
+										</div>
+										<hr />
+
+
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Email</label>
+											</div>
+											<div class="col-md-8 col-6">
+												<input id="input-email" value="abc@gmail.com" type="email"
+													class="control-form">
+											</div>
+										</div>
+
+										<hr />
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Password</label>
+											</div>
+											<div class="col-md-8 col-6">
+												<input id="input-password" value="123456" type="password"
+													class="control-form">
+											</div>
+										</div>
+										<hr />
+
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5"></div>
+											<div class="col-md-8 col-6">
+												<button id="btn-save" class="btn btn-warning" onclick="updateBasicInfo()">Save
+													Changes</button>
+											</div>
+										</div>
+										<hr />
+
+									</div>
+									<div class="tab-pane fade" id="connectedServices"
+										role="tabpanel" aria-labelledby="ConnectedServices-tab">
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Role</label>
+											</div>
+											<div id="input-role" class="col-md-8 col-6">ADMIN</div>
+										</div>
+										<hr />
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<footer
+			class="container-fluid bg-dark text-white p-5 mt-3 text-center">
+			<h6>© 2023 Batch 310 - Java Spring Boot</h6>
+		</footer>
+
+		<!-- Modal -->
+		<div class="modal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add Abcabc</h5>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close">
+							<i class="fa fa-close"></i>
+						</button>
+					</div>
+					<div class="modal-body"></div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			//Script Bawaan ------------------------------------------------------------------------------
+			
+			var userID = "[[${userID}]]";
+			var picture = "[[${profilePicture}]]";
+	
+			$(document).ready(function() {
+				$imgSrc = $('#imgProfile').attr('src');
+				function readURL(input) {
+
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+
+						reader.onload = function(e) {
+							$('#imgProfile').attr('src', e.target.result);
+						};
+
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+
+				$('#btnChangePicture').on('click', function() {
+					// document.getElementById('profilePicture').click();
+					if (!$('#btnChangePicture').hasClass('changing')) {
+						$('#profilePicture').click();
+					} else {
+						// change
+						uploadImage();
+					}
+				});
+
+				$('#profilePicture').on('change', function() {
+					readURL(this);
+					$('#btnChangePicture').addClass('changing');
+					$('#btnChangePicture').attr('value', 'Confirm');
+					$('#btnDiscard').removeClass('d-none');
+					// $('#imgProfile').attr('src', '');
+				});
+
+				$('#btnDiscard').on('click', function() {
+					// if ($('#btnDiscard').hasClass('d-none')) {
+					$('#btnChangePicture').removeClass('changing');
+					$('#btnChangePicture').attr('value', 'Change');
+					$('#btnDiscard').addClass('d-none');
+					$('#imgProfile').attr('src', $imgSrc);
+					$('#profilePicture').val('');
+					// }
+				});
+			});
+			
+			//============================================== GET PROFILE ==============================================
+			//Fungsi Ajax API
+			function getUserProfileAPI(userID) {
+				return $.ajax({
+					url: "/api/user/profile?user_id=" + userID,
+  					method: "GET",
+  					async: false,
+				})
+			}
+			
+			var response = getUserProfileAPI(userID).responseJSON;
+			console.log(response);
+			
+			if (response.code == 200) {			
+				var list = response.data;
+				console.log(list);
+			
+				if (list.phone == null) {
+					list.phone = "0";
+				}
+				
+				if (list.picture == null) {
+					list.picture = "/image/icon_profile_picture.png";
+				}
+				
+				//highlight-fullname
+				$("#highlight-fullname").html(list.fullname);
+				
+				//imgProfile
+				$("#imgProfile").prop('src',list.picture);
+				
+				//input-fullname
+				$("#input-fullname").val(list.fullname);
+				
+				//input-phone
+				$("#input-phone").val(list.phone);
+				
+				//input-email
+				$("#input-email").val(list.email);
+				
+				//input-password
+				$("#input-password").val(list.password);	
+				
+				//input-role
+				$("#input-role").html(list.role_name);
+				//console.log(list.role_name);
+				
+			} else {
+				alert(response.message);
+			}
+			
+		
+		//============================================== GET PROFILE ==============================================
+		//============================================== UPLOAD PROFILE PICTURE ==============================================
+		
+		function uploadImageAPI(files, userID) {
+			var formData = new FormData();
+			formData.append("file", files[0]);
+			formData.append("user_id", userID);
+			
+			return $.ajax ({
+				url: "/api/user/upload",
+  				method: "PUT",
+  				processData: false,
+  				mimeType: "multipart/form-data",
+  				contentType: false,
+  				data: formData,
+  				async: false
+			})
+		}
+		
+		function uploadImage() {
+			
+			var files = $("#profilePicture")[0].files;
+			//console.log(files);
+			//uploadImageAPI(picture, userID);
+			
+			var response = uploadImageAPI(files, userID).responseText;
+			//console.log(uploadImageAPI(picture, userID));
+			
+			var responseJson = $.parseJSON(response);
+			console.log(responseJson);
+			
+			if (responseJson.code == 200) {
+				alert(responseJson.message);
+				location.reload();
+			} else {
+				alert(responseJson.message);
+			}
+		}
+		//============================================== UPLOAD PROFILE PICTURE ==============================================
+		
+		//============================================== SAVE USER BIODATA ==============================================
+		function saveUserBiodataAPI(ProfileDTO) {
+			return $.ajax ({
+				url: "/api/user/saveBiodata",
+  				method: "PUT",
+    			contentType: "application/json",
+  				data: ProfileDTO,
+  				async: false
+			})
+		}
+		
+		function updateBasicInfo() {
+			console.log("Save Changes Kepencet!");
+			console.log(userID + " " + $("#input-fullname").val() + " " + $("#input-phone").val() + " " + $("#input-email").val() + " " + $("#input-password").val());
+			
+				//Ambil fullname
+				var fullname = $("#input-fullname").val();
+				console.log(fullname);
+
+				//Ambil phone
+				var phone = $("#input-phone").val();
+				console.log(phone);
+
+				//Ambil email
+				var email = $("#input-email").val();
+				console.log(email);
+
+				//Ambil password
+				var password = $("#input-password").val();
+				console.log(password);
+
+				//Proses Membuat Json JSON
+				var ProfileDTO = JSON.stringify({
+					"user_id": userID,
+					"fullname": fullname,
+					"phone": phone,
+					"email": email,
+					"password": password
+				});
+				
+				//Panggil API saveUserBiodataAPI
+				var response = saveUserBiodataAPI(ProfileDTO).responseJSON;
+				if (response.code == 200) {
+					//highlight-fullname
+					//$("#highlight-fullname").html(fullname);
+					location.reload();
+					alert(response.message);
+				} else {
+					alert(response.message);
+				}			
+		}
+		
+		//Pake Enter
+		$("#input-fullname").keypress(function(e) {
+			console.log('Enter Save Kepencet!')
+			if (e.which == 13) {
+				updateBasicInfo();
+			}
+		});
+		
+		$("#input-phone").keypress(function(e) {
+			console.log('Enter Save Kepencet!')
+			if (e.which == 13) {
+				updateBasicInfo();
+			}
+		});
+		
+		$("#input-email").keypress(function(e) {
+			console.log('Enter Save Kepencet!')
+			if (e.which == 13) {
+				updateBasicInfo();
+			}
+		});
+		
+		$("#input-password").keypress(function(e) {
+			console.log('Enter Save Kepencet!')
+			if (e.which == 13) {
+				updateBasicInfo();
+			}
+		});
+		//============================================== SAVE USER BIODATA ==============================================
+		</script>
+</body>
+
+</html>
