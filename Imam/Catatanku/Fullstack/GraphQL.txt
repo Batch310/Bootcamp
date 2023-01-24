@@ -1,0 +1,14 @@
+GRAPHQL
+
+- ! = Wajib diisi
+-Mencakup semua CRUD dalam satu url
+
+Misal = /api/grapql => bisa get, insert, update, delete
+
+Cek POSTMANT
+   *kalo cek postmant pake "POST" terus
+   *Pilih Body
+   *pilih graphql(auto-fetch, schema-fetched)
+   *di kolom query ada auto completenya
+      { nama fungsi{ aribut yg mau ditampilkan}
+       }
