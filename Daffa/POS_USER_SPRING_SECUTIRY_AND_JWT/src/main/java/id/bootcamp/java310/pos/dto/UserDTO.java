@@ -10,6 +10,7 @@ public class UserDTO {
 	// Username dan password untuk auth
 	private String usernameAuth;
 	private String passwordAuth;
+	private String token;
 
 	public UserDTO() {
 		// TODO Auto-generated constructor stub
@@ -86,6 +87,14 @@ public class UserDTO {
 
 	public void setPasswordAuth(String passwordAuth) {
 		this.passwordAuth = passwordAuth;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }
