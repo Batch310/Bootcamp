@@ -8,7 +8,7 @@ public class UserDTO {
 	private String name;
 	private String profile_picture;
 	private String role_code;
-	
+	private String token;
 	
 	
 	
@@ -28,6 +28,17 @@ public class UserDTO {
 
 
 
+	
+
+
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 
 	public String getEmail() {
