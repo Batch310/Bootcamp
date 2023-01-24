@@ -67,8 +67,7 @@
 		<button id="login-btn" type="Login" class="form-control btn btn-primary">Log In</button>
 		<hr>
 		<div name="register">
-			<p id="register-account">Gaada akun? <a onclick="regisEmail()" href="#">Buatlah
-					satu</a></p>
+			<p id="register-account">Gaada akun? <a onclick="regisEmail()" href="#">Buatlah</a></p>
 		</div>
 		<hr>
 	</form>
@@ -78,25 +77,12 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Enter Your Email</h5>
+					<h5 class="modal-title">Add Your Title</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<i class="fa fa-close"></i>
 					</button>
 				</div>
 				<div class="modal-body">
-					<table class="table table-borderless">
-						<tr>
-							<td>
-								<input type="email" id="registered-email" class="form-control"
-									placeholder="this.is@example.com" required>
-							</td>
-						</tr>
-					</table>
-					<hr>
-					<div id="email-btn">
-						<button id="email-cancel" class="btn btn-light">Cancel</button>
-						<button id="email-create" class="btn btn-primary">Create</button>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -118,7 +104,7 @@
 					</table>
 					<hr>
 					<div id="email-btn">
-						<button id="email-cancel" class="btn btn-light">Cancel</button>
+						<button id="email-cancel" class="btn btn-secondary">Cancel</button>
 						<button id="email-create" class="btn btn-primary">Create</button>
 					</div>
 			`);
@@ -159,11 +145,17 @@
 						</tr>
 					</table>
 					<hr>
-					<div id="single-btn">
+					<div id="email-btn">
+						<button id="otp-cancel" class="btn btn-secondary">Cancel</button>
 						<button id="otp-submit" class="btn btn-primary">Confirm</button>
 					</div>
 			`);
 
+			$("#otp-cancel").click(function () {
+				console.log("Go Back To Register Email");
+				regisEmail();
+			});
+			
 			$("#otp-submit").click(function () {
 				var otp = $("#otp-code").val();
 				console.log(otp);
@@ -181,7 +173,6 @@
 			});
 
 		}
-
 		//-------------------- Register OTP ---------------------
 		//-------------------- Register Account ---------------------
 		function register(newEmail, otp) {
@@ -247,8 +238,7 @@
 			$(".modal").modal("show");
 		}
 		//-------------------- Register Account ---------------------
-
-
+		//-------------------- Login Account ---------------------
 		function loginAPI(email, password) {
 			var formData = new FormData();
 			formData.append("email", email);
@@ -292,6 +282,7 @@
 				alert(response.message);
 			}
 		}
+		//-------------------- Login Account ---------------------
 	</script>
 </body>
 
