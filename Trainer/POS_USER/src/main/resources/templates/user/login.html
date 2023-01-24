@@ -44,13 +44,31 @@ form, h2 {
 				name="pswd">
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="button" class="btn btn-primary" onclick="bukaPopupRegister1()">Register</button>
 	</form>
+
+	<!-- Modal -->
+	<div class="modal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Abcabc</h5>
+					<button type="button" class="btn-close" data-dismiss="modal"
+						aria-label="Close">
+						<i class="fa fa-close"></i>
+					</button>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+
 
 	<script type="text/javascript">
 		function loginApi(email, password) {
 			var formData = new FormData();
 			formData.append("email", email);
-			formData.append("password",password);
+			formData.append("password", password);
 
 			return $.ajax({
 				url : "/api/user/login",
@@ -62,7 +80,7 @@ form, h2 {
 				async : false
 			});
 		}
-		
+
 		function saveLoginData(userDto) {
 			return $.ajax({
 				url : "/login/saveLoginData",
@@ -71,26 +89,166 @@ form, h2 {
 				async : false
 			});
 		}
-		
-		function login(){
+
+		function login() {
 			var email = $("#email").val();
 			var password = $("#pwd").val();
-			
-			var responseText = loginApi(email,password).responseText;
+
+			var responseText = loginApi(email, password).responseText;
 			var response = $.parseJSON(responseText);
 			console.log(response);
-			
-			if(response.code == 200){
+
+			if (response.code == 200) {
 				console.log("Login Sukses");
 				alert(response.message);
 				//Menyimpan data login ke session
 				var redirectUrl = saveLoginData(response.data).responseText;
-				$(location).attr('href',redirectUrl);
-			} else{
+				$(location).attr('href', redirectUrl);
+			} else {
 				alert(response.message);
 			}
+
+		}
+		
+		//---------------------------------------
+		function bukaPopupRegister1(){
+			//Ganti Title
+			$(".modal-title").html("Masukkan Email");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td>Email</td>
+					</tr>
+					<tr>
+						<td>
+							<input id="input-email" class="form-control">
+						</td>
+					</tr>
+					<tr>
+					<td>
+						<button id="btn-ok" class="btn btn-primary">ok</button>
+					</td>
+					</tr>
+				</table>
+				`
+			);
 			
+			$("#btn-ok").click(function(){
+				var email = $("#input-email").val();
+				bukaPopupRegister2(email);
+			});
 			
+			$(".modal").modal("show");
+		}
+		
+		function bukaPopupRegister2(email){
+			//Ganti Title
+			$(".modal-title").html("Masukkan OTP");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td>OTP</td>
+					</tr>
+					<tr>
+						<td>
+							<input id="input-otp" class="form-control">
+						</td>
+					</tr>
+					<tr>
+					<td>
+						<button id="btn-ok" class="btn btn-primary">ok</button>
+					</td>
+					</tr>
+				</table>
+				`
+			);
+			
+			$("#btn-ok").click(function(){
+				var otp = $("#input-otp").val();
+				bukaPopupRegister3(email,otp);
+			});
+			
+			$(".modal").modal("show");
+		}
+		
+		function bukaPopupRegister3(email,otp){
+			//Ganti Title
+			$(".modal-title").html("Masukkan Data Register");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td>Email</td>
+					</tr>
+					<tr>
+						<td>
+							<input id="input-email" class="form-control" value="${email}" disabled>
+						</td>
+					</tr>
+					<tr>
+					<td>Password</td>
+					</tr>
+					<tr>
+						<td>
+							<input id="input-password" class="form-control" >
+						</td>
+					</tr>
+					<tr>
+					<tr>
+						<td>Name</td>
+					</tr>
+					<tr>
+						<td>
+							<input id="input-name" class="form-control">
+						</td>
+					</tr>
+					<tr>
+						<td>Role</td>
+					</tr>
+					<tr>
+						<td>
+							<select id="input-role" class="form-control">
+								<option value="1">ADMIN</option>
+								<option value="2">CASHIER</option>
+								<option value="3">WAREHOUSE</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+					<td>
+						<button id="btn-ok" class="btn btn-primary">ok</button>
+					</td>
+					</tr>
+				</table>
+				`
+			);
+			
+			$("#btn-ok").click(function(){
+				//data
+				console.log(email);
+				console.log(otp);
+				
+				var password = $("#input-password").val();
+				console.log(password);
+				
+				var name = $("#input-name").val();
+				console.log(name);
+				
+				var roleCode = $("#input-role").val();
+				console.log(roleCode);
+				
+				$(".modal").modal("hide");
+			});
+			
+			$(".modal").modal("show");
 		}
 	</script>
 </body>

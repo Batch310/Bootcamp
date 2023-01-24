@@ -7,6 +7,7 @@ public class UserDTO {
 	private String name;
 	private String profile_picture;
 	private String role_code;
+	private String token;
 
 	
 	public UserDTO() {
@@ -72,4 +73,17 @@ public class UserDTO {
 		this.role_code = role_code;
 	}
 
+
+
+	public String getToken() {
+		return token;
+	}
+
+
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+	
 }
