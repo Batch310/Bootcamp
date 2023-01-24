@@ -1,0 +1,38 @@
+#Menentukan data apa saja yang boleh ditampilkan (Liat dari VariantDTO)
+type Variant {
+	category_id: Long!
+	category_name: String!
+	id: Long!
+	initial: String!
+	name: String!
+	active: Boolean!
+}
+
+#Type hanya boleh satu, jika menambah query atau mutation lagi, tambah dengan 'extend type'
+extend type Query {
+	findAllVariants: [Variant]!
+	findVariantByCategoryID(category_id: Long!): [Variant]!
+}
+
+extend type Mutation {
+	createVariant(
+	category_id: Long!,
+	initial: String!,
+	name: String!,
+	active: Boolean!,
+	create_by: String!
+	): Long
+	
+	updateVariant(
+	category_id: Long!,
+	id: Long!,
+	initial: String!,
+	name: String!,
+	active: Boolean!,
+	modify_by: String!
+	): Boolean
+	
+	deleteVariant(
+	 id: Long!
+	): Boolean
+}
