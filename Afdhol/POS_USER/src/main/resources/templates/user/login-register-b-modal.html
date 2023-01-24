@@ -34,9 +34,9 @@
 	</style>
 </head>
 
-
+	
 <body>
-
+	
 	<form action="javascript:login()">
 		<h2 class="m-5">Login form</h2>
 		<div class="form-group">
@@ -48,30 +48,140 @@
 				placeholder="Enter password" name="pswd">
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
-		<button type="button" class="btn btn-primary" onclick="bukaPopupRegisterEmail()">Register</button>
+		<button type="button" class="btn btn-primary" onclick="bukaPopupRegister1()">Register</button>
 
 
 	</form>
+	
 
+<!-- Modal -->
+<div class="modal fade" id="modalEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Email Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <table class="table table-borderless">
+			<tr>
+				<td>Email</td>
+				<td>
+					<input type="text" id="input-email" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button id="input-ok" class="btn btn-warning" data-toggle="modal" data-target="#modalOTP" onclick="getEmail();">OK</button>
+				</td>
+			</tr>
+		</table>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
-	<!-- Modal -->
-	<div class="modal" tabindex="-1">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Add Abcabc</h5>
-					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-						<i class="fa fa-close"></i>
-					</button>
-				</div>
-				<div class="modal-body"></div>
-			</div>
-		</div>
-	</div>
+<!-- Modal 2 -->
+<div class="modal fade" id="modalOTP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">OTP</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <table class="table table-borderless">
+			<tr>
+				<td>OTP</td>
+				<td>
+					<input id="input-otp" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button  class="btn btn-warning"  data-toggle="modal" data-target="#registerForm">OK</button>
+				</td>
+			</tr>
+		</table>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3 -->
+<div class="modal fade" id="registerForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">OTP</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <table class="table table-borderless">
+			<tr>
+				<td>Email</td>
+				<td>
+					<input id="register-email" class="form-control" disabled value=(#input-email)>
+				</td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td>
+					<input id="input-password" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td>
+					<input id="input-name" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td>Role</td>
+				<td>
+					<select id="input-role" class = "form-control">
+							<option value="admin">ADMIN</option>
+  							<option value="warehouse">WAREHOUSE</option>
+						  <option value="cashier">CASHIER</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td> <a href="http://localhost/login">
+					<button class="btn btn-warning">OK</button></a>
+				</td>
+			</tr>
+		</table>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
 
 	<script type="text/javascript">
-
+		
+		function getEmail(){
+            // Selecting the input element and get its value 
+            var inputEmail = document.getElementById("input-email").value;
+            
+            // Displaying the value
+            alert(inputmail);
+        }
 
 		function loginApi(email, password) {
 			var formData = new FormData();
@@ -88,9 +198,9 @@
 				async: false
 			});
 		}
-
+		
 		function saveLoginData(userDTO) {
-
+	
 			return $.ajax({
 				url: "/user/saveLoginData",
 				method: "GET",
@@ -111,17 +221,17 @@
 				alert(response.message);
 				//Menyimpan data login ke session
 				var redirectURL = saveLoginData(response.data).responseText;
-				$(location).attr('href', redirectURL);
+				$(location).attr('href',redirectURL);
 			} else {
 				console.log("else")
 				alert(response.message);
 			}
 		}
-
+		
 		//---------------------------------------
-		function bukaPopupRegisterEmail() {
+		function bukaPopupRegister1(){
 			//Ganti Title
-			$(".modal-title").html("Input Email");
+			$(".modal-title").html("Masukkan Email");
 
 			//Ngisi Modal Bodynya
 			$(".modal-body").html(
@@ -143,18 +253,18 @@
 				</table>
 				`
 			);
-
-			$("#btn-ok").click(function () {
+			
+			$("#btn-ok").click(function(){
 				var email = $("#input-email").val();
-				bukaPopupRegisterOTP(email);
+				bukaPopupRegister2(email);
 			});
-
+			
 			$(".modal").modal("show");
 		}
-
-		function bukaPopupRegisterOTP(email) {
+		
+		function bukaPopupRegister2(email){
 			//Ganti Title
-			$(".modal-title").html("Input OTP");
+			$(".modal-title").html("Masukkan OTP");
 
 			//Ngisi Modal Bodynya
 			$(".modal-body").html(
@@ -176,16 +286,16 @@
 				</table>
 				`
 			);
-
-			$("#btn-ok").click(function () {
+			
+			$("#btn-ok").click(function(){
 				var otp = $("#input-otp").val();
-				bukaPopupRegisterUtama(email, otp);
+				bukaPopupRegister3(email,otp);
 			});
-
+			
 			$(".modal").modal("show");
 		}
-
-		function bukaPopupRegisterUtama(email, otp) {
+		
+	function bukaPopupRegister3(email,otp){
 			//Ganti Title
 			$(".modal-title").html("Masukkan Data Register");
 
@@ -238,27 +348,27 @@
 				</table>
 				`
 			);
-
-			$("#btn-ok").click(function () {
+			
+			$("#btn-ok").click(function(){
 				//data
 				console.log(email);
 				console.log(otp);
-
+				
 				var password = $("#input-password").val();
 				console.log(password);
-
+				
 				var name = $("#input-name").val();
 				console.log(name);
-
+				
 				var roleCode = $("#input-role").val();
 				console.log(roleCode);
-
+				
 				$(".modal").modal("hide");
 			});
-
+			
 			$(".modal").modal("show");
-		}
-
+		}	
+	
 
 	</script>
 </body>
