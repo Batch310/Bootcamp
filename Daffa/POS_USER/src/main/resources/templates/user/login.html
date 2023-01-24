@@ -54,7 +54,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Register</h5>
+					<h5 class="modal-title">Modal Huehehe</h5>
 					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
 						<i class="fa fa-close"></i>
 					</button>
@@ -66,78 +66,7 @@
 
 
 	<script type="text/javascript">
-		function popupRegister() {
-			console.log("Register Kepencet!")
 
-			//Ganti Title
-			$(".modal-title").html("Register");
-
-			//Ngisi Modal Bodynya
-			$(".modal-body").html(
-				`
-		<table class="table table-borderless">
-			<tr>
-				<td>Email</td>
-				<td>
-					<input id="input-email" class="form-control">
-				</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<button id="input-cancel" class="btn btn-light">Cancel</button>
-					<button id="input-create" class="btn btn-warning">Create</button>
-				</td>
-			</tr>
-		</table>
-		`
-			);
-
-			$("#input-cancel").click(function () {
-				$(".modal").modal("hide");
-			});
-
-			$("#input-create").click(function () {
-				
-				//Ambil Initial
-				var initial = $("#input-initial").val();
-				console.log(initial);
-
-				//Ambil Name
-				var name = $("#input-name").val();
-				console.log(name);
-
-				//Ambil Active
-				var active = $("#input-active").prop("checked");
-				console.log(active);
-
-				//Create By
-				var createBy = user;
-				console.log(createBy);
-
-				//Proses Membuat Json JSON
-				var categoryDto = JSON.stringify({
-					"initial": initial,
-					"name": name,
-					"active": active,
-					"create_by": createBy
-				});
-
-				//Panggil API Insert
-				var response = insertCategoryApi(categoryDto).responseJSON;
-				if (response.code == 200) {
-					alert(response.message);
-					$(".modal").modal("hide");
-					refreshList();
-				} else {
-					alert(response.message);
-				}
-			});
-
-			//. class
-			//# id
-			$(".modal").modal("show");
-		}
 		function loginApi(email, password) {
 			var formData = new FormData();
 			formData.append("email", email);
@@ -182,6 +111,162 @@
 			}
 
 
+		}
+		
+		//----- REGISTER -----
+		function popupRegister() {
+			console.log("Register Kepencet!")
+
+			//Ganti Title
+			$(".modal-title").html("Register");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+		<table class="table table-borderless">
+			<tr>
+				<td>Email</td>
+				<td>
+					<input id="input-email" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button id="input-cancel" class="btn btn-light">Cancel</button>
+					<button id="input-register" class="btn btn-primary">Register</button>
+				</td>
+			</tr>
+		</table>
+		`
+			);
+
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			});
+
+			$("#input-register").click(function () {
+				var email = $("#input-email").val();
+				popupOTP(email);
+			});
+
+			//. class
+			//# id
+			$(".modal").modal("show");
+		}
+
+		function popupOTP(email) {
+			console.log("OTP Kepencet!")
+
+			//Ganti Title
+			$(".modal-title").html("SendOTP");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+		<table class="table table-borderless">
+			<tr>
+				<td>OTP</td>
+				<td>
+					<input id="input-otp" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button id="input-cancel" class="btn btn-light">Cancel</button>
+					<button id="input-send-otp" class="btn btn-primary">Send OTP</button>
+				</td>
+			</tr>
+		</table>
+		`
+			);
+
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			});
+
+			$("#input-send-otp").click(function () {
+				var otp = $("#input-otp").val();
+				popupBiodata(email, otp);
+			});
+
+			//. class
+			//# id
+			$(".modal").modal("show");
+		}
+		function popupBiodata(email, otp) {
+			console.log("Biodata Kepencet!")
+
+			//Ganti Title
+			$(".modal-title").html("Biodata Register");
+
+			//Ngisi Modal Bodynya
+			$(".modal-body").html(
+				`
+		<table class="table table-borderless">
+			<tr>
+				<td>Email</td>
+				<td>
+					<input id="input-email" class="form-control" value="${email}" disabled>
+				</td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td>
+					<input id="input-password" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td>Name</td>
+				<td>
+					<input id="input-name" class="form-control">
+				</td>
+			</tr>
+			<tr>
+				<td>Role</td>
+				<td>
+					<select id="input-role" class="form-control">
+						<option value="1">ADMIN</option>
+						<option value="2">WAREHOUSE</option>
+						<option value="3">CASHIER</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button id="input-cancel" class="btn btn-light">Cancel</button>
+					<button id="input-biodata-register" class="btn btn-primary">Register</button>
+				</td>
+			</tr>
+		</table>
+		`
+			);
+
+			$("#input-cancel").click(function () {
+				$(".modal").modal("hide");
+			});
+
+			$("#input-biodata-register").click(function () {
+				console.log("email " + email);
+				console.log("otp " + otp);
+				
+				var password = $("#input-password").val();
+				console.log("password " + password);
+				
+				var name = $("#input-name").val();
+				console.log("name " + name);
+				
+				var roleCode = $("#input-role").val();
+				console.log("role " + roleCode);
+				
+				$(".modal").modal("hide");
+			});
+
+			//. class
+			//# id
+			$(".modal").modal("show");
 		}
 	</script>
 </body>

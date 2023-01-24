@@ -20,7 +20,7 @@ public class UserController {
 		if (email != null) {
 			return "redirect:/user/home-baru";
 		} else {
-			return "user/login.html";
+			return "user/login-register.html";
 		}
 
 	}
