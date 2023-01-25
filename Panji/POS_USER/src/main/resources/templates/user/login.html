@@ -24,6 +24,7 @@ body {
 	display: flex;
 }
 
+
 form, h2 {
 	margin: auto;
 	/* nice thing of auto margin if display:flex; it center both horizontal and vertical :) */
@@ -44,7 +45,26 @@ form, h2 {
 				name="pswd">
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
+		<a href="#" style="color:primary" class="btn" onclick="popupRegister()">Register</a>
+		
 	</form>
+	
+	<!-- Modal -->
+		<div class="modal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add Abcabc</h5>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close">
+							<i class="fa fa-close"></i>
+						</button>
+					</div>
+					<div class="modal-body"></div>
+				</div>
+			</div>
+		</div>
+	
 	
 	<script type="text/javascript">
 		function loginApi(email,password){
@@ -86,6 +106,107 @@ form, h2 {
 				}else{
 				alert(response.message);
 			}
+		}
+		
+		//PopUp Register
+		function popupRegister(){
+			console.log("Add Register!")
+			//Ganti Title
+			$(".modal-title").html("Register");
+			
+			//Isi Modal Body
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td><input id="input-email" class="form-control" type="text" placeholder="Enter Email" name="email" required></input></td>
+					</tr>
+					<tr>
+						<td class="center">
+						<button id="btn-ok" class="btn btn-primary" type="submit" >Ok</button>
+						</td>
+					</tr>
+				</table>
+				`
+			);
+			
+			$("#btn-ok").click(function(){
+				var email = $("#input-email").val();
+				popupRegister2(email);
+			})
+			$(".modal").modal("show");
+		}
+		
+		function popupRegister2(email){
+			$(".modal-title").html("Masukkan OTP");
+			
+			//Isi Modal Body
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless" display="flex">
+					<tr>
+						<td><input id="input-otp" class="form-control" type="text" placeholder="Kode OTP" name="kodeOtp" required></input></td>
+					</tr>
+					<tr>
+						<td>
+						<button id="btn-ok" class="btn btn-primary" type="submit" >Ok</button>
+						</td>
+					</tr>
+				</table>
+				`
+			);
+			$("#btn-ok").click(function(){
+				var otp = $("#input-otp").val();
+				popupRegister3(email,otp);
+			})
+			$(".modal").modal("show");
+		}
+		function popupRegister3(email,otp){
+			$(".modal-title").html("Masukkan Data Diri");
+			
+			//Isi Modal Body
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless" display="flex">
+					<tr>
+						<td><input id="input-email" class="form-control" type="text" placeholder=${email} name="email" disabled></input></td>
+					</tr>
+					<tr>
+						<td><input id="input-password" class="form-control" type="text" placeholder="Password" name="password" required></input></td>
+					</tr>
+					<tr>
+						<td><input id="input-name" class="form-control" type="text" placeholder="Name" name="name" required></input></td>
+					</tr>
+					<tr>
+						<td>
+							<select id="dropdown-role" class="form-control">
+								<option>ADMIN</option>
+								<option>WAREHOUSE</option>
+								<option>CASHIER</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="center">
+						<button id="btn-ok" class="btn btn-primary" type="submit" >Ok</button>
+						</td>
+					</tr>
+				</table>
+				`
+			);
+			$("#btn-ok").click(function(){
+				console.log(email);
+				console.log(otp);				
+				
+				var password = $("#input-password").val();
+				console.log(password);
+				
+				var name = $("#input-name").val();
+				console.log(name);
+				
+				var dd = $("#dropdown-role").val();
+				console.log(dd);
+			})
 		}
 	</script>
 </body>

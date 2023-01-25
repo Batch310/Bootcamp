@@ -20,7 +20,7 @@ public class UserController {
 		if (email != null) {
 			return "redirect:/user/home";
 		} else {
-			return "user/loginregis.html";
+			return "user/loginregiswork.html";
 		}
 	}
 
@@ -32,9 +32,11 @@ public class UserController {
 		String name = (String) request.getSession().getAttribute("name");
 		String roleCode = (String) request.getSession().getAttribute("role_code");
 		String profilePicture = (String) request.getSession().getAttribute("profile_picture");
+		Long userId = (Long) request.getSession().getAttribute("user_id");
 		
 		//Ngoper ke file htmlnya
 		model.addAttribute("name", name);
+		model.addAttribute("user_id", userId);
 		model.addAttribute("role_code", roleCode);
 		model.addAttribute("profile_picture", profilePicture);
 		
