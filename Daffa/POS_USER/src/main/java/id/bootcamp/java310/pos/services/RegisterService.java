@@ -1,11 +1,15 @@
 package id.bootcamp.java310.pos.services;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import id.bootcamp.java310.pos.dto.RoleDTO;
+import id.bootcamp.java310.pos.repositories.BiodataRepository;
+import id.bootcamp.java310.pos.repositories.RoleRepository;
 import id.bootcamp.java310.pos.repositories.TokenRepository;
 import id.bootcamp.java310.pos.repositories.UserRepository;
 
@@ -17,6 +21,15 @@ public class RegisterService {
 
 	@Autowired
 	private TokenRepository tokrep;
+	
+	@Autowired
+	private EmailService emser;
+	
+	@Autowired
+	private RoleRepository rolrep;
+	
+	@Autowired
+	private BiodataRepository biorep;
 
 	// Millis untuk waktu expired otp
 	private final long expiredToken = 1000 * 60 * 5;
@@ -45,6 +58,12 @@ public class RegisterService {
 		
 		// 4. Insert OTP ke table
 		tokrep.insertToken(generateToken, email, "Register", dateExpired);
+		
+		// 5. Kirim OTP ke email
+		String subject = "Request OTP Register POS 310";
+		String recipient = email;
+		String msgBody = "OTP Anda adalah " + generateToken;
+		emser.sendEmail(subject, recipient, msgBody);
 
 	}
 
@@ -68,5 +87,34 @@ public class RegisterService {
 
 		return sb.toString();
 	}
+
+	public void checkOtpGais(String email, String otp) throws Exception {
+		// TODO Auto-generated method stub
+		// Validasi apakah otp sesuai
+		Boolean isOtpCorrect = tokrep.isOtpCorrect(email, otp);
+		if (isOtpCorrect == false) {
+			throw new Exception ("13-OTP Tidak Sesuai");
+		}
+		
+		// Validasi apakah otp expired
+		Boolean isOtpExpired = tokrep.isOtpExpired(email, otp);
+		if (isOtpExpired) {
+			throw new Exception ("14-OTP expired");
+		}
+	}
+
+	public List<RoleDTO> cariRoleCoy() {
+		// TODO Auto-generated method stub
+		return rolrep.getAllRole();
+	}
+
+	public void insertUserCoy(String email, String password, String name, Long role_id) {
+		// TODO Auto-generated method stub
+		Long biodata_id = biorep.saveBiodataRegister(name);
+		usrep.saveUserRegister(email, password, role_id, biodata_id);
+		
+		
+	}
+
 
 }
