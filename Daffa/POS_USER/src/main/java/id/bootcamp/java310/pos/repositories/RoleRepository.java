@@ -12,7 +12,7 @@ import id.bootcamp.java310.pos.entities.RoleEntity;
 @Repository
 public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
 
-	@Query(nativeQuery = true, value = "select new id.bootcamp.java310.pos.dto.RoleDTO(id,name) from RoleEntity")
+	@Query(value = "select new id.bootcamp.java310.pos.dto.RoleDTO(id,name) from RoleEntity")
 	public List<RoleDTO> getAllRole();
 
 }

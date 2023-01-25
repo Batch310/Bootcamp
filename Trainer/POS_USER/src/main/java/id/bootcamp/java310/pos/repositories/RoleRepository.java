@@ -1,0 +1,21 @@
+package id.bootcamp.java310.pos.repositories;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
+import id.bootcamp.java310.pos.dto.MenuDTO;
+import id.bootcamp.java310.pos.dto.RoleDTO;
+import id.bootcamp.java310.pos.entities.MenuEntity;
+import id.bootcamp.java310.pos.entities.RoleEntity;
+
+@Repository
+public interface RoleRepository extends JpaRepository<RoleEntity, Long>{
+	
+	@Query(value = "select new id.bootcamp.java310.pos.dto.RoleDTO(id,name)"
+			+ " from RoleEntity")
+	public List<RoleDTO> getAllRole();
+	
+}
