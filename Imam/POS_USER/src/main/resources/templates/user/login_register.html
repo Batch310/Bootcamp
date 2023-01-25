@@ -115,6 +115,27 @@
 
 		}
 
+		//----------------------------------------------
+		//---------POP UP REGISTER-----------
+
+		//Fungsi AJAX
+		function sendOtpApi(email) {
+			var formData = new FormData();
+			formData.append("email", email);
+
+			return $.ajax({
+				url: "/sendRegisterOtp",
+				method: "POST",
+				data: formData,
+				contentType: false,
+				processData: false,
+				mimeType: "multipart/form-data",
+				async: false
+			});
+		}
+
+
+
 		function register() {
 			console.log("Add Register Kepencet!")
 
@@ -140,10 +161,22 @@
 
 			$("#btn-oke").click(function () {
 
+				$("#btn-oke").prop("disabled", true)
 				var email = $("#input-email").val();
 				console.log(email);
 
-				register2(email);
+				var responseText = sendOtpApi(email).responseText;
+				var responseJson = $.parseJSON(responseText);
+
+				if (responseJson.code == 200) {
+					alert(responseJson.message);
+					register2(email);
+				} else {
+					alert(responseJson.message);
+					$("#btn-oke").prop("disabled", true);
+				}
+
+
 			})
 
 
@@ -154,6 +187,23 @@
 		}
 
 		//----------- OTP -------------------------------------------
+
+		//Fungsi AJAX
+		function cekOtpApi(email, otp) {
+			var formData = new FormData();
+			formData.append("email", email);
+			formData.append("otp", otp);
+
+			return $.ajax({
+				url: "/cekRegisterOtp",
+				method: "POST",
+				data: formData,
+				contentType: false,
+				processData: false,
+				mimeType: "multipart/form-data",
+				async: false
+			});
+		}
 
 		function register2(email) {
 			console.log("otp Kepencet!")
@@ -180,10 +230,24 @@
 
 			$("#btn-otp").click(function () {
 
+				$("#btn-otp").prop("disabled", true)
 				var otp = $("#input-otp").val();
 				console.log(otp);
 
-				register3(email, otp);
+
+
+				var responseText = cekOtpApi(email, otp).responseText;
+				var responseJson = $.parseJSON(responseText);
+
+				if (responseJson.code == 200) {
+					alert(responseJson.message);
+					register3(email, otp);
+				} else {
+					alert(responseJson.message);
+					$("#btn-otp").prop("disabled", true);
+				}
+
+
 			})
 
 			//. class
@@ -194,8 +258,45 @@
 
 		//----------- FULL REGISTER -------------------------------------------
 
+		//Fungsi AJAX
+		function insertRegisterApi(email, password, name, roleId) {
+			var formData = new FormData();
+			formData.append("email", email);
+			formData.append("password", password);
+			formData.append("name", name);
+			formData.append("role_id", roleId);
+
+
+			return $.ajax({
+				url: "/insertFormRegister",
+				method: "POST",
+				data: formData,
+				contentType: false,
+				processData: false,
+				mimeType: "multipart/form-data",
+				async: false
+			});
+		}
+
+		function getAllRole() {
+			return $.ajax({
+				url: "/getRole",
+				method: "GET",
+				async: false
+			});
+		}
+
 		function register3(email, otp) {
 			console.log("Form register")
+
+			var response = getAllRole().responseJSON;
+			var dataList = response.data;
+			var html = "";
+			for (i = 0; i < dataList.length; i++) {
+				var data = dataList[i];
+				html += `<option value="${data.id}">${data.name}</option>`;
+
+			}
 
 			//Ngisi Modal Bodynya
 			$(".modal-body").html(
@@ -223,9 +324,7 @@
 				<td>Role</td>
 				<td>
 					<select id="input-role" class="form-control" >
-						<option>ADMIN</option> 
-						<option>WAREHOUSE</option> 
-						<option>CASHIER</option> 
+						${html}
 					</select>
 				</td>
 			</tr>
@@ -251,7 +350,16 @@
 				console.log(nama)
 				console.log(role)
 
+				var responseText = insertRegisterApi(email, password, nama, role).responseText;
+				var responseJson = $.parseJSON(responseText);
+
+				if (responseJson.code == 200) {
+					alert(responseJson.message);
 				$(".modal").modal("hide");
+				} else {
+					alert(responseJson.message);
+					$("#btn-otp").prop("disabled", true);
+				}
 
 			});
 

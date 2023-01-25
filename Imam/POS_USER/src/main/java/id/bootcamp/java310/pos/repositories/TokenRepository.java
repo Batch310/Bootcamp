@@ -12,6 +12,7 @@ import id.bootcamp.java310.pos.entities.TokenEntity;
 
 public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
 	
+	//Memasukkan/kirim otp
 	@Modifying
 	@Transactional
 	@Query(nativeQuery = true,
@@ -24,6 +25,7 @@ public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
 			@Param("used_for") String usedFor,
 			@Param("expired_on") Date expiredOn);
 	
+	//Filter maksimal token per email(maks 10)
 	@Query(nativeQuery = true,
 			value = "select exists (select * from (select email,\r\n"
 					+ "count(*) as jumlah from token where email = :email\r\n"
@@ -31,6 +33,7 @@ public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
 					+ "where jumlah >= 10)")
 	public Boolean isMaxOtp(@Param("email") String mail);
 	
+	//Cek apakah otp sudah sama ?
 	@Query(nativeQuery = true,
 			value = "select exists (select token \r\n"
 					+ "from token where email = :email AND token = :otp\r\n"
@@ -39,6 +42,7 @@ public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
 	public Boolean isOtpCorrect(@Param("email") String mail,
 			@Param("otp") String otp);
 	
+	//Cek otp sudah expired belum ?
 	@Query(nativeQuery = true,
 			value = "select exists (select created_on \r\n"
 					+ "from token \r\n"
@@ -49,6 +53,8 @@ public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
 					+ "limit 1)")
 	public Boolean isOtpExpired(@Param("email") String mail,
 			@Param("otp") String otp);
+	
+	
 
 
 }

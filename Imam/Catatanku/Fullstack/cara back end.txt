@@ -14,6 +14,10 @@ Langkah Buat Back End API Sampai Implementasi Front End :
   -public => bisa diakses drmn aja
   -prvate => hanya di class itu
 
+   *kalo return value void pake @modifying & @Transactional
+     selain void ga pakai anotasi itu
+   *Kirim parameter sesuai urutan
+
 4. lalu ke service
   *bikin fungsi search
   * return value nya apa
