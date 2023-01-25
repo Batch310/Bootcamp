@@ -26,6 +26,7 @@ public interface TokenRepository extends JpaRepository<TokenEntity, Long>{
 			@Param("used_for") String usedFor, 
 			@Param("expired_on") Date expiredOn);
 	
+	// Max jumlah otp terkirim dalam 1 email
 	@Query(nativeQuery = true, value = "SELECT EXISTS\r\n"
 			+ "	(SELECT *\r\n"
 			+ "		FROM\r\n"
@@ -36,4 +37,19 @@ public interface TokenRepository extends JpaRepository<TokenEntity, Long>{
 			+ "				GROUP BY EMAIL)T1\r\n"
 			+ "		WHERE JUMLAH >= 10)")
 	public Boolean isMaxOtp(@Param("email") String email);
+
+	@Query(nativeQuery = true, value = "select exists (select token \r\n"
+			+ "from token where email = :email AND token = :otp\r\n"
+			+ "order by created_on desc\r\n"
+			+ "limit 1)")
+	public Boolean isOtpCorrect(String email, String otp);
+
+	@Query(nativeQuery = true, value = "select exists (select created_on \r\n"
+			+ "from token \r\n"
+			+ "where email = :email \r\n"
+			+ "AND token = :otp\r\n"
+			+ "AND now() - expired_on > Interval '0' second\r\n"
+			+ "order by created_on desc\r\n"
+			+ "limit 1)")
+	public Boolean isOtpExpired(String email, String otp);
 }
