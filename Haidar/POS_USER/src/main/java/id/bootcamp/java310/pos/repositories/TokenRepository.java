@@ -2,7 +2,10 @@ package id.bootcamp.java310.pos.repositories;
 
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -10,6 +13,8 @@ import id.bootcamp.java310.pos.entities.TokenEntity;
 
 public interface TokenRepository extends JpaRepository<TokenEntity, Long> {
 
+	@Modifying
+	@Transactional
 	@Query(nativeQuery = true,
 			value = "INSERT INTO TOKEN "
 					+ "(CREATED_BY, TOKEN, EMAIL, IS_EXPIRED, USED_FOR, CREATED_ON, EXPIRED_ON) "

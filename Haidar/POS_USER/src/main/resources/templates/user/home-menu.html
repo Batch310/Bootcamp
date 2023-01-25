@@ -86,7 +86,25 @@
 	</div>
 
 	<script type="text/javascript">
+	
+		var userID = "[[${user_id}]]";
 		
+		//-------------------------------- GET User Profile Picture --------------------------------
+		//Fungsi Ajax API
+			function getUserProfileAPI(userID) {
+				return $.ajax({
+					url: "/api/user/profile?user_id=" + userID,
+  					method: "GET",
+  					async: false,
+				})
+			}
+			
+			var picture = getUserProfileAPI(userID).responseJSON.data.picture;
+					
+		$("#nav-profile-picture").prop('src', picture);
+		
+		//-------------------------------- GET User Profile Picture --------------------------------
+				
 		function userMenuAPI(roleCode) {
 			return $.ajax({
 				url: "/api/user/menu?role_code="+roleCode,
