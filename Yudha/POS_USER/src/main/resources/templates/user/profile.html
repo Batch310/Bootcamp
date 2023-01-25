@@ -247,7 +247,7 @@
 			console.log(user_id);
 			function getProfilApi(user_id) {
 				return $.ajax({
-					url: "/api/user/profile?user_id=2",
+					url: "/api/user/profile?user_id="+user_id,
 					method: "GET",
 					async: false
 				});

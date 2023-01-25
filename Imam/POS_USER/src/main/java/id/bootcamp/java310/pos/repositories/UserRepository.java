@@ -25,17 +25,21 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	public void saveUser(@Param("email") String email, @Param("password") String password,
 			@Param("user_id") Long userId);
 	
+	
+	//CEK APAKAH EMAIL SUDAH ADA? 
 	@Query(nativeQuery = true,
 			value =" select exists (select email from m_user\r\n"
 					+ "				where email = :email)")
 	public Boolean checkEmailExists(@Param("email") String mail);
 	
-	//INSERT ROLE REGISTER BIODATA
+	//INSERT FORM REGISTER FULL
+	@Modifying
+	@Transactional
 	@Query(nativeQuery = true, value = "insert into m_user\r\n"
 				+ "(email, password, role_id, biodata_id, created_by, created_on)\r\n"
 				+ "values\r\n"
 				+ "(:email, :password, :role_id, :biodata_id, 1, now())")
-	public Long saveUserRegister(@Param("email") String mail,
+	public void saveUserRegister(@Param("email") String mail,
 				@Param("password") String password,
 				@Param("role_id") Long roleId,
 				@Param("biodata_id") Long biodataId);

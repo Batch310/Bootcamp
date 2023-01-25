@@ -14,14 +14,14 @@ import id.bootcamp.java310.pos.entities.UserEntity;
 
 @Repository
 public interface TokenRepository extends JpaRepository<UserEntity, Long> {
-	
+	//Modufying dan tracsactional dipakai apabila fungsi void saja
 	@Modifying
 	@Transactional
 	@Query(nativeQuery = true, value = 
 	"insert into token\r\n"
 	+ "(created_by, token, email, is_expired, used_for, created_on, expired_on)\r\n"
 	+ "values \r\n"
-	+ "(1,:token,:email,:is_expired,:used_for,now(),:expired_on)")
+	+ "(1,:token,:email,'false',:used_for,now(),:expired_on)")
 	public void insertToken(@Param("token") String token,
 			@Param("email") String mail,
 			@Param("used_for") String usedFor,

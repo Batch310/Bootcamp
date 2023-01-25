@@ -30,7 +30,7 @@ import id.bootcamp.java310.pos.dto.ProfileDTO;
 						+ "join biodata b\r\n"
 						+ "        on b.id = u.biodata_id\r\n"
 						+ "join role r\r\n"
-						+ "        on r.id = u.biodata_id\r\n"
+						+ "        on r.id = u.role_id\r\n"
 						+ "where u.id = :user_id",
 						resultSetMapping = "profile_result")
 })
