@@ -1,6 +1,8 @@
 package id.bootcamp.java310.pos.entities;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +33,7 @@ public class TokenEntity extends BaseProperties {
 	
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm",
 				timezone = "Asia/Jakarta")
-	private Date expire_on;
+	private Date expired_on;
 	
 	private Boolean is_expired;
 	
