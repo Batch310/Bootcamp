@@ -17,17 +17,15 @@ public class M_Location extends BaseProperties {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
 	private Long id;
-	
+
 	@Column(name = "name", length = 100)
 	private String name;
-	
+
 	@Column(name = "parent_id")
 	private Long parentId;
-	
-	@ManyToOne
-	@JoinColumn(name = "location_level_id", insertable = false, updatable = false)
+
 	private M_Location_Level locationLevel;
-	
+
 	@Column(name = "location_level_id")
 	private Long locationLevelId;
 
@@ -70,5 +68,5 @@ public class M_Location extends BaseProperties {
 	public void setLocationLevelId(Long locationLevelId) {
 		this.locationLevelId = locationLevelId;
 	}
-	
+
 }
