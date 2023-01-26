@@ -1,0 +1,49 @@
+Panji :
+	[M05] Nominal dompet elektronik
+	[M08] Atur akses menu
+	[T13] Cari obat
+Afdhol:
+	[M05] Segmen produk kesehatan
+	[M08] Profil Shared Layout
+	[T05] Tab alamat
+	[T08] Pasien
+Haidar:
+	[T13] Ubah & batalkan janji (Rencana Kedatangan)
+	[T13] Riwayat Kedatangan
+	
+Jambrong:
+	[M05] Kategori fasilitas kesehatan
+	[M05] Log In
+	[T08] Pendaftaran
+	[T08] Lupa password
+Nanda:
+	[M05] Jenjang pendidikan
+	[M08] Lokasi
+	[T05] Tambah spesialisasi dokter
+	[T08] Buat janji
+Imam:
+	[T05] Tambah tindakan dokter
+	[M05] Kategori produk kesehatan
+	[M08] Landing Page
+	[T08] Tab Profil
+Tyann:
+	[M05] Jenis Kurir
+	[M05] Kurir
+	[T08] Cari dokter
+	[T08] Penarikan saldo
+yykw: 
+	[T13] Detail dokter
+	[M08] Dokter profil shared layout
+	[M05] Spesialisasi dokter
+
+M05 15 > 
+M08 5 > 0
+T05 3 > 0
+T08 7 > 0
+T13 4 > 1
+
+ATURAN 
+POIN LULUS  = 25
+M Maksimal ambil 2
+T Minimal ambil 1
+Maksimal Story/Task 4
