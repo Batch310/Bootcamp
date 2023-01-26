@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "m_medical_facility")
-public class MedicalFacilityEntity {
+public class M_Medical_Facility {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
