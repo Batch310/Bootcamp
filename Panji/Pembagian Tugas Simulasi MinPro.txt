@@ -2,39 +2,46 @@ Panji :
 	[M05] Nominal dompet elektronik
 	[M08] Atur akses menu
 	[T13] Cari obat
+m_admin - m_blood_group > t_doctor_office_treatment_price - t_doctor_tratment
 Afdhol:
 	[M05] Segmen produk kesehatan
 	[M08] Profil Shared Layout
 	[T05] Tab alamat
 	[T08] Pasien
+m_courier - m_doctor > t_medical_item_purchase - t_medical_item_purchase_detail
 Haidar:
 	[T13] Ubah & batalkan janji (Rencana Kedatangan)
 	[T13] Riwayat Kedatangan
-	
+m_doctor_education - m_medical_facility > t_reset_password - t_token
 Jambrong:
 	[M05] Kategori fasilitas kesehatan
 	[M05] Log In
 	[T08] Pendaftaran
 	[T08] Lupa password
+m_medical_facility_category - m_medical_item_segmentation > t_treatment_discount - m_courier_type
 Nanda:
 	[M05] Jenjang pendidikan
 	[M08] Lokasi
 	[T05] Tambah spesialisasi dokter
 	[T08] Buat janji
+m_menu - m_specialization > t_courier_discount
 Imam:
 	[T05] Tambah tindakan dokter
 	[M05] Kategori produk kesehatan
 	[M08] Landing Page
 	[T08] Tab Profil
+m_biodata_attachment - t_appointment_done > t_customer_wallet_withdraw
 Tyann:
 	[M05] Jenis Kurir
 	[M05] Kurir
 	[T08] Cari dokter
 	[T08] Penarikan saldo
+t_appointment_rescheadule_history - t_customer_registered_card
 yykw: 
 	[T13] Detail dokter
 	[M08] Dokter profil shared layout
 	[M05] Spesialisasi dokter
+t_customer_va - t_doctor_office_treatment
 
 M05 15 > 
 M08 5 > 0
