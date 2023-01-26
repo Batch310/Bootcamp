@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "t_reset_password")
-public class ResetPassword {
+public class T_Reset_Password {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

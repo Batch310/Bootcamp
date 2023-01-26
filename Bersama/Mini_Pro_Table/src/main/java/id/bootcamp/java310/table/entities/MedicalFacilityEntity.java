@@ -24,14 +24,14 @@ public class MedicalFacilityEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "medical_facility_category_id", insertable = false, updatable = false)
-	private MedicalFacilityCategoryEntity medicalFacilityCategory;
+	private M_Medical_Facility_Category medicalFacilityCategory;
 	
 	@Column(name = "medical_facility_category_id")
 	private Long medicalFacilityCategoryId;
 
 	@OneToMany
 	@JoinColumn(name = "location_id", insertable = false, updatable = false)
-	private LocationEntity location;
+	private M_Location location;
 	
 	@Column(name = "location_id")
 	private Long locationId;

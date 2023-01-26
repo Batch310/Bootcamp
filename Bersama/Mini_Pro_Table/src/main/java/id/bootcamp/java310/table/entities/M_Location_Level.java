@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "m_location_level")
-public class LocationLevelEntity {
+public class M_Location_Level {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

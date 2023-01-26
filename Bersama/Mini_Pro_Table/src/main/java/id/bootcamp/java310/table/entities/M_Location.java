@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "m_location")
-public class LocationEntity extends BaseProperties {
+public class M_Location extends BaseProperties {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class LocationEntity extends BaseProperties {
 	
 	@ManyToOne
 	@JoinColumn(name = "location_level_id", insertable = false, updatable = false)
-	private LocationLevelEntity locationLevel;
+	private M_Location_Level locationLevel;
 	
 	@Column(name = "location_level_id")
 	private Long locationLevelId;
@@ -55,11 +55,11 @@ public class LocationEntity extends BaseProperties {
 		this.parentId = parentId;
 	}
 
-	public LocationLevelEntity getLocationLevel() {
+	public M_Location_Level getLocationLevel() {
 		return locationLevel;
 	}
 
-	public void setLocationLevel(LocationLevelEntity locationLevel) {
+	public void setLocationLevel(M_Location_Level locationLevel) {
 		this.locationLevel = locationLevel;
 	}
 

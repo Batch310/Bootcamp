@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "token")
-public class TokenEntity extends BaseProperties {
+@Table(name = "t_token")
+public class T_Token extends BaseProperties {
 
 	@Id
 	@Column(nullable = false)

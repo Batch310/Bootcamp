@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "m_doctor_education")
-public class DoctorEducationEntity extends BaseProperties {
+public class M_Doctor_Education extends BaseProperties {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,14 +20,14 @@ public class DoctorEducationEntity extends BaseProperties {
 	
 	@ManyToMany
 	@JoinColumn(name = "doctor_id", insertable = false, updatable = false)
-	private DoctorEntity doctor;
+	private M_Doctor doctor;
 	
 	@Column(name = "doctor_id")
 	private Long doctorId;
 	
 	@ManyToMany
 	@JoinColumn(name = "education_level_id", insertable = false, updatable = false)
-	private EducationLevelEntity educationLevel;
+	private M_Education_Level educationLevel;
 	
 	@Column(name = "education_level_id")
 	private Long educationLevelId;
@@ -55,11 +55,13 @@ public class DoctorEducationEntity extends BaseProperties {
 		this.id = id;
 	}
 
-	public DoctorEntity getDoctor() {
+	
+
+	public M_Doctor getDoctor() {
 		return doctor;
 	}
 
-	public void setDoctor(DoctorEntity doctor) {
+	public void setDoctor(M_Doctor doctor) {
 		this.doctor = doctor;
 	}
 
@@ -71,11 +73,11 @@ public class DoctorEducationEntity extends BaseProperties {
 		this.doctorId = doctorId;
 	}
 
-	public EducationLevelEntity getEducationLevel() {
+	public M_Education_Level getEducationLevel() {
 		return educationLevel;
 	}
 
-	public void setEducationLevel(EducationLevelEntity educationLevel) {
+	public void setEducationLevel(M_Education_Level educationLevel) {
 		this.educationLevel = educationLevel;
 	}
 

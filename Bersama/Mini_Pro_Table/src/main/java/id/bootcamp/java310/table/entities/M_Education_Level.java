@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "m_education_level")
-public class EducationLevelEntity extends BaseProperties {
+public class M_Education_Level extends BaseProperties {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
