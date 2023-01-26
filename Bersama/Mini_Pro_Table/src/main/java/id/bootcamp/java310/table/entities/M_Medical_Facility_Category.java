@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "m_medical_facility_category")
-public class M_Facility_Category extends BaseProperties {
+public class M_Medical_Facility_Category extends BaseProperties {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
