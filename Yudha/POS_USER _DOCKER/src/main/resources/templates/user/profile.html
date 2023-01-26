@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Category</title>
+
+	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css">
+
+	<script src="/vendor/jquery/jquery-3.6.3.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/vendor/fontawesome/js/all.min.js"></script>
+
+	<style type="text/css">
+		body {
+			padding-top: 68px;
+			padding-bottom: 50px;
+		}
+
+		.image-container {
+			position: relative;
+		}
+
+		.image {
+			opacity: 1;
+			display: block;
+			width: 100%;
+			height: auto;
+			transition: .5s ease;
+			backface-visibility: hidden;
+		}
+
+		.middle {
+			transition: .5s ease;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%);
+			text-align: center;
+		}
+
+		.image-container:hover .image {
+			opacity: 0.3;
+		}
+
+		.image-container:hover .middle {
+			opacity: 1;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title mb-4">
+							<div class="d-flex justify-content-start">
+								<div class="image-container">
+									<img src="/image/icon_profile_picture.png" id="imgProfile"
+										style="width: 150px; height: 150px" class="img-thumbnail" />
+									<div class="middle">
+										<input type="button" class="btn btn-secondary" id="btnChangePicture"
+											value="Change" /> <input type="file" style="display: none;"
+											id="profilePicture" name="file" />
+									</div>
+								</div>
+								<div class="userData ml-3">
+									<h2 id="highlight-fullname" class="d-block"
+										style="font-size: 1.5rem; font-weight: bold">Nama Biodata
+									</h2>
+								</div>
+								<div class="ml-auto">
+									<input type="button" class="btn btn-primary d-none" id="btnDiscard"
+										value="Discard Changes" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-12">
+								<ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+									<li class="nav-item"><a class="nav-link active" id="basicInfo-tab" data-toggle="tab"
+											href="#basicInfo" role="tab" aria-controls="basicInfo"
+											aria-selected="true">Basic
+											Info</a></li>
+									<li class="nav-item"><a class="nav-link" id="connectedServices-tab"
+											data-toggle="tab" href="#connectedServices" role="tab"
+											aria-controls="connectedServices" aria-selected="false">Another
+											Info</a></li>
+								</ul>
+								<div class="tab-content ml-1" id="myTabContent">
+									<div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
+										aria-labelledby="basicInfo-tab">
+
+
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Full Name</label>
+											</div>
+											<div class="col-md-8 col-6">
+												<input id="input-fullname" value="Jamshaid Kamran" class="control-form">
+											</div>
+										</div>
+										<hr />
+
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Mobile Phone</label>
+											</div>
+											<div class="col-md-8 col-6">
+												<input id="input-phone" value="085799261521" type="number"
+													class="control-form">
+											</div>
+										</div>
+										<hr />
+
+
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Email</label>
+											</div>
+											<div class="col-md-8 col-6">
+												<input id="input-email" value="abc@gmail.com" type="email"
+													class="control-form">
+											</div>
+										</div>
+
+										<hr />
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Password</label>
+											</div>
+											<div class="col-md-8 col-6">
+												<input id="input-password" value="123456" type="password"
+													class="control-form">
+											</div>
+										</div>
+										<hr />
+
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5"></div>
+											<div class="col-md-8 col-6">
+												<button id="btn-save" class="btn btn-warning"
+													onclick="updateBasicInfo()">Save
+													Changes</button>
+											</div>
+										</div>
+										<hr />
+
+									</div>
+									<div class="tab-pane fade" id="connectedServices" role="tabpanel"
+										aria-labelledby="ConnectedServices-tab">
+										<div class="row">
+											<div class="col-sm-3 col-md-2 col-5">
+												<label style="font-weight: bold;">Role</label>
+											</div>
+											<div id="input-role" class="col-md-8 col-6">ADMIN</div>
+										</div>
+										<hr />
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<footer class="container-fluid bg-dark text-white p-5 mt-3 text-center">
+			<h6>© 2023 Batch 310 - Java Spring Boot</h6>
+		</footer>
+
+		<!-- Modal -->
+		<div class="modal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add Abcabc</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+							<i class="fa fa-close"></i>
+						</button>
+					</div>
+					<div class="modal-body"></div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			//Script Bawaan ------------------------------------------------------------------------------
+			$(document).ready(function () {
+				$imgSrc = $('#imgProfile').attr('src');
+				function readURL(input) {
+
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+
+						reader.onload = function (e) {
+							$('#imgProfile').attr('src', e.target.result);
+						};
+
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+
+				$('#btnChangePicture').on('click', function () {
+					// document.getElementById('profilePicture').click();
+					if (!$('#btnChangePicture').hasClass('changing')) {
+						$('#profilePicture').click();
+					} else {
+						// change
+						uploadImage();
+					}
+				});
+
+				$('#profilePicture').on('change', function () {
+					readURL(this);
+					$('#btnChangePicture').addClass('changing');
+					$('#btnChangePicture').attr('value', 'Confirm');
+					$('#btnDiscard').removeClass('d-none');
+					// $('#imgProfile').attr('src', '');
+				});
+
+				$('#btnDiscard').on('click', function () {
+					// if ($('#btnDiscard').hasClass('d-none')) {
+					$('#btnChangePicture').removeClass('changing');
+					$('#btnChangePicture').attr('value', 'Change');
+					$('#btnDiscard').addClass('d-none');
+					$('#imgProfile').attr('src', $imgSrc);
+					$('#profilePicture').val('');
+					// }
+				});
+			});
+			//---------------------------------------------get profile-----------------------------------------------------------------
+			var user_id = "[[${user_id}]]";
+			console.log(user_id);
+			function getProfilApi(user_id) {
+				return $.ajax({
+					url: "/api/user/profile?user_id="+user_id,
+					method: "GET",
+					async: false
+				});
+			}
+
+
+			var response = getProfilApi(user_id).responseJSON;
+			console.log(response);
+
+			if (response.code == 200) {
+				//highlight-fullname
+				$("#highlight-fullname").html(response.data.fullname);
+				//img-profile
+				$("#imgProfile").prop('src', response.data.picture);
+				//input-fullname
+				$("#input-fullname").val(response.data.fullname);
+				//input-phone
+				$("#input-phone").val(response.data.phone);
+				//input-email
+				$("#input-email").val(response.data.email);
+				//input-password
+				$("#input-password").val(response.data.password);
+				//input-role
+				$("#highlight-fullname").html(response.data.role_name);
+			} else {
+				alert(response.message);
+			}
+			//-------------------------------------------------Update Profile-------------------------------------
+			function saveProfileApi(dto) {
+				console.log(dto)
+				return $.ajax({
+					"url": "/api/user/updateBiodata",
+					"method": "PUT",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"data": dto,
+					"async": false
+				});
+			}
+
+			function updateBasicInfo() {
+				//input-fullname
+				var fullname = $("#input-fullname").val();
+				//input-phone
+				var phone = $("#input-phone").val();
+				//input-email
+				var email = $("#input-email").val();
+				//input-password
+				var password = $("#input-password").val();
+
+				//userId
+				//user_id
+				var json = JSON.stringify({
+					"fullname": "yykw",
+					"phone": "008",
+					"email": "y@gmail.com",
+					"password": 654321,
+					"user_id": 2
+				})
+				var response = saveProfileApi(json).responseJSON;
+				console.log(response);
+				if (response.code == 200) {
+					alert(response.message);
+					location.reload();
+				} else {
+					alert(response)
+				}
+			}
+			// -----------------------------------Upload Picture------------------------------------------------
+			function uploadImageApi(files, userId) {
+				var form = new FormData();
+				form.append("file", files[0]);
+				form.append("user_id", userId);
+
+				return $.ajax({
+					"url": "/api/user/upload",
+					"method": "PUT",
+					"processData": false,
+					"mimeType": "multipart/form-data",
+					"contentType": false,
+					"data": form,
+					"async": false
+				})
+			}
+			function uploadImage(){
+				//user_id
+				//userId
+				
+				var files = $("#profilePicture")[0].files;
+				console.log(files)
+				
+				var responseText = uploadImageApi(files, user_id).responseText
+				var response = $.parseJSON(responseText)
+				
+				if (response.code == 200) {
+					alert(response.message);
+					location.reload();
+				} else {
+					alert(response)
+				}
+			}
+		</script>
+</body>
+
+</html>
