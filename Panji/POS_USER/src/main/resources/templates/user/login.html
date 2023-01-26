@@ -24,6 +24,7 @@ body {
 	display: flex;
 }
 
+
 form, h2 {
 	margin: auto;
 	/* nice thing of auto margin if display:flex; it center both horizontal and vertical :) */
@@ -44,7 +45,26 @@ form, h2 {
 				name="pswd">
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
+		<a href="#" style="color:primary" class="btn" onclick="popupRegister()">Register</a>
+		
 	</form>
+	
+	<!-- Modal -->
+		<div class="modal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add Abcabc</h5>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close">
+							<i class="fa fa-close"></i>
+						</button>
+					</div>
+					<div class="modal-body"></div>
+				</div>
+			</div>
+		</div>
+	
 	
 	<script type="text/javascript">
 		function loginApi(email,password){
@@ -86,6 +106,204 @@ form, h2 {
 				}else{
 				alert(response.message);
 			}
+		}
+		function sendRegisterOtpApi(email) {
+			var formData = new FormData();
+			formData.append("email", email);
+
+			return $.ajax({
+				url: "/sendRegisterOtp",
+				method: "POST",
+				data: formData,
+				contentType: false,
+				processData: false,
+				mimeType: "multipart/form-data",
+				async: false
+			});
+		}
+		
+		//PopUp Register
+		function popupRegister(){
+			
+			console.log("Add Register!")
+			//Ganti Title
+			$(".modal-title").html("Register");
+			
+			//Isi Modal Body
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless">
+					<tr>
+						<td><input id="input-email" class="form-control" type="text" placeholder="Enter Email" name="email" required></input></td>
+					</tr>
+					<tr>
+						<td class="center">
+						<button id="btn-ok" class="btn btn-primary" type="submit" >Ok</button>
+						</td>
+					</tr>
+				</table>
+				`
+			);
+			
+			$("#btn-ok").click(function(){
+				$("#btn-ok").prop("disabled",true);
+				var email = $("#input-email").val();
+				console.log(email);
+				
+				var responseText = sendRegisterOtpApi(email).responseText;
+				var responseJson = $.parseJSON(responseText);
+				
+				if(responseJson.code == 200){
+					alert(responseJson.message);
+					popupRegister2(email);
+				} else {
+					alert(responseJson.message);
+					$("#btn-ok").prop("disabled",false);
+				}
+				popupRegister2(email);
+			})
+			$(".modal").modal("show");
+		}
+		
+		function checkOtpApi(email,otp) {
+			var formData = new FormData();
+			formData.append("email", email);
+			formData.append("otp", otp);
+
+			return $.ajax({
+				url: "/cekRegisterOtp",
+				method: "POST",
+				data: formData,
+				contentType: false,
+				processData: false,
+				mimeType: "multipart/form-data",
+				async: false
+			});
+		}
+		
+		function popupRegister2(email){
+			$(".modal-title").html("Masukkan OTP");
+			
+			//Isi Modal Body
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless" display="flex">
+					<tr>
+						<td><input id="input-otp" class="form-control" type="text" placeholder="Kode OTP" name="kodeOtp" required></input></td>
+					</tr>
+					<tr>
+						<td>
+						<button id="btn-ok" class="btn btn-primary" type="submit" >Ok</button>
+						</td>
+					</tr>
+				</table>
+				`
+			);
+			$("#btn-ok").click(function(){
+				$("#btn-ok").prop("disabled",true);
+				var otp = $("#input-otp").val();
+				
+				var responseText = checkOtpApi(email,otp).responseText;
+				var responseJson = $.parseJSON(responseText);
+				
+				if(responseJson.code == 200){
+					alert(responseJson.message);
+					popupRegister3(email,otp);
+				} else {
+					alert(responseJson.message);
+					$("#btn-ok").prop("disabled",false);
+				}
+				popupRegister3(email,otp);
+			})
+			$(".modal").modal("show");
+		}
+		
+		function sendRegisterApi(email,password,role_id,name) {
+			var formData = new FormData();
+			formData.append("email", email);
+			formData.append("password", password);
+			formData.append("role_id", role_id);
+			formData.append("name", name);
+
+			return $.ajax({
+				url: "/baru",
+				method: "POST",
+				data: formData,
+				contentType: false,
+				processData: false,
+				mimeType: "multipart/form-data",
+				async: false
+			});
+		}
+		function getAllRole(){
+			return $.ajax({
+				url: "/getRole",
+				method: "GET",
+				async: false
+			});
+		}
+		function popupRegister3(email,otp){
+			var response = getAllRole().responseJSON;
+			var dataList = response.data;
+			var html = "";
+			for(i = 0; i < dataList.length; i++){
+				var data = dataList[i];
+				html += `<option value = "${data.id}">${data.name}</option>`;
+			}
+			$(".modal-title").html("Masukkan Data Diri");
+			
+			//Isi Modal Body
+			$(".modal-body").html(
+				`
+				<table class="table table-borderless" display="flex">
+					<tr>
+						<td><input id="input-email" class="form-control" type="text" value=${email} name="email" disabled></input></td>
+					</tr>
+					<tr>
+						<td><input id="input-password" class="form-control" type="text" placeholder="Password" name="password" required></input></td>
+					</tr>
+					<tr>
+						<td><input id="input-name" class="form-control" type="text" placeholder="Name" name="name" required></input></td>
+					</tr>
+					<tr>
+						<td>
+							<select id="dropdown-role" class="form-control">
+								${html}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="center">
+						<button id="btn-ok" class="btn btn-primary" type="submit" >Ok</button>
+						</td>
+					</tr>
+				</table>
+				`
+			);
+			$("#btn-ok").click(function(){
+				
+				var email = $("#input-email").val();
+				var password = $("#input-password").val();
+				var role_id = $("#dropdown-role").val();
+				var name = $("#input-name").val();
+				
+				 
+				console.log(email);
+				console.log(password);
+				console.log(name);
+				console.log(role_id);
+				
+				var responseText = sendRegisterApi(email,password,role_id,name).responseText;
+				var responseJson = $.parseJSON(responseText);
+				
+				if(responseJson.code == 200){
+					alert(responseJson.message);
+					$(".modal").modal("hide");
+				} else {
+					alert(responseJson.message);
+					$("#btn-ok").prop("disabled",false);
+				}
+			})
 		}
 	</script>
 </body>

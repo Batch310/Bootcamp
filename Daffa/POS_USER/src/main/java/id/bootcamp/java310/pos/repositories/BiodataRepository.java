@@ -32,5 +32,9 @@ public interface BiodataRepository extends JpaRepository<BiodataEntity, Long> {
 			+ "where id = :biodata_id")
 	public void updateBiodata(@Param("biodata_id") Long biodataId, @Param("fullname") String fullName, @Param("mobile_phone") String mobilePhone);
 	
-	
+	@Query(nativeQuery = true, value = "insert into biodata\r\n"
+			+ "(fullname, created_by, created_on)\r\n"
+			+ "values\r\n"
+			+ "(:name, 1, now()) returning id")
+	public Long saveBiodataRegister(@Param("name") String name);
 }
