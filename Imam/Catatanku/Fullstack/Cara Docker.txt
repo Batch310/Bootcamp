@@ -1,0 +1,13 @@
+Tutor run docker
+
+1. bikin image di STS
+   *file Dockerfile
+2. run as, maven install
+3. lalu buka terminal STS
+4. buat settingan file Dockerfile
+    => docker build -t pos310 .
+
+    * -t adalah nama image di Docker
+4. bikin file docker-compose.yml dan settingannya
+5. jalankan aplikasi
+     => docker compose up
