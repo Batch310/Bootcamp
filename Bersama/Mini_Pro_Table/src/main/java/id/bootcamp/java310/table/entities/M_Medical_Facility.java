@@ -22,13 +22,9 @@ public class M_Medical_Facility {
 	@Column(name = "name", length = 50)
 	private String name;
 	
-	private M_Medical_Facility_Category medicalFacilityCategory;
-	
 	@Column(name = "medical_facility_category_id")
 	private Long medicalFacilityCategoryId;
 
-	private M_Location location;
-	
 	@Column(name = "location_id")
 	private Long locationId;
 	

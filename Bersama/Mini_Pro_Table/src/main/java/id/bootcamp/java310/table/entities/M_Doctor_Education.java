@@ -18,16 +18,8 @@ public class M_Doctor_Education extends BaseProperties {
 	@Column(nullable = false)
 	private Long id;
 
-	@ManyToMany
-	@JoinColumn(name = "doctor_id", insertable = false, updatable = false)
-	private M_Doctor doctor;
-
 	@Column(name = "doctor_id")
 	private Long doctorId;
-
-	@ManyToMany
-	@JoinColumn(name = "education_level_id", insertable = false, updatable = false)
-	private M_Education_Level educationLevel;
 
 	@Column(name = "education_level_id")
 	private Long educationLevelId;
@@ -55,28 +47,12 @@ public class M_Doctor_Education extends BaseProperties {
 		this.id = id;
 	}
 
-	public M_Doctor getDoctor() {
-		return doctor;
-	}
-
-	public void setDoctor(M_Doctor doctor) {
-		this.doctor = doctor;
-	}
-
 	public Long getDoctorId() {
 		return doctorId;
 	}
 
 	public void setDoctorId(Long doctorId) {
 		this.doctorId = doctorId;
-	}
-
-	public M_Education_Level getEducationLevel() {
-		return educationLevel;
-	}
-
-	public void setEducationLevel(M_Education_Level educationLevel) {
-		this.educationLevel = educationLevel;
 	}
 
 	public Long getEducationLevelId() {
