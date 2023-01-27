@@ -24,49 +24,11 @@ public class M_Location extends BaseProperties {
 	@Column(name = "parent_id")
 	private Long parentId;
 
-	private M_Location_Level locationLevel;
+	private Long locationLevel;
 
 	@Column(name = "location_level_id")
 	private Long locationLevelId;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Long getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
-
-	public M_Location_Level getLocationLevel() {
-		return locationLevel;
-	}
-
-	public void setLocationLevel(M_Location_Level locationLevel) {
-		this.locationLevel = locationLevel;
-	}
-
-	public Long getLocationLevelId() {
-		return locationLevelId;
-	}
-
-	public void setLocationLevelId(Long locationLevelId) {
-		this.locationLevelId = locationLevelId;
-	}
+	
 
 }
