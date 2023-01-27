@@ -18,11 +18,15 @@ public class M_Doctor_Education extends BaseProperties {
 	@Column(nullable = false)
 	private Long id;
 
+	@ManyToMany
+	@JoinColumn(name = "doctor_id", insertable = false, updatable = false)
 	private M_Doctor doctor;
 
 	@Column(name = "doctor_id")
 	private Long doctorId;
 
+	@ManyToMany
+	@JoinColumn(name = "education_level_id", insertable = false, updatable = false)
 	private M_Education_Level educationLevel;
 
 	@Column(name = "education_level_id")
