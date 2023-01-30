@@ -70,7 +70,7 @@ public class MappingService {
 		return subBreedNameDTO;
 	}
 	
-	public DogImageDTO convertToDogImageDTO(List<DogImages> dogImages, Breeds subBreeds) {
+	public DogImageDTO convertToDogImageDTO(List<DogImages> dogImages) {
 		DogImageDTO dogImageDTO = new DogImageDTO();
 		List<String> dogImageURL = new ArrayList<>();
 		for (DogImages dogImage : dogImages) {
@@ -97,7 +97,7 @@ public class MappingService {
 	}
 	
 	private List<String> toListStringImageURL(List<DogImages> dogImages){
-		ArrayList<String> arr = new ArrayList<String>();
+		var arr = new ArrayList<String>();
 		for (DogImages dog : dogImages) {
 			arr.add(dog.getUrl());
 		}

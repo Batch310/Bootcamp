@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,6 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class SubBreedsDTO {
-    private List<Object> message;
+    private LinkedHashMap<Object, List<Object>> message;
     private String status;
 }

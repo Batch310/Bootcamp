@@ -75,8 +75,8 @@ public class MigrateDataFromDogAPI  {
         SubBreedsDTO subBreedsDTO = restTemplate.getForObject(subBreedsURL, SubBreedsDTO.class);
         assert subBreedsDTO != null;
         var subBreedList = subBreedsDTO.getMessage();
-        if (!subBreedList.isEmpty()){
-            for (Object sub : subBreedList) {
+        if (!subBreedList.get(breedName).isEmpty()){
+            for (Object sub : subBreedList.get(breedName)) {
                 String subBreedName = sub.toString();
                 var subBreed = new SubBreeds();
                 subBreed.setName(subBreedName);

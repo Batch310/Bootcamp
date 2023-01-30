@@ -24,36 +24,4 @@ public class DogImages {
 	@ManyToOne
 	private SubBreeds subBreeds;
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public Breeds getBreeds() {
-		return breeds;
-	}
-
-	public void setBreeds(Breeds breeds) {
-		this.breeds = breeds;
-	}
-
-	public SubBreeds getSubBreeds() {
-		return subBreeds;
-	}
-
-	public void setSubBreeds(SubBreeds subBreeds) {
-		this.subBreeds = subBreeds;
-	}
-
 }

@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-//import com.example.dogservice.model.dto_for_data_migration.DogImagesDTO;
-
 import id.bootcamp.java310.dogservice.model.dto_data_migration.BreedsDTO;
 import id.bootcamp.java310.dogservice.model.dto_data_migration.SubBreedsDTO;
 import id.bootcamp.java310.dogservice.model.dto_data_migration.DogImagesDTO;
@@ -19,7 +17,6 @@ import id.bootcamp.java310.dogservice.repository.DogImageRepository;
 import id.bootcamp.java310.dogservice.repository.SubBreedRepository;
 import lombok.var;
 import lombok.extern.slf4j.Slf4j;
-import lombok.*;
 
 @Service
 @Slf4j
@@ -45,11 +42,11 @@ public class MigrateDataFromDogAPI {
 		migrateDataFromDogDPItoDB();
 		log.info("data migration from Dog API to H2 DB finish");
 		log.info("Dog Service is ready");
-		
+
 	}
 
 	private void migrateDataFromDogDPItoDB() {
-		BreedsDTO breedsDTO = restTemplate.getForObject("http://dog.ceo.api/breeds/list/all", BreedsDTO.class);
+		BreedsDTO breedsDTO = restTemplate.getForObject("https://dog.ceo/api/breeds/list/all", BreedsDTO.class);
 		assert breedsDTO != null;
 		LinkedHashMap<Object, Object> breedMap = breedsDTO.getMessage();
 		for (Object breedKey : breedMap.keySet()) {
@@ -71,12 +68,12 @@ public class MigrateDataFromDogAPI {
 		String subBreedsURL = "https://dog.ceo/api/breed/" + breedName + "/list";
 		SubBreedsDTO subBreedsDTO = restTemplate.getForObject(subBreedsURL, SubBreedsDTO.class);
 		assert subBreedsDTO != null;
-		List<Object> subBreedList = subBreedsDTO.getMessage();
-		if (!subBreedList.isEmpty()) {
-			for (Object sub : subBreedList) {
+		var subBreedList = subBreedsDTO.getMessage();
+		if (!subBreedList.get(breedName).isEmpty()) {
+			for (Object sub : subBreedList.get(breedName)) {
 				String subBreedName = sub.toString();
 				SubBreeds subBreed = new SubBreeds();
-				subBreed.setName(breedName);
+				subBreed.setName(subBreedName);
 				subBreed.setBreeds(breed);
 				subBreedRepository.save(subBreed);
 				migrateDogImageByBreedAndItsSubBreed(breedName, breed, subBreedName, subBreed);
@@ -90,7 +87,7 @@ public class MigrateDataFromDogAPI {
 	private void migrateDogImageByBreedAndItsSubBreed(String breedName, Breeds breed, String subBreedName,
 			SubBreeds subBreeds) {
 		String dogImagesUrl = "https://dog.ceo/api/breed/" + breedName + "/" + subBreedName + "/images";
-		List<Object> dogImagesList = getDogImagesUrlLists(dogImagesUrl);
+		var dogImagesList = getDogImagesUrlLists(dogImagesUrl);
 		for (Object img : dogImagesList) {
 			String imgUrl = img.toString();
 			DogImages dogImage = new DogImages();
@@ -103,7 +100,7 @@ public class MigrateDataFromDogAPI {
 
 	private void migrateDogImageByBreedThatDoNotHaveSubBreed(String breedName, Breeds breed) {
 		String dogImagesUrl = "https://dog.ceo/api/breed/" + breedName + "/images";
-		List<Object> dogImagesList = getDogImagesUrlLists(dogImagesUrl);
+		var dogImagesList = getDogImagesUrlLists(dogImagesUrl);
 		for (Object img : dogImagesList) {
 			String imgUrl = img.toString();
 			DogImages dogImage = new DogImages();
