@@ -1,0 +1,21 @@
+@Bean anotasi fungsi global
+
+RestTemplate untuk mengambil API dari API lain 
+
+Cara kerja mengambil data dari API luar : DTO migration -> Entity -> DTO 
+
+lombok mengurangi codingan yg berulang
+
+singleton patern : menggunakan object yang sudah dibuat tanpa membuat ulang. tujuannya untuk menghemat memory agar aplikasi lebih ringan. contoh autowrite, RestTemplate
+
+java stream() bisa melakukan sorting dan collect pada list / map. collect mengembalikan map atau list itu sendiri
+
+method reference :  
+
+lamda : breed.getSubBreeds().forEach(sub -> {
+})
+
+Test
+1. Unit test : test per fungsi. biasanya sebelum dikasih ke tester
+2. integration test : test codingan dengan springboot / posgree / yang lainya
+3. acceptance test : test akhir sebelum rilis secara keseluruhan tanpa mocking data

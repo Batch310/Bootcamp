@@ -11,6 +11,8 @@ import id.bootcamp.java310.dogservice.repositories.DogImageRepository;
 import id.bootcamp.java310.dogservice.repositories.SubBreedRepository;
 import id.bootcamp.java310.dogservice.services.DogServices;
 import id.bootcamp.java310.dogservice.services.MappingService;
+
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,9 +52,17 @@ public class DogController {
         List<SubBreeds> subBreeds = subBreedRepository.findSubBreedsByBreeds(breeds);
         return mappingService.convertToAllSubBreedNameDTO(subBreeds);
     }
-
+    
+    @Cacheable(cacheNames = {"Breed"}, key="#breedName")
     @GetMapping("/breed/{breedName}/images")
     public Object getImagesByBreed(@PathVariable String breedName) {
+    	//ditambah delay 5 detik
+    	System.out.println("-------Sleep selama 5 detik---------------");
+    	try {
+    		Thread.sleep(5*1000);
+    	}catch(InterruptedException e){
+    		e.printStackTrace();
+    	}
         Breeds breeds = breedRepository.findBreedsByName(breedName);
         if (breeds == null) return new NotFound("error","Breed not found (master breed does not exist)",404);
         List<DogImages> dogImages = dogImageRepository.findDogImagesByBreeds(breeds);
