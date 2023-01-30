@@ -15,6 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class SubBreedsDTO {
-    private LinkedHashMap<Object, Object> message;
+    private LinkedHashMap<Object, List<Object>> message;
     private String status;
 }
