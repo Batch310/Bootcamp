@@ -1,0 +1,103 @@
+package id.bootcamp.java310.dogservice.controllers;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.test.web.servlet.MockMvc;
+
+import id.bootcamp.java310.dogservice.dto.BreedNameDTO;
+import id.bootcamp.java310.dogservice.entities.Breeds;
+import id.bootcamp.java310.dogservice.repositories.BreedRepository;
+import id.bootcamp.java310.dogservice.repositories.DogImageRepository;
+import id.bootcamp.java310.dogservice.repositories.SubBreedRepository;
+import id.bootcamp.java310.dogservice.services.DogServices;
+import id.bootcamp.java310.dogservice.services.MappingService;
+import id.bootcamp.java310.dogservice.services.MigrateDataFromDogAPI;
+
+
+
+@WebMvcTest
+class DogControllerIntegrationTest {
+
+	@Autowired
+	private MockMvc mockMvc;
+
+	@MockBean
+	private BreedRepository breedRepository;
+
+	@MockBean
+	private SubBreedRepository subBreedRepository;
+
+	@MockBean
+	private DogImageRepository dogImageRepository;
+
+	@MockBean
+	private MappingService mappingService;
+
+	@MockBean
+	private DogServices dogServices;
+	
+	@MockBean
+	private MigrateDataFromDogAPI migrateDataFromDogAPI;
+	
+	@MockBean
+	private RestTemplateBuilder restTemplateBuilder;
+
+	private DogController dogController;
+
+	@BeforeEach
+	void setUp() throws Exception {
+		dogController = new DogController(breedRepository, subBreedRepository, dogImageRepository, mappingService,
+				dogServices);
+	}
+
+	@Test
+	void getAllBreedNameWithoutItsSubBreedTest() throws Exception {
+		// Buat Data Dummy Sebelum
+		List<Breeds> breedList = new ArrayList<>();
+		for (int i = 1; i <= 2; i++) {
+			Breeds breed = new Breeds();
+			breed.setId(i);
+			breed.setName("Breed " + i);
+			breed.setSubBreeds(null);
+			breedList.add(breed);
+		}
+
+		// Buat Data Dummy Sesudah
+		BreedNameDTO breedNameDTO = new BreedNameDTO();
+		Map<String, List<String>> map = new LinkedHashMap<String, List<String>>();
+		for (int i = 1; i <= 2; i++) {
+			map.put("Breed " + i, null);
+		}
+		breedNameDTO.setMessage(map);
+		breedNameDTO.setStatus("success");
+
+		Mockito.when(breedRepository.findAll()).thenReturn(breedList);
+		Mockito.when(mappingService.convertToAllBreedNameDTO_2(breedList)).thenReturn(breedNameDTO);
+
+		mockMvc.perform(get("/api/breeds/list/all")).andDo(print()).andExpect(status().isOk())
+				.andExpect(jsonPath("$.status", Matchers.is("success")));
+
+		Mockito.verify(breedRepository).findAll();
+		Mockito.verify(mappingService).convertToAllBreedNameDTO_2(breedList);
+	}
+
+}
