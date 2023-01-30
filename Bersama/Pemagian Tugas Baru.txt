@@ -1,0 +1,20 @@
+<Nanda & Tyann>
+M5 : Kategori fasilitas kesehatan
+M8 : Landing Page
+T5 : Tambah spesialisasi dokter
+T8 : Buat Janji
+<Imam & Yudhahahahaha>
+M8 : Dokter profil shared layout
+M5 : Jenjang pendidikan
+T5 : Tambah tindakan dokter
+T8 : Cari Dokter
+<Daffa & Panji>
+M5 : Hubungan Pasien
+M5 : Spesialisasi Dokter
+T8 : Pendaftaran
+T8 : Lupa Password
+<Haidar & Afdhol>
+M5 : Nominal Dompet Elektronik
+M5 : Golongan Darah
+T8 : Pasien
+T8 : Tab Profil
