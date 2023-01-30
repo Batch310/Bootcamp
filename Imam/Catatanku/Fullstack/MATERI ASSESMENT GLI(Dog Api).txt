@@ -1,0 +1,36 @@
+*Migration = Ambi data umun(dog api, get) ke Database.
+
+*H2 DB = Database in memory(menyimpan sementara), data db tersimpan 
+         saat aplikasi run saja. 
+     CEK => Lewat console web =>localhost:8080/h2-console
+
+*Rest Template = buat ambil Api dari Api lain(DOG API).
+
+*Dependensi Lombok = Mengurangi kegiatan mengulang ulang.
+             misal => Getter & Setter
+
+* Singleton Pattern = bikin 1 object saja
+    fungsi restTamplate
+   contoh = anotasi @bean, @autowired
+* timeout = transactional timeout
+* - lambda = method foreach
+  - method reference = ::
+
+*caching = 
+
+*Unit test => utk test fungsi sesuai harapan
+  Cek di folder => src/test/java
+  -TEST 1 FUNGSI
+     1.Setting => windows, preferen,general,keys =>jUnit =>isi binding ctrl+alt+O
+     2.blok fungsi yang mau di test => tekan ctrl+alt+o => apply
+     3.buat object class yg mau di test
+     4.buat dummy nya
+     5.Cek run as jUnit
+
+  -TEST FUNGSI YG KETERGANTUNGAN FUNSGI LAIN(muckito)
+      1.blok fungsi yang mau di test => tekan ctrl+alt+o => apply => cecklis @beforeeach
+      2. Bikin anotasi mockito di object tiruan()
+      
+    * unit test => cek 1 fungsi
+    * intregation test => gabungin fungsi lain(lewat spring boot)
+    * Acceptance => test keseluruhan(tidak pakai dummy)

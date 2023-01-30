@@ -11,20 +11,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@Data
-@Builder
-@EqualsAndHashCode(exclude = "success")
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class SubBreedsDTO {
-    private List<Object> message;
+    private LinkedHashMap<Object, List<Object>> message;
     private String status;
 	
     
