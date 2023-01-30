@@ -19,20 +19,4 @@ public class DogImagesDTO {
 	private List<Object> message;
 	private String status;
 
-	public List<Object> getMessage() {
-		return message;
-	}
-
-	public void setMessage(List<Object> message) {
-		this.message = message;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 }
