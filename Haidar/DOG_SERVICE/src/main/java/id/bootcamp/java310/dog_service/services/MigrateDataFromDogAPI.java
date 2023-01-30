@@ -72,9 +72,9 @@ public class MigrateDataFromDogAPI  {
         String subBreedsURL = "https://dog.ceo/api/breed/" + breedName + "/list";
         SubBreedsDTO subBreedsDTO = restTemplate.getForObject(subBreedsURL, SubBreedsDTO.class);
         assert subBreedsDTO != null;
-        var subBreedList = subBreedsDTO.getMessage();
+        LinkedHashMap<Object, Object> subBreedList = subBreedsDTO.getMessage();
         if (!subBreedList.isEmpty()){
-            for (Object sub : subBreedList) {
+            for (Object sub : subBreedList.values()) {
                 String subBreedName = sub.toString();
                 SubBreeds subBreed = new SubBreeds();
                 subBreed.setName(subBreedName);
