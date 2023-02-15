@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "1656accd-f598-417d-8f40-be4aae2a3539",
+		"name": "POS Batch 310",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17728021"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"initial\": \"BDA\",\r\n        \"name\": \"Buku Dongeng Anak\",\r\n        \"active\": true,\r\n        \"create_by\": \"Admin\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/category/insert",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 3,\r\n        \"initial\": \"ELK\",\r\n        \"name\": \"Elektronik\",\r\n        \"active\": true,\r\n        \"modify_by\": \"yykw\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/category/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "8",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost/api/category/delete",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/category/get",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/category/pagination?keyword=&limit=3&page=3",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"pagination"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Variant",
+			"item": [
+				{
+					"name": "Get All Variant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Variant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"category_id\": 1,\r\n        \"initial\": \"RVN\",\r\n        \"name\": \"Revanol\",\r\n        \"active\": true,\r\n        \"create_by\": \"yudha\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/variant/insert",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Variant",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 1,\r\n        \"category_id\": 1,\r\n        \"initial\": \"RVN\",\r\n        \"name\": \"Revanol\",\r\n        \"active\": false,\r\n        \"modify_by\": \"yudhaykw\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost/api/variant/update",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Variant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/variant/delete",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Variant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/variant/search",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"variant",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Variant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost/api/category/pagination?keyword=&limit=5&page=3",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"category",
+								"pagination"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": ""
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

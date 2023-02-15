@@ -1,0 +1,37 @@
+1. get category by id
+2. get variant by id
+3. get product by id
+
+git ignore : untuk menghindari conflict
+
+react
+
+Expo
+
+Xsis Post
+
+npx react-native init XPosApp --version 0.66
+
+2 cara menampilkan 
+
+1. dev tools 
+2. emulator 
+
+
+connect to devices
+
+adb devices : cek koneksi
+sdk : system development kid
+android sdk - sdk platform : pilih versi untuk app
+add environment ANDROID_HOME : C:\Users\XA-26-2018\AppData\Local\Android\Sdk
+add path : C:\Users\XA-26-2018\AppData\Local\Android\Sdk\platform-tools
+
+HP : how to mode pengembang
+developer mode on
+Usb debuging on
+
+cek : adb devices
+
+
+
+

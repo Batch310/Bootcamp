@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "cf57d009-061a-4016-bace-e09f0585aab4",
+		"name": "Yusuf DOG API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17728021"
+	},
+	"item": [
+		{
+			"name": "Migration",
+			"item": [
+				{
+					"name": "Migration To Local DB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8181/migrate-from-dog-api",
+							"host": [
+								"localhost"
+							],
+							"port": "8181",
+							"path": [
+								"migrate-from-dog-api"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Original",
+			"item": [
+				{
+					"name": "Get List All Breed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breeds/list/all",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breeds",
+								"list",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get List Sub Breed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dog.ceo/api/breed/hound/list",
+							"protocol": "https",
+							"host": [
+								"dog",
+								"ceo"
+							],
+							"path": [
+								"api",
+								"breed",
+								"hound",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Migrated",
+			"item": [
+				{
+					"name": "Get List All Breed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/breeds/list/all",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"breeds",
+								"list",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Breed by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/breed/anjing/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"breed",
+								"anjing",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Breed Images",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/breed/terrier/images",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"breed",
+								"terrier",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Subreed images",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/breed/terrier/silky/images",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"breed",
+								"terrier",
+								"silky",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Breed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/post/breed/anjing",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"post",
+								"breed",
+								"anjing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Breed SubBreed",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/post/subbreed/anjing/lucu",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"post",
+								"subbreed",
+								"anjing",
+								"lucu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Images",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/post/image/anjing/lucu/asd",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"post",
+								"image",
+								"anjing",
+								"lucu",
+								"asd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Breed",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/delete/breed/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"delete",
+								"breed",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete SubBreed",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/delete/subbreed/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"delete",
+								"subbreed",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete SubBreed Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/delete/image/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"delete",
+								"image",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Breed",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/update/breed/1/kocheng",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"update",
+								"breed",
+								"1",
+								"kocheng"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit SubBreed",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/update/subbreed/3/kocheng",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"update",
+								"subbreed",
+								"3",
+								"kocheng"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Image",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/update/image/3/kocheng",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"update",
+								"image",
+								"3",
+								"kocheng"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
