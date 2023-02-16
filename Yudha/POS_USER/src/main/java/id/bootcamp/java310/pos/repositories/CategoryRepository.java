@@ -118,5 +118,8 @@ public interface CategoryRepository extends JpaRepository<CategoryEntity, Long> 
 	// Get count semua data category
 	@Query(nativeQuery = true, value = "select count(*) from category where name ilike '%' || :keyword || '%'")
 	public int countTotalData(@Param("keyword") String keyword);
+	
+	@Query(nativeQuery = true, name = "get_categories_by_id_category")
+	public CategoryDTO getCategoryByIdCategory(@Param("keyword") int keywordku);
 
 }

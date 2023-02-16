@@ -185,6 +185,20 @@ public class CategoryRestControllers {
 		return responseSearch;
 
 	}
+	
+	@GetMapping("/getCategoryById")
+	public Resp<CategoryDTO> getCategoryByIdCategory(@RequestParam("id") int id) {
+		int code = 200;
+		String message = "sukses";
+		CategoryDTO dataSearch = cs.getCategoryByIdCategory(id); // trim " k e " -> "k e"
+		Resp<CategoryDTO> responseSearch = new Resp<>();
+		responseSearch.setCode(code);
+		responseSearch.setMessage(message);
+		responseSearch.setData(dataSearch);
+
+		return responseSearch;
+
+	}
 
 	@GetMapping("/pagination")
 	public Resp<Pagination<List<CategoryDTO>>> pagination(@RequestParam("keyword") String keyword, 

@@ -196,6 +196,10 @@ public class CategoryService {
 	public List<CategoryDTO> search(String keyword) {
 		return cr.searchCategory(keyword);
 	}
+	
+	public CategoryDTO getCategoryByIdCategory(int keyword) {
+		return cr.getCategoryByIdCategory(keyword);
+	}
 
 	// Pagination
 	public Pagination<List<CategoryDTO>> pagination(String keyword, int limit, int page) {

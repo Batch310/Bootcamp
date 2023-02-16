@@ -36,6 +36,10 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 			value = "select * from product where initial ilike '%'|| :keyword ||'%' OR name ilike '%'|| :keyword ||'%' OR description ilike '%'|| :keyword ||'%' limit 3")
 	public List<ProductEntity> searchProducts(@Param("keyword") String keyword);
 	
+	@Query(nativeQuery = true, 
+			value = "select * from product where id = :id")
+	public ProductEntity getProductById(@Param("id")int id);
+	
 	// QUERY UNTUK VALIDASI
 	// Validasi apakah Initial sudah ada di DB
 	@Query(nativeQuery = true, value = "select exists(select * from product where initial = :initial)")

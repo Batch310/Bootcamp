@@ -34,6 +34,8 @@ public interface VariantRepository extends JpaRepository<VariantEntity, Long> {
 	@Query(nativeQuery = true, value = "select * from variant where is_delete = false and name ilike '%'||:keyword||'%' order by name asc")
 	public List<VariantEntity> getVariant(@Param("keyword") String keyword);
 	
+	@Query(nativeQuery = true, value = "select * from variant where is_delete = false and id = :id order by name asc")
+	public VariantEntity getVariantById(@Param("id") int id);
 	// QUERY UNTUK VALIDASI
 
 	// Validasi apakah Initial sudah ada di DB

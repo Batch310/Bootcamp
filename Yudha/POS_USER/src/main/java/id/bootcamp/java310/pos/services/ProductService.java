@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import id.bootcamp.java310.pos.dto.ProductDTO;
+import id.bootcamp.java310.pos.dto.VariantDTO;
 import id.bootcamp.java310.pos.entities.ProductEntity;
 import id.bootcamp.java310.pos.repositories.ProductRepository;
 
@@ -124,5 +125,20 @@ public class ProductService {
 		}
 
 		return listHasil;
+	}
+	
+	public ProductDTO getProductById(int id) {
+		ProductEntity listSumber = pr.getProductById(id);
+
+		
+			ProductDTO pHasil = new ProductDTO(listSumber.getVariantEntity().getCategoryEntity().getName(),
+					listSumber.getVariantEntity().getName(), listSumber.getInitial(), listSumber.getName(),
+					listSumber.getDescription(), listSumber.getPrice(), listSumber.getStock(), listSumber.getActive(),
+					listSumber.getVariantEntity().getCategoryId(), listSumber.getVariantId(),listSumber.getId());
+
+			
+		
+
+		return pHasil;
 	}
 }

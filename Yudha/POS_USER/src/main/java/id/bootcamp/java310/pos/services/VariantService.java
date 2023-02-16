@@ -167,4 +167,18 @@ public class VariantService {
 
 		return catList;
 	}
+
+	public VariantDTO getVariantById(int id) {
+		VariantEntity catSumber = vr.getVariantById(id);
+
+		VariantDTO cat = new VariantDTO();
+		cat.setId(catSumber.getId());
+		cat.setCategory_id(catSumber.getCategoryId());
+		cat.setCategory_name(catSumber.getCategoryEntity().getName());
+		cat.setInitial(catSumber.getInitial());
+		cat.setName(catSumber.getName());
+		cat.setActive(catSumber.getActive());
+
+		return cat;
+	}
 }
