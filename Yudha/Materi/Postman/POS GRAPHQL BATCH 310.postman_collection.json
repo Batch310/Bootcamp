@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "8e9322ce-5195-4f03-8386-ffcbd006c311",
+		"name": "POS GRAPHQL BATCH 310",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17728021"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "GET CATEGORIES",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n    findAllCategories{\r\n        id\r\n        initial\r\n        name\r\n        active\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost/api/graphql",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "INSERT CATEGORY",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n    createCategory(\r\n        name:\"yykw\"\r\n        active: true\r\n        create_by:\"yudha\"\r\n        initial:\"ykw\"\r\n    )\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost/api/graphql",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE CATEGORY",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n    updateCategory(\r\n        id:1\r\n        name:\"yudhaykwardhana\"\r\n        active: true\r\n        modify_by:\"yudhaaaa\"\r\n        initial:\"yyyyykw\"\r\n    )\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost/api/graphql",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE CATEGORY",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n   deleteCategory(\r\n       id:7\r\n   )\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost/api/graphql",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Variant",
+			"item": [
+				{
+					"name": "GET VARIANTS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n    findAllVariants{\r\n        id\r\n        category_name\r\n        initial\r\n        name\r\n        active\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost/api/graphql",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "INSERT VARIANT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n    createVariant(\r\n        category_id:1\r\n        name:\"yudhaykw\"\r\n        active: true\r\n        create_by:\"yudha\"\r\n        initial:\"yykw\"\r\n    )\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost/api/graphql",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE VARIANT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n    updateVariant(\r\n        id:11\r\n        category_id:2\r\n        name:\"yudhaykwardhana\"\r\n        active: true\r\n        modify_by:\"yudhaaaa\"\r\n        initial:\"yyyyykw\"\r\n    )\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost/api/graphql",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE VARIANT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n   deleteVariant(\r\n       id:7\r\n   )\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost/api/graphql",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

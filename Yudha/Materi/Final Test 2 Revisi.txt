@@ -1,0 +1,13 @@
+M5
+1. tambahkan pesan data not found saat seach data tidak ada. # done
+2. tambah 1 kolom lagi ditengah diubah oleh berisi nama lengkap yang mengubah data. # done
+
+M8
+1. apabila belum ada janji tidak muncul angka nya sama seperti konsultasi # Done
+2. konsultasi diisi sama seperti janji
+3. validasi upload foto
+
+T8 
+1. Klik menu Cari Dokter, maka akan muncul Modal Cari Dokter
+2. semua dropdown diperbaiki tambahkan CSS
+3. lanjukan t8

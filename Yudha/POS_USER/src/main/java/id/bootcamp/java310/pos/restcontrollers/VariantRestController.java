@@ -155,4 +155,18 @@ public class VariantRestController {
 
 		return response;
 	}
+	@GetMapping("/getVariantById")
+	public Resp<VariantDTO> getVariantById(@RequestParam("id") int id) {
+		// Mengemas Response API
+		int code = 200;
+		String message = "Sukses";
+		VariantDTO data = vs.getVariantById(id);
+
+		Resp<VariantDTO> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+
+		return response;
+	}
 }

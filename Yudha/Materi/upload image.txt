@@ -1,0 +1,21 @@
+1. query upload di query profil repo 
+
+@Modifying
+	@Transactional
+	@Query(nativeQuery = true, value = "update m_biodata\r\n"
+			+ "set image_path = :image_path\r\n"
+			+ "where id = :biodata_id ")
+	public void upload(@Param("image_path") String imagePath,
+			@Param("biodata_id") Long biodataId);
+	
+	@Query(nativeQuery = true, value = "select biodata_id from m_user where id = :user_id")
+	public Long getBiodataIdFromUserId(@Param("user_id") Long userId);
+
+2. service dan res controler sama persis kaya di PosUser
+3. bikin folder image di source (sama Pos User)
+4. bikin folder uploads di projectmu (sama Pos User)
+5. package config copy class ImageConfig
+6. bikin API sama persis ubah dikit di url
+7. copy button di pos user
+8. copy js di pos user
+9 selesai

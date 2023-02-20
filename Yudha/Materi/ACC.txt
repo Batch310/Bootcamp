@@ -1,0 +1,16 @@
+select * from brand
+select * from type
+
+select * from type where id=1
+
+insert into brand
+values
+(1,'toyota'),
+(2,'daihastu')
+
+insert into type
+values
+(1,'bensin',2,115000000,5,'NEW AYLA','2022','manual','https://netimg.acc.co.id/ACCONE/UNIT/17344/ULTRA-BLACK-SOLID.jpg','b'),
+(2,'bensin',2,1229000000,5,'ROCKY','2023','otomatis','https://netimg.acc.co.id/ACCONE/UNIT/25286/Daihatsu-Rocky_2021_Exterior_Side-View_Color_Type-R_Yellow-Metallic.webp','d'),
+(3,'bensin',1,215000000,5,'CALYA','2022','manual','https://netimg.acc.co.id/ACCONE/UNIT/4148/Silver-Metallic.webp','c'),
+(4,'bensin',1,215000000,5,'NEW AYLA','2023','otomatis','https://netimg.acc.co.id/ACCONE/UNIT/17344/ULTRA-BLACK-SOLID.jpg','a')

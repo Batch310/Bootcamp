@@ -1,0 +1,37 @@
+{
+	"info": {
+		"_postman_id": "0b1c2029-7c78-49a4-8ea0-bec1a69a9252",
+		"name": "ACC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17728021"
+	},
+	"item": [
+		{
+			"name": "brand",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/type/get",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"type",
+						"get"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

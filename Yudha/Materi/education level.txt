@@ -1,0 +1,26 @@
+select * from m_education_level
+
+select id,name from m_education_level where is_delete = false order by name desc
+
+select 
+  id,
+  name
+from m_education_level
+where name ilike '%s3%'
+
+INSERT INTO m_education_level(name,created_by, created_on)
+        VALUES
+		('S1',1, now()),
+		('S2',1, now()),
+		('S3',1, now())
+		
+		
+UPDATE t_doctor_treatment
+        SET deleted_by= 1, deleted_on=now(), is_delete=true
+        WHERE id = 1
+		
+		
+INSERT INTO t_doctor_treatment(
+        doctor_id,name,created_by, created_on)
+        VALUES
+		(2, 'Pencabutan Gigi',1, now())returning id

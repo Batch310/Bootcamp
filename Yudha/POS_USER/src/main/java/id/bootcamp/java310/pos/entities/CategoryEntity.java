@@ -37,6 +37,10 @@ import id.bootcamp.java310.pos.dto.CategoryDTO;
 				+ "        name,\r\n" + "        active\r\n" + "from category\r\n"
 				+ "where name ilike '%'|| :keyword ||'%'\r\n"
 				+ "order by initial asc", resultSetMapping = "get_categories_cara4_result"),
+		@NamedNativeQuery(name = "get_categories_by_id_category", query = "select \r\n" + "        id,\r\n" + "        initial,\r\n"
+				+ "        name,\r\n" + "        active\r\n" + "from category\r\n"
+				+ "where id = :keyword\r\n"
+				+ "order by initial asc", resultSetMapping = "get_categories_cara4_result"),
 		@NamedNativeQuery(name = "pagination_category", query = "select \r\n"
 				+ "        id,\r\n"
 				+ "        initial,\r\n"

@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "1d413f17-e997-45ec-9577-9e4aaf1c85d4",
+		"name": "DOG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17728021"
+	},
+	"item": [
+		{
+			"name": "Breeds List All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/breeds/list/all",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"breeds",
+						"list",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Migrate from Dog Api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/migrate-from-dog-api",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"migrate-from-dog-api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Breed Name List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/breed/{breedName}/list",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"breed",
+						"{breedName}",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Breed Name Images",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/breed/{breedName}/images",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"breed",
+						"{breedName}",
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Breed Name SubName Images",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/breed/{breedName}/{subBreedName}/images",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"breed",
+						"{breedName}",
+						"{subBreedName}",
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Breed Name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/post/breed/{newBreedName}",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"post",
+						"breed",
+						"{newBreedName}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SubBread Name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/post/subbreed/{breedName}/{newSubBreedName}",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"post",
+						"subbreed",
+						"{breedName}",
+						"{newSubBreedName}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Image SubBreadName",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/post/image/{breedName}/{subBreedName}/{imageUrl}",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"post",
+						"image",
+						"{breedName}",
+						"{subBreedName}",
+						"{imageUrl}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Breed by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/delete/breed/{id}",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"delete",
+						"breed",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SubBreed by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/delete/breed/{id}",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"delete",
+						"breed",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Image by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost/api/delete/image/{id}",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"delete",
+						"image",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -139,5 +139,18 @@ public class ProductRestController {
 		
 		return response;
 	}
+	@GetMapping("getProductById")
+	public Resp<ProductDTO> getProductById(@Param("id") int id){
+		int code = 200;
+		String message = "Sukses";
+		ProductDTO data = ps.getProductById(id);
+		
+		Resp<ProductDTO> response = new Resp<>();
+		response.setCode(code);
+		response.setMessage(message);
+		response.setData(data);
+		
+		return response;
+	}
 	
 }
