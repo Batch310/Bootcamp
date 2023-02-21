@@ -38,23 +38,25 @@ public class SubarrayDivision {
 					count++;
 				}
 			} else if (s.size() > 1) {
-				int m2 = m;		// Variabel batas akhir per perulangan
+//				int m2 = m;		// Variabel batas akhir per perulangan
 				for (int i = 0; i < s.size(); i++) {
 					temp += s.get(i);		// Penjumlahan seluruh bilangan pada setiap perulangan
 //					System.out.println(temp);
 //					System.out.println();
-					if (i == (m2 - 1)) {		// Pengecekan apakah index perulangan sama dengan batas akhir - 1
+//					if (i == (m2 - 1)) {		// Pengecekan apakah index perulangan sama dengan batas akhir - 1
+					if (i == (m - 1)) {		// Pengecekan apakah index perulangan sama dengan batas akhir - 1
 						if (temp == d) {		// Pengecekan apakah hasil penjumlahan sama dengan nilai d
 							count++;		// Penambahan total data dari hasil pengecekan
 						}
-						System.out.println("Ini indexAwal: " + indexAwal);
-						System.out.println("Ini m (indexAkhir): " + m2);
-						System.out.println("Ini temp: " + temp);
-						System.out.println();
+//						System.out.println("Ini indexAwal: " + indexAwal);
+//						System.out.println("Ini m (indexAkhir): " + m);
+//						System.out.println("Ini temp: " + temp);
+//						System.out.println();
 						temp = 0;		// Mengatur ulang nilai penampung hasil penjumlahan menjadi 0
 						indexAwal++;		// Menambahkan nilai indexAwal dengan 1
 						i = indexAwal - 1;		// Mengatur nilai index perulangan menjadi nilai indexAwal
-						m2++;		// Menambahkan nilai batas akhir perulangan dengan 1
+//						m2++;		// Menambahkan nilai batas akhir perulangan dengan 1
+						m++;		// Menambahkan nilai batas akhir perulangan dengan 1
 					}
 				}				
 			}
