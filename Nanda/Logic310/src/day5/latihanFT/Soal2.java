@@ -24,7 +24,7 @@ public class Soal2 {
 		String hasilkonsonan = "";
 
 		for (int i = 0; i < kata.length; i++) { //1245
-			if (vokal.contains(kata[i])) { //mebandingkan vokal dg isi array kata
+			if (vokal.contains(kata[i])) { //membandingkan vokal dg isi array kata
 				hasilvokal += kata[i]; //aaee
 			}
 		}
