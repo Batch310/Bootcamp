@@ -48,7 +48,7 @@ public class Soal5Ketemuan {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat(pattern,locale); 
 		
-		Date tanggalDate = sdf.parse(inputZ); // akan ada merah, pilih throws
+		Date tanggalDate = sdf.parse(inputZ); // akan ada error, pilih throws
 		long millis = tanggalDate.getTime();// mengambil millis yang bisa convert ke tanggal
 		
 		

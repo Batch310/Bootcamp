@@ -12,6 +12,7 @@ import com.example.dogservice.repository.SubBreedRepository;
 import com.example.dogservice.service.DogServices;
 import com.example.dogservice.service.MappingService;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +38,7 @@ public class DogController {
     }
 
     @GetMapping("/breeds/list/all")
-    @Transactional(timeout = 5)
+    @Transactional(timeout = 5) // timeout nya 5 detik
     public Object getAllBreedNameWithoutItsSubBreed() {
         List<Breeds> breedsList = breedRepository.findAll();
         return mappingService.convertToAllBreedNameDTO_2(breedsList);
@@ -52,8 +53,20 @@ public class DogController {
         return mappingService.convertToAllSubBreedNameDTO(subBreeds);
     }
 
+    //menggunakan Cache
+    @Cacheable(cacheNames = {"Breed"},key = "#breedName")
     @GetMapping("/breed/{breedName}/images")
     public Object getImagesByBreed(@PathVariable String breedName) {
+    	
+    	//tambah delay 5 detik
+    	System.out.println("-----Sleep 5 Detik-----");
+    	try {
+			Thread.sleep(5*1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
         Breeds breeds = breedRepository.findBreedsByName(breedName);
         if (breeds == null) return new NotFound("error","Breed not found (master breed does not exist)",404);
         List<DogImages> dogImages = dogImageRepository.findDogImagesByBreeds(breeds);
@@ -64,6 +77,7 @@ public class DogController {
 
     @GetMapping("/breed/{breedName}/{subBreedName}/images")
     public Object getImagesByBreedAndItsSubBreed(@PathVariable String breedName,@PathVariable String subBreedName) {
+    	
         Breeds breeds = breedRepository.findBreedsByName(breedName);
         if (breeds == null) return new NotFound("error","Breed not found (master breed does not exist)",404);
         List<SubBreeds> subBreeds = subBreedRepository.findByNameAndBreeds(subBreedName,breeds);

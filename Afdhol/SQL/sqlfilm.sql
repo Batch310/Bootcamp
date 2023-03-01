@@ -98,15 +98,15 @@ select
 	a.nm_artis,
 	n.nm_negara
 from film f
-inner join artis a
+ join artis a
 on f.artis = a.kd_artis
-inner join negara n
+ join negara n
 	on a.negara = n.kd_negara
 where n.nm_negara = 'HONGKONG';
 
 
 --16 tampilkan nama film, nama artis dan dan nama negara yang artisnya 
---berasal dari negara yang tidak engandung huruf 'o'
+--berasal dari negara yang tidak mengandung huruf 'o'
 -- pengunci = f.artis = a.kd_artis & a.negara = n.kd_negara
 
 select

@@ -60,8 +60,8 @@ function bukaPopupDelete(initial, name, active, id) {
 			<tr>
 				<td></td>
 				<td>
-					<button id="input-cancel" class="btn btn-light">Cancel</button>
-					<button id="input-delete" class="btn btn-danger">Delete</button>
+					<button id="input-cancel" class="btn btn-light">Batal</button>
+					<button id="input-delete" class="btn btn-danger">Hapus</button>
 				</td>
 			</tr>
 		</table>

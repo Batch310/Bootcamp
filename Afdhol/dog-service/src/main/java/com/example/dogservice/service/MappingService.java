@@ -43,9 +43,11 @@ public class MappingService {
             }
 
         }
+        
+        //Java Stram,Method Reference
         Map<String,List<String>> sortedMap = hm.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, // :: method reference,getKey mengambil key dari hm
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
         breedNameDTO.setMessage(sortedMap);
         breedNameDTO.setStatus("success");

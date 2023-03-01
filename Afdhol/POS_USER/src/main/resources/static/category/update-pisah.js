@@ -43,8 +43,8 @@ function bukaPopupEdit(initial, name, active, id) {
 			<tr>
 				<td></td>
 				<td>
-					<button id="input-cancel" class="btn btn-light">Cancel</button>
-					<button id="input-save" class="btn btn-warning">Save Change</button>
+					<button id="input-cancel" class="btn btn-danger">Batal</button>
+					<button id="input-save" class="btn btn-primary">Simpan Perubahan</button>
 				</td>
 			</tr>
 		</table>

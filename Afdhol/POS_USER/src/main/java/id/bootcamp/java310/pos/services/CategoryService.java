@@ -74,9 +74,9 @@ public class CategoryService {
 //	}
 
 	// Cara 4 & 5
-//	public List<CategoryDTO> getAll45(){
-//		//Cara 4
-////		return cr.getAll4();
+	//public List<CategoryDTO> getAll45(){
+		//Cara 4
+		//return cr.getAll4();
 //		
 //		//Cara 5
 //		return cr.getAll5();
