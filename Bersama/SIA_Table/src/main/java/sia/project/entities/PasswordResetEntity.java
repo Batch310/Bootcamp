@@ -6,10 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
 @Entity
-@Table(name = "kategory_penilaian")
-public class KategoriPenilaianEntity extends BaseProperties{
+@Table(name = "password_reset")
+public class PasswordResetEntity extends BaseProperties {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +16,10 @@ public class KategoriPenilaianEntity extends BaseProperties{
 	private Long id;
 	
 	@Column(length = 100)
-	private String nama;
+	private String email;
+	
+	@Column(length = 100)
+	private String token;
 
 	public Long getId() {
 		return id;
@@ -27,12 +29,21 @@ public class KategoriPenilaianEntity extends BaseProperties{
 		this.id = id;
 	}
 
-	public String getNama() {
-		return nama;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNama(String nama) {
-		this.nama = nama;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+	
 	
 }

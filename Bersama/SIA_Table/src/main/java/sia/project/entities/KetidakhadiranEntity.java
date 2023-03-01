@@ -8,9 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "catatan_pelajar")
-public class CatatanPelajarEntity extends BaseProperties{
-	
+@Table(name = "ketidakhadiran")
+public class KetidakhadiranEntity extends BaseProperties {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false, length = 11)
@@ -22,7 +22,14 @@ public class CatatanPelajarEntity extends BaseProperties{
 	@Column(length = 11)
 	private Long siswa_id;
 	
-	private String catatan;
+	@Column(length = 11)
+	private Long sakit;
+	
+	@Column(length = 11)
+	private Long izin;
+	
+	@Column(length = 11)
+	private Long tanpa_keterangan;
 
 	public Long getId() {
 		return id;
@@ -48,13 +55,29 @@ public class CatatanPelajarEntity extends BaseProperties{
 		this.siswa_id = siswa_id;
 	}
 
-	public String getCatatan() {
-		return catatan;
+	public Long getSakit() {
+		return sakit;
 	}
 
-	public void setCatatan(String catatan) {
-		this.catatan = catatan;
+	public void setSakit(Long sakit) {
+		this.sakit = sakit;
+	}
+
+	public Long getIzin() {
+		return izin;
+	}
+
+	public void setIzin(Long izin) {
+		this.izin = izin;
+	}
+
+	public Long getTanpa_keterangan() {
+		return tanpa_keterangan;
+	}
+
+	public void setTanpa_keterangan(Long tanpa_keterangan) {
+		this.tanpa_keterangan = tanpa_keterangan;
 	}
 	
-
+	
 }

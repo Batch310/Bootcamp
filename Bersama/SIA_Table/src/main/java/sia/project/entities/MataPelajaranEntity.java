@@ -8,8 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "kategory_penilaian")
-public class KategoriPenilaianEntity extends BaseProperties{
+@Table(name = "mata_pelajaran")
+public class MataPelajaranEntity extends BaseProperties {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,9 @@ public class KategoriPenilaianEntity extends BaseProperties{
 	
 	@Column(length = 100)
 	private String nama;
+	
+	@Column(length = 11)
+	private Long sub_katpenilaian_id;
 
 	public Long getId() {
 		return id;
@@ -34,5 +37,15 @@ public class KategoriPenilaianEntity extends BaseProperties{
 	public void setNama(String nama) {
 		this.nama = nama;
 	}
+
+	public Long getSub_katpenilaian_id() {
+		return sub_katpenilaian_id;
+	}
+
+	public void setSub_katpenilaian_id(Long sub_katpenilaian_id) {
+		this.sub_katpenilaian_id = sub_katpenilaian_id;
+	}
+	
 	
 }
+
