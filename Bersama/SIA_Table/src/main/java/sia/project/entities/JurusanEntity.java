@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "JurusanEntity")
+@Table(name = "jurusan")
 public class JurusanEntity extends BaseProperties{
 	
 	@Id

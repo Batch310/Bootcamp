@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "JadwalPelajaranEntity")
+@Table(name = "jadwal_pelajaran")
 public class JadwalPelajaranEntity extends BaseProperties {
 
 	@Id
