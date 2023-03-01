@@ -2,6 +2,8 @@ package sia.project.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,7 +30,9 @@ public class UsersEntity extends BaseProperties {
 	@Column(length = 11)
 	private Long siswa_id;
 	
-	private String level;
+	@Enumerated(EnumType.STRING)
+	@Column(name="level")
+	private Level level;
 	
 	@Column(length = 100)
 	private String remember_token;
@@ -73,11 +77,12 @@ public class UsersEntity extends BaseProperties {
 		this.siswa_id = siswa_id;
 	}
 
-	public String getLevel() {
+
+	public Level getLevel() {
 		return level;
 	}
 
-	public void setLevel(String level) {
+	public void setLevel(Level level) {
 		this.level = level;
 	}
 
