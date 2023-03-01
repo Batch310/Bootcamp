@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "DataKelasEntity")
+@Table(name = "data_kelas")
 public class DataKelasEntity extends BaseProperties {
 
 	@Id
